@@ -18,6 +18,9 @@ objects/
   org/
     eolang/
       bool.eo
+tests/
+  org/
+    eolang/
       bool/
         simple-tests.eo
 ```
