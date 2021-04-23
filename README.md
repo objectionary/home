@@ -11,6 +11,7 @@ and make it visible for users of EOLANG, you just create a new
 inside the `objects` directory.
 Then, you add tests also written in EOLANG, and place them next
 to your file in a subdirectory named after your object.
+
 For example:
 
 ```
@@ -44,7 +45,7 @@ classes for `nextInt` and `nextFloat` atoms can be found.
 When ready, submit us a pull request. Our scripts will try to
 build and test all objects, together with your new one, to make
 sure you didn't break anything and your objects work together
-with your atoms. Then, we'll merge it and the website objectionary.com
-will be update. All users will be able to use your objects.
+with your atoms. Then, we'll merge it and the website [objectionary.com](https://www.objectionary.com)
+will be updated. All users will be able to use your objects.
 
 
