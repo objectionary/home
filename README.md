@@ -1,5 +1,7 @@
 <img src="https://www.yegor256.com/images/books/elegant-objects/cactus.svg" height="100px" />
 
+[![make](https://github.com/yegor256/objectionary/actions/workflows/make.yml/badge.svg?branch=master)](https://github.com/yegor256/objectionary/actions/workflows/make.yml)
+
 The term **Objectionary** was coined by [David West](https://www.youtube.com/watch?v=s-hdZZzMCac)
 in his great book
 [Object Thinking](http://amzn.to/266oJr4). The original idea was to
