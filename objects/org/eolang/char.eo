@@ -1,6 +1,6 @@
 +package org.eolang
 +alias org.eolang.txt.sprintf
-+rt jvm org.eolang:eo-runtime:0.1.18
++rt jvm org.eolang:eo-runtime:0.4.0
 
 [data] > char
   # Converts char to string
