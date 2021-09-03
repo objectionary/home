@@ -3,7 +3,7 @@
 
 [] > bool
   # If true, return "t", otherwise "f"
-  [t f] > if /t
+  [t f] > if /?
 
   # NOT
   [] > not /bool
