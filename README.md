@@ -52,5 +52,3 @@ sure you didn't break anything and your objects work together
 with your atoms. Then, we'll merge it and the website 
 [objectionary.com](https://www.objectionary.com)
 will be updated. All users will be able to use your objects.
-
-
