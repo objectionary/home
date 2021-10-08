@@ -21,4 +21,4 @@ jobs:
           key: ubuntu-latest-jdk-11-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ubuntu-latest-jdk-11-maven-
-      - run: cd make && make
+      - run: make
