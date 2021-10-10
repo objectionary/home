@@ -38,8 +38,12 @@ you create a new random numbers generator:
 +rt jvm org.example:example-runtime:1.0
 
 [] > random
-  [max] > next-int /int
-  [] > next-float /float
+  [max] > next-int
+    to-int.
+      mul.
+        max
+        ^
+  [] > @ /float
 ```
 
 The meta `+rt` clearly points us to the place where a JAR with
