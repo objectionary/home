@@ -26,8 +26,7 @@ objects/
 tests/
   org/
     eolang/
-      bool/
-        simple-tests.eo
+      bool-tests.eo
 ```
 
 Then, you add a meta to your object code, mentioning the location
@@ -39,8 +38,8 @@ you create a new random numbers generator:
 +java org.example:example-runtime:1.0
 
 [] > random
-  [max] > nextInt /int
-  [] > nextFloat /float
+  [max] > next-int /int
+  [] > next-iloat /float
 ```
 
 The meta `+java` clearly points us to the place where a JAR with
