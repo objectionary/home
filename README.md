@@ -39,7 +39,7 @@ you create a new random numbers generator:
 
 [] > random
   [max] > next-int /int
-  [] > next-iloat /float
+  [] > next-float /float
 ```
 
 The meta `+rt` clearly points us to the place where a JAR with
