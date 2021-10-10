@@ -35,19 +35,18 @@ you create a new random numbers generator:
 
 ```
 +package org.example
-+java org.example:example-runtime:1.0
++rt jvm org.example:example-runtime:1.0
 
 [] > random
   [max] > next-int /int
   [] > next-iloat /float
 ```
 
-The meta `+java` clearly points us to the place where a JAR with
-classes for `nextInt` and `nextFloat` atoms can be found.
+The meta `+rt` clearly points us to the place where a JAR with
+classes for `next-int` and `next-float` atoms can be found.
 
 When ready, submit us a pull request. Our scripts will try to
 build and test all objects, together with your new one, to make
 sure you didn't break anything and your objects work together
-with your atoms. Then, we'll merge it and the website 
-[objectionary.com](https://www.objectionary.com)
+with your atoms. Then, we'll merge it and the repository
 will be updated. All users will be able to use your objects.
