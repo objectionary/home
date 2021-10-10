@@ -47,7 +47,7 @@ you create a new random numbers generator:
 ```
 
 The meta `+rt` clearly points us to the place where a JAR with
-classes for `next-int` and `next-float` atoms can be found.
+the class for `random.@` atom can be found.
 
 When ready, submit us a pull request. Our scripts will try to
 build and test all objects, together with your new one, to make
