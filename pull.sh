@@ -7,4 +7,4 @@ tmp=$(mktemp -d)
 
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
 ls -al "${tmp}"
-cp -r "${tmp}/objectionary/*" .
+cp -r ${tmp}/objectionary/* .
