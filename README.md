@@ -7,7 +7,8 @@ in his great book
 [Object Thinking](http://amzn.to/266oJr4). The original idea was to
 have a place where objects are hosted. Not libraries or software packages,
 but individual objects. This is exactly what this repository is about:
-it hosts [EOLANG](https://www.eolang.org) objects.
+it hosts [EOLANG](https://www.eolang.org) objects. More details
+in [this blog post](https://www.yegor256.com/2021/10/21/objectionary.html).
 
 When you are ready to publish a new object to this repository
 and make it visible for users of EOLANG, you just create a new
