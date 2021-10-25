@@ -1,8 +1,31 @@
 +package org.eolang.fs
-+rt jvm org.eolang:eo-files:0.0.1
++rt jvm org.eolang:eo-files:0.0.2
 
 [path] > file
   path > @
 
   # Is it directory?
   [] > is-dir /bool
+
+  # File exists?
+  [] > exists /bool
+
+  # Touch it and return TRUE.
+  [] > touch /bool
+
+  # Removes the file and returns TRUE if success
+  [] > rm /bool
+
+  # Get file size in bytes.
+  [] > size /int
+
+  # Move it to a new place, making a new file.
+  [path] > mv /file
+
+  # Turn it into an "output" with a single attribute
+  # "write", which accepts one attribute "data"
+  [mode] > as-output /bool
+
+  # Turn it into an "input" with a single attribute
+  # "read", which accepts one attribute "size"
+  [mode buf] > as-input /bool
