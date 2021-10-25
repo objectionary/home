@@ -1,8 +1,23 @@
 +package org.eolang.fs
-+rt jvm org.eolang:eo-files:0.0.2
++rt jvm org.eolang:eo-files:0.1.0
 
 [file] > dir
   file > @
+
+  # Make a directory together with all required
+  # parent directories and returns TRUE if it
+  # was created; FALSE means that the directory was
+  # already there. Even if it's a file that already
+  # exists, the result will be TRUE, not a failure.
+  [] > mkdir /bool
+
+  # Go though all files in the directory, recursively
+  # finding them with the "glob" provided.
+  [glob] > walk /array
+
+  # Delete directory and all files in it, recursively.
+  # Always returns TRUE.
+  [] > rm-rf /bool
 
   # Create an empty temporary file in the dir
   [] > tmpfile /file

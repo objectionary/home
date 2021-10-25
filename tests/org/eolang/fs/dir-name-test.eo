@@ -1,0 +1,9 @@
++package org.eolang.fs
++alias org.eolang.fs.dir-name
++junit
+
+[] > takes-name-of-directory
+  eq. > @
+    dir-name
+      "/tmp/foo/hello.gz"
+    "/tmp/foo"

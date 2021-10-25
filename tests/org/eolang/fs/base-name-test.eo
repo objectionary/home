@@ -1,0 +1,9 @@
++package org.eolang.fs
++alias org.eolang.fs.base-name
++junit
+
+[] > takes-base-name-file
+  eq. > @
+    base-name
+      "/tmp/foo/hello.gz"
+    "hello.gz"

@@ -1,5 +1,5 @@
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.0.2
++rt jvm org.eolang:eo-files:0.1.0
 
 # Makes an input from bytes. In most cases you don't
 # need to specify the last two arguments, only the first
