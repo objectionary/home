@@ -40,7 +40,7 @@ you create a new random numbers generator:
 
 [] > random
   [max] > next-int
-    to-int.
+    as-int.
       mul.
         max
         ^
