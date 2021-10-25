@@ -1,8 +1,69 @@
 +package org.eolang.fs
++alias org.eolang.txt.sprintf
 +alias org.eolang.fs.file
++alias org.eolang.fs.tmpdir
++alias org.eolang.io.bytes-as-input
++alias org.eolang.io.copied
 +junit
 
 [] > check-if-it-is-directory
   is-dir. > @
     file
       "."
+
+[] > check-if-file-exists
+  not. > @
+    exists.
+      file
+        "some-absent-file.txt"
+
+[] > touches-a-file
+  tmpdir.tmpfile.@ > f
+  and. > @
+    f.touch
+    f.exists
+
+[] > moves-a-file
+  tmpdir.tmpfile.@ > src
+  file > dest
+    sprintf
+      "%s.dest"
+      src
+  seq > @
+    src.touch
+    src.mv dest
+    dest.exists
+    src.exists.not
+
+[] > deletes-single-file-in-temp
+  rm. > @
+    tmpfile.
+      tmpdir
+
+[] > writes-string-to-file
+  tmpdir.tmpfile.@ > f
+  eq. > @
+    copied
+      bytes-as-input
+        as-bytes.
+          "你好, друг!"
+      f.as-output "w+"
+      4
+    17
+
+[] > measures-empty-file-size
+  tmpdir.tmpfile.@ > f
+  and. > @
+    f.touch
+    f.size.eq 0
+
+[] > measures-file-size
+  tmpdir.tmpfile.@ > f
+  eq. > @
+    copied
+      bytes-as-input
+        as-bytes.
+          "hey!"
+      f.as-output "w+"
+      100
+    f.size

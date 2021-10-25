@@ -1,0 +1,4 @@
++package org.eolang.fs
++rt jvm org.eolang:eo-files:0.0.2
+
+[] > tmpdir /dir

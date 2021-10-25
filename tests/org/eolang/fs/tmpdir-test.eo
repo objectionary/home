@@ -1,0 +1,7 @@
++package org.eolang.fs
++alias org.eolang.fs.tmpdir
++junit
+
+[] > global-temp-dir-exists
+  exists. > @
+    tmpdir
