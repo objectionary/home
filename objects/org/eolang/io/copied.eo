@@ -1,5 +1,5 @@
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.0.2
++rt jvm org.eolang:eo-files:0.1.0
 
 # A copy of input into output, which is a total
 # number of bytes copied.

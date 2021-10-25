@@ -1,5 +1,5 @@
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.0.2
++rt jvm org.eolang:eo-files:0.1.0
 
 # Turns memory into an output.
 [m] > memory-as-output

@@ -1,0 +1,6 @@
++package org.eolang.fs
++rt jvm org.eolang:eo-files:0.1.0
+
+# Takes the directory name from the full path name,
+# for example "/tmp/bar/foo.txt" will lead to "/tmp/bar"
+[f] > dir-name /string
