@@ -1,6 +1,0 @@
-+package org.eolang.fs
-+rt jvm org.eolang:eo-files:0.1.0
-
-# Takes the extension part from the full path name,
-# for example "/tmp/bar/foo.txt.gz" will lead to "txt.gz"
-[f] > ext-name /string

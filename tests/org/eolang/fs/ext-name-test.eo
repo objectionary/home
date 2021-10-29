@@ -1,9 +1,0 @@
-+package org.eolang.fs
-+alias org.eolang.fs.ext-name
-+junit
-
-[] > takes-extension-name
-  eq. > @
-    ext-name
-      "/tmp/foo/hello.gz"
-    ".gz"
