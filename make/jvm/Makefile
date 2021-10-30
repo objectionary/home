@@ -26,7 +26,7 @@ SHELL := /bin/bash
 .ONESHELL:
 
 all:
-	mvn test
+	mvn -U test
 
 clean:
 	mvn clean
