@@ -1,0 +1,56 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2021 Yegor Bugayenko
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++package org.eolang.fs
++rt jvm org.eolang:eo-files:0.3.0
+
+[path] > file
+  path > @
+
+  # Is it directory?
+  [] > is-dir /bool
+
+  # Add path segment
+  [p] > resolve /file
+
+  # File exists?
+  [] > exists /bool
+
+  # Touch it and return TRUE.
+  [] > touch /bool
+
+  # Removes the file and returns TRUE if success
+  [] > rm /bool
+
+  # Get file size in bytes.
+  [] > size /int
+
+  # Move it to a new place, making a new file.
+  [path] > mv /file
+
+  # Turn it into an "output" with a single attribute
+  # "write", which accepts one attribute "data"
+  [mode] > as-output /bool
+
+  # Turn it into an "input" with a single attribute
+  # "read", which accepts one attribute "size"
+  [mode buf] > as-input /bool
