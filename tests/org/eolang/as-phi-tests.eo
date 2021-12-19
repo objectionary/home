@@ -21,14 +21,16 @@
 # SOFTWARE.
 
 +package org.eolang
-+alias org.eolang.txt.sprintf
 +alias org.eolang.io.stdout
 +junit
 
-[] > x
-  TRUE > @
+[] > prints-itself
+  greater. > @
+    length.
+      as-phi $
+    0
 
-[] > z
-  [x] > y
-    x > @
-  TRUE > @
+[] > prints-itself-to-console
+  42 > x
+  stdout > @
+    as-phi $

@@ -21,22 +21,7 @@
 # SOFTWARE.
 
 +package org.eolang
-+alias org.eolang.txt.sprintf
-+alias org.eolang.io.stdout
-+junit
++rt jvm org.eolang:eo-runtime:0.21.1
 
-# this code should not fail the many-free-attributes check
-# because every abstract object clearly has <= 4 free attrs
-[] > not-many-free-attributes
-  [] > empty1
-    TRUE > @
-  [] > empty2
-    TRUE > @
-  [] > empty3
-    TRUE > @
-  [] > empty4
-    TRUE > @
-  [] > empty5
-    TRUE > @
-  TRUE > @
-
+# Turns an object into a φ-term
+[x] > as-phi /string
