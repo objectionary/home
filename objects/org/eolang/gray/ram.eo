@@ -20,7 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.txt
++package org.eolang.gray
 +rt jvm org.eolang:eo-runtime:0.21.7
 
-[format args...] > sprintf /string
+# Random-access memory (RAM).
+[size] > ram
+
+  # Write bytes B at position P.
+  # Returns itself.
+  [p b] > write /true
+
+  # Read L bytes at position P.
+  [p l] > read /bytes
