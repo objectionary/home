@@ -1,0 +1,29 @@
++package org.eolang.math
++alias org.eolang.math.sin
++alias org.eolang.math.pi
++junit
+
+[] > sin-of-0-is-0
+  eq. > @
+   	sin 0
+    0
+
+[] > sin-of-pi-is-0
+  eq. > @
+    sin pi
+    0
+
+[] > sin-of-munis-pi-is-0
+  eq. > @
+    sin pi.neg
+    0
+
+[] > sin-of-half-of-pi-is-1
+  eq. > @
+    sin (pi.div 2)
+    1
+
+[] > sin-of-three-second-pi-is-minus-1
+  eq. > @
+    sin ((pi.mul 3).div 2)
+    -1

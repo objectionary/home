@@ -1,0 +1,29 @@
++package org.eolang.math
++alias org.eolang.math.cos
++alias org.eolang.math.pi
++junit
+
+[] > cos-of-0-is-1
+  eq. > @
+   	cos 0
+    1
+
+[] > cos-of-pi-is-minus-1
+  eq. > @
+    cos pi
+    -1
+
+[] > cos-of-munis-pi-is-minus-1
+  eq. > @
+    cos pi.neg
+    -1
+
+[] > cos-of-half-of-pi-is-0
+  eq. > @
+    cos (pi.div 2)
+    0
+
+[] > cos-of-three-second-pi-is-0
+  eq. > @
+    sin ((pi.mul 3).div 2)
+    0

@@ -1,0 +1,5 @@
++package org.eolang.math
++rt jvm org.eolang:eo-runtime:0.21.9
+
+# Sine
+[x] > sin /float
