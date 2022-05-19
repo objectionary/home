@@ -258,7 +258,4 @@
     [] > description-of
       sprintf > @
         format
-        # @todo #17:45min Here we got an object printed
-        #  instead of data. The .map [i] i.as-string didn't work.
-        #  We need to convert varargs to data[] somehow.
         args

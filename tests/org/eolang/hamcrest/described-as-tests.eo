@@ -24,10 +24,6 @@
 +alias org.eolang.hamcrest.assert-that
 +junit
 
-# @todo #16:45min I assumed that we need to add
-#  more tests of .described-as matcher and more
-#  varargs values after fixing issue in
-#  objectionary/eo#623
 [] > two-sum-described-as-equal-to-test
   assert-that > @
     15.add 5

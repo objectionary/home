@@ -24,9 +24,6 @@
 +alias org.eolang.hamcrest.assert-that
 +junit
 
-# @todo #15:45min I assumed that we need to add more tests
-#  of .any-of matcjher (e.g. several different matchers, nested
-#  matchers etc.) after fixing issue in objectionary/eo#623
 [] > any-of-numbers-test
   assert-that > @
     150.div 3
