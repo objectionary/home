@@ -1,0 +1,264 @@
+# MIT License
+#
+# Copyright (c) 2022 Graur Andrew
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++package org.eolang.hamcrest
++alias sprintf org.eolang.txt.sprintf
++rt jvm org.eolang:eo-hamcrest:0.1.5
+
+# Main object for assertions
+[actual matcher reasons...] > assert-that
+
+  if. > @
+    matcher.match actual
+    TRUE
+    sprintf
+      "%s\nExpected: %s but: %s"
+      if.
+        reasons.is-empty
+        ""
+        reasons.get 0
+      description-of.
+        matcher
+      describe-mismatch.
+        matcher
+
+  # Is the value equal to another value
+  [x] > equal-to
+
+    [a] > match
+      eq. > @
+        x
+        a
+
+    [] > describe-mismatch
+      sprintf > @
+        "was <%s>"
+        actual
+
+    [] > description-of
+      sprintf > @
+        "<%s> equal to value"
+        x
+
+  # Calculates the logical negation of a matcher
+  [matcher] > not
+
+    [a] > match
+      not. > @
+        matcher.match a
+
+    [] > describe-mismatch
+      sprintf > @
+        "%s"
+        matcher.describe-mismatch
+
+    [] > description-of
+      sprintf > @
+        "not %s"
+        description-of.
+          matcher
+
+  # Calculates the logical conjunction of multiple matchers.
+  # Evaluation is shortcut, so subsequent matchers are not called
+  # if an earlier matcher returns false.
+  [matchers...] > all-of
+
+    memory > mismatch
+
+    [a] > match
+      memory > count
+      seq > @
+        count.write 0
+        while.
+          and.
+            count.less (matchers.length)
+            count.geq 0
+          [i]
+            if. > @
+              (matchers.get i).match a
+              count.write (i.add 1)
+              seq
+                mismatch.write
+                  describe-mismatch.
+                    matchers.get i
+                count.write -1
+        count.greater 0
+
+    [] > describe-mismatch
+      sprintf > @
+        "a value %s"
+        mismatch
+
+    [] > description-of
+      " and ".joined > @
+        map.
+          matchers
+          [i]
+            i.description-of > @
+
+  # Calculates the logical disjunction of multiple matchers.
+  # Evaluation is shortcut, so subsequent matchers are not called
+  # if an earlier matcher returns true.
+  [matchers...] > any-of
+
+    [a] > match
+      memory > count
+      seq > @
+        count.write 0
+        while.
+          and.
+            count.less (matchers.length)
+            count.geq 0
+          [i]
+            if. > @
+              (matchers.get i).match a
+              count.write -1
+              count.write (i.add 1)
+        count.less 0
+
+    [] > describe-mismatch
+      sprintf > @
+        "a value was <%s>"
+        actual
+
+    [] > description-of
+      " or ".joined > @
+        map.
+          matchers
+          [i]
+            i.description-of > @
+
+  # Compare object that matches when the examined object
+  # is greater than the specified value
+  [x] > greater-than
+
+    [a] > match
+      greater. > @
+        a
+        x
+
+    [] > describe-mismatch
+      sprintf > @
+        "was <%s>"
+        actual
+
+    [] > description-of
+      sprintf > @
+        "<%s> less than value"
+        x
+
+  # Compare object that matches when the examined object
+  # is less than the specified value
+  [x] > less-than
+
+    [a] > match
+      less. > @
+        a
+        x
+
+    [] > describe-mismatch
+      sprintf > @
+        "was <%s>"
+        actual
+
+    [] > description-of
+      sprintf > @
+        "<%s> greater than value"
+        x
+
+  # Compare object that matches when an examined float
+  # is equal to the specified operand, within a range of +/- error.
+  [operand err] > close-to
+
+    memory > mismatch
+
+    [a] > match
+      seq > @
+        mismatch.write actual-delta
+        actual-delta.leq 0.0
+      [] > actual-delta
+        sub. > @
+          abs.
+            a.sub operand
+          err
+
+    [] > describe-mismatch
+      sprintf > @
+        "<%s> differed by <%s> more than delta <%s>"
+        actual
+        mismatch
+        err
+
+    [] > description-of
+      sprintf > @
+        "a numeric value within <%s> of <%s>"
+        operand
+        err
+
+  # Decorates another Matcher, retaining the behaviour
+  # but allowing tests to be slightly more expressive.
+  [matcher] > is
+
+    [a] > match
+      matcher.match a > @
+
+    [] > describe-mismatch
+      describe-mismatch. > @
+        matcher
+
+    [] > description-of
+      sprintf > @
+        "is %s"
+        description-of.
+          matcher
+
+  # A matcher that always returns true.
+  [] > anything
+
+    [a] > match
+      TRUE > @
+
+    [] > describe-mismatch
+      "anything" > @
+
+    [] > description-of
+      "anything" > @
+
+  # Wraps an existing matcher, overriding its description with that specified.
+  # All other functions are delegated to the decorated matcher,
+  # including its mismatch description.
+  [matcher format args...] > described-as
+
+    [a] > match
+      matcher.match a > @
+
+    [] > describe-mismatch
+      describe-mismatch. > @
+        matcher
+
+    [] > description-of
+      sprintf > @
+        format
+        # @todo #17:45min Here we got an object printed
+        #  instead of data. The .map [i] i.as-string didn't work.
+        #  We need to convert varargs to data[] somehow.
+        args
