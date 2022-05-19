@@ -24,10 +24,6 @@
 +alias org.eolang.hamcrest.assert-that
 +junit
 
-# @todo #14:45min I assumed that we need to add more
-#  tests with .all-of matcher (e.g. several different
-#  matchers and nested matchers) after fixing issue in
-#  objectionary/eo#623
 [] > all-of-numbers-test
   assert-that > @
     150.sub 50
