@@ -22,6 +22,7 @@
 
 all:
 	make -C make
+	pdd --format xml . | grep -v 'puzzle '
 
 clean:
 	make -C make clean
