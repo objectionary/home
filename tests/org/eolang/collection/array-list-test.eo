@@ -1,0 +1,169 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2022 Dmitry Yakuba
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++package org.eolang.collection
++alias org.eolang.collection.array-list
++alias org.eolang.io.stdout
++junit
+
+[] > test-array-list-get
+  array-list (* "apple" "egg" "baby" "carrot") > a
+  and. > @
+    eq.
+      a.get 0
+      "apple"
+    eq.
+      a.get 2
+      "baby"
+
+[] > test-array-list-eq
+  array-list (* 1 2 3) > a
+  array-list (* 1 2 3) > b
+  eq. > @
+    a
+    b
+
+[] > test-array-list-index-of
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.index-of 3
+    2
+
+[] > test-array-list-index-of-out-of-range
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.index-of 6
+    -1
+
+[] > test-array-list-contains-true
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.contains 2
+    TRUE
+
+[] > test-array-list-contains-false
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.contains 5
+    FALSE
+
+[] > test-array-list-add
+  array-list (* 1 2 3) > a
+  array-list (* 1 2 3 10) > b
+  eq. > @
+    a.add 10
+    b
+
+[] > test-array-list-add-all
+  array-list (* "apple" "egg") > a
+  array-list (* "pineapple" "carrot ") > b
+  array-list (* "apple" "egg" "pineapple" "carrot") > c
+  eq. > @
+    a.add-all b
+    c
+
+[] > test-array-list-insert
+  array-list (* "apple" "egg" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > b
+  eq. > @
+    a.insert 2 "baby"
+    b
+
+[] > test-array-list-sub-list
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby") > b
+  eq. > @
+    a.sub-list 0 3
+    b
+
+[] > test-array-list-remove-index
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby" "carrot") > b
+  eq. > @
+    removei.
+      a
+      3
+    b
+
+[] > test-array-list-double-remove-index
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "baby" "carrot") > b
+  seq > @
+    eq.
+      ((a.removei 3).removei 1)
+      b
+
+[] > test-array-list-remove-el
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "baby" "pineapple" "carrot") > b
+  seq > @
+    eq.
+      a.remove "egg"
+      b
+
+[] > test-array-list-each
+  array-list (* "egg" "apple") > a
+  a.each > @
+    [i] (stdout i > @)
+
+[] > test-array-list-set-index
+  array-list (* "apple" "egg" "baby" "carrot") > a
+  array-list (* "apple" "egg" "milk" "carrot") > b
+  seq > @
+    eq.
+      a.set 2 "milk"
+      b
+
+[] > test-array-list-to-array
+  (* "apple" "egg" "baby" "carrot") > a
+  array-list (* "apple" "egg" "baby" "carrot") > b
+  seq > @
+    eq.
+      a
+      b.as-array
+
+[] > test-array-list-is-empty
+  array-list * > a
+  seq > @
+    eq.
+      a.is-empty
+      TRUE
+
+[] > test-array-list-mapi
+  array-list (* "1" "2" "3") > arr
+  eq. > @
+    array-list (* 1 4 9)
+    arr.mapi
+      [current index]
+        mul. > @
+          current.as-int
+          index.add 1
+
+[] > test-array-list-map
+  array-list (* "1" "2" "3") > arr
+  eq. > @
+    array-list (* 1 8 27)
+    arr.map
+      [current]
+        pow. > @
+          current.as-int
+          3

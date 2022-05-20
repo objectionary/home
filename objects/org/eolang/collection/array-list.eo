@@ -1,0 +1,262 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2022 Dmitry Yakuba
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++package org.eolang.collection
++rt jvm org.eolang:eo-collection:0.0.0
+
+[arr] > array-list
+
+  # Returns true if this list contains the specified element.
+  [el] > contains
+    greater. > @
+      index-of el
+      -1
+
+  # Returns index of element
+  [el] > index-of
+
+    rec-index-of > @
+      arr
+      el
+      0
+
+    [arr el i] > rec-index-of
+      if. > @
+        eq.
+          arr.length
+          i
+        -1
+        if.
+          eq.
+            el
+            arr.get i
+          i
+          rec-index-of
+            arr
+            el
+            i.add 1
+
+  # Returns array-list with appending the specified
+  # element to the end of this list.
+  [el] > add
+    array-list > @
+      append.
+        arr
+        el
+  # Returns array-list with appending the another
+  # array-list to the end of this list.
+  [in-arr] > add-all
+    array-list > @
+      reduce.
+        in-arr.arr
+        arr
+        [res cur]
+          append. > @
+            res
+            cur
+
+  # Returns array-list with inserting the specified
+  # element to the end of this list.
+  [i el] > insert
+
+    array-list > @
+      reduce.
+        end-arr
+        begin-arr.append el
+        [res cur]
+          append. > @
+            res
+            cur
+
+    rec-insert > begin-arr
+      arr
+      *
+      0
+      i
+
+    rec-insert > end-arr
+      arr
+      *
+      i
+      arr.length
+
+    [in-arr accum start end] > rec-insert
+      if. > @
+        less.
+          start
+          end
+        rec-insert
+          in-arr
+          append.
+            accum
+            get.
+              in-arr
+              start
+          add.
+            start
+            1
+          end
+        accum
+
+  # Get element of index
+  [i] > get
+    arr.get i > @
+
+  [in-arr] > eq
+    equalarrs > @
+      in-arr.arr
+      arr
+
+    [x y] > equalarrs
+      y > copy
+      if. > @
+        eq.
+          copy.length
+          x.length
+        get.
+          copy.mapi
+            [e i]
+              [idx] > cond
+                eq. > @
+                  copy.get idx
+                  x.get idx
+              if. > @
+                i.less 1
+                cond i
+                cond
+                  i.sub 1
+          copy.length.sub 1
+        FALSE
+
+  # Returns sub-array-list fromIdx toIdx
+  [from-idx to-idx] > sub-list
+
+    array-list > @
+      rec-sub-list
+        arr
+        *
+        from-idx
+        to-idx
+
+    [in-arr accum start end] > rec-sub-list
+      if. > @
+        less.
+          start
+          end
+        rec-sub-list
+          in-arr
+          append.
+            accum
+            get.
+              in-arr
+              start
+          add.
+            start
+            1
+          end
+        accum
+
+  # Returns array-list removing the
+  # element at the specified position in this list.
+  [i] > removei
+
+    array-list > @
+      reduce.
+        end-arr.arr
+        begin-arr.arr
+        [res cur]
+          append. > @
+            res
+            cur
+
+    sub-list > begin-arr
+      0
+      i
+
+    sub-list > end-arr
+      i.add 1
+      arr.length
+
+  # Returns array-list removing the element
+  # at the specified element in this list.
+  [el] > remove
+    removei > @
+      index-of
+        el
+
+  # For each array-list element dataize the object
+  [f] > each
+    each. > @
+      arr
+      f
+
+  # Returns size of array-list
+  [] > size
+    arr.length > @
+
+  # Returns array-list replacing the element at the
+  # specified position in this list with the specified element.
+  [i el] > set
+
+    array-list > @
+      reduce.
+        end-arr.arr
+        append.
+          begin-arr.arr
+          el
+        [res cur]
+          append. > @
+            res
+            cur
+
+    sub-list > begin-arr
+      0
+      i
+
+    sub-list > end-arr
+      i.add 1
+      arr.length
+
+  # Converts this to array
+  [] > as-array
+    arr > @
+
+  # Is it empty?
+  [] > is-empty
+    arr.is-empty > @
+
+  # Map with index. Here "f" must be an abstract
+  # object with two free attributes. The first
+  # one for the element of the array-list, the second one
+  # for the index.
+  [f] > mapi
+    array-list > @
+      arr.mapi
+        f
+
+  # Map without index. Here "f" must be an abstract
+  # object with one free attribute, for the element
+  # of the array-list.
+  [f] > map
+    array-list > @
+      arr.map
+        f
