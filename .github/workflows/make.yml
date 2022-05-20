@@ -24,5 +24,8 @@ jobs:
           key: ubuntu-latest-jdk-11-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ubuntu-latest-jdk-11-maven-
-      - uses: g4s8/pdd-action@master
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - run: gem install pdd
       - run: make
