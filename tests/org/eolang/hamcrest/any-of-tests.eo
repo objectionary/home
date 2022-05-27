@@ -30,3 +30,22 @@
     $.any-of
       $.equal-to 50
     "any of number conditions"
+
+[] > any-of-several
+  assert-that > @
+    100.sub 5
+    $.any-of
+      $.equal-to 45
+      $.greater-than 40
+      $.less-than -111
+    "any of conditions"
+
+[] > any-of-close-to
+  assert-that > @
+    30.0
+    $.any-of
+      $.equal-to
+        1000.as-float
+      $.greater-than 777.0
+      $.close-to 30.0 0.1
+    "any of conditions"

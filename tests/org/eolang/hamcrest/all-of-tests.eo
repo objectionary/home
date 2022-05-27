@@ -30,3 +30,22 @@
     $.all-of
       $.equal-to 100
     "all of numbers conditions"
+
+[] > all-of-several
+  assert-that > @
+    15.mul 3
+    $.all-of
+      $.equal-to 45
+      $.greater-than 40
+      $.less-than 100
+    "all of conditions"
+
+[] > all-of-close-to
+  assert-that > @
+    22.0
+    $.all-of
+      $.equal-to
+        22.as-float
+      $.greater-than 10.0
+      $.close-to 20.0 2.2
+    "all of conditions"
