@@ -7,6 +7,9 @@ on:
   pull_request:
     branches:
       - master
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   make:
     runs-on: ubuntu-latest
@@ -21,4 +24,8 @@ jobs:
           key: ubuntu-latest-jdk-11-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ubuntu-latest-jdk-11-maven-
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - run: gem install pdd
       - run: make
