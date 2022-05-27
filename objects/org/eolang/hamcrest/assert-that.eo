@@ -22,7 +22,7 @@
 
 +package org.eolang.hamcrest
 +alias sprintf org.eolang.txt.sprintf
-+rt jvm org.eolang:eo-hamcrest:0.1.5
++rt jvm org.eolang:eo-hamcrest:0.1.6
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
@@ -31,7 +31,7 @@
     matcher.match actual
     TRUE
     sprintf
-      "%s\nExpected: %s but: %s"
+      "%s\nExpected: %s\n     but: %s"
       if.
         reasons.is-empty
         ""
@@ -158,7 +158,7 @@
 
     [] > describe-mismatch
       sprintf > @
-        "was <%s>"
+        "was less than <%s>"
         actual
 
     [] > description-of
@@ -177,7 +177,7 @@
 
     [] > describe-mismatch
       sprintf > @
-        "was <%s>"
+        "was greater than <%s>"
         actual
 
     [] > description-of
@@ -259,3 +259,127 @@
       sprintf > @
         format
         args
+
+  # Wraps an existing matcher and apply it to every item in array.
+  [matcher] > has-item
+    memory > mismatches
+
+    [a] > match
+      [s] > apply
+        if. > @
+          matcher.match s
+          TRUE
+          seq
+            mismatches.write
+              mismatches.with
+                matcher.describe-mismatch
+            FALSE
+      seq > @
+        mismatches.write *
+        actual.reducei
+          FALSE
+          [acc i x]
+            or. > @
+              acc
+              apply x
+
+    [] > describe-mismatch
+      sprintf > @
+        "mismatches: [%s]"
+        "".joined mismatches
+
+    [] > description-of
+      sprintf > @
+        "an array containing %s"
+        description-of.
+          matcher
+
+  # Wraps an array of matchers and apply them to every item in array.
+  [matchers...] > has-items
+    memory > mismatches
+
+    [a] > all-match
+      memory > count
+      seq > @
+        count.write 0
+        while.
+          and.
+            count.less (matchers.length)
+            count.geq 0
+          [i]
+            if. > @
+              (matchers.get i).match a
+              count.write (i.add 1)
+              seq
+                mismatches.write
+                  mismatches.with
+                    describe-mismatch.
+                      matchers.get i
+                count.write -1
+        count.greater 0
+
+    [a] > match
+      seq > @
+        mismatches.write *
+        actual.reducei
+          FALSE
+          [acc i el]
+            or. > @
+              acc
+              all-match el
+
+    [] > describe-mismatch
+      sprintf > @
+        "mismatches: [%s]"
+        ", ".joined mismatches
+
+    [] > description-of
+      " and ".joined > @
+        map.
+          matchers
+          [i]
+            i.description-of > @
+
+  # Matcher for array whose elements satisfy a sequence of matchers.
+  # The array size must equal the number of element matchers.
+  [matchers...] > array-each
+
+    memory > mismatches
+
+    [] > check-length
+      eq. > @
+        matchers.length
+        actual.length
+
+    [a] > match
+      if. > @
+        check-length
+        seq
+          mismatches.write *
+          a.reducei
+            TRUE
+            [acc i el]
+              and. > @
+                acc
+                if.
+                  (matchers.get i).match el
+                  TRUE
+                  seq
+                    mismatches.write
+                      mismatches.with
+                        describe-mismatch.
+                          matchers.get i
+                    FALSE
+        FALSE
+
+    [] > describe-mismatch
+      sprintf > @
+        "mismatches: [%s]"
+        ", ".joined mismatches
+
+    [] > description-of
+      " and ".joined > @
+        map.
+          matchers
+          [i]
+            i.description-of > @
