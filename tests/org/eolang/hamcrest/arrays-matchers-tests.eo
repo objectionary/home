@@ -21,6 +21,8 @@
 # SOFTWARE.
 
 +package org.eolang.hamcrest
++home https://github.com/objectionary/eo-hamcrest
++version 0.2.0
 +alias org.eolang.hamcrest.assert-that
 +junit
 
@@ -51,7 +53,7 @@
 
 [] > nested-has-items
   assert-that > @
-    * "a" "b" "c" 'd'
+    * "a" "b" "c" "d"
     $.has-items
       $.equal-to "c"
 
@@ -64,9 +66,9 @@
 
 [] > arrays-each-items-complex-case
   assert-that > @
-    * "vice" 'c' -5 (13.as-float)
+    * "vice" "c" -5 (13.as-float)
     $.array-each
       $.equal-to "vice"
-      $.equal-to 'c'
+      $.equal-to "c"
       $.less-than 0
       $.greater-than 10.0
