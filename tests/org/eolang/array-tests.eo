@@ -23,6 +23,7 @@
 +package org.eolang
 +alias org.eolang.txt.sprintf
 +alias org.eolang.io.stdout
++alias org.eolang.hamcrest.assert-that
 +junit
 
 [] > makes-array-through-special-syntax
@@ -159,3 +160,160 @@
   * > xs
     [f] (f.as-int > @)
   xs.is-empty.not > @
+
+# array equal to another array
+[] > array-equal-to-another-array
+  eq. > @
+    *
+      1
+      "str"
+      'f'
+      22.0
+      "друг".as-bytes
+      TRUE
+    *
+      1
+      "str"
+      'f'
+      (11.mul 2).as-float
+      D0-B4-D1-80-D1-83-D0-B3
+      FALSE.not
+
+# array not equal to another object by length
+[] > array-not-equal-to-another-array-by-length
+  not. > @
+    eq.
+      * 1 2 3
+      * 1 2 3 4
+
+# check that varargs eq works
+[] > varargs-eq-should-works
+  [args...] > a
+  [args...] > b
+  eq. > @
+    args.
+      a
+        13.as-float
+        's'
+        "bbt"
+    args.
+      b
+        13.as-float
+        's'
+        "bbt"
+
+# nested array equal object should works
+[] > nested-array-eq-should-works
+  * 1 "2" 3.0 > a
+  * 1 "2" (3.as-float) > b
+  eq. > @
+    * 'w' a
+    * 'w' b
+
+# two different arrays not equal
+[] > two-different-arrays-not-equal
+  not. > @
+    eq.
+      * 1 2 3
+      * 1 5 "text"
+
+#two different nested arrays not eq
+[] > nested-array-not-eq-should-works
+  * 5 'o' "18" > a
+  * 5 'm' (18.as-string) > b
+  not. > @
+    eq.
+      * "not eq" a
+      * "not eq" b
+
+# check that varargs not eq works
+[] > varargs-not-eq-should-works
+  [args...] > a
+  [args...] > b
+  not. > @
+    eq.
+      args.
+        a 1 2 3
+      args.
+        b 1 2 "fail"
+
+# reduce with index test
+[] > reduce-with-index-test
+  * 2 2 > src
+  eq. > @
+    reducei.
+      * 1 1
+      0
+      [a i x]
+        add. > @
+          x
+          a.add
+            src.get i
+    6
+
+# reduce without index test
+[] > reduce-without-index-test
+  eq. > @
+    reduce.
+      * 1 2 3 4
+      -1
+      [a x]
+        mul. > @
+          a
+          x
+    -24
+
+[] > array-with-in-seq
+  [a] > foo
+    seq > @
+      a.with "hi" > t
+      t
+  seq > @
+    foo
+      * 1 2 3
+    TRUE
+
+[] > array-with
+  assert-that > @
+    with.
+      * 1 2 3
+      "with"
+    $.equal-to
+      * 1 2 3 "with"
+
+[] > array-without
+  assert-that > @
+    without.
+      * 1 2 3
+      1
+    $.equal-to
+      * 1 3
+
+[] > array-without-complex-case
+  [a] > foo
+    seq > @
+      a.without 0 > t
+      t
+  assert-that > @
+    foo
+      * 1 "text" 'f'
+    $.equal-to
+      * "text" 'f'
+
+[] > array-without-nested-array
+  * 3 2 1 > nested
+  assert-that > @
+    without.
+      * "smthg" 27 nested
+      2
+    $.equal-to
+      * "smthg" 27
+
+[] > mapi-should-works
+  assert-that > @
+    mapi.
+      * 1 2 3 4
+      [x i]
+        x.mul 2 > @
+    $.equal-to
+      * 2 4 6 8
