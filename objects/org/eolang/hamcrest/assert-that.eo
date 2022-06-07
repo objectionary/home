@@ -22,9 +22,9 @@
 
 +package org.eolang.hamcrest
 +home https://github.com/objectionary/eo-hamcrest
-+version 0.2.0
++version 0.2.1
 +alias sprintf org.eolang.txt.sprintf
-+rt jvm org.eolang:eo-hamcrest:0.2.0
++rt jvm org.eolang:eo-hamcrest:0.2.1
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
@@ -260,6 +260,9 @@
     [] > description-of
       sprintf > @
         format
+        # @todo #17:45min Here we got an object printed
+        #  instead of data. The .map [i] i.as-string didn't work.
+        #  We need to convert varargs to data[] somehow.
         args
 
   # Wraps an existing matcher and apply it to every item in array.
@@ -285,6 +288,10 @@
               acc
               apply x
 
+    # @todo #37:30min This string formatting doesn't work correctly.
+    #  Here we got message like: [was <[Lorg.eolang.Phi;@1189dd52>]
+    #  and possibly we need to change code below when string manipulation
+    #  objects will be created.
     [] > describe-mismatch
       sprintf > @
         "mismatches: [%s]"
