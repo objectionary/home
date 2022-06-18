@@ -296,10 +296,6 @@
       foo.y.<
     $.equal-to TRUE
 
-# @todo #755:15min We need to remove
-#  the anything matcher. We can do it only
-#  after fixing the eo-hamcrest library
-#  when new EO version will be released.
 [] > compares-two-foreign-objects
   assert-that > @
     assert-that
