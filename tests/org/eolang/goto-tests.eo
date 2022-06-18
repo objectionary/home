@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.gray
++package org.eolang
 +home https://github.com/objectionary/eo
-+version 0.23.10
++version 0.23.11
 +alias org.eolang.io.stdout
-+alias org.eolang.gray.goto
++alias org.eolang.goto
 +alias org.eolang.hamcrest.assert-that
 +junit
 
@@ -36,9 +36,9 @@
       goto
         [g]
           seq > @
-            i.write (i.add 1)
+            i.write (i.plus 1)
             if.
-              i.less 10
+              i.lt 10
               g.backward
               TRUE
       stdout "Finished!"
@@ -75,7 +75,7 @@
       [g]
         seq > @
           if.
-            a.greater b
+            a.gt b
             g.forward a
             TRUE
           b

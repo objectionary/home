@@ -20,47 +20,50 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.gray
++package org.eolang
 +home https://github.com/objectionary/eo
-+version 0.23.10
-+alias org.eolang.gray.ram
++version 0.23.11
++alias org.eolang.try
 +alias org.eolang.hamcrest.assert-that
 +junit
 
-[] > writes-into-ram-and-reads-from-ram
-  ram 10 > r
-  r.write 0 65-66-67-68-69 > w
-  r.read 0 5 > data
+[] > catches-simple-exception
+  [x throw] > main
+    if. > @
+      x.eq 0
+      throw "div by zero"
+      42.div x
   assert-that > @
     and.
       eq.
-        w
-        TRUE
+        6
+        try
+          [throw]
+            main 7 throw > @
+          [ex] (TRUE > @)
+          TRUE
       eq.
-        data
-        65-66-67-68-69
+        FALSE
+        try
+          [throw]
+            main 0 throw > @
+          [ex] (FALSE > @)
+          TRUE
     $.equal-to TRUE
 
-[] > writes-at-random-position
-  ram 1024 > r
-  r.write 512 65-66-67-68-69 > w
-  r.read 513 4 > data
+[] > two-nested-try-blocks
+  [throw] > failure
+    throw "Hello!" > @
   assert-that > @
-    and.
-      eq.
-        w
-        TRUE
-      eq.
-        data
-        66-67-68-69
-    $.equal-to TRUE
-
-[] > writes-integer-to-ram
-  ram 1024 > r
-  3.as-bytes > b
-  r.write 0 b > w
-  assert-that > @
-    and.
-      w.eq TRUE
-      (r.read 0 8).as-int.eq 3
-    $.equal-to TRUE
+    try
+      [t1]
+        try > @
+          [t2]
+            failure t1 > @
+          [ex]
+            2 > @
+          TRUE
+      [ex]
+        1 > @
+      TRUE
+    $.equal-to 1

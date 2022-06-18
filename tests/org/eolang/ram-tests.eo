@@ -1,6 +1,6 @@
-# MIT License
+# The MIT License (MIT)
 #
-# Copyright (c) 2020-2022 Graur Andrew
+# Copyright (c) 2016-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -9,39 +9,58 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.hamcrest
-+home https://github.com/objectionary/eo-hamcrest
-+version 0.2.3
++package org.eolang
++home https://github.com/objectionary/eo
++version 0.23.11
++alias org.eolang.ram
 +alias org.eolang.hamcrest.assert-that
 +junit
 
-[] > float-is-close-to-float-with-delta-test
+[] > writes-into-ram-and-reads-from-ram
+  ram 10 > r
+  r.write 0 65-66-67-68-69 > w
+  r.read 0 5 > data
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    and.
+      eq.
+        w
+        TRUE
+      eq.
+        data
+        65-66-67-68-69
+    $.equal-to TRUE
 
-[] > zero-is-close-to-float-with-delta-test
+[] > writes-at-random-position
+  ram 1024 > r
+  r.write 512 65-66-67-68-69 > w
+  r.read 513 4 > data
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    and.
+      eq.
+        w
+        TRUE
+      eq.
+        data
+        66-67-68-69
+    $.equal-to TRUE
 
-[] > neg-zero-is-close-to-float-with-delta-test
+[] > writes-integer-to-ram
+  ram 1024 > r
+  3.as-bytes > b
+  r.write 0 b > w
   assert-that > @
-    -0.0
-    $.close-to 0.0 1.2
-
-[] > neg-float-is-close-to-neg-float-with-delta-test
-  assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    and.
+      w.eq TRUE
+      (r.read 0 8).as-int.eq 3
+    $.equal-to TRUE

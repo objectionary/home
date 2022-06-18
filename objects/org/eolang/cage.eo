@@ -22,15 +22,11 @@
 
 +package org.eolang
 +home https://github.com/objectionary/eo
-+version 0.23.10
-+rt jvm org.eolang:eo-runtime:0.23.10
++version 0.23.11
++rt jvm org.eolang:eo-runtime:0.23.11
 
-# Regular expression in Perl format, for example: /[a-z]+/i
-[] > regex
-  # Match the text and return the array of matched groups
-  [txt] > match /array
-
-  # Matches
-  [txt] > matches
-    (^.match txt).is-empty.not > @
+# This object is doing exactly the same as "memory", but allows
+# you to store objects, not only data. In other words, it doesn't
+# do dataization when objects are being stored.
+[] > cage /?
 

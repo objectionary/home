@@ -22,47 +22,8 @@
 
 +package org.eolang
 +home https://github.com/objectionary/eo
-+version 0.23.10
-+alias org.eolang.hamcrest.assert-that
-+junit
++version 0.23.11
++rt jvm org.eolang:eo-runtime:0.23.11
 
-[] > matches-string-against-pattern
-  assert-that > @
-    /([a-z]+)/i
-    .match "hello"
-    .is-empty
-    $.is
-      $.not
-        $.equal-to TRUE
-
-[] > doesnt-match-string-against-pattern
-  assert-that > @
-    /([A-Z]{2})/
-    .matches "Hello, World!"
-    $.is
-      $.equal-to FALSE
-
-[] > check-dotall-option
-  assert-that > @
-    /(.*)/s
-    .matches "too \\n many \\n line \\n Feed\\n"
-    $.equal-to TRUE
-
-[] > check-case-insensitive-option
-  assert-that > @
-    /(string)/i
-    .matches "StRiNg"
-    $.equal-to TRUE
-
-[] > check-multiline-option
-  assert-that > @
-    /(^([0-9]+).*)/m
-    .matches "1 bottle of water on the wall. \\n1 bottle of water."
-    $.equal-to TRUE
-
-[] > check-entire-pattern
-  assert-that > @
-    /[0-9]/\\d+/
-    .match "2/75"
-    .length
-    $.equal-to 1
+# Try, catch and finally.
+[main catch finally] > try /?

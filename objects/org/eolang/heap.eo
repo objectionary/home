@@ -20,13 +20,40 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.gray
++package org.eolang
 +home https://github.com/objectionary/eo
-+version 0.23.10
-+rt jvm org.eolang:eo-runtime:0.23.10
++version 0.23.11
++rt jvm org.eolang:eo-runtime:0.23.11
 
-# This object is doing exactly the same as "memory", but allows
-# you to store objects, not only data. In other words, it doesn't
-# do dataization when objects are being stored.
-[] > cage /?
+# Emulation of random-access memory (RAM).
+[size] > heap
 
+  # Allocates a block in memory of "s" bytes,
+  # and returns a pointer to it.
+  # The "length" attribute of the pointer won't be bound.
+  [s] > malloc /pointer
+
+  # Freed a block in memory, which is referred by the
+  # given pointer, which was earlier obtained with malloc().
+  # Returns TRUE if works. If the pointer provided wasn't
+  # previously allocated, the result will be [].
+  [p] > free /bool
+
+  # Pointer inside the heap
+  [address length] > pointer
+    address > @
+
+    # Increment this pointer by x steps forward
+    [x] > add
+      &.^.pointer > @
+        address.plus
+          length.times x
+        length
+
+    # Decrement this pointer by x steps backward
+    [x] > sub
+      &.add > @
+        x.times -1
+
+    # One block in the heap.
+    [len inverse] > block /?
