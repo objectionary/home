@@ -33,4 +33,4 @@
       $.equal-to 20
       "this message overrides matchers description, and add values: %s"
       1
-    "described as test"
+    "described-as test"
