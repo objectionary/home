@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo
 +version 0.23.11
 +alias org.eolang.txt.sprintf
-+alias org.eolang.gray.cage
++alias org.eolang.cage
 +alias org.eolang.hamcrest.assert-that
 +junit
 
