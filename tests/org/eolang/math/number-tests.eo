@@ -24,6 +24,7 @@
 +home https://github.com/objectionary/eo-math
 +version 0.1.1
 +alias org.eolang.math.number
++alias org.eolang.math.nan
 +alias org.eolang.hamcrest.assert-that
 +junit
 
