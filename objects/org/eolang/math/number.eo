@@ -21,9 +21,9 @@
 # SOFTWARE.
 
 +package org.eolang.math
-+home https://github.com/objectionary/eo
-+version 0.23.16
-+rt jvm org.eolang:eo-runtime:0.23.16
++home https://github.com/objectionary/eo-math
++version 0.1.1
++rt jvm org.eolang:eo-math:0.1.1
 
 [n] > number
 
@@ -54,6 +54,12 @@
           ^.n
           ^.n
         1.0
+
+  # Checking if number is NaN
+  [] > is-nan
+    eq. > @
+      ^.n.as-bytes
+      7F-C0-00-00
 
   [x] > xor
     if. > @
@@ -95,8 +101,7 @@
           x
       []
         "left cannot be applied to float" > msg
-
-  # Calculate bitwise right shift
+c
   [x] > right
     if. > @
       is-int

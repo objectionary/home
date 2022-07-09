@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Max Trunnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,39 +23,8 @@
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
 +version 0.1.1
-+alias org.eolang.hamcrest.assert-that
-+alias org.eolang.math.random
-+junit
++rt jvm org.eolang:eo-math:0.1.1
 
-[] > two-random-numbers-without-const
-  random > r
-  assert-that > @
-    r
-    $.not
-      $.equal-to r
-
-[] > two-random-numbers-with-const
-  random > r!
-  assert-that > @
-    r
-    $.equal-to r
-
-[] > two-random-numbers-with-phi
-  random.@ > r
-  assert-that > @
-    r
-    $.equal-to r
-
-[] > two-random-numbers-with-increment-with-const
-  random.plus 3.1416 > r!
-  assert-that > @
-    r
-    $.equal-to r
-
-[] > two-random-numbers-with-increment
-  random.plus 3.1416 > r
-  assert-that > @
-    r
-    $.not
-      $.equal-to r
-
+# The Euler's number
+[] > e
+  2.7182818284590452354 > @
