@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2022 Max Trunnikov
+# Copyright (c) 2021-2022 Max Trunnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,12 @@
 
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
-+version 0.1.1
++version 0.1.2
 +alias org.eolang.math.nan
 +alias org.eolang.math.pi
-+rt jvm org.eolang:eo-math:0.1.1
++rt jvm org.eolang:eo-math:0.1.2
 
+# The angle in radians
 [f] > angle
   f > @
 

@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Max Trunnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@
 
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
-+version 0.1.1
-+rt jvm org.eolang:eo-math:0.1.1
++version 0.1.2
++rt jvm org.eolang:eo-math:0.1.2
 
 [n] > number
 
@@ -102,6 +102,7 @@
       []
         "left cannot be applied to float" > msg
 
+  # Calculate bitwise right shift
   [x] > right
     if. > @
       is-int
