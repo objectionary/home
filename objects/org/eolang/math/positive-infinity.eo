@@ -23,6 +23,8 @@
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
 +version 0.1.1
++alias org.eolang.math.nan
++alias org.eolang.math.negative-infinity
 +rt jvm org.eolang:eo-math:0.1.1
 
 # Positive infinity
