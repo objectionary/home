@@ -24,6 +24,7 @@
 +home https://github.com/objectionary/eo-math
 +version 0.1.1
 +alias org.eolang.math.nan
++alias org.eolang.math.pi
 +rt jvm org.eolang:eo-math:0.1.1
 
 [f] > angle
