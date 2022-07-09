@@ -101,7 +101,7 @@
           x
       []
         "left cannot be applied to float" > msg
-c
+
   [x] > right
     if. > @
       is-int
