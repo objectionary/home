@@ -22,7 +22,7 @@
 
 +package org.eolang.hamcrest
 +home https://github.com/objectionary/eo-hamcrest
-+version 0.2.5
++version 0.2.6
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.math.number
 +junit

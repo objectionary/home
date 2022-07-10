@@ -22,10 +22,11 @@
 
 +package org.eolang.hamcrest
 +home https://github.com/objectionary/eo-hamcrest
-+version 0.2.5
++version 0.2.6
 +alias sprintf org.eolang.txt.sprintf
 +alias number org.eolang.math.number
-+rt jvm org.eolang:eo-hamcrest:0.2.5
++alias org.eolang.collections.list
++rt jvm org.eolang:eo-hamcrest:0.2.6
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
@@ -36,7 +37,9 @@
     sprintf
       "%s\nExpected: %s\n     but: %s"
       if.
-        reasons.is-empty
+        is-empty.
+          list
+          reasons
         ""
         reasons.at 0
       description-of.
@@ -114,7 +117,8 @@
     [] > description-of
       " and ".joined > @
         map.
-          matchers
+          list
+            matchers
           [i]
             i.description-of > @
 
@@ -146,7 +150,8 @@
     [] > description-of
       " or ".joined > @
         map.
-          matchers
+          list
+            matchers
           [i]
             i.description-of > @
 
@@ -269,7 +274,9 @@
             FALSE
       seq > @
         mismatches.write *
-        actual.reducei
+        reducei.
+          list
+            actual
           FALSE
           [acc i x]
             or. > @
@@ -314,7 +321,9 @@
     [a] > match
       seq > @
         mismatches.write *
-        actual.reducei
+        reducei.
+          list
+            actual
           FALSE
           [acc i el]
             or. > @
@@ -329,7 +338,8 @@
     [] > description-of
       " and ".joined > @
         map.
-          matchers
+          list
+            matchers
           [i]
             i.description-of > @
 
@@ -349,7 +359,9 @@
         check-length
         seq
           mismatches.write *
-          a.reducei
+          reducei.
+            list
+              a
             TRUE
             [acc i el]
               and. > @
@@ -373,6 +385,7 @@
     [] > description-of
       " and ".joined > @
         map.
-          matchers
+          list
+            matchers
           [i]
             i.description-of > @
