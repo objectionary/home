@@ -61,8 +61,8 @@ will be updated. All users will be able to use your objects.
 There is a Bash script `pull.sh`, which may help you publish the entire
 library. We use it to publish [`eo-files`](https://github.com/objectionary/eo-files),
 [`eo-hamcrest`](https://github.com/objectionary/eo-hamcrest), and others. In order
-to use it, you should configure your library to publish its full list of EO
-objects on release into its `gh-pages` branch. See, how Rultor does it in
+to use it, you should first configure your library so that it publishes its full list of EO
+objects on each release into its `gh-pages` branch. See, how Rultor does it in
 eo-files: [`.rultor.yml`](https://github.com/objectionary/eo-files/blob/master/.rultor.yml).
 
 Then, when ready, run the script this way inside your local clone of this repo:
