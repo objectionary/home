@@ -55,3 +55,30 @@ build and test all objects, together with your new one, to make
 sure you didn't break anything and your objects work together
 with your atoms. Then, we'll merge it and the repository
 will be updated. All users will be able to use your objects.
+
+## How to Publish a Library
+
+There is a Bash script `pull.sh`, which may help you publish the entire
+library. We use it to publish [`eo-files`](https://github.com/objectionary/eo-files),
+[`eo-hamcrest`](https://github.com/objectionary/eo-hamcrest), and others. In order
+to use it, you should configure your library to publish its full list of EO
+objects on release into its `gh-pages` branch. See, how Rultor does it in
+eo-files: [`.rultor.yml`](https://github.com/objectionary/eo-files/blob/master/.rultor.yml).
+
+Then, when ready, run the script this way inside your local clone of this repo:
+
+```bash
+$ ./pull.sh objectionary/eo-files
+```
+
+Here, `objectionary/eo-files` is the name of GitHub repository. The script will
+pull all necessary `.eo` sources from the repo and put them into the right
+places. After than, run this:
+
+```bash
+$ make clean; make
+```
+
+If the build is clean, make a new Git branch, add all files to Git, commit
+and push the branch. Then, submit a pull request.
+
