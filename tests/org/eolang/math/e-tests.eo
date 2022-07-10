@@ -23,48 +23,10 @@
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
 +version 0.1.2
-+alias org.eolang.math.nan
-+alias org.eolang.math.pi
-+rt jvm org.eolang:eo-math:0.1.2
++alias org.eolang.math.e
++junit
 
-# The angle in radians
-[f] > angle
-  f > @
-
-  # Sine of $
-  [] > sin /float
-
-  # Cosine of $
-  [] > cos /float
-
-  # Tangent of $
-  [] > tan
-    ^.cos > cosine!
-    if. > @
-      cosine.eq 0.0
-      nan
-      div.
-        ^.sin
-        cosine
-
-  # Cotangent of $
-  [] > ctan
-    ^.sin > sine!
-    if. > @
-      sine.eq 0.0
-      nan
-      div.
-        ^.cos
-        sine
-
-  # Converts this from radians to degrees
-  [] > as-degrees
-    div. > @
-      ^.times 180.0
-      pi
-
-  # Converts this from degrees to radians
-  [] > as-radians
-    div. > @
-      ^.times pi
-      180.0
+[] > the-eulers-number-is-correct
+  eq. > @
+    e
+    2.7182818284590452354

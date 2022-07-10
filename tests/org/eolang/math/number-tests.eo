@@ -21,9 +21,10 @@
 # SOFTWARE.
 
 +package org.eolang.math
-+home https://github.com/objectionary/eo
-+version 0.23.17
++home https://github.com/objectionary/eo-math
++version 0.1.2
 +alias org.eolang.math.number
++alias org.eolang.math.nan
 +alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
 +junit
@@ -39,6 +40,12 @@
     (number -4623).is-int
     $.equal-to TRUE
     "check is-int of negative int"
+
+[] > check-is-nan
+  assert-that > @
+    (number nan).is-nan
+    $.equal-to TRUE
+    "check is nan of nan"
 
 [] > check-is-int-with-zero
   assert-that > @

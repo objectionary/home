@@ -23,48 +23,75 @@
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
 +version 0.1.2
-+alias org.eolang.math.nan
-+alias org.eolang.math.pi
 +rt jvm org.eolang:eo-math:0.1.2
 
-# The angle in radians
-[f] > angle
-  f > @
+# Not a number
+[] > nan
+  # Tests that $ = x
+  [x] > eq
+    FALSE > @
 
-  # Sine of $
-  [] > sin /float
+  # Tests that $ ≠ x
+  [x] > neq
+    TRUE > @
 
-  # Cosine of $
-  [] > cos /float
+  # Tests that $ < x
+  [x] > lt
+    FALSE > @
 
-  # Tangent of $
-  [] > tan
-    ^.cos > cosine!
-    if. > @
-      cosine.eq 0.0
-      nan
-      div.
-        ^.sin
-        cosine
+  # Tests that $ ≤ x
+  [x] > lte
+    FALSE > @
 
-  # Cotangent of $
-  [] > ctan
-    ^.sin > sine!
-    if. > @
-      sine.eq 0.0
-      nan
-      div.
-        ^.cos
-        sine
+  # Tests that $ > x
+  [x] > gt
+    FALSE > @
 
-  # Converts this from radians to degrees
-  [] > as-degrees
-    div. > @
-      ^.times 180.0
-      pi
+  # Tests that $ ≥ x
+  [x] > gte
+    FALSE > @
 
-  # Converts this from degrees to radians
-  [] > as-radians
-    div. > @
-      ^.times pi
-      180.0
+  # Multiplication of $ and x
+  [x] > times
+    ^ > @
+
+  # Sum of $ and x
+  [x] > plus
+    ^ > @
+
+  # Negation of $
+  [] > neg
+    ^ > @
+
+  # Sign of $ (-1.0, 0.0, or 1.0)
+  [] > signum
+    ^ > @
+
+  # Difference between $ and x
+  [x] > minus
+    ^ > @
+
+  # x'th power of $
+  [x] > pow
+    ^ > @
+
+  # Quotient of the division of $ by x
+  [x] > div
+    ^ > @
+
+  # Absolute value of $ (i.e., with no sign)
+  [] > abs
+    ^ > @
+
+  # Converts this to bytes
+  [] > as-bytes
+    7F-C0-00-00 > @
+
+  # Converts this to int
+  [] > as-int
+    [] > @
+      "You can't convert NaN to int" > msg
+
+  # Converts this to string
+  [] > as-string
+    "NaN" > @
