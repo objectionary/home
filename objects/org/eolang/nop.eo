@@ -21,6 +21,10 @@
 # SOFTWARE.
 
 +package org.eolang
-+rt jvm org.eolang:eo-runtime:0.23.5
++rt jvm org.eolang:eo-runtime:0.23.17
++home https://github.com/objectionary/eo
++version 0.23.17
 
-[msg] > error
+# Object that always is TRUE
+[args...] > nop
+  TRUE > @
