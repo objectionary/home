@@ -64,6 +64,8 @@ library. We use it to publish [`eo-files`](https://github.com/objectionary/eo-fi
 to use it, you should first configure your library so that it publishes its full list of EO
 objects on each release into its `gh-pages` branch. See, how Rultor does it in
 eo-files: [`.rultor.yml`](https://github.com/objectionary/eo-files/blob/master/.rultor.yml).
+This is the file required by the script:
+[`objectionary.lst`](https://github.com/objectionary/eo-files/blob/gh-pages/objectionary.lst).
 
 Then, when ready, run the script this way inside your local clone of this repo:
 
