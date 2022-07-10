@@ -71,7 +71,8 @@ Then, when ready, run the script this way inside your local clone of this repo:
 $ ./pull.sh objectionary/eo-files
 ```
 
-Here, `objectionary/eo-files` is the name of GitHub repository. The script will
+Here, `objectionary/eo-files` is the name of GitHub repository you are trying to publish
+to Objectionary. The script will
 pull all necessary `.eo` sources from the repo and put them into the right
 places. After than, run this:
 
