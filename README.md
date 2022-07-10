@@ -81,5 +81,6 @@ $ make clean; make
 ```
 
 If the build is clean, make a new Git branch, add all files to Git, commit
-and push the branch. Then, submit a pull request.
+and push the branch. Then, submit a pull request. Once your pull request is
+merged, all EO programmers will be able to use your library.
 
