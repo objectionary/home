@@ -7,14 +7,14 @@ in his great book
 [Object Thinking](http://amzn.to/266oJr4). The original idea was to
 have a place where objects are hosted. Not libraries or software packages,
 but individual objects. This is exactly what this repository is about:
-it hosts [EOLANG](https://www.eolang.org) objects. More details
+it hosts [EO](https://www.eolang.org) objects. More details
 in [this blog post](https://www.yegor256.com/2021/10/21/objectionary.html).
 
 When you are ready to publish a new object to this repository
-and make it visible for users of EOLANG, you just create a new
+and make it visible for users of EO, you just create a new
 `.eo` file and place it to the right location, in one of the sub-directories
 inside the `objects` directory.
-Then, you add tests also written in EOLANG, and place them next
+Then, you add tests also written in EO, and place them next
 to your file in a subdirectory named after your object.
 
 For example:
