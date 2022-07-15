@@ -22,7 +22,7 @@
 
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
-+version 0.1.3
++version 0.1.4
 +alias org.eolang.math.angle
 +alias org.eolang.math.number
 +alias org.eolang.hamcrest.assert-that

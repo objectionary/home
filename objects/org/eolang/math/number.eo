@@ -22,8 +22,8 @@
 
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
-+version 0.1.3
-+rt jvm org.eolang:eo-math:0.1.3
++version 0.1.4
++rt jvm org.eolang:eo-math:0.1.4
 
 [n] > number
 
