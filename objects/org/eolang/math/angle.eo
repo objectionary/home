@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Max Trunnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,50 @@
 # SOFTWARE.
 
 +package org.eolang.math
-+home https://github.com/objectionary/eo
-+version 0.23.19
-+rt jvm org.eolang:eo-runtime:0.23.19
++home https://github.com/objectionary/eo-math
++version 0.1.4
++alias org.eolang.math.pi
++alias org.eolang.math.nan
++rt jvm org.eolang:eo-math:0.1.4
 
+# The angle in radians
 [f] > angle
+  f > @
 
-  # Sine of f
+  # Sine of $
   [] > sin /float
 
-  # Cosine of f
+  # Cosine of $
   [] > cos /float
+
+  # Tangent of $
+  [] > tan
+    ^.cos > cosine!
+    if. > @
+      cosine.eq 0.0
+      nan
+      div.
+        ^.sin
+        cosine
+
+  # Cotangent of $
+  [] > ctan
+    ^.sin > sine!
+    if. > @
+      sine.eq 0.0
+      nan
+      div.
+        ^.cos
+        sine
+
+  # Converts this from radians to degrees
+  [] > as-degrees
+    div. > @
+      ^.times 180.0
+      pi
+
+  # Converts this from degrees to radians
+  [] > as-radians
+    div. > @
+      ^.times pi
+      180.0
