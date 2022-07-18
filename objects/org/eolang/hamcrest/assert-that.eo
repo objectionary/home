@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.hamcrest
-+home https://github.com/objectionary/eo-hamcrest
-+version 0.2.6
-+alias sprintf org.eolang.txt.sprintf
 +alias number org.eolang.math.number
 +alias org.eolang.collections.list
-+rt jvm org.eolang:eo-hamcrest:0.2.6
++alias sprintf org.eolang.txt.sprintf
++home https://github.com/objectionary/eo-hamcrest
++package org.eolang.hamcrest
++rt jvm org.eolang:eo-hamcrest:0.2.7
++version 0.2.7
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
