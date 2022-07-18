@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.hamcrest
-+home https://github.com/objectionary/eo-hamcrest
-+version 0.2.6
 +alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-hamcrest
 +junit
++package org.eolang.hamcrest
++version 0.2.8
 
 [] > two-sum-greater-than-value-test
   assert-that > @
