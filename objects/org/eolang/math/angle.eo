@@ -23,8 +23,8 @@
 +package org.eolang.math
 +home https://github.com/objectionary/eo-math
 +version 0.1.4
-+alias org.eolang.math.pi
 +alias org.eolang.math.nan
++alias org.eolang.math.pi
 +rt jvm org.eolang:eo-math:0.1.4
 
 # The angle in radians
