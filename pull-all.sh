@@ -28,6 +28,9 @@ set -e
 git reset --hard
 git clean -fd
 rm -rf objects tests
+make clean
+rm -rf ~/.eo
+
 ./pull.sh objectionary/eo
 ./pull.sh objectionary/eo-files
 ./pull.sh objectionary/eo-hamcrest
