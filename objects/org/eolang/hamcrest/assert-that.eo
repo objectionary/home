@@ -25,8 +25,8 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
-+rt jvm org.eolang:eo-hamcrest:0.2.8
-+version 0.2.8
++rt jvm org.eolang:eo-hamcrest:0.2.9
++version 0.2.9
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
@@ -39,7 +39,7 @@
       if.
         is-empty.
           list
-          reasons
+            reasons
         ""
         reasons.at 0
       description-of.
