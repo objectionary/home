@@ -1,0 +1,25 @@
+name: pages
+on:
+  push:
+    branches:
+      - master
+  release:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: mkdir -p data && touch data/tags.txt
+      - run: git ls-remote --tags --heads origin > data/tags.txt
+      - run: sed -i '' 's+refs/tags/++g' data/tags.txt
+      - run: sed -i '' 's+refs/heads/++g' data/tags.txt
+      - uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: data
+          clean: true
