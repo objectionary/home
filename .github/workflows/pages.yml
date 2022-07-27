@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  release:
+    branches:
+      - master
 jobs:
   build:
     runs-on: macos-latest
