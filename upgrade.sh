@@ -41,7 +41,7 @@ rm -rf objects tests
 make clean
 rm -rf ~/.eo
 
-sed -i "s|eo.version>0.0.0|eo.version>${tag}|" make/jvm/pom.xml
+sed -i "s|eo.version>[0-9]\+.[0-9]\+.[0-9]\+|eo.version>${version}|" make/jvm/pom.xml
 
 ./pull.sh objectionary/eo
 ./pull.sh objectionary/eo-files
