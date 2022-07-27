@@ -27,6 +27,9 @@ SOFTWARE.
   <groupId>com.objectionary</groupId>
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <properties>
+    <eo.version>0.25.0</eo.version>
+  </properties>
   <build>
     <plugins>
       <plugin>
@@ -40,7 +43,7 @@ SOFTWARE.
       <plugin>
         <groupId>org.eolang</groupId>
         <artifactId>eo-maven-plugin</artifactId>
-        <version>0.25.0</version>
+        <version>${eo.version}</version>
         <configuration>
           <discoverSelf>true</discoverSelf>
         </configuration>
