@@ -1,25 +1,17 @@
 name: pages
 on:
-  release:
+  push:
     branches:
       - master
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "Hi!"
-      - run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - run: echo $TAG
-      - uses: actions/setup-python@v2
-      - uses: jannekem/run-python-script-action@v1
-        with:
-          script: |
-            import os
-            os.makedirs("data/" + os.getenv("TAG"), exist_ok=True)
-            f = open("data/" + os.getenv("TAG") + "/value.txt", "a")
-            f.write(os.getenv("GITHUB_SHA"))
-            f.close()
+      - run: mkdir -p data && touch data/tags.txt
+      - run: git show-ref --tags --heads > data/tags.txt
+      - run: sed -i '' 's+refs/tags/++g' data/tags.txt
+      - run: sed -i '' 's+refs/heads/++g' data/tags.txt
       - uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
