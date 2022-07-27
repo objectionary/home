@@ -19,4 +19,4 @@ jobs:
         with:
           branch: gh-pages
           folder: data
-          clean: false
+          clean: true
