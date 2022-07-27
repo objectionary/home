@@ -22,7 +22,7 @@
 
 +package org.eolang.fs
 +home https://github.com/objectionary/eo-files
-+version 0.3.4
++version 0.3.5
 +alias org.eolang.fs.dir-name
 +junit
 

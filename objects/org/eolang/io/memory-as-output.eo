@@ -21,9 +21,9 @@
 # SOFTWARE.
 
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.3.4
++rt jvm org.eolang:eo-files:0.3.5
 +home https://github.com/objectionary/eo-files
-+version 0.3.4
++version 0.3.5
 
 # Turns memory into an output.
 [m] > memory-as-output

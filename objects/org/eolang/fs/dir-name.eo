@@ -22,8 +22,8 @@
 
 +package org.eolang.fs
 +home https://github.com/objectionary/eo-files
-+version 0.3.4
-+rt jvm org.eolang:eo-files:0.3.4
++version 0.3.5
++rt jvm org.eolang:eo-files:0.3.5
 
 # Takes the directory name from the full path name,
 # for example "/tmp/bar/foo.txt" will lead to "/tmp/bar"

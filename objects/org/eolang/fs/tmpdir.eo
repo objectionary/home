@@ -22,7 +22,9 @@
 
 +package org.eolang.fs
 +home https://github.com/objectionary/eo-files
-+version 0.3.4
-+rt jvm org.eolang:eo-files:0.3.4
++version 0.3.5
++rt jvm org.eolang:eo-files:0.3.5
 
+# Temporary directory provided by the operating system. It will
+# be automatically deleted when the program exits.
 [] > tmpdir /dir
