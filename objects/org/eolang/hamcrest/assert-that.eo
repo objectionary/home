@@ -253,6 +253,9 @@
 
     matcher > @
 
+    # @todo #3:45min Here we got an object printed
+    #  instead of data. The .map [i] i.as-string didn't work.
+    #  We need to convert varargs to data[] somehow.
     [] > description-of
       sprintf > @
         format
@@ -283,6 +286,10 @@
               acc
               apply x
 
+    # @todo #37:30min This string formatting doesn't work correctly.
+    #  Here we got message like: [was <[Lorg.eolang.Phi;@1189dd52>]
+    #  and possibly we need to change code below when string manipulation
+    #  objects will be created.
     [] > describe-mismatch
       sprintf > @
         "mismatches: [%s]"
