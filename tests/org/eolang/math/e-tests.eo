@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.0
++version 0.2.1
 
 [] > the-eulers-number-is-correct
   eq. > @

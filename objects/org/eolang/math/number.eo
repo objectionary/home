@@ -22,38 +22,41 @@
 
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.0
-+version 0.2.0
++rt jvm org.eolang:eo-math:0.2.1
++version 0.2.1
 
 [n] > number
-
   # Checking type of the number's decorator.
   # If $.n is int, return true, otherwise false.
   [] > is-int
+    ^.n > value!
     if. > @
-      eq.
-        ^.n
-        0
-      FALSE
-      eq.
-        div.
-          ^.n
-          ^.n
-        1
+      value.eq 0
+      TRUE
+      if.
+        value.eq 0.0
+        FALSE
+        eq.
+          div.
+            value
+            value
+          1
 
   # Checking type of the number's decorator.
   # If $.n is float, return true, otherwise false.
   [] > is-float
+    ^.n > value!
     if. > @
-      eq.
-        ^.n
-        0.0
+      value.eq 0.0
       TRUE
-      eq.
-        div.
-          ^.n
-          ^.n
-        1.0
+      if.
+        value.eq 0
+        FALSE
+        eq.
+          div.
+            value
+            value
+          1.0
 
   # Checking if number is NaN
   [] > is-nan
@@ -114,8 +117,8 @@
 
   # Calculate MOD
   [x] > mod
-    ^.n > dividend
-    x > divisor
+    ^.n > dividend!
+    x > divisor!
 
     if. > @
       divisor.eq 0
@@ -127,8 +130,8 @@
           abs-mod
 
     [] > abs-mod
-      (number dividend).abs > int-abs
-      (number divisor).abs > x-abs
+      (number dividend).abs > int-abs!
+      (number divisor).abs > x-abs!
       minus. > @
         int-abs
         x-abs.times
@@ -136,7 +139,7 @@
 
   # Absolute value of $.n (i.e., with no sign)
   [] > abs
-    ^.n > value
+    ^.n > value!
     if. > @
       is-int
       if.

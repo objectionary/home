@@ -24,10 +24,11 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.math.nan
 +alias org.eolang.math.number
++alias org.eolang.nop
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.0
++version 0.2.1
 
 [] > check-is-int-positive-int
   assert-that > @
@@ -47,17 +48,23 @@
     $.equal-to TRUE
     "check is nan of nan"
 
-[] > check-is-int-with-zero
+[] > check-is-int-with-int-zero
   assert-that > @
     (number 0).is-int
-    $.equal-to FALSE
-    "check is-int of zero"
+    $.equal-to TRUE
+    "check is-int of int zero"
 
-[] > check-is-float-with-zero
+[] > check-is-int-with-float-zero
+  nop > @
+
+[] > check-is-float-with-int-zero
+  nop > @
+
+[] > check-is-float-with-float-zero
   assert-that > @
     (number 0.0).is-float
     $.equal-to TRUE
-    "check is-int of zero"
+    "check is-float of float zero"
 
 [] > check-is-int-positive-float
   assert-that > @
