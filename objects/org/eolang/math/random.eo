@@ -23,8 +23,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.0
-+version 0.2.0
++rt jvm org.eolang:eo-math:0.2.1
++version 0.2.1
 
 [seed] > random
 
