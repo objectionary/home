@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.collections
-+home https://github.com/objectionary/eo
-+version 0.26.0
 +alias org.eolang.collections.bytes-as-array
 +alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo
 +junit
++package org.eolang.collections
++version 0.0.2
 
 [] > bytes-to-array
   assert-that > @
