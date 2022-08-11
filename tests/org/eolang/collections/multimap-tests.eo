@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.collections
-+home https://github.com/objectionary/eo
-+version 0.26.0
-+alias org.eolang.collections.multimap
 +alias org.eolang.collections.list
++alias org.eolang.collections.multimap
 +alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-collections
 +junit
++package org.eolang.collections
++version 0.0.2
 
 [] > rebuild-do-not-crush
   multimap * > mmp
@@ -43,10 +43,10 @@
   * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr
   mmp.rebuild harr arr > res
   assert-that > @
-    * ((res.at 0).length) ((res.at 1).length) ((res.at 2).length) ((res.at 3).length) (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
+    * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
     $.equal-to
       list
-        * 2 1 0 1 4 5
+        * 4 5
 
 [] > multimap-pairs-to-hash-test
   multimap * > mp!
@@ -60,13 +60,13 @@
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!
-  * (* 1 2 3) (* 4 5 6 7) (* 8) (*) (* 9) (*) > arr!
+  * (* 1 2) (* 8) (*) > arr!
   mp.concat-all-arrays arr > res!
   assert-that > @
-    * (res.length) (res.at 3)
+    * (res.length) (res.at 2)
     $.equal-to
       list
-        * 9 4
+        * 3 8
 
 [] > multimap-with-do-not-crashed
   multimap * > mp!
@@ -74,44 +74,6 @@
   assert-that > @
     mp2.size
     $.equal-to 2
-
-# Speed test
-[] > multimap-with-many-objects
-  multimap * > mp!
-  with. > mp2!
-    with.
-      with.
-        with.
-          with.
-            with.
-              with.
-                with.
-                  with.
-                    with.
-                      mp
-                      1
-                      "a"
-                    2
-                    "b"
-                  3
-                  "c"
-                4
-                "d"
-              5
-              "e"
-            6
-            "f"
-          7
-          "g"
-        8
-        "h"
-      9
-      "i"
-    10
-    "j"
-  assert-that > @
-    mp2.size
-    $.equal-to 10
 
 [] > multimap-find-in-list-works
   multimap * > mp!
@@ -144,40 +106,30 @@
         * "c" 0 "a" "c"
 
 [] > multimap-find-and-with
-  multimap * > fmp!
-  ((((fmp.with 1 "a").with "abc" "cba").with 4 5).with 3 5) > mp!
-  mp.found 1 > r1!
-  mp.found 2 > r2!
-  mp.found 3 > r3!
-  mp.found 4 > r4!
-  mp.found "abc" > rabc!
-  assert-that > @
-    * (r1.at 0) (r2.length) (r3.at 0) (r4.at 0) (rabc.at 0)
-    $.equal-to
-      list
-        * "a" 0 5 5 "cba"
-
-[] > multimap-of-multimaps
   multimap * > init-mp!
-  (init-mp.with 1 2).with 3 4 > mp1!
-  (init-mp.with "a" "b").with "c" "d" > mp2!
-  init-mp.with TRUE FALSE > mp3!
-  ((init-mp.with 0 mp1).with 1 mp2).with 2 mp3 > mp-res!
+  init-mp.with 1 2 > mp!
   assert-that > @
-    * ((mp-res.found -1).length) ((((mp-res.found 1).at 0).found "c").at 0)
-    $.equal-to
-      list
-        * 0 "d"
+    ((mp.found 1).at 0)
+    $.equal-to 2
+
+# This test has been temporarily disabled
+[] > multimap-of-multimap
+  multimap * > init-mp!
+  init-mp.with "c" "d" > mp1!
+  init-mp.with 1 mp1 > mp-res!
+  nop > @
+    ((((mp-res.found 1).at 0).found "c").at 0)
+    $.equal-to "d"
 
 [] > multimap-without-works
   multimap * > init-mp!
-  (((init-mp.with 1 "a").with 3 "c").with 2 "b").with 4 "d" > mp!
-  (mp.without 2).without 3 > mp2!
+  (init-mp.with 1 "a").with 3 "c" > mp!
+  mp.without 3 > mp2!
   assert-that > @
-    * ((mp.found 1).length) ((mp.found 2).length) ((mp2.found 3).length) ((mp2.found 4).length)
+    * ((mp2.found 1).length) ((mp2.found 3).length)
     $.equal-to
       list
-        * 1 1 0 1
+        * 1 0
 
 [] > multimap-without-many-elements
   multimap * > init-mp!
@@ -195,15 +147,17 @@
     (mp.found "key123").length
     $.equal-to 0
 
-[] > multimap-large-key-test
-  (multimap *).with "key123" 42 > mp!
-  assert-that > @
-    (mp.found "key123").length
-    $.equal-to 1
-
 [] > collision-test
   TRUE > a!
   1231 > b!
   assert-that > @
     a.as-hash
     $.equal-to (b.as-hash)
+
+[] > multimap-keys-test
+  ((multimap *).with 11 "a").with 5 "b" > mp!
+  assert-that > @
+    times.
+      ((mp.keys).at 0)
+      ((mp.keys).at 1)
+    $.equal-to 55

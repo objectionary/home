@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.collections
-+home https://github.com/objectionary/eo
-+version 0.26.0
-+alias org.eolang.collections.map
 +alias org.eolang.collections.list
++alias org.eolang.collections.map
 +alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-collections
 +junit
++package org.eolang.collections
++version 0.0.2
 
 [] > map-find-do-not-crashed
   map * > mp!
@@ -48,40 +48,30 @@
         * "c" 0 "a" "c"
 
 [] > map-find-and-with
-  map * > fmp!
-  ((((fmp.with 1 "a").with "abc" "cba").with 4 5).with 3 5) > mp!
-  mp.found 1 > r1!
-  mp.found 2 > r2!
-  mp.found 3 > r3!
-  mp.found 4 > r4!
-  mp.found "abc" > rabc!
-  assert-that > @
-    * (r1.at 0) (r2.length) (r3.at 0) (r4.at 0) (rabc.at 0)
-    $.equal-to
-      list
-        * "a" 0 5 5 "cba"
-
-[] > map-of-maps
   map * > init-mp!
-  (init-mp.with 1 2).with 3 4 > mp1!
-  (init-mp.with "a" "b").with "c" "d" > mp2!
-  init-mp.with TRUE FALSE > mp3!
-  ((init-mp.with 0 mp1).with 1 mp2).with 2 mp3 > mp-res!
+  init-mp.with 1 "a" > mp!
   assert-that > @
-    * ((mp-res.found -1).length) ((((mp-res.found 1).at 0).found "c").at 0)
-    $.equal-to
-      list
-        * 0 "d"
+    ((mp.found 1).at 0)
+    $.equal-to "a"
+
+# This test has been temporarily disabled
+[] > map-of-map
+  map * > init-mp!
+  init-mp.with "c" "d" > mp1!
+  init-mp.with 1 mp1 > mp-res!
+  nop > @
+    ((((mp-res.found 1).at 0).found "c").at 0)
+    $.equal-to "d"
 
 [] > map-without-works
   map * > init-mp!
-  (((init-mp.with 1 "a").with 3 "c").with 2 "b").with 4 "d" > mp!
-  (mp.without 2).without 3 > mp2!
+  (init-mp.with 1 "a").with 2 "b" > mp!
+  mp.without 2 > mp2!
   assert-that > @
-    * ((mp.found 1).length) ((mp.found 2).length) ((mp2.found 3).length) ((mp2.found 4).length)
+    * ((mp2.found 1).length) ((mp2.found 2).length)
     $.equal-to
       list
-        * 1 1 0 1
+        * 1 0
 
 [] > map-without-many-elements
   map * > init-mp!
@@ -93,11 +83,10 @@
       list
         * 2 1 "c"
 
-[] > map-large-key-test
-  map * > init-mp!
-  init-mp.with "key123" 42 > mp!
+[] > map-keys-test
+  ((map *).with 11 "a").with 5 "b" > mp!
   assert-that > @
-    * (mp.size) ((mp.found "key123").at 0)
-    $.equal-to
-      list
-        * 1 42
+    times.
+      ((mp.keys).at 0)
+      ((mp.keys).at 1)
+    $.equal-to 55

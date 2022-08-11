@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang
-+home https://github.com/objectionary/eo
-+version 0.26.0
-+alias org.eolang.math.number
 +alias org.eolang.collections.list
++alias org.eolang.hamcrest.assert-that
++alias org.eolang.io.stdout
++alias org.eolang.math.number
 +alias org.eolang.txt.sprintf
 +alias org.eolang.txt.sscanf
 +alias org.eolang.txt.text
-+alias org.eolang.io.stdout
-+alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-collections
 +junit
++package org.eolang.collections
++version 0.0.2
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -100,13 +100,13 @@
   assert-that > @
     reducei.
       list
-        * 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+        * 1 2 3 4
       0
       [a i x]
         plus. > @
           x
           a
-    $.equal-to 435
+    $.equal-to 10
 
 [] > reducei-bools-array
   assert-that > @
@@ -354,3 +354,30 @@
         list
           args.
             b 1 2 "fail"
+
+[] > reduce-with-memory-test
+  eq. > @
+    foo
+    7
+
+  [] > foo
+    reduce. > res
+      list
+        * 0
+      *
+      [acc x]
+        acc.with (memory x) > @
+    seq > @
+      (res.at 0).write 7
+      (res.at 0)
+
+[] > reduce-with-memory-test-2
+  eq. > @
+    foo
+    7
+
+  [] > foo
+    (*).with (memory 0) > res
+    seq > @
+      (res.at 0).write 7
+      (res.at 0)
