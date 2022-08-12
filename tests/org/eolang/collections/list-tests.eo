@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.2
++version 0.0.3
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -85,7 +85,7 @@
 [] > reduce-with-index-test
   * 2 2 > src
   assert-that > @
-    reducei.
+    reducedi.
       list
         * 1 1
       0
@@ -96,9 +96,9 @@
             src.at i
     $.equal-to 6
 
-[] > reducei-long-int-array
+[] > reducedi-long-int-array
   assert-that > @
-    reducei.
+    reducedi.
       list
         * 1 2 3 4
       0
@@ -108,9 +108,9 @@
           a
     $.equal-to 10
 
-[] > reducei-bools-array
+[] > reducedi-bools-array
   assert-that > @
-    reducei.
+    reducedi.
       list
         * TRUE TRUE FALSE
       TRUE
@@ -120,13 +120,13 @@
           a
     $.equal-to FALSE
 
-[] > reducei-nested-functions
+[] > reducedi-nested-functions
   [] > a
     10 > @
   [] > b
     500 > @
   assert-that > @
-    reducei.
+    reducedi.
       list
         * a b
       0
@@ -145,7 +145,7 @@
 # reduce without index test
 [] > reduce-without-index-test
   assert-that > @
-    reduce.
+    reduced.
       list
         * 1 2 3 4
       -1
@@ -155,9 +155,9 @@
           x
     $.equal-to -24
 
-[] > mapi-should-works
+[] > mappedi-should-works
   assert-that > @
-    mapi.
+    mappedi.
       list
         * 1 2 3 4
       [x i]
@@ -167,9 +167,9 @@
         * 2 4 6 8
 
 # this test performs mapping of list using the index for it
-[] > mapi-index-can-be-accessed
+[] > mappedi-index-can-be-accessed
   [numbers...] > multipliedByNaturalSequence
-    mapi. > @
+    mappedi. > @
       list numbers
       [current index]
         times. > @
@@ -184,30 +184,30 @@
 [] > simple-mapping-int-to-string
   assert-that > @
     length.
-      map.
+      mapped.
         list
           * 1 2 3
         [i]
           (number i).as-string > @
     $.equal-to 3
 
-[] > using-map-as-object
+[] > using-mapped-as-object
   assert-that > @
     (text " ").joined
-      map.
+      mapped.
         list
           * 1 2
         [i]
           (number i).as-string > @
     $.equal-to "1 2"
 
-# if map does mutate lists, then this test would fail
+# if mapped does mutate lists, then this test would fail
 # because of the absence of the as-int attribute
 # that is caused by mutation of the original string list
 # to an int list
-[] > map-does-dot-mutate-array
+[] > mapped-does-dot-mutate-array
   [numbers...] > squares
-    map. > @
+    mapped. > @
       list numbers
       [current]
         pow. > @
@@ -361,7 +361,7 @@
     7
 
   [] > foo
-    reduce. > res
+    reduced. > res
       list
         * 0
       *
@@ -381,3 +381,38 @@
     seq > @
       (res.at 0).write 7
       (res.at 0)
+
+[] > is-found-1
+  list > lst
+    * 1 2 3
+  assert-that > @
+    lst.found 2
+    $.equal-to 1
+
+[] > is-found-2
+  list > lst
+    * "qwerty" 2 3
+  assert-that > @
+    lst.found 2
+    $.equal-to 1
+
+[] > is-found-3
+  list > lst
+    * -1 2 -1
+  assert-that > @
+    lst.found -1
+    $.equal-to 0
+
+[] > is-not-found
+  list > lst
+    * "qwerty" 2 3
+  assert-that > @
+    lst.found 7
+    $.equal-to -1
+
+[] > is-found-first-index
+  list > lst
+    * "qwerty" "asdfgh" 3 "qwerty"
+  assert-that > @
+    lst.found "qwerty"
+    $.equal-to 0
