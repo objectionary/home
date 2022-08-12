@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.2
-+version 0.0.2
++rt jvm org.eolang:eo-collections:0.0.3
++version 0.0.3
 
 [arr] > list
   arr > @
@@ -40,6 +40,25 @@
   # one for the accumulator, the second one
   # for the index and the third one for the element
   # of the array.
+  [a f] > reducedi
+    rec-reduced (* a 0) f arr > @
+
+    [acc-index func carr] > rec-reduced
+      (acc-index.at 0) > acc
+      (acc-index.at 1) > index
+      if. > @
+        (index.lt (carr.length))
+        rec-reduced
+          *
+            func
+              acc
+              index
+              (carr.at index)
+            (index.plus 1)
+          func
+          carr
+        acc
+
   [a f] > reducei
     rec-reduce (* a 0) f arr > @
 
@@ -60,8 +79,16 @@
         acc
 
   # Reduce from start "a" using the function "f"
+  [a f] > reduced
+    ^.reducedi > @
+      a
+      [a idx item]
+        &.f > @
+          a
+          item
+
   [a f] > reduce
-    ^.reducei > @
+    ^.reducedi > @
       a
       [a idx item]
         &.f > @
@@ -72,9 +99,9 @@
   # object with two free attributes. The first
   # one for the element of the array, the second one
   # for the index.
-  [f] > mapi
+  [f] > mappedi
     list > @
-      ^.reducei
+      ^.reducedi
         *
         [a idx item]
           with. > @
@@ -84,8 +111,13 @@
   # Map without index. Here "f" must be an abstract
   # object with one free attribute, for the element
   # of the array.
+  [f] > mapped
+    ^.mappedi > @
+      [x idx]
+        &.f x > @
+
   [f] > map
-    ^.mapi > @
+    ^.mappedi > @
       [x idx]
         &.f x > @
 
@@ -108,7 +140,7 @@
 
   # Create a new list without the i-th element
   [i] > without
-    ^.reducei > @
+    ^.reducedi > @
       *
       [a idx item]
         if. > @
@@ -122,7 +154,7 @@
       eq.
         arr.length
         x.length
-      ^.reducei
+      ^.reducedi
         TRUE
         [a idx item]
           and. > @
@@ -134,9 +166,26 @@
 
   # Returns the combined current and passed arrays
   [passed] > concat
-    reduce. > @!
+    reduced. > @!
       list
         passed
       ^
       [a x]
         a.with x > @
+
+  # Returns index of the first particular item in list.
+  # If the list has no this item, found returns -1
+  [wanted] > found
+    ^.reducedi > @
+      -1
+      [acc i item]
+        if. > @
+          and.
+            eq.
+              acc
+              -1
+            eq.
+              item
+              wanted
+          i
+          acc.plus 0
