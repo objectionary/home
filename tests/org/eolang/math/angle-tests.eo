@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.2
++version 0.2.3
 
 [] > sin-zero
   assert-that > @

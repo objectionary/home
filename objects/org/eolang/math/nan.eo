@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.2
-+version 0.2.2
++rt jvm org.eolang:eo-math:0.2.3
++version 0.2.3
 
 # Not a number
 [] > nan

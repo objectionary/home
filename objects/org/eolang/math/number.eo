@@ -20,12 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.math.positive-infinity
 +alias org.eolang.math.negative-infinity
++alias org.eolang.math.positive-infinity
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.2
-+version 0.2.2
++rt jvm org.eolang:eo-math:0.2.3
++version 0.2.3
 
 [n] > number
   # Checking type of the number's decorator.
