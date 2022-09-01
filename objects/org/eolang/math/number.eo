@@ -20,10 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.math.positive-infinity
++alias org.eolang.math.negative-infinity
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.1
-+version 0.2.1
++rt jvm org.eolang:eo-math:0.2.2
++version 0.2.2
 
 [n] > number
   # Checking type of the number's decorator.
@@ -150,6 +152,27 @@
         value.gte 0.0
         value
         value.neg
+
+  # Round ^.n up
+  [] > ceil
+    ^.n > value!
+    if. > @
+      or.
+        is-nan
+        is-int
+        eq.
+          value
+          positive-infinity
+        eq.
+          value
+          negative-infinity
+      value
+      []
+        as-int > self-as-int!
+        if. > @
+          value.lte 0.0
+          self-as-int
+          self-as-int.plus 1
 
   # Make ^.n power x
   [x] > pow /?
