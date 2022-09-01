@@ -27,7 +27,7 @@
 +version 0.28.0
 
 [] > array
-  # Create empty array
+  # Create empty array1
   [] > empty
     (*) > @
 
