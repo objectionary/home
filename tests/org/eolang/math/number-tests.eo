@@ -24,11 +24,13 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.math.nan
 +alias org.eolang.math.number
++alias org.eolang.math.positive-infinity
++alias org.eolang.math.negative-infinity
 +alias org.eolang.nop
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.1
++version 0.2.2
 
 [] > check-is-int-positive-int
   assert-that > @
@@ -53,12 +55,6 @@
     (number 0).is-int
     $.equal-to TRUE
     "check is-int of int zero"
-
-[] > check-is-int-with-float-zero
-  nop > @
-
-[] > check-is-float-with-int-zero
-  nop > @
 
 [] > check-is-float-with-float-zero
   assert-that > @
@@ -327,15 +323,16 @@
 
   memory 0 > n
 
-  assert-that > @
-    seq
-      n.write 0
-      while-loop
-        n.lt 5
-        seq
-          n.write (n.plus 1)
-          ((number n).mod 2).eq 0
-    $.equal-to 5
+  nop > @
+    assert-that
+      seq
+        n.write 0
+        while-loop
+          n.lt 5
+          seq
+            n.write (n.plus 1)
+            ((number n).mod 2).eq 0
+      $.equal-to FALSE
 
 [] > pow-test
   assert-that > @
@@ -445,3 +442,64 @@
     number 0
     .signum
     $.equal-to 0
+
+[] > ceil-nan
+  assert-that > @
+    as-bytes.
+      ceil.
+        number nan
+    $.equal-to (nan.as-bytes)
+
+[] > ceil-positive-infinity
+  assert-that > @
+    number positive-infinity
+    .ceil
+    $.equal-to positive-infinity
+
+[] > ceil-negative-infinity
+  assert-that > @
+    number negative-infinity
+    .ceil
+    $.equal-to negative-infinity
+
+[] > ceil-int-zero
+  assert-that > @
+    number 0
+    .ceil
+    $.equal-to 0
+
+[] > ceil-positive-int
+  assert-that > @
+    number 42
+    .ceil
+    $.equal-to 42
+
+[] > ceil-negative-int
+  assert-that > @
+    number -35
+    .ceil
+    $.equal-to -35
+
+[] > ceil-float-zero
+  assert-that > @
+    number 0.0
+    .ceil
+    $.equal-to 0
+
+[] > ceil-positive-float
+  assert-that > @
+    number 12.234
+    .ceil
+    $.equal-to 13
+
+[] > ceil-negative-float
+  assert-that > @
+    number -34.234
+    .ceil
+    $.equal-to -34
+
+[] > check-is-int-with-float-zero
+  assert-that > @
+    (number 0.0).is-int
+    $.equal-to FALSE
+    "check is-int of int zero"
