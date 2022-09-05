@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo
 +junit
 +package org.eolang.txt
-+version 0.28.0
++version 0.0.2
 
 [] > trims-string
   assert-that > @
@@ -151,3 +151,70 @@
   assert-that > @
     ((text "some text here").index-of "  here")
     $.equal-to -1
+
+[] > at-returns-one-character
+  assert-that > @
+    length.
+      at.
+        text
+          "abc"
+        0
+    $.equal-to 1
+
+[] > at-returns-desired-character
+  assert-that > @
+    at.
+      text
+        "Привет, 世界"
+      8
+    $.equal-to "世"
+
+[] > text-replaced
+  assert-that > @
+    replaced.
+      text
+        "abacaba"
+      "aba"
+      "c"
+    $.equal-to "ccc"
+
+[] > text-replaced-2
+  assert-that > @
+    replaced.
+      text
+        "abacaba"
+      "w"
+      "c"
+    $.equal-to "abacaba"
+
+[] > text-replaced-russian
+  assert-that > @
+    replaced.
+      text
+        "Привет, мир!"
+      "Привет, мир!"
+      "Привет, мир!"
+    $.equal-to "Привет, мир!"
+
+[] > text-replaced-russian-2
+  assert-that > @
+    replaced.
+      text
+        "Hello, мир!"
+      "Hello"
+      "Привет"
+    $.equal-to "Привет, мир!"
+
+[] > get-int
+  assert-that > @
+    as-int.
+      text
+        "123"
+    $.equal-to 123
+
+[] > get-negative-int
+  assert-that > @
+    as-int.
+      text
+        "-456"
+    $.equal-to -456

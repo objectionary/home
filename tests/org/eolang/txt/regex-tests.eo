@@ -27,7 +27,7 @@
 +home https://github.com/objectionary/eo
 +package org.eolang.txt
 +junit
-+version 0.28.0
++version 0.0.2
 
 [] > matches-string-against-pattern
   assert-that > @
