@@ -23,7 +23,7 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-runtime:0.0.2
++rt jvm org.eolang:eo-strings:0.0.2
 +version 0.0.2
 
 [format args...] > sprintf /string
