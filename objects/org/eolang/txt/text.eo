@@ -21,11 +21,12 @@
 # SOFTWARE.
 
 +alias org.eolang.collections.list
++alias org.eolang.txt.sscanf
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +package org.eolang.txt
-+rt jvm org.eolang:eo-runtime:0.28.0
-+version 0.28.0
++rt jvm org.eolang:eo-strings:0.0.2
++version 0.0.2
 
 [s] > text
 
@@ -63,6 +64,22 @@
 
   # Returns string in lower case
   [] > lower-case /string
-  #
+
   # Returns string in upper case
   [] > upper-case /string
+
+  [i] > at
+    ^.s.slice i 1 > @
+
+  # Returns string where all substrings
+  # target changed to replacement
+  [target replacement] > replaced /string
+
+  # Returns the text as integer
+  [] > as-int
+    at. > @
+      sscanf
+        "%d"
+        s
+      0
+
