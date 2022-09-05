@@ -45,6 +45,7 @@ sed -i "s|eo.version>[0-9]\+.[0-9]\+.[0-9]\+|eo.version>${version}|" make/jvm/po
 
 ./pull.sh objectionary/eo
 ./pull.sh objectionary/eo-files
+./pull.sh objectionary/eo-strings
 ./pull.sh objectionary/eo-collections
 ./pull.sh objectionary/eo-hamcrest
 ./pull.sh objectionary/eo-math
