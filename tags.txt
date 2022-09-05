@@ -1,8 +1,8 @@
-e892973ccc8a9b900f71aff2383f5bd336620ca3	gh-pages
-ebc10b52beb2a4f0cec0b644a0226c750a2b231a	master
-67694e05be4794480ff6a6f482bd81dfa7dd7d05	renovate/actions-cache-3.x
+8695b42bb242040d655010ef78a019b405425720	gh-pages
+53873fb5d6775b74b029560372e11455dcdb6108	master
+cd9cf946c3be274d959dac2381891c30def52971	renovate/actions-cache-3.x
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-f02b8dadb593d4fd1c6885690e1174dec4f3dae8	renovate/actions-setup-java-3.x
+caefb1b8742888973e4acd8c47b5c175e39a838a	renovate/actions-setup-java-3.x
 6103a9c1a55ecd6ee3a6b0ab3e33d3ecff5f3ae2	renovate/jamesives-github-pages-deploy-action-4.x
 547ec3d6989a829d62ac7a37d26655fe3f23c565	renovate/junit5-monorepo
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
