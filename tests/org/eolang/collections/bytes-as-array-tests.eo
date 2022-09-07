@@ -23,10 +23,10 @@
 +alias org.eolang.collections.bytes-as-array
 +alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.3
++version 0.0.4
 
 [] > bytes-to-array
   assert-that > @
