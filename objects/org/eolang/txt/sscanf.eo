@@ -21,10 +21,10 @@
 # SOFTWARE.
 
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.2
-+version 0.0.2
++rt jvm org.eolang:eo-strings:0.0.3
++version 0.0.3
 
 # Reads formatted input from a string.
 # This object with two free attributes:
