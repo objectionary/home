@@ -24,7 +24,7 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.txt.regex
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo-strings
++home https://github.com/objectionary/eo
 +package org.eolang.txt
 +junit
 +version 0.0.2

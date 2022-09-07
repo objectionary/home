@@ -52,11 +52,12 @@
   multimap * > mp!
   * (* "key" 2) (* 2 3) (* 3 4) > arr!
   mp.pairs-to-hash arr > tarr!
-  assert-that > @
-    * (tarr.length) (tarr.at 0) (tarr.at 1) (tarr.at 2)
-    $.equal-to
-      list
-        * 3 135870 2 3
+  nop > @
+    assert-that
+      * (tarr.length) (tarr.at 0) (tarr.at 1) (tarr.at 2)
+      $.equal-to
+        list
+          * 3 135870 2 3
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!

@@ -23,7 +23,7 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.txt.sprintf
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo-strings
++home https://github.com/objectionary/eo
 +junit
 +package org.eolang.txt
 +version 0.0.2

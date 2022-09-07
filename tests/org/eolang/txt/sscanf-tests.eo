@@ -25,7 +25,7 @@
 +alias org.eolang.txt.sprintf
 +alias org.eolang.txt.sscanf
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo-strings
++home https://github.com/objectionary/eo
 +junit
 +package org.eolang.txt
 +version 0.0.2
