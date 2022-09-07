@@ -23,10 +23,10 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.txt.text
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.0.2
++version 0.0.3
 
 [] > trims-string
   assert-that > @
@@ -218,3 +218,52 @@
       text
         "-456"
     $.equal-to -456
+
+[] > get-float
+  assert-that > @
+    as-float.
+      text
+        "123.456"
+    $.equal-to 123.456
+
+[] > get-float-2
+  assert-that > @
+    as-float.
+      text
+        "0.0"
+    $.equal-to 0.0
+
+[] > get-negative-float
+  assert-that > @
+    as-float.
+      text
+        "-0.01"
+    $.equal-to -0.01
+
+[] > compare-similar-strings
+  assert-that > @
+    compare.
+      text
+        "aBcD"
+      "aBcD"
+    $.equal-to 0
+
+[] > compare-strings
+  assert-that > @
+    lt.
+      0
+      compare.
+        text
+          "abcd"
+        "aBcD"
+    $.equal-to TRUE
+
+[] > compare-strings-2
+  assert-that > @
+    gt.
+      0
+      compare.
+        text
+          "A"
+        "a"
+    $.equal-to TRUE

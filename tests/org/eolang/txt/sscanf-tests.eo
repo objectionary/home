@@ -25,10 +25,10 @@
 +alias org.eolang.txt.sprintf
 +alias org.eolang.txt.sscanf
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.0.2
++version 0.0.3
 
 [] > sscanf-with-string
   assert-that > @
