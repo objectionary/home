@@ -24,10 +24,10 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.txt.regex
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
 +junit
-+version 0.0.2
++version 0.0.3
 
 [] > matches-string-against-pattern
   assert-that > @

@@ -23,10 +23,10 @@
 +alias org.eolang.collections.list
 +alias org.eolang.txt.sscanf
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.2
-+version 0.0.2
++rt jvm org.eolang:eo-strings:0.0.3
++version 0.0.3
 
 [s] > text
 
@@ -83,3 +83,16 @@
         s
       0
 
+  # Returns the text as float
+  [] > as-float
+    at. > @
+      sscanf
+        "%f"
+        s
+      0
+
+  # Compares two strings in lexicographic order.
+  # Returns 0 if two strings are equal,
+  # a negative number if the first string comes before the argument,
+  # a positive number if the first string comes after the argument
+  [other] > compare /int
