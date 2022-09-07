@@ -67,9 +67,6 @@
           carr
         acc
 
-  # @todo #20:30 min. DEPRICATED, please remove after update of objectionary/eo.
-  #  string.joined in objectionary/eo still use reducei
-  #  so wnen it will be changed delete that
   [a f] > reducei
     rec-reduce (* a 0) f arr > @
 
@@ -98,9 +95,6 @@
           a
           item
 
-  # @todo #20:30 min. DEPRICATED, please remove after update of objectionary/eo.
-  #  bytes.as-hash in objectionary/eo still use reduce
-  #  so wnen it will be changed delete that
   [a f] > reduce
     ^.reducedi > @
       a
@@ -130,9 +124,6 @@
       [x idx]
         &.f x > @
 
-  # @todo #20:30 min. DEPRICATED, please remove after update of objectionary/eo.
-  #  some objects in objectionary/eo still use map
-  #  so wnen it will be changed delete that
   [f] > map
     ^.mappedi > @
       [x idx]
