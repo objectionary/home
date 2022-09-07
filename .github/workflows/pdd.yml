@@ -1,0 +1,19 @@
+---
+name: pdd
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  pdd:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - run: gem install pdd
+      - run: pdd --format xml . | grep -v '<puzzle '
