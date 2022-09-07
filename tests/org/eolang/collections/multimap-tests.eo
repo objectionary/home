@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.3
++version 0.0.4
 
 [] > rebuild-do-not-crush
   multimap * > mmp
@@ -50,14 +50,22 @@
 
 [] > multimap-pairs-to-hash-test
   multimap * > mp!
-  * (* "key" 2) (* 2 3) (* 3 4) > arr!
+  * (* 2 3) (* 3 4) > arr!
   mp.pairs-to-hash arr > tarr!
+  assert-that > @
+    * (tarr.length) (tarr.at 0) (tarr.at 1)
+    $.equal-to
+      list
+        * 2 2 3
+
+[] > multimap-string-to-hash
   nop > @
+    multimap * > mp!
+    * (* "key" 3) > arr!
+    mp.pairs-to-hash arr > tarr!
     assert-that
-      * (tarr.length) (tarr.at 0) (tarr.at 1) (tarr.at 2)
-      $.equal-to
-        list
-          * 3 135870 2 3
+      tarr.at 0
+      $.equal-to 135870
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!

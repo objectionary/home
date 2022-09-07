@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.3
-+version 0.0.3
++rt jvm org.eolang:eo-collections:0.0.4
++version 0.0.4
 
 [arr] > list
   arr > @
@@ -33,6 +33,14 @@
     eq. > @
       arr.length
       0
+
+  # Create a new list with this element added to
+  # the end of it.
+  [x] > with
+    list > @
+      with.
+        arr
+        x
 
   # Reduce with index from start "a" using the function "f".
   # Here "f" must be an abstract
