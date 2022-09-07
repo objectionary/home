@@ -58,11 +58,6 @@
       list
         * 2 2 3
 
-# @todo #33:30min We need to remove this nop object
-#  after fixing the problem with incorrect
-#  computng of hash method in org.eolang.string, and
-#  when we uncommenting all tests related to this problem
-#  in objectionary/eo
 [] > multimap-string-to-hash
   nop > @
     multimap * > mp!
