@@ -76,7 +76,7 @@ $ ./pull.sh objectionary/eo-files
 Here, `objectionary/eo-files` is the name of GitHub repository you are trying to publish
 to Objectionary. The script will
 pull all necessary `.eo` sources from the repo and put them into the right
-places. After than, run this:
+places. After that, run this:
 
 ```bash
 $ make clean; make
