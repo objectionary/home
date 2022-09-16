@@ -25,8 +25,8 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.3
-+version 0.0.3
++rt jvm org.eolang:eo-strings:0.0.4
++version 0.0.4
 
 [s] > text
 
@@ -62,6 +62,8 @@
   # if no element was found, it returns -1
   [substr] > index-of /int
 
+  [substr] > last-index-of /int
+
   # Returns string in lower case
   [] > lower-case /string
 
@@ -96,3 +98,18 @@
   # a negative number if the first string comes before the argument,
   # a positive number if the first string comes after the argument
   [other] > compare /int
+
+  # Returns an array of strings, separated by a given string
+  [delimiter] > split /array
+
+  # Check that all signs in string are letters
+  [] > is-alphabetic /bool
+
+  # Returns concatenaion of two strings
+  [other] > chained
+    as-string. > @
+      concat.
+        as-bytes.
+          s
+        as-bytes.
+          other

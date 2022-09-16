@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.txt.text
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.0.3
++version 0.0.4
 
 [] > trims-string
   assert-that > @
@@ -152,6 +153,36 @@
     ((text "some text here").index-of "  here")
     $.equal-to -1
 
+[] > text-last-index-of
+  assert-that > @
+    ((text "some text here").last-index-of " here")
+    $.equal-to 9
+
+[] > text-last-index-of-2
+  assert-that > @
+    ((text "some text here").last-index-of "  here")
+    $.equal-to -1
+
+[] > text-last-index-of-3
+  assert-that > @
+    ((text "abc abcd").last-index-of "abc")
+    $.equal-to 4
+
+[] > text-last-index-of-4
+  assert-that > @
+    ((text "Hello, world").last-index-of "Hello, world")
+    $.equal-to 0
+
+[] > empty-text-last-index-of
+  assert-that > @
+    ((text "").last-index-of "abc")
+    $.equal-to -1
+
+[] > unicode-text-last-index-of
+  assert-that > @
+    ((text "Привет, 世界").last-index-of "世")
+    $.equal-to 8
+
 [] > at-returns-one-character
   assert-that > @
     length.
@@ -267,3 +298,86 @@
           "A"
         "a"
     $.equal-to TRUE
+
+[] > check-is-alpha
+  assert-that > @
+    is-alphabetic.
+      text
+        "qWeRtY"
+    $.equal-to TRUE
+
+[] > check-is-alpha-2
+  assert-that > @
+    is-alphabetic.
+      text
+        "ab3d"
+    $.equal-to FALSE
+
+[] > check-is-alpha-3
+  assert-that > @
+    is-alphabetic.
+      text
+        "1234"
+    $.equal-to FALSE
+
+[] > split-text
+  assert-that > @
+    split.
+      text
+        "a b c"
+      " "
+    $.equal-to
+      list
+        * "a" "b" "c"
+
+[] > split-text-2
+  assert-that > @
+    split.
+      text
+        "a b c"
+      ", "
+    $.equal-to
+      list
+        * "a b c"
+
+[] > split-text-3
+  assert-that > @
+    split.
+      text
+        "a, b, c."
+      ", "
+    $.equal-to
+      list
+        * "a" "b" "c."
+
+[] > strings-concatenation
+  assert-that > @
+    chained.
+      text
+        "123"
+      "45 "
+    $.equal-to "12345 "
+
+[] > strings-concatenation-2
+  assert-that > @
+    chained.
+      text
+        ""
+      "45 "
+    $.equal-to "45 "
+
+[] > strings-concatenation-3
+  assert-that > @
+    chained.
+      text
+        ""
+      ""
+    $.equal-to ""
+
+[] > strings-concatenation-4
+  assert-that > @
+    chained.
+      text
+        "漢a"
+      "漢字漢"
+    $.equal-to "漢a漢字漢"

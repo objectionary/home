@@ -28,7 +28,7 @@
 +home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.0.3
++version 0.0.4
 
 [] > sscanf-with-string
   assert-that > @
