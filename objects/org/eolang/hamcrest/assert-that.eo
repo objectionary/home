@@ -22,17 +22,19 @@
 
 +alias number org.eolang.math.number
 +alias org.eolang.collections.list
++alias org.eolang.txt.text
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
-+rt jvm org.eolang:eo-hamcrest:0.2.10
-+version 0.2.10
++rt jvm org.eolang:eo-hamcrest:0.2.11
++version 0.2.11
 
 # Main object for assertions
 [actual matcher reasons...] > assert-that
+  actual > act!
 
   if. > @
-    matcher.match actual
+    matcher.match act
     TRUE
     sprintf
       "%s\nExpected: %s\n     but: %s"
@@ -58,7 +60,7 @@
     [] > describe-mismatch
       sprintf > @
         "was <%s>"
-        actual
+        act
 
     [] > description-of
       sprintf > @
@@ -115,8 +117,9 @@
         mismatch
 
     [] > description-of
-      " and ".joined > @
-        map.
+      joined. > @
+        text " and "
+        mapped.
           list
             matchers
           [i]
@@ -148,8 +151,9 @@
         actual
 
     [] > description-of
-      " or ".joined > @
-        map.
+      joined. > @
+        text " or "
+        mapped.
           list
             matchers
           [i]
@@ -167,7 +171,7 @@
     [] > describe-mismatch
       sprintf > @
         "was less than <%s>"
-        actual
+        act
 
     [] > description-of
       sprintf > @
@@ -185,8 +189,9 @@
 
     [] > describe-mismatch
       sprintf > @
-        "was greater than <%s>"
-        actual
+        "<%s> was greater than <%s>"
+        act
+        x
 
     [] > description-of
       sprintf > @
@@ -212,7 +217,7 @@
     [] > describe-mismatch
       sprintf > @
         "<%s> differed by <%s> more than delta <%s>"
-        actual
+        act
         mismatch
         err
 
@@ -274,9 +279,9 @@
             FALSE
       seq > @
         mismatches.write *
-        reducei.
+        reducedi.
           list
-            actual
+            act
           FALSE
           [acc i x]
             or. > @
@@ -286,7 +291,7 @@
     [] > describe-mismatch
       sprintf > @
         "mismatches: [%s]"
-        "".joined mismatches
+        (text "").joined mismatches
 
     [] > description-of
       sprintf > @
@@ -321,9 +326,9 @@
     [a] > match
       seq > @
         mismatches.write *
-        reducei.
+        reducedi.
           list
-            actual
+            act
           FALSE
           [acc i el]
             or. > @
@@ -333,11 +338,12 @@
     [] > describe-mismatch
       sprintf > @
         "mismatches: [%s]"
-        ", ".joined mismatches
+        (text ", ").joined mismatches
 
     [] > description-of
-      " and ".joined > @
-        map.
+      joined. > @
+        text " and "
+        mapped.
           list
             matchers
           [i]
@@ -352,14 +358,14 @@
     [] > check-length
       eq. > @
         matchers.length
-        actual.length
+        act.length
 
     [a] > match
       if. > @
         check-length
         seq
           mismatches.write *
-          reducei.
+          reducedi.
             list
               a
             TRUE
@@ -380,11 +386,11 @@
     [] > describe-mismatch
       sprintf > @
         "mismatches: [%s]"
-        ", ".joined mismatches
+        (text ", ").joined mismatches
 
     [] > description-of
-      " and ".joined > @
-        map.
+      (text " and ").joined > @
+        mapped.
           list
             matchers
           [i]

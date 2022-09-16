@@ -23,48 +23,51 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.failed-output
 +version 0.2.11
 
-[] > is-two-sum-test
-  assert-that > @
-    4.plus 4
-    $.is
-      $.equal-to 8
-    "is sum of two numbers "
+[] > delayed-calculation
+  memory 0 > m
+  [x] > inc
+    seq > @
+      m.write (m.plus x)
+      m
+  [] > suggestion
+    assert-that > @
+      inc
+        inc
+          inc
+            inc
+              1
+      $.equal-to 5
+  eq. > @
+    suggestion
+    "\nExpected: <5> equal to value\n     but: was <1>"
 
-[] > is-two-strings-test
-  assert-that > @
-    "vice"
-    $.is
-      $.equal-to "vice"
-    "is string equal to another string"
+[] > equal-to-int-failed-output
+  [] > suggestion
+    assert-that > @
+      4
+      $.equal-to 9
+  eq. > @
+    suggestion
+    "\nExpected: <9> equal to value\n     but: was <4>"
 
-[] > is-two-floats-sum-test
-  assert-that > @
-    4.2.plus 3.9
-    $.is
-      $.equal-to 8.1
-    "is sum of two floats are equal"
+[] > equal-to-str-failed-output
+  [] > suggestion
+    assert-that > @
+      "one"
+      $.equal-to "two"
+  eq. > @
+    suggestion
+    "\nExpected: <two> equal to value\n     but: was <one>"
 
-[] > is-two-bools-test
-  assert-that > @
-    FALSE.not
-    $.is
-      $.equal-to TRUE
-    "is two bools are equal"
+[] > equal-to-float-failed-output
+  [] > suggestion
+    assert-that > @
+      44.0
+      $.equal-to 11.0
+  eq. > @
+    suggestion
+    "\nExpected: <11.0> equal to value\n     but: was <44.0>"
 
-[] > is-two-sum-greater-than-value-test
-  assert-that > @
-    14.plus 4
-    $.is
-      $.greater-than 3
-    "is 14.plus 4 greater than 3"
-
-[] > is-two-sub-greater-than-expr-test
-  assert-that > @
-    44.minus 3
-    $.is
-      $.greater-than
-        33.plus 5
-    "is 44.sub 3 greater than 33.add 5"

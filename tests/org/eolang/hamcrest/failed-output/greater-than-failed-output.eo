@@ -23,48 +23,23 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.failed-output
 +version 0.2.11
 
-[] > is-two-sum-test
+[] > greater-than-int-failed-output
+  [] > suggestion
+    assert-that > @
+      13
+      $.greater-than 100
   assert-that > @
-    4.plus 4
-    $.is
-      $.equal-to 8
-    "is sum of two numbers "
+    suggestion
+    $.equal-to "\nExpected: <100> less than value\n     but: was less than <13>"
 
-[] > is-two-strings-test
+[] > greater-than-float-failed-output
+  [] > suggestion
+    assert-that > @
+      13.0
+      $.greater-than 100.0
   assert-that > @
-    "vice"
-    $.is
-      $.equal-to "vice"
-    "is string equal to another string"
-
-[] > is-two-floats-sum-test
-  assert-that > @
-    4.2.plus 3.9
-    $.is
-      $.equal-to 8.1
-    "is sum of two floats are equal"
-
-[] > is-two-bools-test
-  assert-that > @
-    FALSE.not
-    $.is
-      $.equal-to TRUE
-    "is two bools are equal"
-
-[] > is-two-sum-greater-than-value-test
-  assert-that > @
-    14.plus 4
-    $.is
-      $.greater-than 3
-    "is 14.plus 4 greater than 3"
-
-[] > is-two-sub-greater-than-expr-test
-  assert-that > @
-    44.minus 3
-    $.is
-      $.greater-than
-        33.plus 5
-    "is 44.sub 3 greater than 33.add 5"
+    suggestion
+    $.equal-to "\nExpected: <100.0> less than value\n     but: was less than <13.0>"
