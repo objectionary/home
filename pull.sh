@@ -44,3 +44,5 @@ trap 'rm -rf -- "${tmp}"' EXIT
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
 ls -al "${tmp}"
 cp -r ${tmp}/objectionary/* .
+
+pdd --remove -f /dev/null
