@@ -62,6 +62,8 @@
   # if no element was found, it returns -1
   [substr] > index-of /int
 
+  # Returns last index of substr in string,
+  # if no element was found, it returns -1
   [substr] > last-index-of /int
 
   # Returns string in lower case

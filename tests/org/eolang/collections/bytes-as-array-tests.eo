@@ -23,7 +23,7 @@
 +alias org.eolang.collections.bytes-as-array
 +alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
-+home https://github.com/objectionary/eo-collections
++home https://github.com/objectionary/eo
 +junit
 +package org.eolang.collections
 +version 0.0.4
