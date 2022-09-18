@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-#  2016-2022 Objectionary.com
+# Copyright (c) 2021-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,13 @@
 # SOFTWARE.
 
 +architect yegor256@gmail.com
-+home https://github.com/objectionary/eo
-+package org.eolang
-+rt jvm org.eolang:eo-runtime:0.28.4
-+version 0.28.4
++home https://github.com/objectionary/eo-sys
++package org.eolang.sys
++rt jvm org.eolang:eo-sys:jar-with-dependencies:0.0.6
++version 0.0.6
 
-# This object must be used in order to terminate the program
-# due to an error. Just make a copy of it with any encapsulated object.
-# The first attempt to dataize it will lead to runtime error and program
-# termination. The only way to catch such an error is by using
-# the object 'try'.
-[] > error /?
+# Makes a syscall.
+# See https://man7.org/linux/man-pages/man2/syscall.2.html
+#
+# For the full list of IDs, see /usr/include/sys/syscall.h file in your OS
+[id args...] > call /int
