@@ -22,8 +22,11 @@
 
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+package org.eolang.io
++package org.eolang
 +rt jvm org.eolang:eo-runtime:0.28.10
 +version 0.28.10
 
-[text] > stdout /bool
+[code params] > rust
+  * > @
+    code
+    params
