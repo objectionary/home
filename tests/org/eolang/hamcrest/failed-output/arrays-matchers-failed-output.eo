@@ -23,11 +23,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.11
++version 0.2.12
 
-# @todo ##41:30min To add several tests for checking
-#  arrays matcher output, when assert-that object return string
-#  and test suggestion is false. Check the origin ticket to get
-#  more information.
 [] > arrays-failed-output
   nop > @

@@ -20,10 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.11
++version 0.2.12
 
-[] > not-failed-output
-  nop > @
+[] > not-failed-output-two-strings
+  [] > suggestion
+    assert-that > @
+      "i am true"
+      $.not
+        $.equal-to "i am true"
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: not <i am true> equal to value\n     but: was <i am true>"
+
+[] > not-failed-output-two-floats-div
+  [] > suggestion
+    assert-that > @
+      12.12.div 3.03
+      $.not
+        $.equal-to 4.00
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: not <4.0> equal to value\n     but: was <4.0>"
+
