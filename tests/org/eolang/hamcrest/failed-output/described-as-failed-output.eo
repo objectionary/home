@@ -20,10 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.11
++version 0.2.12
 
-[] > described-as-failed-output
-  nop > @
+[] > two-sum-described-as-equal-to-test-failed-output
+  [] > suggestion
+    assert-that > @
+      15.plus 5
+      $.described-as
+        $.equal-to 42
+        "this message overrides matchers description"
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: this message overrides matchers description\n     but: was <20>"
