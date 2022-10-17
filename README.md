@@ -1,6 +1,9 @@
 <img src="https://www.objectionary.com/cactus.svg" height="100px" />
 
 [![make](https://github.com/yegor256/objectionary/actions/workflows/make.yml/badge.svg?branch=master)](https://github.com/yegor256/objectionary/actions/workflows/make.yml)
+[![Hits-of-Code](https://hitsofcode.com/github/objectionary/home)](https://hitsofcode.com/view/github/objectionary/home)
+![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/home)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/home/blob/master/LICENSE.txt)
 
 The term **Objectionary** was coined by [David West](https://www.youtube.com/watch?v=s-hdZZzMCac)
 in his great book
