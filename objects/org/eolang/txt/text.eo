@@ -20,20 +20,63 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.bytes-as-array
 +alias org.eolang.collections.list
 +alias org.eolang.txt.sscanf
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.4
-+version 0.0.4
++rt jvm org.eolang:eo-strings:0.1.0
++version 0.1.0
 
 [s] > text
 
   s > @
 
+  [start len] > slice
+    text > @
+      ^.s.slice start len
+
   # Trim it from both sides
-  [] > trim /string
+  [] > trimmed
+    reducedi. > spaces!
+      list
+        bytes-as-array
+          as-bytes.
+            s
+      *
+      [a i x]
+        up-cased.ascii > code!
+          x
+        32 > space-code!
+        if. > @
+          eq.
+            code
+            space-code
+          with.
+            a
+            i
+          a
+    reduced. > left-pos!
+      list
+        spaces
+      0
+      [a x]
+        if. > @
+          eq.
+            a
+            x
+          plus.
+            a
+            1
+          a
+    slice. > @
+      s
+      left-pos
+      minus.
+        length.
+          s
+        left-pos
 
   # Joins an array of strings, using current string
   # as a delimiter
@@ -50,34 +93,149 @@
     res.as-string > @
 
   # Checks that string contains substr
-  [substr] > contains /bool
+  [substr] > contains
+    index-of. > idx!
+      text
+        s
+      substr
+    gt. > @
+      idx
+      -1
 
   # Checks that string ends with substr
-  [substr] > ends-with /bool
+  [substr] > ends-with
+    index-of.check-if-starts-from-index > @
+      s
+      substr
+      minus.
+        s.length
+        substr.length
 
-  # Checks that string starts with substr
-  [substr] > starts-with /bool
+  # Checks that the text starts with substr
+  [substr] > starts-with
+    index-of.check-if-starts-from-index > @
+      s
+      substr
+      0
 
   # Returns index of substr in string,
   # if no element was found, it returns -1
-  [substr] > index-of /int
+  [substr] > index-of
+    bytes-as-array > bytes-view!
+      as-bytes.
+        s
+    reducedi. > @
+      list
+        bytes-view
+      -1
+      [a i x]
+        check-if-starts-from-index > res!
+          s
+          substr
+          i
+        if. > @
+          eq.
+            a
+            -1
+          if.
+            res
+            i
+            a
+          a
+
+    # Method accepts a string and a substring as an array of bytes
+    # and checks if the string contains a substring in the passed position
+    [str substr index] > check-if-starts-from-index
+      str.length > lstr!
+      substr.length > lsub!
+      if. > @
+        gt.
+          plus.
+            index
+            lsub
+          lstr
+        FALSE
+        eq.
+          substr
+          slice.
+            str
+            index
+            lsub
+
+  # Returns text in lower case
+  [] > low-cased /text
 
   # Returns last index of substr in string,
   # if no element was found, it returns -1
-  [substr] > last-index-of /int
+  [substr] > last-index-of
+    bytes-as-array > bytes-view!
+      as-bytes.
+        s
+    reducedi. > @
+      list
+        bytes-view
+      -1
+      [a i x]
+        index-of.check-if-starts-from-index > res!
+          s
+          substr
+          i
+        if. > @
+          res
+          i
+          a
 
-  # Returns string in lower case
-  [] > lower-case /string
+  # Returns text in upper case
+  [] > up-cased
+    ascii "z" > ascii-z!
+    ascii "a" > ascii-a!
+    text > @
+      as-string.
+        reduced.
+          list
+            bytes-as-array
+              s.as-bytes
+          --
+          [a x]
+            ascii x > ascii-x!
+            concat. > @
+              a
+              if.
+                and.
+                  lte.
+                    ascii-x
+                    ascii-z
+                  gte.
+                    ascii-x
+                    ascii-a
+                slice.
+                  as-bytes.
+                    minus.
+                      ascii
+                        x
+                      distance
+                  7
+                  1
+                x
 
-  # Returns string in upper case
-  [] > upper-case /string
+    [c] > ascii
+      as-int. > @
+        concat.
+          00-00-00-00-00-00-00
+          as-bytes.
+            c
+    minus. > distance!
+      ascii
+        "a"
+      ascii
+        "A"
 
   [i] > at
-    ^.s.slice i 1 > @
+    ^.slice i 1 > @
 
-  # Returns string where all substrings
+  # Returns text where all regexp
   # target changed to replacement
-  [target replacement] > replaced /string
+  [target replacement] > replaced /text
 
   # Returns the text as integer
   [] > as-int
@@ -99,19 +257,103 @@
   # Returns 0 if two strings are equal,
   # a negative number if the first string comes before the argument,
   # a positive number if the first string comes after the argument
-  [other] > compare /int
+  [other] > compare
+    bytes-as-array > b1!
+      as-bytes.
+        s
+    bytes-as-array > b2!
+      as-bytes.
+        other
+    if. > @
+      eq.
+        length.
+          s
+        length.
+          other
+      reducedi.
+        list
+          b1
+        0
+        [a i x]
+          if. > res!
+            eq.
+              at.
+                b1
+                i
+              at.
+                b2
+                i
+            0
+            if.
+              gt.
+                as-int.
+                  is-alphabetic.bytes-1-to-8
+                    at.
+                      b1
+                      i
+                as-int.
+                  is-alphabetic.bytes-1-to-8
+                    at.
+                      b2
+                      i
+              1
+              -1
+          if. > @
+            eq.
+              a
+              0
+            res
+            a
+      minus.
+        length.
+          s
+        length.
+          other
 
   # Returns an array of strings, separated by a given string
   [delimiter] > split /array
 
-  # Check that all signs in string are letters
-  [] > is-alphabetic /bool
+  # Check that all signs in string are letters.
+  # Works only for english letters
+  [] > is-alphabetic
+    reduced. > @
+      list
+        bytes-as-array
+          as-bytes.
+            low-cased.
+              text
+                s
+      TRUE
+      [a x]
+        as-int. > value!
+          bytes-1-to-8
+            as-bytes.
+              x
+        and. > @
+          a
+          int-is-alpha
+            value
+
+    [b] > int-is-alpha
+      and. > @
+        gte.
+          b
+          97
+        lte.
+          b
+          122
+
+    [b] > bytes-1-to-8
+      concat. > @
+        00-00-00-00-00-00-00
+        b
 
   # Returns concatenaion of two strings
   [other] > chained
-    as-string. > @
-      concat.
-        as-bytes.
-          s
-        as-bytes.
-          other
+    text > @
+      as-string.
+        concat.
+          as-bytes.
+            s
+          as-bytes.
+            other

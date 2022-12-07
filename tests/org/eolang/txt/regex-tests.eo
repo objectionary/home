@@ -27,7 +27,7 @@
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
 +junit
-+version 0.0.4
++version 0.1.0
 
 [] > matches-string-against-pattern
   assert-that > @
@@ -49,6 +49,15 @@
       "Hello, World!"
     $.is
       $.equal-to FALSE
+
+[] > matches-dollar
+  assert-that > @
+    matches.
+      compile.
+        regex "/($[0-9]*)/"
+      "$12"
+    $.is
+      $.equal-to TRUE
 
 [] > match-returns-correct-position
   assert-that > @
@@ -212,3 +221,53 @@
       "abxxxxxcd"
       ""
     $.equal-to "abcd"
+
+[] > replace-groups-1
+  assert-that > @
+    regex.replaced.replacei.replace-by-groups
+      QQ.txt.text "q$0wer$1ty"
+      list
+        *
+          "GR0"
+          "GR1"
+    $.equal-to
+      "qGR0werGR1ty"
+
+[] > group-ref-0
+  assert-that > @
+    replaced.
+      compile.
+        QQ.txt.regex "/(([A-Za-z])[0-9])/"
+      "A2B"
+      "G$1G"
+    $.equal-to
+      "GA2GB"
+
+[] > group-ref-1
+  assert-that > @
+    replaced.
+      compile.
+        QQ.txt.regex "/(([A-Za-z])[0-9])/"
+      "a1a"
+      "G$1G"
+    $.equal-to
+      "Ga1Ga"
+
+[] > group-ref-2
+  assert-that > @
+    replaced.
+      compile.
+        QQ.txt.regex "/([xyz]+)/"
+      "abxxxcd"
+      "$0"
+    $.equal-to "abxxxcd"
+
+[] > group-ref-3
+  assert-that > @
+    replaced.
+      compile.
+        QQ.txt.regex "/(([A-Za-z])[0-9])/"
+      "a1a\n"
+      "$1世"
+    $.equal-to
+      "a1世a\n"
