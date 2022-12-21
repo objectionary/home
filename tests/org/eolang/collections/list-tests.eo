@@ -221,13 +221,14 @@
       sprintf "%d %d %d" 1 4 9
 
 [] > iterates-with-each
-  list
-    *
-      "one"
-      "two"
-      "three"
-  .each > @
-    [i] (stdout i > @)
+  nop > @
+    list
+      *
+        "one"
+        "two"
+        "three"
+    .each
+      [i] (stdout i > @)
 
 [] > list-without
   assert-that > @
