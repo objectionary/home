@@ -26,24 +26,39 @@
 +package org.eolang.hamcrest.failed-output
 +version 0.0.0
 
-[] > is-failed-output-with-two-bools
+[] > simple-contains-string-failed
   [] > suggestion
     assert-that > @
-      FALSE.not
-      $.is
-        $.equal-to FALSE
-      "is two bools are equal"
+      "Привет, 世界"
+      $.contains-string "111"
+      "constains-string"
   assert-that > @
     suggestion
-    $.equal-to "is two bools are equal\nExpected: is <false> equal to value\n     but: was <true>"
+    $.equal-to "constains-string\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
 
-[] > is-failed-output-with-two-sum-greater-than-value
+[] > contains-any-of-string-failed
   [] > suggestion
     assert-that > @
-      14.plus 4
-      $.is
-        $.greater-than 500
-      "is 14.plus 4 greater than 3"
+      "Hello"
+      $.any-of
+        $.contains-string "2"
+      "constains-string"
   assert-that > @
     suggestion
-    $.equal-to "is 14.plus 4 greater than 3\nExpected: is <500> less than value\n     but: was less than <18>"
+    $.equal-to "constains-string\nExpected: string contains: <2>\n     but: a value was <Hello>"
+
+[] > contains-all-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "so sad"
+      $.all-of
+        $.contains-string "2"
+        $.contains-string "happy"
+      "constains-string"
+  assert-that > @
+    suggestion
+    $.equal-to "constains-string\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
+
+
+
+

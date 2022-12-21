@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2020-2022 Graur Andrew
+# Copyright (c) 2022 Graur Andrew
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +20,50 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.hamcrest.assert-that
++alias org.eolang.collections.list
++alias org.eolang.txt.text
++alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
-+junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.matchers
++rt jvm org.eolang:eo-hamcrest:0.0.0
 +version 0.0.0
 
-[] > two-sum-less-than-value-test
-  assert-that > @
-    20.plus 13
-    $.less-than 100
-    "is 20.plus 13 less than 100"
+# Wraps an existing matcher and apply it to every item in array.
+[matcher] > has-item-matcher
+  memory 0 > mismatches
 
-[] > two-sub-less-than-expr-test
-  assert-that > @
-    33.minus 12
-    $.less-than
-      1.plus 64
-    "is 33.minus 12 less than 1.plus 64"
+  [a] > match
+    [s] > apply
+      if. > @
+        matcher.match s
+        TRUE
+        seq
+          mismatches.write
+            mismatches.with
+              matcher.describe-mismatch a
+          FALSE
+    seq > @
+      mismatches.write *
+      reducedi.
+        list
+          a
+        FALSE
+        [acc i x]
+          or. > @
+            acc
+            apply x
 
-[] > two-floats-is-less-than-value-test
-  assert-that > @
-    13.8.plus 17.0
-    $.less-than 114.0
-    "is 13.8.plus 17.0 less than 114.0"
+  # @todo #37:30min This string formatting doesn't work correctly.
+  #  Here we got message like: [was <[Lorg.eolang.Phi;@1189dd52>]
+  #  and possibly we need to change code below when string manipulation
+  #  objects will be created.
+  [act] > describe-mismatch
+    sprintf > @
+      "mismatches: [%s]"
+      (text "").joined mismatches
 
-[] > two-floats-is-less-than-expr-test
-  assert-that > @
-    5.5.times 2.0
-    $.less-than
-      333.00.div 11.00
-    "is 5.5.times 2.0 less than 333.00.div 11.00"
-
+  [] > description-of
+    sprintf > @
+      "an array containing %s"
+      description-of.
+        matcher

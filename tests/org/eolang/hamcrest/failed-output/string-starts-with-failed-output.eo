@@ -26,24 +26,42 @@
 +package org.eolang.hamcrest.failed-output
 +version 0.0.0
 
-[] > is-failed-output-with-two-bools
+[] > simple-starts-with-string-failed
   [] > suggestion
     assert-that > @
-      FALSE.not
-      $.is
-        $.equal-to FALSE
-      "is two bools are equal"
+      "Привет, 世界"
+      $.string-starts-with "界"
+      "string-starts-with 界"
   assert-that > @
     suggestion
-    $.equal-to "is two bools are equal\nExpected: is <false> equal to value\n     but: was <true>"
+    $.equal-to "string-starts-with 界\nExpected: string starts with: <界>\n     but: was <Привет, 世界>"
 
-[] > is-failed-output-with-two-sum-greater-than-value
+[] > starts-with-any-of-string-failed
   [] > suggestion
     assert-that > @
-      14.plus 4
-      $.is
-        $.greater-than 500
-      "is 14.plus 4 greater than 3"
+      "Привет, 世界"
+      $.all-of
+        $.contains-string "Привет"
+        $.contains-string "世"
+        $.string-starts-with "ет"
+      "starts-with"
   assert-that > @
     suggestion
-    $.equal-to "is 14.plus 4 greater than 3\nExpected: is <500> less than value\n     but: was less than <18>"
+    $.equal-to "starts-with\nExpected: string contains: <Привет> and string contains: <世> and string starts with: <ет>\n     but: a value was <Привет, 世界>"
+
+[] > starts-with-all-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "ffffffffffff"
+      $.any-of
+        $.contains-string "Привет"
+        $.string-starts-with "dddd"
+        $.contains-string "界"
+      "starts-with"
+  assert-that > @
+    suggestion
+    $.equal-to "starts-with\nExpected: string contains: <Привет> or string starts with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
+
+
+
+

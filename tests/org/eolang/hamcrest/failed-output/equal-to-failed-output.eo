@@ -21,10 +21,11 @@
 # SOFTWARE.
 
 +alias org.eolang.hamcrest.assert-that
++alias org.eolang.hamcrest.assert-twice-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.12
++version 0.0.0
 
 [] > delayed-calculation
   memory 0 > m
@@ -71,3 +72,15 @@
     suggestion
     "\nExpected: <11.0> equal to value\n     but: was <44.0>"
 
+[] > equal-to-assert-twice-that-failed-output
+  [] > suggestion
+    memory 0 > count
+    [] > foo
+      count.write (count.plus 1) > @
+    assert-twice-that > @
+      foo
+      $.equal-to 3
+  assert-that > @
+    suggestion
+    $.equal-to
+      "\nExpected: <3> equal to value\n     but: was <2>"

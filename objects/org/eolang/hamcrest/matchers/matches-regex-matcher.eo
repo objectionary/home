@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2020-2022 Graur Andrew
+# Copyright (c) 2022 Graur Andrew
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.hamcrest.assert-that
++alias org.eolang.txt.regex
++alias org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
-+junit
-+package org.eolang.hamcrest.failed-output
++package org.eolang.hamcrest.matchers
++rt jvm org.eolang:eo-hamcrest:0.0.0
 +version 0.0.0
 
-[] > is-failed-output-with-two-bools
-  [] > suggestion
-    assert-that > @
-      FALSE.not
-      $.is
-        $.equal-to FALSE
-      "is two bools are equal"
-  assert-that > @
-    suggestion
-    $.equal-to "is two bools are equal\nExpected: is <false> equal to value\n     but: was <true>"
+# Checks if given string can be generated
+# by the regular expression.
+[str] > matches-regex-matcher
 
-[] > is-failed-output-with-two-sum-greater-than-value
-  [] > suggestion
-    assert-that > @
-      14.plus 4
-      $.is
-        $.greater-than 500
-      "is 14.plus 4 greater than 3"
-  assert-that > @
-    suggestion
-    $.equal-to "is 14.plus 4 greater than 3\nExpected: is <500> less than value\n     but: was less than <18>"
+  [a] > match
+    matches. > @
+      compile.
+        regex str
+      a
+
+  [act] > describe-mismatch
+    sprintf > @
+      "the string was <%s>"
+      act
+
+  [] > description-of
+    sprintf > @
+      "a string matching the pattern <%s>"
+      str

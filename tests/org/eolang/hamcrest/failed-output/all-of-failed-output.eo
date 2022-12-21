@@ -25,8 +25,12 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.12
++version 0.0.0
 
+# @todo #167:45min To add more tests with a new
+#  assert-twice-that object to make sure failed output messages
+#  work well. This task is only about failed tests,
+#  for successfully passed tests there will be another one.
 [] > all-of-number-test-failed-output
   [] > suggestion
     assert-that > @

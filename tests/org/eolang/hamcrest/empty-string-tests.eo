@@ -23,27 +23,10 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest.failed-output
++package org.eolang.hamcrest
 +version 0.0.0
 
-[] > is-failed-output-with-two-bools
-  [] > suggestion
-    assert-that > @
-      FALSE.not
-      $.is
-        $.equal-to FALSE
-      "is two bools are equal"
+[] > simple-empty-string
   assert-that > @
-    suggestion
-    $.equal-to "is two bools are equal\nExpected: is <false> equal to value\n     but: was <true>"
-
-[] > is-failed-output-with-two-sum-greater-than-value
-  [] > suggestion
-    assert-that > @
-      14.plus 4
-      $.is
-        $.greater-than 500
-      "is 14.plus 4 greater than 3"
-  assert-that > @
-    suggestion
-    $.equal-to "is 14.plus 4 greater than 3\nExpected: is <500> less than value\n     but: was less than <18>"
+    ""
+    $.empty-string

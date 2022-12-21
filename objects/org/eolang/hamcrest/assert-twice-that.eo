@@ -28,7 +28,6 @@
 +alias org.eolang.hamcrest.matchers.close-to-matcher
 +alias org.eolang.hamcrest.matchers.contains-string-matcher
 +alias org.eolang.hamcrest.matchers.described-as-matcher
-+alias org.eolang.hamcrest.matchers.empty-string-matcher
 +alias org.eolang.hamcrest.matchers.equal-to-matcher
 +alias org.eolang.hamcrest.matchers.greater-than-matcher
 +alias org.eolang.hamcrest.matchers.has-item-matcher
@@ -47,26 +46,49 @@
 +rt jvm org.eolang:eo-hamcrest:0.0.0
 +version 0.0.0
 
-# Main object for assertions
-[actual matcher reasons...] > assert-that
-  actual > act!
+# @todo #167:45min Make this object decorates
+#  another one (let's call it assert). Which will
+#  be an interface for assert-that and assert-twice-that
+#  objects to avoid matchers duplication.
+# Main object for assertions with multiply dataization of actual object.
+# It should dataize twice only when we get FALSE mathcing result from the first dataization.
+[actual matcher reasons...] > assert-twice-that
 
-  if. > @
-    matcher.match act
-    TRUE
-    sprintf
-      "%s\nExpected: %s\n     but: %s"
-      if.
-        is-empty.
-          list
-            reasons
-        ""
-        reasons.at 0
-      description-of.
-        matcher
-      describe-mismatch.
-        matcher
-        act
+  compare > @
+
+  [] > compare
+    memory 0 > act
+    memory 0 > count
+    [a] > fail
+      sprintf > @
+        "%s\nExpected: %s\n     but: %s"
+        if.
+          is-empty.
+            list
+              reasons
+          ""
+          reasons.at 0
+        description-of.
+          matcher
+        describe-mismatch.
+          matcher
+          a
+    if. > @
+      while.
+        count.lt 2
+        [i]
+          actual > a!
+          if. > @
+            matcher.match a
+            seq
+              count.write 2
+              TRUE
+            seq
+              count.write (count.plus 1)
+              act.write a
+              FALSE
+      TRUE
+      fail act
 
   # Is the value equal to another value
   [x] > equal-to
@@ -166,7 +188,3 @@
   # Tests if the examined string contains zero or more whitespace characters and nothing else.
   [] > blank-string
     blank-string-matcher > @
-
-  # Tests if the examined string contains zero characters and nothing else.
-  [] > empty-string
-    empty-string-matcher > @
