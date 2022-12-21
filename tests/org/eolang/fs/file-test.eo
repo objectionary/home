@@ -1,0 +1,112 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2021-2022 Yegor Bugayenko
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++package org.eolang.fs
++home https://github.com/objectionary/eo-files
++version 0.3.5
++alias org.eolang.txt.sprintf
++alias org.eolang.fs.file
++alias org.eolang.fs.tmpdir
++alias org.eolang.io.bytes-as-input
++alias org.eolang.io.copied
++junit
+
+[] > compares-to-same-file
+  eq. > @
+    file "/tmp/foo.txt"
+    file "/tmp/foo.txt"
+
+[] > compares-to-another-file
+  not. > @
+    eq.
+      file "/tmp/foo.txt"
+      file "/tmp/bar.txt"
+
+[] > check-if-it-is-directory
+  is-dir. > @
+    file
+      "."
+
+[] > check-if-file-exists
+  not. > @
+    exists.
+      file
+        "some-absent-file.txt"
+
+[] > touches-a-file
+  tmpdir.tmpfile > f!
+  and. > @
+    f.rm
+    f.exists.not
+    f.touch
+    f.exists
+
+[] > moves-a-file
+  tmpdir.tmpfile.@ > src!
+  file > dest
+    sprintf
+      "%s.dest"
+      src
+  seq > @
+    src.touch
+    src.mv dest
+    dest.exists
+    src.exists.not
+
+[] > deletes-single-file-in-temp
+  rm. > @
+    tmpfile.
+      tmpdir
+
+[] > makes-the-same-temp-file
+  tmpdir.tmpfile > f!
+  eq. > @
+    f
+    f
+
+[] > writes-string-to-file
+  tmpdir.tmpfile > f!
+  eq. > @
+    copied
+      bytes-as-input
+        as-bytes.
+          "你好, друг!"
+      f.as-output "w+"
+      4
+    17
+
+[] > measures-empty-file-size
+  tmpdir.tmpfile > f!
+  and. > @
+    f.touch
+    f.size.eq 0
+
+[] > measures-file-size
+  tmpdir.tmpfile > f!
+  eq. > @
+    copied
+      bytes-as-input
+        as-bytes.
+          "hey!"
+      f.as-output "w+"
+      100
+    f.size

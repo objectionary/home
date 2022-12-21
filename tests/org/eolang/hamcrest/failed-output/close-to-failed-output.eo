@@ -1,0 +1,54 @@
+# MIT License
+#
+# Copyright (c) 2020-2022 Graur Andrew
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-hamcrest
++junit
++package org.eolang.hamcrest.failed-output
++version 0.2.12
+
+[] > float-is-close-to-float-with-delta-test-failed-output
+  [] > suggestion
+    assert-that > @
+      3.0
+      $.close-to 2.5 0.4
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: a numeric value within <2.5> of <0.4>\n     but: <3.0> differed by <0.09> more than delta <0.4>"
+
+[] > zero-is-close-to-float-with-delta-test-failed-output
+  [] > suggestion
+    assert-that > @
+      0.0
+      $.close-to 0.5 0.4
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: a numeric value within <0.5> of <0.4>\n     but: <0.0> differed by <0.09> more than delta <0.4>"
+
+[] > neg-float-is-close-to-neg-float-with-delta-test-failed-output
+  [] > suggestion
+    assert-that > @
+      -123456789.123456
+      $.close-to -123456788.0 0.2
+  assert-that > @
+    suggestion
+    $.equal-to "\nExpected: a numeric value within <-1.23456788E8> of <0.2>\n     but: <-1.23456789123456E8> differed by <0.92> more than delta <0.2>"

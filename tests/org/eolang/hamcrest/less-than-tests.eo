@@ -1,0 +1,54 @@
+# MIT License
+#
+# Copyright (c) 2020-2022 Graur Andrew
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++alias org.eolang.hamcrest.assert-that
++home https://github.com/objectionary/eo-hamcrest
++junit
++package org.eolang.hamcrest
++version 0.2.12
+
+[] > two-sum-less-than-value-test
+  assert-that > @
+    20.plus 13
+    $.less-than 100
+    "is 20.plus 13 less than 100"
+
+[] > two-sub-less-than-expr-test
+  assert-that > @
+    33.minus 12
+    $.less-than
+      1.plus 64
+    "is 33.minus 12 less than 1.plus 64"
+
+[] > two-floats-is-less-than-value-test
+  assert-that > @
+    13.8.plus 17.0
+    $.less-than 114.0
+    "is 13.8.plus 17.0 less than 114.0"
+
+[] > two-floats-is-less-than-expr-test
+  assert-that > @
+    5.5.times 2.0
+    $.less-than
+      333.00.div 11.00
+    "is 5.5.times 2.0 less than 333.00.div 11.00"
+

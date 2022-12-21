@@ -1,0 +1,383 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2016-2022 Objectionary.com
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++alias org.eolang.collections.list
++alias org.eolang.hamcrest.assert-that
++alias org.eolang.txt.text
++architect yegor256@gmail.com
++home https://github.com/objectionary/eo-strings
++junit
++package org.eolang.txt
++version 0.0.4
+
+[] > trims-string
+  assert-that > @
+    text "Hello, dude  "
+    .trim
+    $.equal-to "Hello, dude"
+
+[] > joins-array
+  assert-that > @
+    joined.
+      text ".."
+      * "foo" "друг" "bar"
+    $.equal-to "foo..друг..bar"
+
+[] > joins-array-2
+  assert-that > @
+    joined.
+      text ", "
+      * "Привет" "мир!"
+    $.equal-to "Привет, мир!"
+
+[] > joins-array-3
+  assert-that > @
+    joined.
+      text ""
+      *
+    $.equal-to ""
+
+[] > joins-array-4
+  assert-that > @
+    joined.
+      text ""
+      * "foo" "друг" "bar"
+    $.equal-to "fooдругbar"
+
+[] > nested-joins
+  assert-that > @
+    joined.
+      text
+        joined.
+          text "&"
+          * " " " "
+      * "start" "end"
+    $.equal-to "start & end"
+
+[] > text-lower-case
+  assert-that > @
+    (text "HeLlO wOrLd!").lower-case
+    $.equal-to "hello world!"
+
+[] > text-lower-case-2
+  assert-that > @
+    (text "hello 1234").lower-case
+    $.equal-to "hello 1234"
+
+[] > text-upper-case
+  assert-that > @
+    (text "HeLlO wOrLd!").upper-case
+    $.equal-to "HELLO WORLD!"
+
+[] > text-upper-case-2
+  assert-that > @
+    (text "hello 123").upper-case
+    $.equal-to "HELLO 123"
+
+[] > text-contains
+  assert-that > @
+    ((text "some text here").contains "me te")
+    $.equal-to TRUE
+
+[] > text-contains-2
+  assert-that > @
+    ((text "some text here").contains "me text.")
+    $.equal-to FALSE
+
+[] > text-contains-3
+  assert-that > @
+    ((text "1234456").contains "1")
+    $.equal-to TRUE
+
+[] > text-starts-with
+  assert-that > @
+    ((text "some text here").starts-with "me te")
+    $.equal-to FALSE
+
+[] > text-starts-with-2
+  assert-that > @
+    ((text "some text here").starts-with "some ")
+    $.equal-to TRUE
+
+[] > text-starts-with-3
+  assert-that > @
+    ((text "some text here").starts-with "some  ")
+    $.equal-to FALSE
+
+[] > text-ends-with
+  assert-that > @
+    ((text "some text here").ends-with "me te")
+    $.equal-to FALSE
+
+[] > text-ends-with-2
+  assert-that > @
+    ((text "some text here").ends-with " here")
+    $.equal-to TRUE
+
+[] > text-ends-with-3
+  assert-that > @
+    ((text "some text here").ends-with "  here")
+    $.equal-to FALSE
+
+[] > text-index-of
+  assert-that > @
+    ((text "some text here").index-of "me te")
+    $.equal-to 2
+
+[] > text-index-of-2
+  assert-that > @
+    ((text "some text here").index-of " here")
+    $.equal-to 9
+
+[] > text-index-of-3
+  assert-that > @
+    ((text "some text here").index-of "  here")
+    $.equal-to -1
+
+[] > text-last-index-of
+  assert-that > @
+    ((text "some text here").last-index-of " here")
+    $.equal-to 9
+
+[] > text-last-index-of-2
+  assert-that > @
+    ((text "some text here").last-index-of "  here")
+    $.equal-to -1
+
+[] > text-last-index-of-3
+  assert-that > @
+    ((text "abc abcd").last-index-of "abc")
+    $.equal-to 4
+
+[] > text-last-index-of-4
+  assert-that > @
+    ((text "Hello, world").last-index-of "Hello, world")
+    $.equal-to 0
+
+[] > empty-text-last-index-of
+  assert-that > @
+    ((text "").last-index-of "abc")
+    $.equal-to -1
+
+[] > unicode-text-last-index-of
+  assert-that > @
+    ((text "Привет, 世界").last-index-of "世")
+    $.equal-to 8
+
+[] > at-returns-one-character
+  assert-that > @
+    length.
+      at.
+        text
+          "abc"
+        0
+    $.equal-to 1
+
+[] > at-returns-desired-character
+  assert-that > @
+    at.
+      text
+        "Привет, 世界"
+      8
+    $.equal-to "世"
+
+[] > text-replaced
+  assert-that > @
+    replaced.
+      text
+        "abacaba"
+      "aba"
+      "c"
+    $.equal-to "ccc"
+
+[] > text-replaced-2
+  assert-that > @
+    replaced.
+      text
+        "abacaba"
+      "w"
+      "c"
+    $.equal-to "abacaba"
+
+[] > text-replaced-russian
+  assert-that > @
+    replaced.
+      text
+        "Привет, мир!"
+      "Привет, мир!"
+      "Привет, мир!"
+    $.equal-to "Привет, мир!"
+
+[] > text-replaced-russian-2
+  assert-that > @
+    replaced.
+      text
+        "Hello, мир!"
+      "Hello"
+      "Привет"
+    $.equal-to "Привет, мир!"
+
+[] > get-int
+  assert-that > @
+    as-int.
+      text
+        "123"
+    $.equal-to 123
+
+[] > get-negative-int
+  assert-that > @
+    as-int.
+      text
+        "-456"
+    $.equal-to -456
+
+[] > get-float
+  assert-that > @
+    as-float.
+      text
+        "123.456"
+    $.equal-to 123.456
+
+[] > get-float-2
+  assert-that > @
+    as-float.
+      text
+        "0.0"
+    $.equal-to 0.0
+
+[] > get-negative-float
+  assert-that > @
+    as-float.
+      text
+        "-0.01"
+    $.equal-to -0.01
+
+[] > compare-similar-strings
+  assert-that > @
+    compare.
+      text
+        "aBcD"
+      "aBcD"
+    $.equal-to 0
+
+[] > compare-strings
+  assert-that > @
+    lt.
+      0
+      compare.
+        text
+          "abcd"
+        "aBcD"
+    $.equal-to TRUE
+
+[] > compare-strings-2
+  assert-that > @
+    gt.
+      0
+      compare.
+        text
+          "A"
+        "a"
+    $.equal-to TRUE
+
+[] > check-is-alpha
+  assert-that > @
+    is-alphabetic.
+      text
+        "qWeRtY"
+    $.equal-to TRUE
+
+[] > check-is-alpha-2
+  assert-that > @
+    is-alphabetic.
+      text
+        "ab3d"
+    $.equal-to FALSE
+
+[] > check-is-alpha-3
+  assert-that > @
+    is-alphabetic.
+      text
+        "1234"
+    $.equal-to FALSE
+
+[] > split-text
+  assert-that > @
+    split.
+      text
+        "a b c"
+      " "
+    $.equal-to
+      list
+        * "a" "b" "c"
+
+[] > split-text-2
+  assert-that > @
+    split.
+      text
+        "a b c"
+      ", "
+    $.equal-to
+      list
+        * "a b c"
+
+[] > split-text-3
+  assert-that > @
+    split.
+      text
+        "a, b, c."
+      ", "
+    $.equal-to
+      list
+        * "a" "b" "c."
+
+[] > strings-concatenation
+  assert-that > @
+    chained.
+      text
+        "123"
+      "45 "
+    $.equal-to "12345 "
+
+[] > strings-concatenation-2
+  assert-that > @
+    chained.
+      text
+        ""
+      "45 "
+    $.equal-to "45 "
+
+[] > strings-concatenation-3
+  assert-that > @
+    chained.
+      text
+        ""
+      ""
+    $.equal-to ""
+
+[] > strings-concatenation-4
+  assert-that > @
+    chained.
+      text
+        "漢a"
+      "漢字漢"
+    $.equal-to "漢a漢字漢"
