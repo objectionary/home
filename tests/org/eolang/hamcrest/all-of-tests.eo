@@ -33,7 +33,7 @@
 #  for failed tests there will be another one.
 [] > all-of-numbers-test
   nop > @
-    assert-that > @
+    assert-that
       150.minus 50
       $.all-of
         $.equal-to 100
@@ -41,7 +41,7 @@
 
 [] > all-of-several
   nop > @
-      assert-that > @
+    assert-that
       15.times 3
       $.all-of
         $.equal-to 45
@@ -51,7 +51,7 @@
 
 [] > all-of-close-to
   nop > @
-    assert-that > @
+    assert-that
       22.0
       $.all-of
         $.equal-to

@@ -29,7 +29,7 @@
 
 [] > any-of-numbers-test
   nop > @
-    assert-that > @
+    assert-that
       150.div 3
       $.any-of
         $.equal-to 50
@@ -37,7 +37,7 @@
 
 [] > any-of-several
   nop > @
-    assert-that > @
+    assert-that
       100.minus 5
       $.any-of
         $.equal-to 45
@@ -47,7 +47,7 @@
 
 [] > any-of-close-to
   nop > @
-    assert-that > @
+    assert-that
       30.0
       $.any-of
         $.equal-to
