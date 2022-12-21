@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.0.0
-+version 0.0.0
++rt jvm org.eolang:eo-hamcrest:0.2.12
++version 0.2.12
 
 # A matcher that always returns true.
 [] > anything-matcher

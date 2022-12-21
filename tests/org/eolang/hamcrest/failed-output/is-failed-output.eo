@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.0.0
++version 0.2.12
 
 [] > is-failed-output-with-two-bools
   [] > suggestion
