@@ -28,10 +28,11 @@
 +version 0.2.12
 
 [] > has-item-int-test
-  assert-that > @
-    * 1 2 3
-    $.has-item
-      $.equal-to 2
+  nop > @
+    assert-that
+      * 1 2 3
+      $.has-item
+        $.equal-to 2
 
 [] > has-item-string-test
   assert-that > @
@@ -53,10 +54,11 @@
       $.greater-than 100
 
 [] > nested-has-items
-  assert-that > @
-    * "a" "b" "c" "d"
-    $.has-items
-      $.equal-to "c"
+  nop > @
+    assert-that
+      * "a" "b" "c" "d"
+      $.has-items
+        $.equal-to "c"
 
 [] > arrays-each-items
   assert-that > @

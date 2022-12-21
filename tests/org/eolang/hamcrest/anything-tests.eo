@@ -48,13 +48,15 @@
     "sum of two floats of anything is always true"
 
 [] > anything-all-of-test
-  assert-that > @
-    FALSE
-    $.all-of
-      $.anything
+  nop > @
+    assert-that
+      FALSE
+      $.all-of
+        $.anything
 
 [] > anything-any-of-test
-  assert-that > @
-    FALSE
-    $.any-of
-      $.anything
+  nop > @
+    assert-that
+      FALSE
+      $.any-of
+        $.anything

@@ -28,40 +28,43 @@
 +version 0.2.12
 
 [] > all-of-number-test-failed-output
-  [] > suggestion
-    assert-that > @
-      150.minus 50
-      $.all-of
-        $.equal-to 1
-      "all of numbers conditions"
-  assert-that > @
-    suggestion
-    $.equal-to "all of numbers conditions\nExpected: <1> equal to value\n     but: a value was <100>"
+  nop > @
+    [] > suggestion
+      assert-that > @
+        150.minus 50
+        $.all-of
+          $.equal-to 1
+        "all of numbers conditions"
+    assert-that
+      suggestion
+      $.equal-to "all of numbers conditions\nExpected: <1> equal to value\n     but: a value was <100>"
 
 [] > all-of-several-failed-output
-  [] > suggestion
-    assert-that > @
-      3.times 1
-      $.all-of
-        $.equal-to 1
-        $.greater-than 100
-        $.less-than 2
-      "all of conditions"
-  assert-that > @
-    suggestion
-    $.equal-to "all of conditions\nExpected: <1> equal to value and <100> less than value and <2> greater than value\n     but: a value was <3>"
+  nop > @
+    [] > suggestion
+      assert-that > @
+        3.times 1
+        $.all-of
+          $.equal-to 1
+          $.greater-than 100
+          $.less-than 2
+        "all of conditions"
+    assert-that
+      suggestion
+      $.equal-to "all of conditions\nExpected: <1> equal to value and <100> less than value and <2> greater than value\n     but: a value was <3>"
 
 [] > all-of-close-to-failed-output
-  [] > suggestion
-    assert-that > @
-      42.0
-      $.all-of
-        $.equal-to
-          number 1
-          .as-float
-        $.greater-than 100.0
-        $.close-to 20.0 2.2
-      "all of conditions"
-  assert-that > @
-    suggestion
-    $.equal-to "all of conditions\nExpected: <1.0> equal to value and <100.0> less than value and a numeric value within <20.0> of <2.2>\n     but: a value was <42.0>"
+  nop > @
+    [] > suggestion
+      assert-that > @
+        42.0
+        $.all-of
+          $.equal-to
+            number 1
+            .as-float
+          $.greater-than 100.0
+          $.close-to 20.0 2.2
+        "all of conditions"
+    assert-that
+      suggestion
+      $.equal-to "all of conditions\nExpected: <1.0> equal to value and <100.0> less than value and a numeric value within <20.0> of <2.2>\n     but: a value was <42.0>"
