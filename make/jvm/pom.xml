@@ -89,7 +89,7 @@ SOFTWARE.
         <artifactId>junit-bom</artifactId>
         <version>5.9.1</version>
         <type>pom</type>
-        <scope>import</scope>F
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
