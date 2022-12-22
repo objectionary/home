@@ -277,29 +277,28 @@
 # A = B * Q + R
 # and 0 <= R <= |B|
 [] > euclids-mod-lemma
-  nop > @
-    * -201 -201 201 201 > dividends
-    * -25 25 -25 25 > divisors
-    [x y] > remainder
-      (number x).mod y > @
-    [x y] > quotient
-      x.div y > @
-    [dividend divisor] > euclids-lemma
-      eq. > @
-        dividend
-        plus.
-          divisor.times
-            quotient dividend divisor
-          remainder dividend divisor
-    reducei. > @
-      list dividends
-      TRUE
-      [a i el]
-        and. > @
-          euclids-lemma
-            el
-            divisors.at i
-          a
+  * -201 -201 201 201 > dividends
+  * -25 25 -25 25 > divisors
+  [x y] > remainder
+    (number x).mod y > @
+  [x y] > quotient
+    x.div y > @
+  [dividend divisor] > euclids-lemma
+    eq. > @
+      dividend
+      plus.
+        divisor.times
+          quotient dividend divisor
+        remainder dividend divisor
+  reducei. > @
+    list dividends
+    TRUE
+    [a i el]
+      and. > @
+        euclids-lemma
+          el
+          divisors.at i
+        a
 
 # Checks modulo: dividend < divisor
 [] > mod-dividend-less-than-divisor
