@@ -24,8 +24,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.4
-+version 0.0.4
++rt jvm org.eolang:eo-collections:0.0.5
++version 0.0.5
 
 [m] > multimap
 
@@ -68,7 +68,7 @@
     ^.concat-all-arrays m > caa!
     caa.with new-pair > arr!
     ^.pairs-to-hash arr > harr!
-    ^.rebuild harr arr > table!
+    ^.rebuilded harr arr > table!
     multimap table > mmp
     seq > @
       (mmp.elements-amount).write (arr.length)
@@ -111,6 +111,78 @@
           a
           a.with x
 
+  # This method takes list of key-value pairs
+  # and their hashes and returns hash table by them
+  [harr arr] > rebuilded
+    mappedi. > comparable-pairs!
+      list
+        arr
+      [x i]
+        mod. > new-index!
+          number
+            (harr.at i)
+          (arr.length)
+        comparable-pair (* new-index x) > @
+    sorted. > sorted-pairs!
+      list
+        comparable-pairs
+    memory 0 > curr-hash
+    reducedi. > almost-res!
+      list
+        sorted-pairs
+      *
+      [a i x]
+        if. > @
+          gte.
+            (x.at 0)
+            curr-hash
+          seq
+            curr-hash.write (x.at 0)
+            fill-to-size a curr-hash > filled-to-size!
+            create-array-by-hash sorted-pairs curr-hash i > curr-hash-added!
+            curr-hash.write (curr-hash.plus 1)
+            filled-to-size.with curr-hash-added
+          a
+    fill-to-size > @
+      almost-res
+      length.
+        sorted-pairs
+
+    [pair] > comparable-pair
+      pair > @
+
+      [x] > lt
+        lt. > @
+          ^.at 0
+          x.at 0
+
+    [arr sz] > fill-to-size
+      if. > @
+        gte.
+          (arr.length)
+          sz
+        arr
+        ^.fill-to-size (arr.with (*)) sz
+
+    [arr hash from-index] > create-array-by-hash
+      reducedi. > @
+        list
+          arr
+        *
+        [a i x]
+          if. > @
+            and.
+              gte.
+                i
+                from-index
+              eq.
+                (x.at 0)
+                hash
+            with.
+              a
+              (x.at 1)
+            a
+
   [harr arr] > rebuild /array
 
   # Returns a new map, without elements with the given key
@@ -119,7 +191,7 @@
     ^.concat-all-arrays m > caa!
     ^.without-in-list key caa > arr!
     ^.pairs-to-hash arr > harr!
-    ^.rebuild harr arr > table!
+    ^.rebuilded harr arr > table!
     multimap table > mmp
     seq > @
       (mmp.elements-amount).write (arr.length)
