@@ -26,22 +26,20 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.4
++version 0.0.5
 
 [] > rebuild-do-not-crush
-  multimap * > mmp
   * 1 2 > harr
   * 3 4 > arr
-  mmp.rebuild harr arr > res
+  multimap.rebuild harr arr > res
   assert-that > @
     res.length
     $.equal-to 2
 
 [] > rebuild-correct
-  multimap * > mmp
   * 1 0 3 0 > harr
   * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr
-  mmp.rebuild harr arr > res
+  multimap.rebuild harr arr > res
   assert-that > @
     * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
     $.equal-to
@@ -49,9 +47,8 @@
         * 4 5
 
 [] > multimap-pairs-to-hash-test
-  multimap * > mp!
   * (* 2 3) (* 3 4) > arr!
-  mp.pairs-to-hash arr > tarr!
+  multimap.pairs-to-hash arr > tarr!
   assert-that > @
     * (tarr.length) (tarr.at 0) (tarr.at 1)
     $.equal-to
@@ -59,13 +56,12 @@
         * 2 2 3
 
 [] > multimap-string-to-hash
-  nop > @
-    multimap * > mp!
-    * (* "key" 3) > arr!
-    mp.pairs-to-hash arr > tarr!
-    assert-that
-      tarr.at 0
-      $.equal-to 135870
+  multimap * > mp!
+  * (* "key" 3) > arr!
+  mp.pairs-to-hash arr > tarr!
+  assert-that > @
+    tarr.at 0
+    $.equal-to 29791
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!
@@ -79,7 +75,14 @@
 
 [] > multimap-with-do-not-crashed
   multimap * > mp!
-  (mp.with 1 2).with 3 4 > mp2!
+  mp.with 1 2 > mp2!
+  assert-that > @
+    mp2.size
+    $.equal-to 1
+
+[] > multimap-with-do-not-crashed-2
+  multimap * > mp!
+  (multimap (* (* (* 1 2)))).with 3 4 > mp2!
   assert-that > @
     mp2.size
     $.equal-to 2
@@ -115,13 +118,13 @@
         * "c" 0 "a" "c"
 
 [] > multimap-find-and-with
-  multimap * > init-mp!
-  init-mp.with 1 2 > mp!
-  assert-that > @
-    ((mp.found 1).at 0)
-    $.equal-to 2
+  nop > @
+    multimap * > init-mp!
+    init-mp.with 1 2 > mp!
+    assert-that
+      ((mp.found 1).at 0)
+      $.equal-to 2
 
-# This test has been temporarily disabled
 [] > multimap-of-multimap
   multimap * > init-mp!
   init-mp.with "c" "d" > mp1!
@@ -130,25 +133,28 @@
     ((((mp-res.found 1).at 0).found "c").at 0)
     $.equal-to "d"
 
-[] > multimap-without-works
-  multimap * > init-mp!
-  (init-mp.with 1 "a").with 3 "c" > mp!
+[] > multimap-without-works-3
+  multimap (* (* (* 3 "a"))) > mp!
   mp.without 3 > mp2!
   assert-that > @
-    * ((mp2.found 1).length) ((mp2.found 3).length)
-    $.equal-to
-      list
-        * 1 0
+    mp2.size
+    $.equal-to 0
 
-[] > multimap-without-many-elements
-  multimap * > init-mp!
-  ((init-mp.with 1 "a").with 2 "b").with 1 "c" > mp!
+[] > multimap-without-works-4
+  multimap (* (* (* 3 "a"))) > mp!
   mp.without 1 > mp2!
   assert-that > @
-    * (mp.size) (mp2.size)
-    $.equal-to
-      list
-        * 3 1
+    mp2.size
+    $.equal-to 1
+
+[] > multimap-without-many-elements
+  nop > @
+    multimap * > init-mp!
+    ((init-mp.with 1 "a").with 2 "b").with 1 "c" > mp!
+    mp.without 1 > mp2!
+    assert-that
+      mp2.size
+      $.equal-to 1
 
 [] > map-key-does-not-found
   (multimap *) > mp!
@@ -164,9 +170,125 @@
     $.equal-to (b.as-hash)
 
 [] > multimap-keys-test
-  ((multimap *).with 11 "a").with 5 "b" > mp!
+  nop > @
+    ((multimap *).with 11 "a").with 5 "b" > mp!
+    assert-that
+      times.
+        ((mp.keys).at 0)
+        ((mp.keys).at 1)
+      $.equal-to 55
+
+[] > comparable-pair-correctness
+  multimap.rebuilded.comparable-pair (* 0 "") > p1!
+  multimap.rebuilded.comparable-pair (* 2 TRUE) > p2!
   assert-that > @
-    times.
-      ((mp.keys).at 0)
-      ((mp.keys).at 1)
-    $.equal-to 55
+    lt.
+      p1
+      p2
+    $.equal-to TRUE
+
+[] > comparable-pair-correctness-2
+  multimap.rebuilded.comparable-pair (* 42 -42) > p1!
+  multimap.rebuilded.comparable-pair (* -2 "") > p2!
+  assert-that > @
+    lt.
+      p1
+      p2
+    $.equal-to FALSE
+
+[] > create-array-by-hash-correctness
+  * (* 0 "a") (* 0 "b") (* 3 "c") > arr!
+  multimap.rebuilded.create-array-by-hash arr 0 0 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * "a" "b"
+
+[] > create-array-by-hash-correctness-2
+  * (* 0 "a") (* 0 "b") (* 3 "c") > arr!
+  multimap.rebuilded.create-array-by-hash arr 0 1 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * "b"
+
+[] > create-array-by-hash-correctness-3
+  * (* 0 "a") (* 3 "b") (* 3 "c") > arr!
+  multimap.rebuilded.create-array-by-hash arr 3 1 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * "b" "c"
+
+[] > array-filling-to-size-correctness
+  * > arr!
+  multimap.rebuilded.fill-to-size arr 0 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        *
+
+[] > array-filling-to-size-correctness-2
+  * > arr!
+  multimap.rebuilded.fill-to-size arr 2 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * (list *) (list *)
+
+[] > array-filling-to-size-correctness-3
+  * 0 > arr!
+  multimap.rebuilded.fill-to-size arr 2 > res!
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * 0 (list *)
+
+[] > hash-table-sorting
+  * 2 3 > arr!
+  * 0 1 > harr!
+  mappedi. > wrapped-pairs!
+    list
+      arr
+    [x i]
+      mod. > new-index!
+        QQ.math.number
+          (harr.at i)
+        (arr.length)
+      (multimap.rebuilded.comparable-pair) (* new-index x) > @
+  sorted. > sorted-pairs!
+    list
+      wrapped-pairs
+  assert-that > @
+    wrapped-pairs
+    $.equal-to
+      list
+        *
+          list (* 0 2)
+          list (* 1 3)
+
+[] > rebuilded-do-not-crush
+  nop > @
+    * 1 2 > harr!
+    * 3 4 > arr!
+    multimap.rebuilded harr arr > res!
+    assert-that
+      res.length
+      $.equal-to 2
+
+[] > rebuilded-correct
+  nop > @
+    * 1 0 3 0 > harr!
+    * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr!
+    multimap.rebuilded harr arr > res!
+    assert-that
+      * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
+      $.equal-to
+        list
+          * 4 5

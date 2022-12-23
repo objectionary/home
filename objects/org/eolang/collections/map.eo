@@ -25,8 +25,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.4
-+version 0.0.4
++rt jvm org.eolang:eo-collections:0.0.5
++version 0.0.5
 
 [m] > map
 
