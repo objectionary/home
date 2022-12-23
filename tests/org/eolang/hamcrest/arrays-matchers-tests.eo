@@ -25,14 +25,13 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest
-+version 0.2.12
++version 0.3.0
 
 [] > has-item-int-test
-  nop > @
-    assert-that
-      * 1 2 3
-      $.has-item
-        $.equal-to 2
+  assert-that > @
+    * 1 2 3
+    $.has-item
+      $.equal-to 2
 
 [] > has-item-string-test
   assert-that > @
@@ -48,18 +47,16 @@
         $.greater-than 10.0
 
 [] > has-items-int-test
-  nop > @
-    assert-that
-      * 99 101
-      $.has-items
-        $.greater-than 100
+  assert-that > @
+    * 99 101
+    $.has-items
+      $.greater-than 100
 
 [] > nested-has-items
-  nop > @
-    assert-that
-      * "a" "b" "c" "d"
-      $.has-items
-        $.equal-to "c"
+  assert-that > @
+    * "a" "b" "c" "d"
+    $.has-items
+      $.equal-to "c"
 
 [] > arrays-each-items
   assert-that > @
