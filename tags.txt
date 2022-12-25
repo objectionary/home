@@ -1,5 +1,5 @@
-73cb9cbee27036dc4fbc35cbd094dccd4d7b693d	gh-pages
-516558a8ae86d47ec371a1aeca83811d98c36272	master
+f72da7475e64fdbbcce7efda74203dc437680ee1	gh-pages
+d773fa55129935ecebf196129b5130df2b0ee3ef	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
 4a0effe4bd0bc7c215b9dd6d680f9529df290e89	renovate/eo.version
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
