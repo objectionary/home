@@ -26,17 +26,38 @@
 +package org.eolang.hamcrest
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > matches-regex-alphabetical-test
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    "abc"
+    $.matches-regex
+      "/([a-z])/"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > matches-regex-dollar-test
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    "$12"
+    $.matches-regex
+      "/($[0-9]*)/"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
+[] > matches-regex-multiline-test
   assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    "1 bottle of water on the wall. \\n1 bottle of water."
+    $.matches-regex
+      "/(^([0-9]+).*)/m"
+
+[] > matches-regex-dotall-test
+  assert-that > @
+    "too \\n many \\n line \\n Feed\\n"
+    $.matches-regex
+      "/(.*)/s"
+
+[] > matches-regex-comments-test
+  assert-that > @
+    "4"
+    $.matches-regex
+      "/(\\d) #ignore this comment/x"
+
+[] > matches-regex-unicode-test
+  assert-that > @
+    "Yıldırım"
+    $.matches-regex
+      "/(yildirim)/ui"

@@ -26,17 +26,27 @@
 +package org.eolang.hamcrest
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > simple-contains-string
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    "Привет, 世界"
+    $.contains-string "世"
+    "constains-string"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > check-all-contains-string
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    "Привет, 世界"
+    $.all-of
+      $.contains-string "Привет"
+      $.contains-string "世"
+      $.contains-string "界"
+    "constains-all-of-string"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
+[] > check-any-contains-string
   assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    "ffffffffffff"
+    $.any-of
+      $.contains-string "Привет"
+      $.contains-string "世"
+      $.contains-string "f"
+    "constains-any-of-string"
+

@@ -23,20 +23,27 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.failed-output
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > simple-blank-string-failed
+  [] > suggestion
+    assert-that > @
+      "Привет, 世界"
+      $.blank-string
+      "simple-blank-string"
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    suggestion
+    $.equal-to "simple-blank-string\nExpected: blank string\n     but: was <Привет, 世界>"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > is-blank-string-failed
+  [] > suggestion
+    assert-that > @
+      "Привет, 世界"
+      $.is
+        $.blank-string
+      "simple-blank-string"
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    suggestion
+    $.equal-to "simple-blank-string\nExpected: is blank string\n     but: was <Привет, 世界>"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
-  assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2

@@ -23,20 +23,45 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.failed-output
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > simple-ends-with-string-failed
+  [] > suggestion
+    assert-that > @
+      "Привет, 世界"
+      $.string-ends-with "Привет"
+      "string-ends-with Привет"
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    suggestion
+    $.equal-to "string-ends-with Привет\nExpected: string ends with: <Привет>\n     but: was <Привет, 世界>"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > ends-with-any-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "Привет, 世界"
+      $.all-of
+        $.contains-string "Привет"
+        $.contains-string "世"
+        $.string-ends-with "ет"
+      "ends-with"
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    suggestion
+    $.equal-to "ends-with\nExpected: string contains: <Привет> and string contains: <世> and string ends with: <ет>\n     but: a value was <Привет, 世界>"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
+[] > ends-with-all-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "ffffffffffff"
+      $.any-of
+        $.contains-string "Привет"
+        $.string-ends-with "dddd"
+        $.contains-string "界"
+      "ends-with"
   assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    suggestion
+    $.equal-to "ends-with\nExpected: string contains: <Привет> or string ends with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
+
+
+
+

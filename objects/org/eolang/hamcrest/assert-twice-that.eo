@@ -28,7 +28,6 @@
 +alias org.eolang.hamcrest.matchers.close-to-matcher
 +alias org.eolang.hamcrest.matchers.contains-string-matcher
 +alias org.eolang.hamcrest.matchers.described-as-matcher
-+alias org.eolang.hamcrest.matchers.empty-string-matcher
 +alias org.eolang.hamcrest.matchers.equal-to-matcher
 +alias org.eolang.hamcrest.matchers.greater-than-matcher
 +alias org.eolang.hamcrest.matchers.has-item-matcher
@@ -47,12 +46,21 @@
 +rt jvm org.eolang:eo-hamcrest:0.3.0
 +version 0.3.0
 
-# Main object for assertions
-[actual matcher reasons...] > assert-that
+# Main object for assertions with multiply dataization of actual object.
+# It should dataize twice only when we get FALSE mathcing result from the first dataization.
+[actual matcher reasons...] > assert-twice-that
   actual > act!
 
+  [cond m a] > assert
+    if. > @
+      m.match a
+      TRUE
+      if.
+        cond
+        assert FALSE m a
+        FALSE
   if. > @
-    matcher.match act
+    assert TRUE matcher actual
     TRUE
     sprintf
       "%s\nExpected: %s\n     but: %s"
@@ -166,7 +174,3 @@
   # Tests if the examined string contains zero or more whitespace characters and nothing else.
   [] > blank-string
     blank-string-matcher > @
-
-  # Tests if the examined string contains zero characters and nothing else.
-  [] > empty-string
-    empty-string-matcher > @

@@ -23,20 +23,42 @@
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.failed-output
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > simple-contains-string-failed
+  [] > suggestion
+    assert-that > @
+      "Привет, 世界"
+      $.is-substring "111"
+      "is-substring"
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    suggestion
+    $.equal-to "is-substring\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > contains-any-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "Hello"
+      $.any-of
+        $.is-substring "2"
+      "is-substring"
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    suggestion
+    $.equal-to "is-substring\nExpected: string contains: <2>\n     but: a value was <Hello>"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
+[] > contains-all-of-string-failed
+  [] > suggestion
+    assert-that > @
+      "so sad"
+      $.all-of
+        $.is-substring "2"
+        $.is-substring "happy"
+      "is-substring"
   assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    suggestion
+    $.equal-to "is-substring\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
+
+
+
+

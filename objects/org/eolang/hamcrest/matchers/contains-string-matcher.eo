@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2020-2022 Graur Andrew
+# Copyright (c) 2022 Graur Andrew
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.hamcrest.assert-that
++alias org.eolang.txt.text
++alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
-+junit
-+package org.eolang.hamcrest
++package org.eolang.hamcrest.matchers
++rt jvm org.eolang:eo-hamcrest:0.3.0
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
-  assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+# Matcher that matches if the examined string contains the specified string anywhere.
+[str] > contains-string-matcher
 
-[] > zero-is-close-to-float-with-delta-test
-  assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+  [a] > match
+    contains. > @
+      text a
+      str
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
-  assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+  [act] > describe-mismatch
+    sprintf > @
+      "was <%s>"
+      act
+
+  [] > description-of
+    sprintf > @
+      "string contains: <%s>"
+      str

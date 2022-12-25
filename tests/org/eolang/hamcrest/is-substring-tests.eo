@@ -26,17 +26,27 @@
 +package org.eolang.hamcrest
 +version 0.3.0
 
-[] > float-is-close-to-float-with-delta-test
+[] > simple-is-substring
   assert-that > @
-    3.0
-    $.close-to 2.9 0.4
+    "Привет, 世界"
+    $.is-substring "世"
+    "is-substring"
 
-[] > zero-is-close-to-float-with-delta-test
+[] > check-all-is-substring
   assert-that > @
-    0.0
-    $.close-to 0.0 1.2
+    "Привет, 世界"
+    $.all-of
+      $.is-substring "Привет"
+      $.is-substring "世"
+      $.is-substring "界"
+    "is-substring-of-string"
 
-[] > neg-float-is-close-to-neg-float-with-delta-test
+[] > check-any-is-substring
   assert-that > @
-    -123456789.123456
-    $.close-to -123456789.0 0.2
+    "ffffffffffff"
+    $.any-of
+      $.is-substring "Привет"
+      $.is-substring "世"
+      $.is-substring "f"
+    "is-substring-of-string"
+
