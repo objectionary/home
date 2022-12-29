@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.5
++version 0.0.6
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -97,17 +97,16 @@
     $.equal-to 6
 
 [] > reducedi-long-int-array
-  nop > @
-    assert-that
-      reducedi.
-        list
-          * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
-        0
-        [a i x]
-          plus. > @
-            x
-            a
-      $.equal-to 1
+  assert-that > @
+    reducedi.
+      list
+        * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+      0
+      [a i x]
+        plus. > @
+          x
+          a
+    $.equal-to 1
 
 [] > reducedi-bools-array
   assert-that > @
@@ -679,6 +678,47 @@
       list
         * 1 2 3
       [v i]
+        seq > @
+          if.
+            v.lt 3
+            stdout
+              sprintf
+                "%d\n"
+                v
+            FALSE
+    TRUE
+
+[] > filtered-test-1
+  assert-that > @
+    eq.
+      filtered.
+        list
+          * 3 1 4 2 5
+        [v]
+          v.gt 2 > @
+      list
+        * 3 4 5
+    $.equal-to TRUE
+
+[] > filtered-test-2
+  assert-that > @
+    eq.
+      filtered.
+        list
+          * TRUE FALSE TRUE
+        [v]
+          v.eq FALSE > @
+      list
+        * FALSE
+    $.equal-to TRUE
+
+# This code should prints "1 2"
+[] > filtered-printing-test
+  seq > @
+    filtered.
+      list
+        * 1 2 3
+      [v]
         seq > @
           if.
             v.lt 3

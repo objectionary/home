@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.5
-+version 0.0.5
++rt jvm org.eolang:eo-collections:0.0.6
++version 0.0.6
 
 [b] > bytes-as-array
   slice-byte > @

@@ -24,8 +24,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.5
-+version 0.0.5
++rt jvm org.eolang:eo-collections:0.0.6
++version 0.0.6
 
 [m] > multimap
 
@@ -60,7 +60,7 @@
         arr
       *
       [a x]
-        (a.with ((x.at 0).as-hash)) > @
+        a.with (x.at 0).as-hash > @
 
   # Returns the new map with added object
   [key value] > with
@@ -83,7 +83,7 @@
         if. > @
           eq.
             key
-            (x.at 0)
+            x.at 0
           a.with (x.at 1)
           a
 
@@ -107,7 +107,7 @@
         if. > @
           eq.
             key
-            (x.at 0)
+            x.at 0
           a
           a.with x
 
@@ -120,8 +120,8 @@
       [x i]
         mod. > new-index!
           number
-            (harr.at i)
-          (arr.length)
+            harr.at i
+          arr.length
         comparable-pair (* new-index x) > @
     sorted. > sorted-pairs!
       list
@@ -134,7 +134,7 @@
       [a i x]
         if. > @
           gte.
-            (x.at 0)
+            x.at 0
             curr-hash
           seq
             curr-hash.write (x.at 0)
@@ -159,10 +159,10 @@
     [arr sz] > fill-to-size
       if. > @
         gte.
-          (arr.length)
+          arr.length
           sz
         arr
-        ^.fill-to-size (arr.with (*)) sz
+        ^.fill-to-size (arr.with *) sz
 
     [arr hash from-index] > create-array-by-hash
       reducedi. > @
@@ -176,11 +176,11 @@
                 i
                 from-index
               eq.
-                (x.at 0)
+                x.at 0
                 hash
             with.
               a
-              (x.at 1)
+              x.at 1
             a
 
   [harr arr] > rebuild /array

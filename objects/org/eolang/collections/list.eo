@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.5
-+version 0.0.5
++rt jvm org.eolang:eo-collections:0.0.6
++version 0.0.6
 
 [arr] > list
   arr > @
@@ -56,28 +56,28 @@
           arr
       a
       rec-reduced
-        (* a 0)
+        * a 0
         f
         arr
 
     [acc-index func carr] > rec-reduced
-      (acc-index.at 0) > acc
-      (acc-index.at 1) > index
+      acc-index.at 0 > acc
+      acc-index.at 1 > index
       seq > @
         func > new-acc!
           acc
           index
-          (carr.at index)
+          carr.at index
         if.
-          ((index.plus 1).eq (carr.length))
+          (index.plus 1).eq (carr.length)
           new-acc
           rec-reduced
             *
               func
                 acc
                 index
-                (carr.at index)
-              (index.plus 1)
+                carr.at index
+              index.plus 1
             func
             carr
 
@@ -185,13 +185,13 @@
     memory 0 > i
     memory 0 > j
     while. > sorting-process!
-      (i.lt (res.length))
+      i.lt (res.length)
       [iter-i]
         seq > @
           j.write 0
           i.write (i.plus 1)
           while.
-            ((j.plus 1).lt (res.length))
+            (j.plus 1).lt (res.length)
             [iter-j]
               seq > @
                 if.
@@ -231,14 +231,14 @@
           arr
       list *
       rec-filtered
-        (* 0 arr)
+        * 0 arr
         f
         list *
 
     [index-carr func new-list] > rec-filtered
-      (index-carr.at 0) > index
-      (index-carr.at 1) > carr
-      (carr.at index) > item
+      index-carr.at 0 > index
+      index-carr.at 1 > carr
+      carr.at index > item
       seq > @
         func > acc!
           item
@@ -250,9 +250,21 @@
           new-list.with item
           new-list
         if.
-          ((index.plus 1).eq (carr.length))
+          (index.plus 1).eq (carr.length)
           filt-list
           rec-filtered
-            (* (index.plus 1) carr)
+            * (index.plus 1) carr
             func
             filt-list
+
+  # Filter list without index with the function "f".
+  # Here "f" must be an abstract object
+  # with one attribute for the element. 
+  # The result of dataization the "f"
+  # should be boolean, that is TRUE or FALSE.
+
+  [f] > filtered
+    ^.filteredi > @
+      [item index]
+        &.f > @
+          item

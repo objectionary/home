@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.5
++version 0.0.6
 
 [] > map-find-do-not-crashed
   map * > mp!
