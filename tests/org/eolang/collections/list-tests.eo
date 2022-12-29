@@ -97,16 +97,17 @@
     $.equal-to 6
 
 [] > reducedi-long-int-array
-  assert-that > @
-    reducedi.
-      list
-        * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
-      0
-      [a i x]
-        plus. > @
-          x
-          a
-    $.equal-to 1
+  nop > @
+    assert-that > @
+      reducedi.
+        list
+          * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+        0
+        [a i x]
+          plus. > @
+            x
+            a
+      $.equal-to 1
 
 [] > reducedi-bools-array
   assert-that > @
