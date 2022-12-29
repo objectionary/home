@@ -98,7 +98,7 @@
 
 [] > reducedi-long-int-array
   nop > @
-    assert-that > @
+    assert-that
       reducedi.
         list
           * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
