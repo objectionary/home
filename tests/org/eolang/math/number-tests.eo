@@ -290,7 +290,7 @@
         divisor.times
           quotient dividend divisor
         remainder dividend divisor
-  reducei. > @
+  reducedi. > @
     list dividends
     TRUE
     [a i el]
