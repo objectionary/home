@@ -27,7 +27,7 @@
 +home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.1.0
++version 0.1.1
 
 [] > text-trimmed-1
   assert-that > @
@@ -37,12 +37,11 @@
     $.equal-to "a b"
 
 [] > text-trimmed-2
-  nop > @
-    assert-that
-      trimmed.
-        text
-          "a b "
-      $.equal-to "a b"
+  assert-that > @
+    trimmed.
+      text
+        "a b "
+    $.equal-to "a b"
 
 [] > text-trimmed-3
   nop > @
@@ -79,6 +78,14 @@
       text
         " "
     $.equal-to ""
+
+[] > text-trimmed-empty-3
+  nop > @
+    assert-that
+      trimmed.
+        text
+          "  "
+      $.equal-to ""
 
 [] > joins-array
   assert-that > @
@@ -118,15 +125,25 @@
       * "start" "end"
     $.equal-to "start & end"
 
-[] > text-lower-case
+[] > text-lower-case-1
   assert-that > @
-    (text "HeLlO wOrLd!").low-cased
-    $.equal-to "hello world!"
+    (text "HeLlO !").low-cased
+    $.equal-to "hello !"
 
 [] > text-lower-case-2
   assert-that > @
-    (text "hello 1234").low-cased
-    $.equal-to "hello 1234"
+    (text "HEL 3").low-cased
+    $.equal-to "hel 3"
+
+[] > text-lower-case-3
+  assert-that > @
+    (text "HeL世o").low-cased
+    $.equal-to "hel世o"
+
+[] > no-changes-lower-case
+  assert-that > @
+    (text "chng").low-cased
+    $.equal-to "chng"
 
 [] > text-upper-case-1
   assert-that > @
@@ -150,93 +167,94 @@
 
 [] > text-contains
   assert-that > @
-    ((text "ab").contains "ab")
+    (text "ab").contains "ab"
     $.equal-to TRUE
 
 [] > text-contains-2
   assert-that > @
-    ((text "b").contains "b ")
+    (text "b").contains "b "
     $.equal-to FALSE
 
 [] > text-contains-3
   assert-that > @
-    ((text "ab").contains "a")
+    (text "ab").contains "a"
     $.equal-to TRUE
 
 [] > text-not-contains
   assert-that > @
-    ((text "1").contains "12")
+    (text "1").contains "12"
     $.equal-to FALSE
 
 [] > text-contains-unicode
   assert-that > @
-    ((text "й").contains "й")
+    (text "й").contains "й"
     $.equal-to TRUE
 
 [] > text-starts-with
   assert-that > @
-    ((text "some text here").starts-with "me te")
+    (text "some text here").starts-with "me te"
     $.equal-to FALSE
 
 [] > text-starts-with-2
   assert-that > @
-    ((text "some text here").starts-with "some ")
+    (text "some text here").starts-with "some "
     $.equal-to TRUE
 
 [] > text-starts-with-3
   assert-that > @
-    ((text "some text here").starts-with "some  ")
+    (text "some text here").starts-with "some  "
     $.equal-to FALSE
 
 [] > text-starts-with-4
   assert-that > @
-    ((text "qwe世rty text here").starts-with "qwe世rty te")
+    (text "qwe世rty text here").starts-with "qwe世rty te"
     $.equal-to TRUE
 
 [] > text-starts-with-5
   assert-that > @
-    ((text "qwe世rty text here").starts-with "")
+    (text "qwe世rty text here").starts-with ""
     $.equal-to TRUE
 
 [] > text-ends-with
   assert-that > @
-    ((text "some text here").ends-with "me te")
+    (text "some text here").ends-with "me te"
     $.equal-to FALSE
 
 [] > text-ends-with-2
   assert-that > @
-    ((text "some text here").ends-with " here")
+    (text "some text here").ends-with " here"
     $.equal-to TRUE
 
 [] > text-ends-with-3
   assert-that > @
-    ((text "some text here").ends-with "  here")
+    (text "some text here").ends-with "  here"
     $.equal-to FALSE
 
 [] > text-index-of
   assert-that > @
-    ((text "ab").index-of "ab")
+    (text "ab").index-of "ab"
     $.equal-to 0
 
 [] > text-index-of-2
   nop > @
     assert-that
-      ((text "ab").index-of "abc")
+      (text "ab").index-of "abc"
       $.equal-to -1
 
 [] > text-index-of-3
-  assert-that > @
-    ((text "ab").index-of "b")
-    $.equal-to 1
+  nop > @
+    assert-that
+      (text "ab").index-of "b"
+      $.equal-to 1
 
 [] > text-index-of-4
   assert-that > @
-    ((text "a").index-of "a")
+    (text "a").index-of "a"
     $.equal-to 0
 
 [] > text-index-of-5
   assert-that > @
-    ((text "a").index-of "b")
+    (text "a").index-of "b"
     $.equal-to -1
 
 [] > text-check-if-starts-from-index
@@ -271,32 +289,32 @@
 
 [] > text-last-index-of
   assert-that > @
-    ((text "4 2").last-index-of "2")
+    (text "4 2").last-index-of "2"
     $.equal-to 2
 
 [] > text-last-index-of-2
   assert-that > @
-    ((text "here").last-index-of " here")
+    (text "here").last-index-of " here"
     $.equal-to -1
 
 [] > text-last-index-of-3
   assert-that > @
-    ((text "ab abc").last-index-of "ab")
+    (text "ab abc").last-index-of "ab"
     $.equal-to 3
 
 [] > text-last-index-of-4
   assert-that > @
-    ((text "Hello").last-index-of "Hello")
+    (text "Hello").last-index-of "Hello"
     $.equal-to 0
 
 [] > empty-text-last-index-of
   assert-that > @
-    ((text "").last-index-of "abc")
+    (text "").last-index-of "abc"
     $.equal-to -1
 
 [] > unicode-text-last-index-of
   assert-that > @
-    ((text "a世").last-index-of "世")
+    (text "a世").last-index-of "世"
     $.equal-to 1
 
 [] > at-returns-one-character
@@ -475,7 +493,7 @@
   assert-that > @
     is-alphabetic.
       text
-        "qWeRtY"
+        "eEo"
     $.equal-to TRUE
 
 [] > check-is-alpha-2
@@ -489,7 +507,7 @@
   assert-that > @
     is-alphabetic.
       text
-        "1234"
+        "123"
     $.equal-to FALSE
 
 [] > split-text
@@ -606,15 +624,14 @@
 [] > lower-case-returns-text
   assert-that > @
     at.
-      (text "HeLlO wOrLd!").low-cased
-      0
-    $.equal-to "h"
+      (text "hELlO!").low-cased
+      1
+    $.equal-to "e"
 
 [] > trims-returns-text
-  nop > @
-    assert-that
-      at.
-        trimmed.
-          text " 漢 "
-        0
-      $.equal-to "漢"
+  assert-that > @
+    at.
+      trimmed.
+        text "漢 "
+      0
+    $.equal-to "漢"

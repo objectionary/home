@@ -26,8 +26,8 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.1.0
-+version 0.1.0
++rt jvm org.eolang:eo-strings:0.1.1
++version 0.1.1
 
 [s] > text
 
@@ -39,44 +39,53 @@
 
   # Trim it from both sides
   [] > trimmed
-    reducedi. > spaces!
-      list
-        bytes-as-array
-          as-bytes.
-            s
-      *
-      [a i x]
-        up-cased.ascii > code!
-          x
-        32 > space-code!
-        if. > @
-          eq.
-            code
-            space-code
-          with.
-            a
-            i
-          a
-    reduced. > left-pos!
-      list
-        spaces
-      0
-      [a x]
-        if. > @
-          eq.
-            a
-            x
-          plus.
-            a
-            1
-          a
-    slice. > @
+    rec-trim > @
       s
-      left-pos
-      minus.
+
+    [str] > rec-trim
+      str > const-str!
+      eq. > empty
         length.
-          s
-        left-pos
+          const-str
+        0
+      eq. > starts-with-space
+        slice.
+          const-str
+          0
+          1
+        " "
+      eq. > ends-with-space
+        slice.
+          const-str
+          plus.
+            length.
+              const-str
+            -1
+          1
+        " "
+
+      if. > @
+        empty
+        ""
+        if.
+          starts-with-space
+          rec-trim
+            slice
+              1
+              plus.
+                length.
+                  const-str
+                -1
+          if.
+            ends-with-space
+            rec-trim
+              slice
+                0
+                plus.
+                  length.
+                    const-str
+                  -1
+            const-str
 
   # Joins an array of strings, using current string
   # as a delimiter
@@ -84,12 +93,12 @@
     reducedi. > res!
       list
         items
-      ("".as-bytes)
+      "".as-bytes
       [acc i x]
         if. > @
           i.eq ((items.length).minus 1)
-          (acc.concat (x.as-bytes))
-          ((acc.concat (x.as-bytes)).concat (s.as-bytes))
+          acc.concat (x.as-bytes)
+          (acc.concat (x.as-bytes)).concat s.as-bytes
     res.as-string > @
 
   # Checks that string contains substr
@@ -163,7 +172,37 @@
             lsub
 
   # Returns text in lower case
-  [] > low-cased /text
+  [] > low-cased
+    up-cased.ascii "Z" > ascii-z!
+    up-cased.ascii "A" > ascii-a!
+    text > @
+      as-string.
+        reduced.
+          list
+            bytes-as-array
+              s.as-bytes
+          --
+          [a x]
+            up-cased.ascii x > ascii-x!
+            concat. > @
+              a
+              if.
+                and.
+                  lte.
+                    ascii-x
+                    ascii-z
+                  gte.
+                    ascii-x
+                    ascii-a
+                slice.
+                  as-bytes.
+                    plus.
+                      up-cased.ascii
+                        x
+                      up-cased.distance
+                  7
+                  1
+                x
 
   # Returns last index of substr in string,
   # if no element was found, it returns -1
