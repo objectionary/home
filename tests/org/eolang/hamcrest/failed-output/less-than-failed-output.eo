@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.12
++version 0.3.0
 
 [] > less-than-int-failed-output
   [] > suggestion

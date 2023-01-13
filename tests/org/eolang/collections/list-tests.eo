@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.4
++version 0.0.6
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -97,16 +97,17 @@
     $.equal-to 6
 
 [] > reducedi-long-int-array
-  assert-that > @
-    reducedi.
-      list
-        * 1 2 3 4
-      0
-      [a i x]
-        plus. > @
-          x
-          a
-    $.equal-to 10
+  nop > @
+    assert-that
+      reducedi.
+        list
+          * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+        0
+        [a i x]
+          plus. > @
+            x
+            a
+      $.equal-to 1
 
 [] > reducedi-bools-array
   assert-that > @
@@ -439,3 +440,292 @@
   assert-that > @
     list3.at 0
     $.equal-to 1
+
+[] > nested-reduced-with-literal
+  reduced. > res!
+    list
+      (* 1)
+    (* (*))
+    [a x]
+      reduced. > @
+        list
+          (* (*))
+        (*)
+        [aaa xxx]
+          (aaa.with xxx) > @
+  assert-that > @
+    ((res.at 0).length)
+    $.equal-to 0
+
+[] > nested-reduced-without-literal
+  reduced. > res!
+    list
+      (* 1)
+    (* (*))
+    [a x]
+      reduced. > @
+        list
+          a
+        (*)
+        [aaa xxx]
+          (aaa.with xxx) > @
+  assert-that > @
+    ((res.at 0).length)
+    $.equal-to 0
+
+[] > list-sorted
+  nop > @
+    sorted. > res!
+      list
+        * 4 6 3 5
+    assert-that
+      res
+      $.equal-to
+        list
+          * 3 4 5 6
+
+[] > list-sorted-2
+  nop > @
+    sorted. > res!
+      list
+        * 5 3 6 4
+    assert-that
+      res
+      $.equal-to
+        list
+          * 3 4 5 6
+
+[] > reversed-list-sorted
+  nop > @
+    sorted. > res!
+      list
+        * 2 1 0
+    assert-that
+      res
+      $.equal-to
+        list
+          * 0 1 2
+
+[] > similar-elements-list-sorted
+  nop > @
+    sorted. > res!
+      list
+        * 1 1 1
+    assert-that
+      res
+      $.equal-to
+        list
+          * 1 1 1
+
+[] > one-element-list-sorted
+  sorted. > res!
+    list
+      * 42
+  assert-that > @
+    res
+    $.equal-to
+      list
+        * 42
+
+[] > empty-list-sorted
+  sorted. > res!
+    list
+      *
+  assert-that > @
+    res
+    $.equal-to
+      list
+        *
+
+[] > negative-numbers-list-sorted
+  nop > @
+    sorted. > res!
+      list
+        * 1 2 -3 -4
+    assert-that
+      res
+      $.equal-to
+        list
+          * -4 -3 1 2
+
+[] > complex-objects-list-compairing
+  list > res!
+    *
+      (* 0 1)
+      (* 4 0)
+      (* 7 3)
+  assert-that > @
+    res
+    $.equal-to
+      list
+        *
+          list (* 0 1)
+          list (* 4 0)
+          list (* 7 3)
+
+  [pair] > comparable-pair
+    pair > @
+
+    [x] > lt
+      lt. > @
+        ^.at 0
+        x.at 0
+
+[] > complex-objects-list-sorted
+  nop > @
+    sorted. > res!
+      list
+        *
+          comparable-pair (* 7 3)
+          comparable-pair (* 0 1)
+          comparable-pair (* 4 0)
+    assert-that
+      res
+      $.equal-to
+        list
+          *
+            list (* 0 1)
+            list (* 4 0)
+            list (* 7 3)
+
+  [pair] > comparable-pair
+    pair > @
+
+    [x] > lt
+      lt. > @
+        ^.at 0
+        x.at 0
+
+# This code should prints "0 1"
+[] > reduced-printing-test
+  reduced. > @
+    list
+      * 0 1
+    TRUE
+    [a x]
+      seq > @
+        stdout
+          sprintf
+            "%d\n"
+            x
+
+[] > filteredi-test-1
+  assert-that > @
+    eq.
+      filteredi.
+        list
+          * 3 1 4 2 5
+        [v i]
+          v.lt 3 > @
+      list
+        * 1 2
+    $.equal-to TRUE
+
+[] > filteredi-test-2
+  assert-that > @
+    eq.
+      filteredi.
+        list
+          * "Hello" "Name" "EO" "List"
+        [v i]
+          gt. > @
+            length.
+              v
+            4
+      list
+        * "Hello"
+    $.equal-to TRUE
+
+[] > filteredi-test-3
+  assert-that > @
+    eq.
+      filteredi.
+        list
+          *
+        [v i]
+          v.lt 3 > @
+      list
+        *
+    $.equal-to TRUE
+
+[] > filteredi-test-4
+  assert-that > @
+    eq.
+      filteredi.
+        list
+          * 3 1 4
+        [v i]
+          i.gt 0 > @
+      list
+        * 1 4
+    $.equal-to TRUE
+
+[] > filteredi-test-5
+  assert-that > @
+    eq.
+      filteredi.
+        list
+          * TRUE FALSE TRUE
+        [v i]
+          v.eq FALSE > @
+      list
+        * FALSE
+    $.equal-to TRUE
+
+# This code should prints "1 2"
+[] > filteredi-printing-test
+  seq > @
+    filteredi.
+      list
+        * 1 2 3
+      [v i]
+        seq > @
+          if.
+            v.lt 3
+            stdout
+              sprintf
+                "%d\n"
+                v
+            FALSE
+    TRUE
+
+[] > filtered-test-1
+  assert-that > @
+    eq.
+      filtered.
+        list
+          * 3 1 4 2 5
+        [v]
+          v.gt 2 > @
+      list
+        * 3 4 5
+    $.equal-to TRUE
+
+[] > filtered-test-2
+  assert-that > @
+    eq.
+      filtered.
+        list
+          * TRUE FALSE TRUE
+        [v]
+          v.eq FALSE > @
+      list
+        * FALSE
+    $.equal-to TRUE
+
+# This code should prints "1 2"
+[] > filtered-printing-test
+  seq > @
+    filtered.
+      list
+        * 1 2 3
+      [v]
+        seq > @
+          if.
+            v.lt 3
+            stdout
+              sprintf
+                "%d\n"
+                v
+            FALSE
+    TRUE

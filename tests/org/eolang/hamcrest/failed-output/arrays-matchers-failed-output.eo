@@ -20,10 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.2.12
++version 0.3.0
 
 [] > arrays-failed-output
-  nop > @
+  [] > suggestion
+    assert-that > @
+      * 1 2
+      $.array-each
+        $.equal-to 1
+        $.equal-to 3
+  assert-that > @
+    suggestion
+    $.contains-string "\nExpected: <1> equal to value and <3> equal to value\n     but: mismatches:"
