@@ -51,11 +51,11 @@
 # list of objects
 [] > should-not-be-empty-with-3-objects
   [x] > a-1
-    ((number x).as-int > @)
+    (number x).as-int > @
   [x] > a-2
-    (x.as-byte > @)
+    x.as-byte > @
   [x] > a-3
-    ((number x).as-string > @)
+    (number x).as-string > @
   * > xs
     a-1
     a-2
