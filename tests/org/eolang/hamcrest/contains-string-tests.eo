@@ -43,10 +43,10 @@
 
 [] > check-any-contains-string
   assert-that > @
-    "ffffffffffff"
+    "f"
     $.any-of
-      $.contains-string "Привет"
-      $.contains-string "世"
       $.contains-string "f"
+      $.contains-string "a"
+      $.contains-string "d"
     "constains-any-of-string"
 

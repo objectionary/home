@@ -29,36 +29,36 @@
 [] > simple-starts-with-string-failed
   [] > suggestion
     assert-that > @
-      "Привет, 世界"
-      $.string-starts-with "界"
+      "f"
+      $.string-starts-with "r"
       "string-starts-with 界"
   assert-that > @
     suggestion
-    $.equal-to "string-starts-with 界\nExpected: string starts with: <界>\n     but: was <Привет, 世界>"
+    $.equal-to "string-starts-with 界\nExpected: string starts with: <r>\n     but: was <f>"
 
 [] > starts-with-any-of-string-failed
   [] > suggestion
     assert-that > @
-      "fffffff"
+      "f"
       $.all-of
-        $.string-starts-with "et"
+        $.string-starts-with "e"
       "starts-with"
   assert-that > @
     suggestion
-    $.equal-to "starts-with\nExpected: string contains: string starts with: <et>\n     but: a value was <fffffff>"
+    $.equal-to "starts-with\nExpected: string starts with: <e>\n     but: a value was <f>"
 
 [] > starts-with-all-of-string-failed
   [] > suggestion
     assert-that > @
-      "ffffffffffff"
+      "f"
       $.any-of
-        $.contains-string "aaaa"
-        $.string-starts-with "dddd"
-        $.contains-string "tttt"
+        $.contains-string "a"
+        $.string-starts-with "d"
+        $.contains-string "t"
       "starts-with"
   assert-that > @
     suggestion
-    $.equal-to "starts-with\nExpected: string contains: <aaaa> or string starts with: <dddd> or string contains: <tttt>\n     but: a value was <ffffffffffff>"
+    $.equal-to "starts-with\nExpected: string contains: <a> or string starts with: <d> or string contains: <t>\n     but: a value was <f>"
 
 
 

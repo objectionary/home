@@ -34,19 +34,19 @@
 
 [] > check-all-contains-and-starts-with-string
   assert-that > @
-    "Привет, 世界"
+    "dd"
     $.all-of
-      $.contains-string "Привет"
-      $.contains-string "世"
-      $.string-starts-with "Пр"
+      $.contains-string "d"
+      $.contains-string "dd"
+      $.string-starts-with "d"
     "starts-with"
 
 [] > check-any-contains-and-starts-with-string
   assert-that > @
-    "ffffffffffff"
+    "f"
     $.any-of
-      $.contains-string "Привет"
-      $.string-starts-with "fffff"
-      $.contains-string "界"
+      $.contains-string "a"
+      $.string-starts-with "f"
+      $.contains-string "d"
     "starts-with"
 

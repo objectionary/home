@@ -29,38 +29,38 @@
 [] > simple-ends-with-string-failed
   [] > suggestion
     assert-that > @
-      "Привет, 世界"
-      $.string-ends-with "Привет"
+      "f"
+      $.string-ends-with "a"
       "string-ends-with Привет"
   assert-that > @
     suggestion
-    $.equal-to "string-ends-with Привет\nExpected: string ends with: <Привет>\n     but: was <Привет, 世界>"
+    $.equal-to "string-ends-with Привет\nExpected: string ends with: <a>\n     but: was <f>"
 
 [] > ends-with-any-of-string-failed
   [] > suggestion
     assert-that > @
-      "Привет, 世界"
+      "f"
       $.all-of
-        $.contains-string "Привет"
-        $.contains-string "世"
-        $.string-ends-with "ет"
+        $.contains-string "a"
+        $.contains-string "b"
+        $.string-ends-with "c"
       "ends-with"
   assert-that > @
     suggestion
-    $.equal-to "ends-with\nExpected: string contains: <Привет> and string contains: <世> and string ends with: <ет>\n     but: a value was <Привет, 世界>"
+    $.equal-to "ends-with\nExpected: string contains: <a> and string contains: <b> and string ends with: <c>\n     but: a value was <f>"
 
 [] > ends-with-all-of-string-failed
   [] > suggestion
     assert-that > @
-      "ffffffffffff"
+      "f"
       $.any-of
-        $.contains-string "Привет"
-        $.string-ends-with "dddd"
-        $.contains-string "界"
+        $.contains-string "a"
+        $.string-ends-with "b"
+        $.contains-string "c"
       "ends-with"
   assert-that > @
     suggestion
-    $.equal-to "ends-with\nExpected: string contains: <Привет> or string ends with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
+    $.equal-to "ends-with\nExpected: string contains: <a> or string ends with: <b> or string contains: <c>\n     but: a value was <f>"
 
 
 

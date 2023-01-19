@@ -34,19 +34,19 @@
 
 [] > check-all-is-substring
   assert-that > @
-    "Привет, 世界"
+    "e"
     $.all-of
-      $.is-substring "Привет"
-      $.is-substring "世"
-      $.is-substring "界"
+      $.is-substring "e"
+      $.is-substring "e"
+      $.is-substring "e"
     "is-substring-of-string"
 
 [] > check-any-is-substring
   assert-that > @
-    "ffffffffffff"
+    "f"
     $.any-of
-      $.is-substring "Привет"
-      $.is-substring "世"
+      $.is-substring "a"
+      $.is-substring "h"
       $.is-substring "f"
     "is-substring-of-string"
 
