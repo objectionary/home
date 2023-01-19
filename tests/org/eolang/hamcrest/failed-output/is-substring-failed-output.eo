@@ -26,7 +26,7 @@
 +package org.eolang.hamcrest.failed-output
 +version 0.3.0
 
-[] > simple-contains-string-failed
+[] > simple-substring-failed
   [] > suggestion
     assert-that > @
       "Привет, 世界"
@@ -36,7 +36,7 @@
     suggestion
     $.equal-to "is-substring\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
 
-[] > contains-any-of-string-failed
+[] > substring-any-of-string-failed
   [] > suggestion
     assert-that > @
       "Hello"
@@ -47,7 +47,7 @@
     suggestion
     $.equal-to "is-substring\nExpected: string contains: <2>\n     but: a value was <Hello>"
 
-[] > contains-all-of-string-failed
+[] > substring-all-of-string-failed
   [] > suggestion
     assert-that > @
       "so sad"
