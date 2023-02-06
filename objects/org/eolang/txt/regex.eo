@@ -25,8 +25,8 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.4
-+version 0.0.4
++rt jvm org.eolang:eo-strings:0.1.1
++version 0.1.1
 
 # Regular expression in Perl format.
 # Free attribute "r" is a string represenation of regex object.
@@ -69,6 +69,34 @@
     # m - matched segments array
     [pt acc pa m] > replacei
 
+      # Replace groups signs ($i) in old-rpl by the group of
+      # the list groups
+      [old-rpl groups] > replace-by-groups
+        if. > @
+          groups.is-empty
+          old-rpl
+          replace-by-groups
+            replaced.
+              old-rpl
+              chained. > text-chained
+                text "\\$"
+                QQ.txt.sprintf
+                  "%d"
+                  minus.
+                    groups.length
+                    1
+              at.
+                groups
+                minus.
+                  groups.length
+                  1
+            list
+              without.
+                groups
+                minus.
+                  groups.length
+                  1
+
       [] > nextpt
         plus. > @!
           mitem.at 0
@@ -80,7 +108,7 @@
 
       [] > part
         joined. > @!
-          (text "")
+          text ""
           *
             slice.
               acc
@@ -92,15 +120,18 @@
               minus.
                 mitem.at 0
                 pt
-            rpl
+            replace-by-groups
+              text rpl
+              list
+                mitem.at 2
 
       [] > nextacc
         joined. > @!
-          (text "")
+          text ""
           *
             part
             slice.
-              txt
+              text txt
               nextpt
               minus.
                 txt.length
@@ -121,6 +152,6 @@
 
     replacei > @
       0
-      txt
+      text txt
       0
-      (match txt)
+      match txt

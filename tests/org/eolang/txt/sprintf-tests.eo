@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-strings
 +junit
 +package org.eolang.txt
-+version 0.0.4
++version 0.1.1
 
 [] > prints-simple-string
   assert-that > @
@@ -52,7 +52,7 @@
 [] > prints-bytes-and-complex-string
   assert-that > @
     sprintf "%c %s %c abc"
-      (100.as-bytes)
+      100.as-bytes
       "e f"
-      (56.as-bytes)
+      56.as-bytes
     $.equal-to "d e f 8 abc"
