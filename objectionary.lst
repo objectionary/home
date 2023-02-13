@@ -38,6 +38,7 @@ objects/org/eolang/io/stdout.eo
 objects/org/eolang/io/copied.eo
 objects/org/eolang/io/bytes-as-input.eo
 objects/org/eolang/io/memory-as-output.eo
+objects/org/eolang/nan.eo
 objects/org/eolang/cage.eo
 objects/org/eolang/math/nan.eo
 objects/org/eolang/math/e.eo
@@ -47,10 +48,12 @@ objects/org/eolang/math/positive-infinity.eo
 objects/org/eolang/math/angle.eo
 objects/org/eolang/math/random.eo
 objects/org/eolang/math/pi.eo
+objects/org/eolang/negative-infinity.eo
 objects/org/eolang/sys/call.eo
 objects/org/eolang/sys/win32.eo
 objects/org/eolang/sys/uname.eo
 objects/org/eolang/bool.eo
+objects/org/eolang/positive-infinity.eo
 objects/org/eolang/float.eo
 objects/org/eolang/switch.eo
 objects/org/eolang/try.eo
@@ -113,11 +116,13 @@ tests/org/eolang/txt/sscanf-tests.eo
 tests/org/eolang/txt/regex-tests.eo
 tests/org/eolang/array-tests.eo
 tests/org/eolang/bytes-tests.eo
+tests/org/eolang/negative-infinity-tests.eo
 tests/org/eolang/try-tests.eo
 tests/org/eolang/junit-tests.eo
 tests/org/eolang/io/bytes-as-input-test.eo
 tests/org/eolang/io/stdout-tests.eo
 tests/org/eolang/io/copied-test.eo
+tests/org/eolang/nan-tests.eo
 tests/org/eolang/int-tests.eo
 tests/org/eolang/math/angle-tests.eo
 tests/org/eolang/math/random-tests.eo
@@ -133,6 +138,7 @@ tests/org/eolang/sys/win32-test.eo
 tests/org/eolang/sys/call-test.eo
 tests/org/eolang/sys/uname-test.eo
 tests/org/eolang/nop-tests.eo
+tests/org/eolang/positive-infinity-tests.eo
 tests/org/eolang/rust-tests.eo
 tests/org/eolang/as-phi-tests.eo
 tests/org/eolang/heap-tests.eo
