@@ -46,6 +46,7 @@ SOFTWARE.
         <version>${eo.version}</version>
         <configuration>
           <discoverSelf>true</discoverSelf>
+          <failOnWarning>true</failOnWarning>
         </configuration>
         <executions>
           <execution>
