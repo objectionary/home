@@ -65,7 +65,10 @@
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!
-  * (* 1 2) (* 8) (*) > arr!
+  * > arr!
+    * 1 2
+    * 8
+    *
   mp.concat-all-arrays arr > res!
   assert-that > @
     * (res.length) (res.at 2)
@@ -106,7 +109,13 @@
     $.equal-to 0
 
 [] > multimap-find-works
-  multimap * (*) (* (* 4 "a")) (* (* 2 "c") (* 8 "c")) > mp!
+  multimap > mp!
+    *
+      *
+      * (* 4 "a")
+    *
+      * 2 "c"
+      * 8 "c"
   mp.found 2 > r2!
   mp.found 3 > r3!
   mp.found 4 > r4!
