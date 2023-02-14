@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.io
-+home https://github.com/objectionary/eo-files
-+version 0.3.5
 +alias org.eolang.io.bytes-as-input
-+alias org.eolang.io.memory-as-output
 +alias org.eolang.io.copied
++alias org.eolang.io.memory-as-output
++home https://github.com/objectionary/eo-files
 +junit
++package org.eolang.io
++version 0.3.5
 
 [] > copies-bytes-from-object-to-memory
   memory -- > m
