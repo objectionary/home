@@ -112,9 +112,11 @@
   multimap > mp!
     *
       *
-      * (* 4 "a")
+    *
+      * 4 "a"
     *
       * 2 "c"
+    *
       * 8 "c"
   mp.found 2 > r2!
   mp.found 3 > r3!
