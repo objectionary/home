@@ -95,92 +95,92 @@
 
 [] > text-contains
   assert-that > @
-    ((text "some text here").contains "me te")
+    (text "some text here").contains "me te"
     $.equal-to TRUE
 
 [] > text-contains-2
   assert-that > @
-    ((text "some text here").contains "me text.")
+    (text "some text here").contains "me text."
     $.equal-to FALSE
 
 [] > text-contains-3
   assert-that > @
-    ((text "1234456").contains "1")
+    (text "1234456").contains "1"
     $.equal-to TRUE
 
 [] > text-starts-with
   assert-that > @
-    ((text "some text here").starts-with "me te")
+    (text "some text here").starts-with "me te"
     $.equal-to FALSE
 
 [] > text-starts-with-2
   assert-that > @
-    ((text "some text here").starts-with "some ")
+    (text "some text here").starts-with "some "
     $.equal-to TRUE
 
 [] > text-starts-with-3
   assert-that > @
-    ((text "some text here").starts-with "some  ")
+    (text "some text here").starts-with "some  "
     $.equal-to FALSE
 
 [] > text-ends-with
   assert-that > @
-    ((text "some text here").ends-with "me te")
+    (text "some text here").ends-with "me te"
     $.equal-to FALSE
 
 [] > text-ends-with-2
   assert-that > @
-    ((text "some text here").ends-with " here")
+    (text "some text here").ends-with " here"
     $.equal-to TRUE
 
 [] > text-ends-with-3
   assert-that > @
-    ((text "some text here").ends-with "  here")
+    (text "some text here").ends-with "  here"
     $.equal-to FALSE
 
 [] > text-index-of
   assert-that > @
-    ((text "some text here").index-of "me te")
+    (text "some text here").index-of "me te"
     $.equal-to 2
 
 [] > text-index-of-2
   assert-that > @
-    ((text "some text here").index-of " here")
+    (text "some text here").index-of " here"
     $.equal-to 9
 
 [] > text-index-of-3
   assert-that > @
-    ((text "some text here").index-of "  here")
+    (text "some text here").index-of "  here"
     $.equal-to -1
 
 [] > text-last-index-of
   assert-that > @
-    ((text "some text here").last-index-of " here")
+    (text "some text here").last-index-of " here"
     $.equal-to 9
 
 [] > text-last-index-of-2
   assert-that > @
-    ((text "some text here").last-index-of "  here")
+    (text "some text here").last-index-of "  here"
     $.equal-to -1
 
 [] > text-last-index-of-3
   assert-that > @
-    ((text "abc abcd").last-index-of "abc")
+    (text "abc abcd").last-index-of "abc"
     $.equal-to 4
 
 [] > text-last-index-of-4
   assert-that > @
-    ((text "Hello, world").last-index-of "Hello, world")
+    (text "Hello, world").last-index-of "Hello, world"
     $.equal-to 0
 
 [] > empty-text-last-index-of
   assert-that > @
-    ((text "").last-index-of "abc")
+    (text "").last-index-of "abc"
     $.equal-to -1
 
 [] > unicode-text-last-index-of
   assert-that > @
-    ((text "Привет, 世界").last-index-of "世")
+    (text "Привет, 世界").last-index-of "世"
     $.equal-to 8
 
 [] > at-returns-one-character
