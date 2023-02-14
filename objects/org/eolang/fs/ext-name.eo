@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.fs
 +home https://github.com/objectionary/eo-files
-+version 0.3.5
++package org.eolang.fs
 +rt jvm org.eolang:eo-files:0.3.5
++version 0.3.5
 
 # Takes the extension part from the full path name,
 # for example "/tmp/bar/foo.txt.gz" will lead to "txt.gz"

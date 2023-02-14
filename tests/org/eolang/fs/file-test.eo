@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.fs
-+home https://github.com/objectionary/eo-files
-+version 0.3.5
-+alias org.eolang.txt.sprintf
 +alias org.eolang.fs.file
 +alias org.eolang.fs.tmpdir
 +alias org.eolang.io.bytes-as-input
 +alias org.eolang.io.copied
++alias org.eolang.txt.sprintf
++home https://github.com/objectionary/eo-files
 +junit
++package org.eolang.fs
++version 0.3.5
 
 [] > compares-to-same-file
   eq. > @
