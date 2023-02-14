@@ -41,7 +41,7 @@
   * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr
   multimap.rebuild harr arr > res
   assert-that > @
-    * ((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1
+    * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
     $.equal-to
       list
         * 4 5
@@ -65,7 +65,7 @@
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!
-  * (* 1 2) (* 8) * > arr!
+  * (* 1 2) (* 8) (*) > arr!
   mp.concat-all-arrays arr > res!
   assert-that > @
     * (res.length) (res.at 2)
@@ -106,7 +106,7 @@
     $.equal-to 0
 
 [] > multimap-find-works
-  multimap (* * (* (* 4 "a")) (* (* 2 "c") (* 8 "c"))) > mp!
+  multimap * (*) (* (* 4 "a")) (* (* 2 "c") (* 8 "c")) > mp!
   mp.found 2 > r2!
   mp.found 3 > r3!
   mp.found 4 > r4!
@@ -288,7 +288,7 @@
     * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr!
     multimap.rebuilded harr arr > res!
     assert-that
-      * ((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1
+      (* ((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
       $.equal-to
         list
           * 4 5

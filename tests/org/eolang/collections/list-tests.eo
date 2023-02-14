@@ -461,7 +461,7 @@
   reduced. > res!
     list
       * 1
-    * (*)
+    * *
     [a x]
       reduced. > @
         list
