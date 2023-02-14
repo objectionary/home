@@ -109,15 +109,7 @@
     $.equal-to 0
 
 [] > multimap-find-works
-  multimap > mp!
-    *
-      *
-    *
-      * 4 "a"
-    *
-      * 2 "c"
-    *
-      * 8 "c"
+  multimap * * (* (* 4 "a")) (* (* 2 "c") (* 8 "c")) > mp!
   mp.found 2 > r2!
   mp.found 3 > r3!
   mp.found 4 > r4!
