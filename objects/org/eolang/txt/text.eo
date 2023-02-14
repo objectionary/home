@@ -41,7 +41,7 @@
     reducedi. > res!
       list
         items
-      ("".as-bytes)
+      "".as-bytes
       [acc i x]
         if. > @
           i.eq ((items.length).minus 1)

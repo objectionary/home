@@ -80,7 +80,7 @@
 
       [] > part
         joined. > @!
-          (text "")
+          text ""
           *
             slice.
               acc
@@ -96,7 +96,7 @@
 
       [] > nextacc
         joined. > @!
-          (text "")
+          text ""
           *
             part
             slice.
@@ -123,4 +123,4 @@
       0
       txt
       0
-      (match txt)
+      match txt
