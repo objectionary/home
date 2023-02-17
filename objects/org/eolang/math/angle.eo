@@ -24,8 +24,8 @@
 +alias org.eolang.math.pi
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.3
-+version 0.2.3
++rt jvm org.eolang:eo-math:0.3.0
++version 0.3.0
 
 # The angle in radians
 [f] > angle

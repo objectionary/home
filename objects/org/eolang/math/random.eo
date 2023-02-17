@@ -21,13 +21,14 @@
 # SOFTWARE.
 
 +alias org.eolang.math.number
++alias org.eolang.sys.call
++alias org.eolang.sys.uname
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.3
-+version 0.2.3
++rt jvm org.eolang:eo-math:0.3.0
++version 0.3.0
 
 [seed] > random
-
   # Get float value for current seed
   # Divide seed to maximum possible value of the seed
   [] > @
@@ -62,4 +63,53 @@
           1
 
   # New random with pseudo-random seed
-  [] > pseudo /random
+  [] > pseudo
+    35 > const-1!
+    53 > const-2!
+    17 > const-3!
+    random > @
+      time-seed
+    if. > time-bytes
+      uname.is-windows
+      1.as-bytes
+      as-bytes.
+        call
+          "gettimeofday"
+    plus. > time-seed
+      as-int.
+        and.
+          left.
+            time-bytes
+            const-1
+          as-bytes.
+            minus.
+              as-int.
+                left.
+                  as-bytes.
+                    1
+                  const-2
+              1
+      as-int.
+        and.
+          left.
+            time-bytes
+            const-3
+          as-bytes.
+            minus.
+              as-int.
+                left.
+                  as-bytes.
+                    1
+                  const-1
+              1
+      as-int.
+        and.
+          time-bytes
+          as-bytes.
+            minus.
+              as-int.
+                left.
+                  as-bytes.
+                    1
+                  const-3
+              1

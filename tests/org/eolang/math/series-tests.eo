@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Max Trunnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,51 +20,105 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.math.series
 +alias org.eolang.hamcrest.assert-that
-+alias org.eolang.math.angle
-+alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
 +version 0.3.0
 
-[] > sin-zero
+[] > max-of-empty-array
   assert-that > @
-    angle 0.0
-    .sin
-    $.equal-to 0.0
+    try
+      []
+        (series *).max > @
+      [e]
+        e > @
+      nop
+    $.equal-to "Can't get max of empty array"
 
-[] > sin-pi-div-2
+[] > min-of-empty-array
   assert-that > @
-    angle 1.5707963267948966
-    .sin
-    $.equal-to 1.0
+    try
+      []
+        (series *).min > @
+      [e]
+        e > @
+      nop
+    $.equal-to "Can't get min of empty array"
 
-[] > sin-pi-as-int
+[] > max-of-one-item-array
+  * > xs
+    42
   assert-that > @
-    number
-      angle 3.141592653589793
-      .sin
-    .as-int
-    $.equal-to 0
+    series xs
+    .max
+    $.equal-to 42
 
-[] > cos-zero
+[] > min-of-one-item-array
+  * > xs
+    42
   assert-that > @
-    angle 0.0
-    .cos
-    $.equal-to 1.0
+    series xs
+    .min
+    $.equal-to 42
 
-[] > cos-pi-div-2-as-int
+[] > max-of-array-is-first
+  * > xs
+    25
+    12
+    -2
   assert-that > @
-    number
-      angle 1.5707963267948966
-      .cos
-    .as-int
-    $.equal-to 0
+    series xs
+    .max
+    $.equal-to 25
 
-[] > cos-pi
+[] > max-of-array-is-in-the-center
+  * > xs
+    12
+    25
+    -2
   assert-that > @
-    angle 3.141592653589793
-    .cos
-    $.equal-to -1.0
+    series xs
+    .max
+    $.equal-to 25
 
+[] > max-of-array-is-last
+  * > xs
+    -2
+    5
+    22
+  assert-that > @
+    series xs
+    .max
+    $.equal-to 22
+
+[] > min-of-array-is-first
+  * > xs
+    4
+    12
+    10
+  assert-that > @
+    series xs
+    .min
+    $.equal-to 4
+
+[] > min-of-array-is-in-the-center
+  * > xs
+    24
+    3
+    10
+  assert-that > @
+    series xs
+    .min
+    $.equal-to 3
+
+[] > min-of-array-is-last
+  * > xs
+    12
+    5
+    2
+  assert-that > @
+    series xs
+    .min
+    $.equal-to 2
