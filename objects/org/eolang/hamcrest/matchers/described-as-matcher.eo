@@ -23,14 +23,13 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.3.0
-+version 0.3.0
++rt jvm org.eolang:eo-hamcrest:0.3.1
++version 0.3.1
 
 # Wraps an existing matcher, overriding its description with that specified.
 # All other functions are delegated to the decorated matcher,
 # including its mismatch description.
 [matcher format args...] > described-as-matcher
-
   matcher > @
 
   [] > description-of
