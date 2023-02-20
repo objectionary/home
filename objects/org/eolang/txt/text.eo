@@ -102,7 +102,7 @@
   [other] > compare /int
 
   # Returns an array of strings, separated by a given string
-  [delimiter] > split /array
+  [delimiter] > split /tuple
 
   # Check that all signs in string are letters
   [] > is-alphabetic /bool

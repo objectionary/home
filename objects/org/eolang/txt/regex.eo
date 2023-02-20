@@ -50,7 +50,7 @@
   #  - start position in which match was found
   #  - matched string
   #  - array of identified matched groups
-  [txt] > match /array
+  [txt] > match /tuple
 
   # Matches
   [txt] > matches

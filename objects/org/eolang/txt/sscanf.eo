@@ -31,4 +31,4 @@
 # 1. format - is a formatter string (e.g. "Hello, %s!")
 # 2. read - is a string where data exists (e.g. "Hello, John!")
 # returns an array of formatted values (e.g. * "John").
-[format read] > sscanf /array
+[format read] > sscanf /tuple

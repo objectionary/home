@@ -183,7 +183,7 @@
               x.at 1
             a
 
-  [harr arr] > rebuild /array
+  [harr arr] > rebuild /tuple
 
   # Returns a new map, without elements with the given key
   # Returns the map itself, if there was no item with this key
