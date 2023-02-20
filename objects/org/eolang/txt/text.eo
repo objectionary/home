@@ -41,12 +41,12 @@
     reducedi. > res!
       list
         items
-      ("".as-bytes)
+      "".as-bytes
       [acc i x]
         if. > @
           i.eq ((items.length).minus 1)
-          (acc.concat (x.as-bytes))
-          ((acc.concat (x.as-bytes)).concat (s.as-bytes))
+          acc.concat (x.as-bytes)
+          (acc.concat (x.as-bytes)).concat (s.as-bytes)
     res.as-string > @
 
   # Checks that string contains substr

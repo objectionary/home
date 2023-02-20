@@ -25,14 +25,13 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.3.0
-+version 0.3.0
++rt jvm org.eolang:eo-hamcrest:0.3.1
++version 0.3.1
 
 # Calculates the logical conjunction of multiple matchers.
 # Evaluation is shortcut, so subsequent matchers are not called
 # if an earlier matcher returns false.
 [matchers...] > all-of-matcher
-
   memory 0 > mismatch
 
   [a] > match

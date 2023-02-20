@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package org.eolang.fs
 +home https://github.com/objectionary/eo-files
-+version 0.3.5
++package org.eolang.fs
 +rt jvm org.eolang:eo-files:0.3.5
++version 0.3.5
 
 # Temporary directory provided by the operating system. It will
 # be automatically deleted when the program exits.

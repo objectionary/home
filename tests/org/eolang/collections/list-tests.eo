@@ -51,11 +51,11 @@
 # list of objects
 [] > should-not-be-empty-with-3-objects
   [x] > a-1
-    ((number x).as-int > @)
+    (number x).as-int > @
   [x] > a-2
-    (x.as-byte > @)
+    x.as-byte > @
   [x] > a-3
-    ((number x).as-string > @)
+    (number x).as-string > @
   * > xs
     a-1
     a-2
@@ -176,7 +176,7 @@
         times. > @
           (sscanf "%d" current).at 0
           index.plus 1
-  (multipliedByNaturalSequence "1" "2" "3") > mulSeq
+  multipliedByNaturalSequence "1" "2" "3" > mulSeq
   assert-that > @
     sprintf "%d %d %d" (mulSeq.at 0) (mulSeq.at 1) (mulSeq.at 2)
     $.equal-to
@@ -215,7 +215,7 @@
           number
             (sscanf "%d" current).at 0
           2
-  (squares "1" "2" "3") > sq
+  squares "1" "2" "3" > sq
   assert-that > @
     sprintf "%d %d %d" (sq.at 0) (sq.at 1) (sq.at 2)
     $.equal-to
@@ -370,7 +370,7 @@
         acc.with (memory x) > @
     seq > @
       (res.at 0).write 7
-      (res.at 0)
+      res.at 0
 
 [] > reduce-with-memory-test-2
   eq. > @
@@ -378,10 +378,10 @@
     7
 
   [] > foo
-    (*).with (memory 0) > res
+    *.with (memory 0) > res
     seq > @
       (res.at 0).write 7
-      (res.at 0)
+      res.at 0
 
 [] > is-found-1
   list > lst
@@ -444,33 +444,33 @@
 [] > nested-reduced-with-literal
   reduced. > res!
     list
-      (* 1)
-    (* (*))
+      * 1
+    * *
     [a x]
       reduced. > @
         list
-          (* (*))
-        (*)
+          * *
+        *
         [aaa xxx]
-          (aaa.with xxx) > @
+          aaa.with xxx > @
   assert-that > @
-    ((res.at 0).length)
+    (res.at 0).length
     $.equal-to 0
 
 [] > nested-reduced-without-literal
   reduced. > res!
     list
-      (* 1)
-    (* (*))
+      * 1
+    * *
     [a x]
       reduced. > @
         list
           a
-        (*)
+        *
         [aaa xxx]
-          (aaa.with xxx) > @
+          aaa.with xxx > @
   assert-that > @
-    ((res.at 0).length)
+    (res.at 0).length
     $.equal-to 0
 
 [] > list-sorted
@@ -551,9 +551,9 @@
 [] > complex-objects-list-compairing
   list > res!
     *
-      (* 0 1)
-      (* 4 0)
-      (* 7 3)
+      * 0 1
+      * 4 0
+      * 7 3
   assert-that > @
     res
     $.equal-to

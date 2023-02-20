@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.3.0
++version 0.3.1
 
 [] > delayed-calculation
   memory 0 > m

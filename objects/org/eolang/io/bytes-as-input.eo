@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++home https://github.com/objectionary/eo-files
 +package org.eolang.io
 +rt jvm org.eolang:eo-files:0.3.5
-+home https://github.com/objectionary/eo-files
 +version 0.3.5
 
 # Makes an input from bytes. In most cases you don't

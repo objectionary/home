@@ -28,7 +28,7 @@ SOFTWARE.
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.28.16</eo.version>
+    <eo.version>0.29.0</eo.version>
   </properties>
   <build>
     <plugins>
@@ -46,6 +46,7 @@ SOFTWARE.
         <version>${eo.version}</version>
         <configuration>
           <discoverSelf>true</discoverSelf>
+          <failOnWarning>true</failOnWarning>
         </configuration>
         <executions>
           <execution>

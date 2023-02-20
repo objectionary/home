@@ -65,7 +65,10 @@
 
 [] > multimap-concat-all-arrays-test
   multimap * > mp!
-  * (* 1 2) (* 8) (*) > arr!
+  * > arr!
+    * 1 2
+    * 8
+    *
   mp.concat-all-arrays arr > res!
   assert-that > @
     * (res.length) (res.at 2)
@@ -106,7 +109,11 @@
     $.equal-to 0
 
 [] > multimap-find-works
-  multimap (* (*) (* (* 4 "a")) (* (* 2 "c") (* 8 "c"))) > mp!
+  multimap > mp!
+    *
+      *
+      * (* 4 "a")
+      * (* 2 "c") (* 8 "c")
   mp.found 2 > r2!
   mp.found 3 > r3!
   mp.found 4 > r4!
@@ -122,7 +129,7 @@
     multimap * > init-mp!
     init-mp.with 1 2 > mp!
     assert-that
-      ((mp.found 1).at 0)
+      (mp.found 1).at 0
       $.equal-to 2
 
 [] > multimap-of-multimap
@@ -130,7 +137,7 @@
   init-mp.with "c" "d" > mp1!
   init-mp.with 1 mp1 > mp-res!
   nop > @
-    ((((mp-res.found 1).at 0).found "c").at 0)
+    (((mp-res.found 1).at 0).found "c").at 0
     $.equal-to "d"
 
 [] > multimap-without-works-3
@@ -157,7 +164,7 @@
       $.equal-to 1
 
 [] > map-key-does-not-found
-  (multimap *) > mp!
+  multimap * > mp!
   assert-that > @
     (mp.found "key123").length
     $.equal-to 0
@@ -174,8 +181,8 @@
     ((multimap *).with 11 "a").with 5 "b" > mp!
     assert-that
       times.
-        ((mp.keys).at 0)
-        ((mp.keys).at 1)
+        (mp.keys).at 0
+        (mp.keys).at 1
       $.equal-to 55
 
 [] > comparable-pair-correctness
@@ -288,7 +295,7 @@
     * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr!
     multimap.rebuilded harr arr > res!
     assert-that
-      * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
+      (* ((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
       $.equal-to
         list
           * 4 5
