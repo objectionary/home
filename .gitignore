@@ -1,2 +1,12 @@
-.DS_Store
 target/
+.vscode/
+.idea/
+.DS_Store
+*.iml
+.project
+.settings
+.classpath
+.recommenders
+.mvn/wrapper/maven-wrapper.jar
+.factorypath
+
