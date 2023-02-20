@@ -25,8 +25,8 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.3.0
-+version 0.3.0
++rt jvm org.eolang:eo-hamcrest:0.3.1
++version 0.3.1
 
 # Wraps an existing matcher and apply it to every item in array.
 [matcher] > has-item-matcher
@@ -53,6 +53,10 @@
             acc
             apply x
 
+  # @todo #37:30min This string formatting doesn't work correctly.
+  #  Here we got message like: [was <[Lorg.eolang.Phi;@1189dd52>]
+  #  and possibly we need to change code below when string manipulation
+  #  objects will be created.
   [act] > describe-mismatch
     sprintf > @
       "mismatches: [%s]"

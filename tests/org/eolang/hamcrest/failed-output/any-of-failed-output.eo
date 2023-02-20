@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.3.0
++version 0.3.1
 
 [] > any-of-number-test-failed-output
   [] > suggestion
@@ -49,6 +49,10 @@
     suggestion
     $.equal-to "\nExpected: <1> equal to value or <100> less than value or <-6> greater than value\n     but: a value was <3>"
 
+# @todo #149:30min To remove this nop object
+#  when this test will be stable. To do that we
+#  need to find out why this test is fail in some
+#  workflow checks.
 [] > any-of-close-to-failed-output
   nop > @
     [] > suggestion

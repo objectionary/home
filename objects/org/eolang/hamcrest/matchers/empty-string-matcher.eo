@@ -24,12 +24,11 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.3.0
-+version 0.3.0
++rt jvm org.eolang:eo-hamcrest:0.3.1
++version 0.3.1
 
 # Tests if the examined string contains zero characters and nothing else.
 [] > empty-string-matcher
-
   [a] > match
     text a > str!
     eq. > @

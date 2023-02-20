@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.collections.list
 +alias org.eolang.hamcrest.matchers.all-of-matcher
 +alias org.eolang.hamcrest.matchers.any-of-matcher
 +alias org.eolang.hamcrest.matchers.anything-matcher
@@ -40,12 +39,17 @@
 +alias org.eolang.hamcrest.matchers.matches-regex-matcher
 +alias org.eolang.hamcrest.matchers.string-ends-with-matcher
 +alias org.eolang.hamcrest.matchers.string-starts-with-matcher
++alias org.eolang.collections.list
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
-+rt jvm org.eolang:eo-hamcrest:0.3.0
-+version 0.3.0
++rt jvm org.eolang:eo-hamcrest:0.3.1
++version 0.3.1
 
+# @todo #167:45min Make this object decorates
+#  another one (let's call it assert). Which will
+#  be an interface for assert-that and assert-twice-that
+#  objects to avoid matchers duplication.
 # Main object for assertions with multiply dataization of actual object.
 # It should dataize twice only when we get FALSE mathcing result from the first dataization.
 [actual matcher reasons...] > assert-twice-that

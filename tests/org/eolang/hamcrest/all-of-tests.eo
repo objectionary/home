@@ -25,8 +25,12 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest
-+version 0.3.0
++version 0.3.1
 
+# @todo #167:45min To add more tests with a new
+#  assert-twice-that object to make sure it
+#  works well. This task is only about passed tests,
+#  for failed tests there will be another one.
 [] > all-of-numbers-test
   assert-that > @
     150.minus 50
