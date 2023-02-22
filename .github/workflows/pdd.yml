@@ -16,4 +16,4 @@ jobs:
         with:
           ruby-version: '3.0'
       - run: gem install pdd
-      - run: pdd --format xml . | ( ! grep -v '<puzzle>' )
+      - run: pdd --format xml . | ( ! grep '<puzzle>' )
