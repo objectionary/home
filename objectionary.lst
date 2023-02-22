@@ -1,4 +1,3 @@
-objects/org/eolang/array.eo
 objects/org/eolang/hamcrest/assert-twice-that.eo
 objects/org/eolang/hamcrest/assert-that.eo
 objects/org/eolang/hamcrest/matchers/less-than-matcher.eo
@@ -56,6 +55,7 @@ objects/org/eolang/bool.eo
 objects/org/eolang/positive-infinity.eo
 objects/org/eolang/float.eo
 objects/org/eolang/switch.eo
+objects/org/eolang/tuple.eo
 objects/org/eolang/try.eo
 objects/org/eolang/collections/multimap.eo
 objects/org/eolang/collections/map.eo
