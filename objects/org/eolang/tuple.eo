@@ -26,10 +26,6 @@
 +rt jvm org.eolang:eo-runtime:0.29.1
 +version 0.29.1
 
-# @todo #1060:30min The method .empty is not nessesary.
-#  Make the create of tuple possible just by using
-#  the object name, i.e `tuple > a` and remove this
-#  method.
 [] > tuple
   # Create empty tuple
   [] > empty
