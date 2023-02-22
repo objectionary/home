@@ -28,7 +28,7 @@ SOFTWARE.
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.29.0</eo.version>
+    <eo.version>0.29.1</eo.version>
   </properties>
   <build>
     <plugins>
