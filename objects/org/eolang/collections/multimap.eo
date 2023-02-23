@@ -24,11 +24,10 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.6
-+version 0.0.6
++rt jvm org.eolang:eo-collections:0.0.8
++version 0.0.8
 
 [m] > multimap
-
   memory 0 > elements-amount
 
   # Returns list of all keys in multimap
@@ -183,7 +182,7 @@
               x.at 1
             a
 
-  [harr arr] > rebuild /array
+  [harr arr] > rebuild /tuple
 
   # Returns a new map, without elements with the given key
   # Returns the map itself, if there was no item with this key

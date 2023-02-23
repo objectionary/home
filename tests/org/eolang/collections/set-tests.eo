@@ -20,34 +20,50 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.collections.bytes-as-array
 +alias org.eolang.collections.list
++alias org.eolang.collections.set
 +alias org.eolang.hamcrest.assert-that
-+home https://github.com/objectionary/eo
++home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
 +version 0.0.8
 
-[] > bytes-to-array
+[] > set-works
   assert-that > @
-    bytes-as-array
-      20-1F-EE-B5-FF
-    $.equal-to
+    set
       list
-        * 20- 1F- EE- B5- FF-
+        * 2 2
+    @.equal-to
+      list
+        * 2
 
-[] > sinble-byte-to-array
+[] > set-with-existed-item
+  with. > set-with!
+    set
+      list > target!
+        * 1
+    1
   assert-that > @
-    bytes-as-array
-      1F-
+    set-with
     $.equal-to
-      list
-        * 1F-
+      target
 
-[] > zero-bytes-to-array
+[] > set-with-not-existed-item
+  with. > set-with!
+    set
+      list
+        * 2
+    4
   assert-that > @
-    bytes-as-array
-      --
+    set-with
     $.equal-to
       list
+        * 2 4
+
+[] > empty-set-works
+  assert-that > @
+    set
+      list > empty-list!
         *
+    $.equal-to
+      empty-list
