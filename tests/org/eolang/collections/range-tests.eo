@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.collections.range
 +alias org.eolang.collections.list
++alias org.eolang.collections.range
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-collections
 +junit
