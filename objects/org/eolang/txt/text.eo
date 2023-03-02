@@ -37,9 +37,6 @@
       ^.s.slice start len
 
   # Trim it from both sides
-  # @todo #107:30min Current implementation of trimmed method catches stackoverflow
-  #  for tests where both sides of strings are changing or just more than one space
-  #  should be removed. After fixing it unwrap nop from all trimmed tests
   [] > trimmed
     rec-trim > @
       s
@@ -156,9 +153,6 @@
 
     # Method accepts a string and a substring as an array of bytes
     # and checks if the string contains a substring in the passed position
-    # @todo #65:30min Current implementation works only with short strings.
-    #  We should have posibility to find substrings in bigger that 2-letter strings.
-    #  Also we should unwrap tests 'text-index-of-2' and 'text-index-of-3' from nop object
     [str substr index] > check-if-starts-from-index
       str.length > lstr!
       substr.length > lsub!
@@ -355,9 +349,6 @@
           other
 
   # Returns an tuple of strings, separated by a given string
-  # @todo #22:30min Current implementation using Java.
-  #  We should implement splitting string to tuple of strings
-  #  only via EOLANG code. We can do it by using reduce method.
   [delimiter] > split /tuple
 
   # Check that all signs in string are letters.
