@@ -27,29 +27,26 @@
 +version 0.3.2
 
 [] > simple-contains-string
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.contains-string "世"
-      "constains-string"
+  assert-that > @
+    "Привет, 世界"
+    $.contains-string "世"
+    "constains-string"
 
 [] > check-all-contains-string
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.all-of
-        $.contains-string "Привет"
-        $.contains-string "世"
-        $.contains-string "界"
-      "constains-all-of-string"
+  assert-that > @
+    "Привет, 世界"
+    $.all-of
+      $.contains-string "Привет"
+      $.contains-string "世"
+      $.contains-string "界"
+    "constains-all-of-string"
 
 [] > check-any-contains-string
-  nop > @
-    assert-that
-      "ffffffffffff"
-      $.any-of
-        $.contains-string "Привет"
-        $.contains-string "世"
-        $.contains-string "f"
-      "constains-any-of-string"
+  assert-that > @
+    "ffffffffffff"
+    $.any-of
+      $.contains-string "Привет"
+      $.contains-string "世"
+      $.contains-string "f"
+    "constains-any-of-string"
 

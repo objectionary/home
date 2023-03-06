@@ -36,7 +36,7 @@
   [] > is-windows
     contains. > @
       QQ.txt.text
-        lower-case.
+        low-cased.
           QQ.txt.text ^
       "windows"
 
@@ -44,7 +44,7 @@
   [] > is-unix
     contains. > @
       QQ.txt.text
-        lower-case.
+        low-cased.
           QQ.txt.text ^
       "linux"
 
@@ -52,6 +52,6 @@
   [] > is-macos
     contains. > @
       QQ.txt.text
-        lower-case.
+        low-cased.
           QQ.txt.text ^
       "mac"

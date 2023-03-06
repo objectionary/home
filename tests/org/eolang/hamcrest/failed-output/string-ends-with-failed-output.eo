@@ -32,10 +32,9 @@
       "Привет, 世界"
       $.string-ends-with "Привет"
       "string-ends-with Привет"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "string-ends-with Привет\nExpected: string ends with: <Привет>\n     but: was <Привет, 世界>"
+  assert-that > @
+    suggestion
+    $.equal-to "string-ends-with Привет\nExpected: string ends with: <Привет>\n     but: was <Привет, 世界>"
 
 [] > ends-with-any-of-string-failed
   [] > suggestion
@@ -46,10 +45,9 @@
         $.contains-string "世"
         $.string-ends-with "ет"
       "ends-with"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "ends-with\nExpected: string contains: <Привет> and string contains: <世> and string ends with: <ет>\n     but: a value was <Привет, 世界>"
+  assert-that > @
+    suggestion
+    $.equal-to "ends-with\nExpected: string contains: <Привет> and string contains: <世> and string ends with: <ет>\n     but: a value was <Привет, 世界>"
 
 [] > ends-with-all-of-string-failed
   [] > suggestion
@@ -60,10 +58,9 @@
         $.string-ends-with "dddd"
         $.contains-string "界"
       "ends-with"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "ends-with\nExpected: string contains: <Привет> or string ends with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
+  assert-that > @
+    suggestion
+    $.equal-to "ends-with\nExpected: string contains: <Привет> or string ends with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
 
 
 

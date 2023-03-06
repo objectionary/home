@@ -32,10 +32,9 @@
       "Привет, 世界"
       $.string-starts-with "界"
       "string-starts-with 界"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "string-starts-with 界\nExpected: string starts with: <界>\n     but: was <Привет, 世界>"
+  assert-that > @
+    suggestion
+    $.equal-to "string-starts-with 界\nExpected: string starts with: <界>\n     but: was <Привет, 世界>"
 
 [] > starts-with-any-of-string-failed
   [] > suggestion
@@ -46,10 +45,9 @@
         $.contains-string "世"
         $.string-starts-with "ет"
       "starts-with"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "starts-with\nExpected: string contains: <Привет> and string contains: <世> and string starts with: <ет>\n     but: a value was <Привет, 世界>"
+  assert-that > @
+    suggestion
+    $.equal-to "starts-with\nExpected: string contains: <Привет> and string contains: <世> and string starts with: <ет>\n     but: a value was <Привет, 世界>"
 
 [] > starts-with-all-of-string-failed
   [] > suggestion
@@ -60,10 +58,9 @@
         $.string-starts-with "dddd"
         $.contains-string "界"
       "starts-with"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "starts-with\nExpected: string contains: <Привет> or string starts with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
+  assert-that > @
+    suggestion
+    $.equal-to "starts-with\nExpected: string contains: <Привет> or string starts with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
 
 
 

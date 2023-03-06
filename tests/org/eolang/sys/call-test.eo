@@ -30,13 +30,12 @@
 # Making a syscall 'getpid' and compares the result
 # with zero: the PID should definitely be larger.
 [] > reads-pid-from-unix
-  nop > @
-    if.
-      QQ.sys.uname.is-windows
-      nop
-      assert-that
-        QQ.sys.call "getpid"
-        $.greater-than 0
+  if. > @
+    QQ.sys.uname.is-windows
+    nop
+    assert-that
+      QQ.sys.call "getpid"
+      $.greater-than 0
 
 # Making a syscall 'write' and prints a short message
 # to the console.
@@ -56,11 +55,10 @@
           msg.length
 
 [] > get-time-of-day-test
-  nop > @
-    if.
-      QQ.sys.uname.is-windows
-      nop
-      assert-that
-        QQ.sys.call
-          "gettimeofday"
-        $.greater-than 0
+  if. > @
+    QQ.sys.uname.is-windows
+    nop
+    assert-that
+      QQ.sys.call
+        "gettimeofday"
+      $.greater-than 0

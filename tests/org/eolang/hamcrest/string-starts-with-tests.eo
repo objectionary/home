@@ -27,29 +27,26 @@
 +version 0.3.2
 
 [] > simple-starts-with-string
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.string-starts-with "Привет"
-      "string-starts-with Привет"
+  assert-that > @
+    "Привет, 世界"
+    $.string-starts-with "Привет"
+    "string-starts-with Привет"
 
 [] > check-all-contains-and-starts-with-string
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.all-of
-        $.contains-string "Привет"
-        $.contains-string "世"
-        $.string-starts-with "Пр"
-      "starts-with"
+  assert-that > @
+    "Привет, 世界"
+    $.all-of
+      $.contains-string "Привет"
+      $.contains-string "世"
+      $.string-starts-with "Пр"
+    "starts-with"
 
 [] > check-any-contains-and-starts-with-string
-  nop > @
-    assert-that
-      "ffffffffffff"
-      $.any-of
-        $.contains-string "Привет"
-        $.string-starts-with "fffff"
-        $.contains-string "界"
-      "starts-with"
+  assert-that > @
+    "ffffffffffff"
+    $.any-of
+      $.contains-string "Привет"
+      $.string-starts-with "fffff"
+      $.contains-string "界"
+    "starts-with"
 

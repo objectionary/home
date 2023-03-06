@@ -27,29 +27,26 @@
 +version 0.3.2
 
 [] > simple-is-substring
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.is-substring "世"
-      "is-substring"
+  assert-that > @
+    "Привет, 世界"
+    $.is-substring "世"
+    "is-substring"
 
 [] > check-all-is-substring
-  nop > @
-    assert-that
-      "Привет, 世界"
-      $.all-of
-        $.is-substring "Привет"
-        $.is-substring "世"
-        $.is-substring "界"
-      "is-substring-of-string"
+  assert-that > @
+    "Привет, 世界"
+    $.all-of
+      $.is-substring "Привет"
+      $.is-substring "世"
+      $.is-substring "界"
+    "is-substring-of-string"
 
 [] > check-any-is-substring
-  nop > @
-    assert-that
-      "ffffffffffff"
-      $.any-of
-        $.is-substring "Привет"
-        $.is-substring "世"
-        $.is-substring "f"
-      "is-substring-of-string"
+  assert-that > @
+    "ffffffffffff"
+    $.any-of
+      $.is-substring "Привет"
+      $.is-substring "世"
+      $.is-substring "f"
+    "is-substring-of-string"
 

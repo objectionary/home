@@ -32,10 +32,9 @@
       "Привет, 世界"
       $.contains-string "111"
       "constains-string"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "constains-string\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
+  assert-that > @
+    suggestion
+    $.equal-to "constains-string\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
 
 [] > contains-any-of-string-failed
   [] > suggestion
@@ -56,10 +55,9 @@
         $.contains-string "2"
         $.contains-string "happy"
       "constains-string"
-  nop > @
-    assert-that
-      suggestion
-      $.equal-to "constains-string\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
+  assert-that > @
+    suggestion
+    $.equal-to "constains-string\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
 
 
 

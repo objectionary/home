@@ -102,13 +102,34 @@
 
   # Checks that string contains substr
   [substr] > contains
-    index-of. > idx!
-      text
-        s
-      substr
-    gt. > @
-      idx
-      -1
+    substr.length > len!
+    s.length > s-len!
+    memory 0 > start
+    memory FALSE > res
+    [] > loop
+      while. > @
+        and.
+          start.lt s-len
+          lte.
+            start.plus len
+            s-len
+        [i]
+          if. > @
+            lte.
+              start.plus len
+              s-len
+            if.
+              eq.
+                s.slice start len
+                substr
+              seq
+                res.write TRUE
+                start.write s-len
+              start.write (start.plus 1)
+            FALSE
+    seq > @
+      loop
+      res
 
   # Checks that string ends with substr
   [substr] > ends-with
