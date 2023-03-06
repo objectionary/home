@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +junit
 +package org.eolang.hamcrest.failed-output
-+version 0.3.1
++version 0.3.2
 
 [] > float-is-close-to-float-with-delta-test-failed-output
   [] > suggestion

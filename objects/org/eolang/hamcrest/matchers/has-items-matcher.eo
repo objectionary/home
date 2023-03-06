@@ -25,8 +25,8 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.3.1
-+version 0.3.1
++rt jvm org.eolang:eo-hamcrest:0.3.2
++version 0.3.2
 
 # Wraps an array of matchers and apply them to every item in array.
 [matchers...] > has-items-matcher
