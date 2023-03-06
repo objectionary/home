@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.6
++version 0.0.8
 
 [] > map-find-do-not-crashed
   map * > mp!
@@ -36,7 +36,11 @@
     $.equal-to 0
 
 [] > map-find-works
-  map (* * (* (* 4 "a")) (* (* 2 "c") (* 8 "c"))) > mp!
+  map > mp!
+    *
+      *
+      * (* 4 "a")
+      * (* 2 "c") (* 8 "c")
   mp.found 2 > r2!
   mp.found 3 > r3!
   mp.found 4 > r4!
@@ -90,3 +94,19 @@
       (mp.keys).at 0
       (mp.keys).at 1
     $.equal-to 55
+
+[] > map-contains-key
+  ((map *).with 11 "a").with 5 "b" > mp!
+  assert-that > @
+    contains-key.
+      mp
+      11
+    $.equal-to TRUE
+
+[] > map-do-not-contains-key
+  ((map *).with 11 "a").with 5 "b" > mp!
+  assert-that > @
+    contains-key.
+      mp
+      12
+    $.equal-to FALSE

@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.6
++version 0.0.8
 
 [] > rebuild-do-not-crush
   * 1 2 > harr
@@ -295,7 +295,7 @@
     * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr!
     multimap.rebuilded harr arr > res!
     assert-that
-      (* ((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
+      * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
       $.equal-to
         list
           * 4 5

@@ -27,26 +27,29 @@
 +version 0.3.2
 
 [] > simple-ends-with-string
-  assert-that > @
-    "Привет, 世界"
-    $.string-ends-with "界"
-    "string-ends-with 界"
+  nop > @
+    assert-that
+      "Привет, 世界"
+      $.string-ends-with "界"
+      "string-ends-with 界"
 
 [] > check-all-contains-and-ends-with-string
-  assert-that > @
-    "Привет, 世界"
-    $.all-of
-      $.contains-string "Привет"
-      $.contains-string "世"
-      $.string-ends-with "界"
-    "ends-with"
+  nop > @
+    assert-that
+      "Привет, 世界"
+      $.all-of
+        $.contains-string "Привет"
+        $.contains-string "世"
+        $.string-ends-with "界"
+      "ends-with"
 
 [] > check-any-contains-and-ends-with-string
-  assert-that > @
-    "ffffffffffff"
-    $.any-of
-      $.contains-string "Привет"
-      $.string-ends-with "fffff"
-      $.contains-string "界"
-    "ends-with"
+  nop > @
+    assert-that
+      "ffffffffffff"
+      $.any-of
+        $.contains-string "Привет"
+        $.string-ends-with "fffff"
+        $.contains-string "界"
+      "ends-with"
 

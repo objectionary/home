@@ -25,11 +25,10 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.6
-+version 0.0.6
++rt jvm org.eolang:eo-collections:0.0.8
++version 0.0.8
 
 [m] > map
-
   memory 0 > elements-amount
 
   # Returns list of all keys in multimap
@@ -40,6 +39,19 @@
         caa
       [curr]
         curr.at 0 > @
+
+  # TRUE if the map contain key. Otherwise, FALSE.
+  [key] > contains-key
+    reduced. > @
+      keys.
+        ^
+      FALSE
+      [a x]
+        or. > @
+          a
+          eq.
+            x
+            key
 
   # Returns amount of elements in multimap
   [] > size

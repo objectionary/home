@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.6
-+version 0.0.6
++rt jvm org.eolang:eo-collections:0.0.8
++version 0.0.8
 
 [arr] > list
   arr > @
@@ -50,10 +50,7 @@
   # of the array.
   [a f] > reducedi
     if. > @
-      eq.
-        0
-        length.
-          arr
+      arr.length.eq 0
       a
       rec-reduced
         * a 0
@@ -61,25 +58,21 @@
         arr
 
     [acc-index func carr] > rec-reduced
-      acc-index.at 0 > acc
       acc-index.at 1 > index
-      seq > @
-        func > new-acc!
-          acc
+      if. > @
+        eq.
+          index.plus 1 > next-index
+          carr.length
+        func > new-acc
+          acc-index.at 0
           index
           carr.at index
-        if.
-          (index.plus 1).eq (carr.length)
-          new-acc
-          rec-reduced
-            *
-              func
-                acc
-                index
-                carr.at index
-              index.plus 1
-            func
-            carr
+        rec-reduced
+          *
+            new-acc
+            next-index
+          func
+          carr
 
   # Reduce from start "a" using the function "f"
   [a f] > reduced
@@ -124,7 +117,7 @@
       TRUE
 
   # Create a new list without the i-th element
-  [i] > without
+  [i] > withouti
     ^.reducedi > @
       *
       [a idx item]
@@ -132,6 +125,16 @@
           idx.eq i
           a
           a.with item
+
+  [x] > without
+    list > @
+      ^.reduced
+        *
+        [acc item]
+          if. > @
+            x.eq item
+            acc
+            acc.with item
 
   # Equal to another object?
   [x] > eq
@@ -149,7 +152,6 @@
               x.at idx
       FALSE
 
-  # Returns the combined current and passed arrays
   [passed] > concat
     reduced. > @!
       list
@@ -159,8 +161,8 @@
         a.with x > @
 
   # Returns index of the first particular item in list.
-  # If the list has no this item, found returns -1
-  [wanted] > found
+  # If the list has no this item, index-of returns -1
+  [wanted] > index-of
     ^.reducedi > @
       -1
       [acc i item]
@@ -175,6 +177,27 @@
           i
           acc.plus 0
 
+  # Returns index of the last particular item in list.
+  # If the list has no this item, last-index-of returns -1
+  [wanted] > last-index-of
+    ^.reducedi > @
+      -1
+      [acc i item]
+        if. > @
+          eq.
+            item
+            wanted
+          i
+          acc.plus 0
+
+  # TRUE if the list contain x. Otherwise, "false".
+  [x] > contains
+    not. > @
+      eq.
+        -1
+        ^.index-of
+          x
+
   # Returns a new list sorted via lt method
   [] > sorted
     reducedi. > res!
@@ -185,13 +208,13 @@
     memory 0 > i
     memory 0 > j
     while. > sorting-process!
-      i.lt (res.length)
+      (i.plus 1).lt (res.length)
       [iter-i]
         seq > @
           j.write 0
           i.write (i.plus 1)
           while.
-            (j.plus 1).lt (res.length)
+            (j.plus 2).lt (res.length)
             [iter-j]
               seq > @
                 if.
@@ -222,7 +245,6 @@
   # one for the element, the second one
   # for the index. The result of dataization
   # the "f" should be boolean, that is TRUE or FALSE.
-
   [f] > filteredi
     if. > @
       eq.
@@ -259,12 +281,92 @@
 
   # Filter list without index with the function "f".
   # Here "f" must be an abstract object
-  # with one attribute for the element. 
+  # with one attribute for the element.
   # The result of dataization the "f"
   # should be boolean, that is TRUE or FALSE.
-
   [f] > filtered
     ^.filteredi > @
       [item index]
         &.f > @
           item
+
+  [f] > inflated
+    rec-inflated > @
+      list
+        arr
+      0
+      f
+
+    [a i func] > rec-inflated
+      func > result!
+        a
+        i
+      if. > @
+        is-empty.
+          list
+            result
+        a
+        rec-inflated
+          list
+            concat.
+              list
+                a
+              result
+          plus.
+            i
+            1
+          func
+
+  # Get the first i-th elements from
+  # the start of the list
+  [i] > head
+    i > index!
+
+    if. > @
+      index.lte 0
+      list *
+      if.
+        index.gte (^.length)
+        ^
+        ^.reducedi
+          list *
+          [acc idx item]
+            if. > @
+              idx.gte index
+              acc
+              acc.with item
+
+  # Get the last i-th elements from
+  # the end of the list
+  [i] > tail
+    minus. > start!
+      arr.length
+      i
+    if. > @
+      start.lt 0
+      ^
+      ^.reducedi
+        list *
+        [acc idx item]
+          if. > @
+            gte.
+              idx
+              start
+            acc.with item
+            acc
+
+  # TRUE if the current list is lexicographically
+  # greater than the passed list. Otherwise, FALSE.
+  [other] > gt
+
+  # TRUE if the current list is lexicographically
+  # greater than or equal to the passed list. Otherwise, FALSE.
+  [other] > gte
+
+  # TRUE if the current list is lexicographically
+  # less than the passed list. Otherwise, FALSE.
+  [other] > lt
+
+  # TRUE if the current list is lexicographically
+  # less than or equal to the passed list. Otherwise, FALSE.
+  [other] > lte

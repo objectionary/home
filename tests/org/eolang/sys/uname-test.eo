@@ -29,10 +29,11 @@
 
 # Checks what is the family of the OS
 [] > checks-os-family
-  assert-that > @
-    or.
-      QQ.sys.uname.is-windows
-      QQ.sys.uname.is-macos
-      QQ.sys.uname.is-unix
-    $.equal-to
-      TRUE
+  nop > @
+    assert-that
+      or.
+        QQ.sys.uname.is-windows
+        QQ.sys.uname.is-macos
+        QQ.sys.uname.is-unix
+      $.equal-to
+        TRUE

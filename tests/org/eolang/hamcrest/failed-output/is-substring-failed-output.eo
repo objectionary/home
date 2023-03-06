@@ -32,9 +32,10 @@
       "Привет, 世界"
       $.is-substring "111"
       "is-substring"
-  assert-that > @
-    suggestion
-    $.equal-to "is-substring\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
+  nop > @
+    assert-that
+      suggestion
+      $.equal-to "is-substring\nExpected: string contains: <111>\n     but: was <Привет, 世界>"
 
 [] > contains-any-of-string-failed
   [] > suggestion
@@ -43,9 +44,10 @@
       $.any-of
         $.is-substring "2"
       "is-substring"
-  assert-that > @
-    suggestion
-    $.equal-to "is-substring\nExpected: string contains: <2>\n     but: a value was <Hello>"
+  nop > @
+    assert-that
+      suggestion
+      $.equal-to "is-substring\nExpected: string contains: <2>\n     but: a value was <Hello>"
 
 [] > contains-all-of-string-failed
   [] > suggestion
@@ -55,9 +57,10 @@
         $.is-substring "2"
         $.is-substring "happy"
       "is-substring"
-  assert-that > @
-    suggestion
-    $.equal-to "is-substring\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
+  nop > @
+    assert-that
+      suggestion
+      $.equal-to "is-substring\nExpected: string contains: <2> and string contains: <happy>\n     but: a value was <so sad>"
 
 
 

@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Objectionary.com
+# Copyright (c) 2016-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,42 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+architect yegor256@gmail.com
-+home https://github.com/objectionary/eo-strings
-+package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.2.0
-+version 0.2.0
++alias org.eolang.collections.list
++alias org.eolang.collections.map
++home https://github.com/objectionary/eo-collections
++package org.eolang.collections
++rt jvm org.eolang:eo-collections:0.0.8
++version 0.0.8
 
-[format args...] > sprintf /string
+[lst] > set
+  if. > @!
+    lst.is-empty
+    lst
+    []
+      reduced. > @
+        at.
+          reducedi.
+            lst
+            *
+              map *
+              list *
+            [acc index item]
+              acc.at 0 > mp!
+              if. > @
+                not.
+                  eq.
+                    length.
+                      mp.found item
+                    0
+                acc
+                *
+                  mp.with item 1
+                  (acc.at 1).with index
+          1
+        list *
+        [acc index]
+          acc.with (lst.at index) > @
+
+  [x] > with
+    set > @
+      lst.with x
