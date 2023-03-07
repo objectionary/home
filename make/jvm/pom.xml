@@ -29,6 +29,7 @@ SOFTWARE.
   <version>1.0-SNAPSHOT</version>
   <properties>
     <eo.version>0.29.1</eo.version>
+    <stack-size>32M</stack-size>
   </properties>
   <build>
     <plugins>
@@ -38,6 +39,12 @@ SOFTWARE.
         <configuration>
           <source>8</source>
           <target>8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-Xss${stack-size}</argLine>
         </configuration>
       </plugin>
       <plugin>
