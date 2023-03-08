@@ -57,8 +57,10 @@ objects/org/eolang/float.eo
 objects/org/eolang/switch.eo
 objects/org/eolang/tuple.eo
 objects/org/eolang/try.eo
+objects/org/eolang/collections/set.eo
 objects/org/eolang/collections/multimap.eo
 objects/org/eolang/collections/map.eo
+objects/org/eolang/collections/range.eo
 objects/org/eolang/collections/bytes-as-array.eo
 objects/org/eolang/collections/list.eo
 objects/org/eolang/fs/base-name.eo
@@ -146,7 +148,9 @@ tests/org/eolang/goto-tests.eo
 tests/org/eolang/collections/bytes-as-array-tests.eo
 tests/org/eolang/collections/list-tests.eo
 tests/org/eolang/collections/map-tests.eo
+tests/org/eolang/collections/range-tests.eo
 tests/org/eolang/collections/multimap-tests.eo
+tests/org/eolang/collections/set-tests.eo
 tests/org/eolang/fs/base-name-test.eo
 tests/org/eolang/fs/dir-test.eo
 tests/org/eolang/fs/tmpdir-test.eo
