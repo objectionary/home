@@ -62,15 +62,11 @@ will be updated. All users will be able to use your objects.
 ## How to Publish a Library
 
 Once the library is ready for publishing (i.e. all required changes are released)
-it can be published.
+it can be published. Publishing includes several steps.
 
-### Pull recent changes from this repo
+__Prepare base__. Create new Git branch from this repo to get the latest changes. 
 
-Create new Git branch from this repo. 
-
-### Collect required library changes
-
-There is a Bash script `pull.sh`, which may help you publish the entire
+__Collect required library changes__. There is a Bash script `pull.sh`, which may help you publish the entire
 library. We use it to publish [`eo-files`](https://github.com/objectionary/eo-files),
 [`eo-hamcrest`](https://github.com/objectionary/eo-hamcrest), and others. In order
 to use it, you should first configure your library so that it publishes its full list of EO
@@ -92,22 +88,16 @@ places.
 
 If several libraries need to be published as well then repeat this step for them as well.
 
-### Clean up the objects
-
-Library objects within Objectionary must not contain any puzzles so it needs 
+__Clean up the objects__. Library objects within Objectionary must not contain any puzzles so it needs 
 to be removed from pulled objects.
 
-### Verify the build
-
-Next, the build needs to be verified. To do this, run the following:
+__Verifiy the build.__ Next, the build needs to be verified. To do this, run the following:
 
 ```bash
 $ make clean; make
 ```
 If the build fails the issues need to be resolved.
 
-### Push the changes
-
-If the build is clean, commit the changes and push the branch. Then, submit a pull request. 
+__Push the changes.__ If the build is clean, commit the changes and push the branch. Then, submit a pull request. 
 Once your pull request is merged, all EO programmers will be able to use your library.
 
