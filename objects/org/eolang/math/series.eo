@@ -31,8 +31,6 @@
   arr > @
 
   # Find max element in the array
-  # @todo #36:30min. The array may consist of objects of any type. `max`
-  #  and `min` objects should work only with an array of numbers.
   [] > max
     list ^ > self-as-list!
 

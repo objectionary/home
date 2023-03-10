@@ -27,9 +27,6 @@
 +version 0.3.1
 
 # Counts integral from a to b
-# @todo #105:30min. Fix integral tests. Since new declarative "while" was
-#  introduced current implementation of integral is not relevant anymore. Need
-#  to remake it and unwrap tests
 [fun a b] > integral
   [fun a b] > subsection
     times. > @
