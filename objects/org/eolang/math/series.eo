@@ -20,78 +20,46 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.list
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.3
-+version 0.2.3
++rt jvm org.eolang:eo-math:0.3.1
++version 0.3.1
 
-# Not a number
-[] > nan
-  # Tests that $ = x
-  [x] > eq
-    FALSE > @
+# Series
+[arr] > series
+  arr > @
 
-  # Tests that $ ≠ x
-  [x] > neq
-    TRUE > @
+  # Find max element in the array
+  # @todo #36:30min. The array may consist of objects of any type. `max`
+  #  and `min` objects should work only with an array of numbers.
+  [] > max
+    list ^ > self-as-list!
 
-  # Tests that $ < x
-  [x] > lt
-    FALSE > @
+    if. > @
+      self-as-list.is-empty
+      error "Can't get max of empty array"
+      reduced.
+        self-as-list
+        self-as-list.at 0
+        [max item]
+          if. > @
+            item.gt max
+            item
+            max
 
-  # Tests that $ ≤ x
-  [x] > lte
-    FALSE > @
+  # Find min element in the array
+  [] > min
+    list ^ > self-as-list!
 
-  # Tests that $ > x
-  [x] > gt
-    FALSE > @
-
-  # Tests that $ ≥ x
-  [x] > gte
-    FALSE > @
-
-  # Multiplication of $ and x
-  [x] > times
-    ^ > @
-
-  # Sum of $ and x
-  [x] > plus
-    ^ > @
-
-  # Negation of $
-  [] > neg
-    ^ > @
-
-  # Sign of $ (-1.0, 0.0, or 1.0)
-  [] > signum
-    ^ > @
-
-  # Difference between $ and x
-  [x] > minus
-    ^ > @
-
-  # x'th power of $
-  [x] > pow
-    ^ > @
-
-  # Quotient of the division of $ by x
-  [x] > div
-    ^ > @
-
-  # Absolute value of $ (i.e., with no sign)
-  [] > abs
-    ^ > @
-
-  # Converts this to bytes
-  [] > as-bytes
-    7F-C0-00-00 > @
-
-  # Converts this to int
-  [] > as-int
-    [] > @
-      "You can't convert NaN to int" > msg
-
-  # Converts this to string
-  [] > as-string
-    "NaN" > @
+    if. > @
+      self-as-list.is-empty
+      error "Can't get min of empty array"
+      reduced.
+        self-as-list
+        self-as-list.at 0
+        [min item]
+          if. > @
+            min.gt item
+            item
+            min

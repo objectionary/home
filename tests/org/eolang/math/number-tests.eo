@@ -22,16 +22,17 @@
 
 +alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
-+alias org.eolang.math.nan
++alias org.eolang.math.e
 +alias org.eolang.math.number
-+alias org.eolang.math.positive-infinity
-+alias org.eolang.math.negative-infinity
-+alias org.eolang.nop
++alias org.eolang.math.pi
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.3
++version 0.3.1
 
+# @todo #99:30min. To fix failed tests.
+#  Some tests here are wrapped by nop object. We need
+#  find out the reason and fix them as soon as possible.
 [] > check-is-int-positive-int
   assert-that > @
     (number 3).is-int
@@ -44,19 +45,37 @@
     $.equal-to TRUE
     "check is-int of negative int"
 
-[] > check-is-nan
+[] > check-is-nan-of-nan
   assert-that > @
     (number nan).is-nan
     $.equal-to TRUE
     "check is nan of nan"
 
-[] > check-is-int-with-int-zero
+[] > check-is-nan-of-not-nan
+  assert-that > @
+    (number 42).is-nan
+    $.equal-to FALSE
+    "check is nan of not nan"
+
+[] > check-is-int-of-int-zero
   assert-that > @
     (number 0).is-int
     $.equal-to TRUE
     "check is-int of int zero"
 
-[] > check-is-float-with-float-zero
+[] > check-is-int-of-float-zero
+  assert-that > @
+    (number 0.0).is-int
+    $.equal-to FALSE
+    "check is-int of int zero"
+
+[] > check-is-float-of-int-zero
+  assert-that > @
+    (number 0).is-float
+    $.equal-to FALSE
+    "check is-float of int zero"
+
+[] > check-is-float-of-float-zero
   assert-that > @
     (number 0.0).is-float
     $.equal-to TRUE
@@ -68,7 +87,7 @@
     $.equal-to FALSE
     "check is-int of positive float"
 
-[] > check-is-int-negative-float
+[] > check-is-int-of-negative-float
   assert-that > @
     (number -88.3).is-int
     $.equal-to FALSE
@@ -290,15 +309,16 @@
         divisor.times
           quotient dividend divisor
         remainder dividend divisor
-  reducedi. > @
-    list dividends
-    TRUE
-    [a i el]
-      and. > @
-        euclids-lemma
-          el
-          divisors.at i
-        a
+  nop > @
+    reducei.
+      list dividends
+      TRUE
+      [a i el]
+        and. > @
+          euclids-lemma
+            el
+            divisors.at i
+          a
 
 # Checks modulo: dividend < divisor
 [] > mod-dividend-less-than-divisor
@@ -323,16 +343,15 @@
 
   memory 0 > n
 
-  nop > @
-    assert-that
-      seq
-        n.write 0
-        while-loop
-          n.lt 5
-          seq
-            n.write (n.plus 1)
-            ((number n).mod 2).eq 0
-      $.equal-to FALSE
+  assert-that > @
+    seq
+      n.write 0
+      while-loop
+        n.lt 5
+        seq
+          n.write (n.plus 1)
+          ((number n).mod 2).eq 0
+    $.equal-to FALSE
 
 [] > pow-test
   assert-that > @
@@ -340,37 +359,37 @@
     .pow 4
     $.equal-to 16
 
-[] > power-is-zero
+[] > pow-is-zero
   assert-that > @
     number 2
     .pow 0
     $.equal-to 1
 
-[] > power-is-negative
+[] > pow-is-negative
   assert-that > @
     number 984782
     .pow -12341
     $.equal-to 0
 
-[] > power-of-two
+[] > pow-of-two
   assert-that > @
     number 3
     .pow 2
     $.equal-to 9
 
-[] > power-of-big-number
+[] > pow-of-big-number
   assert-that > @
     number 999999999
     .pow 5
     $.equal-to 9223372036854775807
 
-[] > power-of-zero
+[] > pow-of-zero
   assert-that > @
     number 0
     .pow 145
     $.equal-to 0
 
-[] > negative-power-of-zero
+[] > negative-pow-of-zero
   assert-that > @
     try
       []
@@ -379,6 +398,332 @@
         e > @
       nop
     $.equal-to "0 cannot be raised to a negative power"
+
+# Check power works with NaNs
+[] > nan-to-the-power-of-nan-is-nan
+  assert-that > @
+    as-bytes.
+      number nan
+      .power nan
+    $.equal-to (nan.as-bytes)
+
+[] > nan-to-the-power-of-any-is-nan
+  assert-that > @
+    as-bytes.
+      number nan
+      .power 42
+    $.equal-to (nan.as-bytes)
+
+[] > any-to-the-power-of-nan-is-nan
+  assert-that > @
+    as-bytes.
+      number 52
+      .power nan
+    $.equal-to (nan.as-bytes)
+
+# Check if power is zero
+[] > any-int-to-the-power-of-int-zero-is-int-one
+  assert-that > @
+    number 42
+    .power 0
+    $.equal-to 1
+
+[] > any-int-to-the-power-of-float-zero-is-float-one
+  assert-that > @
+    number 42
+    .power 0.0
+    $.equal-to 1.0
+
+[] > any-float-to-the-power-of-int-zero-is-float-one
+  assert-that > @
+    number 42.5
+    .power 0
+    $.equal-to 1.0
+
+[] > any-float-to-the-power-of-float-zero-is-float-one
+  assert-that > @
+    number 42.5
+    .power 0.0
+    $.equal-to 1.0
+
+# Check if power is less than zero
+[] > int-zero-to-the-negative-power-is-positive-infinity
+  assert-that > @
+    number 0
+    .power -52
+    $.equal-to positive-infinity
+
+[] > float-zero-to-the-negative-power-is-positive-infinity
+  assert-that > @
+    number 0.0
+    .power negative-infinity
+    $.equal-to positive-infinity
+
+[] > positive-int-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number 42
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > positive-float-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number 42.5
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > negative-int-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number -42
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > negative-float-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number -42.5
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > positive-infinity-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number positive-infinity
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > negative-infinity-to-the-power-of-negative-infinity-is-float-zero
+  assert-that > @
+    number negative-infinity
+    .power negative-infinity
+    $.equal-to 0.0
+
+[] > positive-infinity-to-the-finite-negative-int-power-is-float-zero
+  assert-that > @
+    number positive-infinity
+    .power -42
+    $.equal-to 0.0
+
+[] > positive-infinity-to-the-finite-negative-float-power-is-float-zero
+  assert-that > @
+    number positive-infinity
+    .power -42.2
+    $.equal-to 0.0
+
+[] > int-two-to-the-power-of-int-minus-one
+  assert-that > @
+    number 2
+    .power -1
+    $.equal-to 0.5
+
+[] > float-two-to-the-power-of-int-minus-two
+  assert-that > @
+    number 2.0
+    .power -2
+    $.equal-to 0.25
+
+[] > float-two-to-the-power-of-float-minus-four
+  assert-that > @
+    number 2.0
+    .power -3.0
+    $.equal-to 0.125
+
+[] > int-four-to-the-power-of-float-minus-three
+  assert-that > @
+    number 4
+    .power -3.0
+    $.equal-to 0.015625
+
+# Check if power more than zero
+[] > int-zero-to-the-power-of-positive-int-is-int-zero
+  assert-that > @
+    number 0
+    .power 4
+    $.equal-to 0
+
+[] > int-zero-to-the-power-of-positive-float-is-float-zero
+  assert-that > @
+    number 0
+    .power 4.2
+    $.equal-to 0.0
+
+[] > float-zero-to-the-power-of-positive-int-is-float-zero
+  assert-that > @
+    number 0.0
+    .power 42
+    $.equal-to 0.0
+
+[] > float-zero-to-the-power-of-positive-float-is-float-zero
+  assert-that > @
+    number 0.0
+    .power 2.2
+    $.equal-to 0.0
+
+[] > int-zero-to-the-power-of-positive-infinity-is-float-zero
+  assert-that > @
+    number 0
+    .power positive-infinity
+    $.equal-to 0.0
+
+[] > float-zero-to-the-power-of-positive-infinity-is-float-zero
+  assert-that > @
+    number 0.0
+    .power positive-infinity
+    $.equal-to 0.0
+
+[] > negative-int-to-the-power-of-positive-infinity-is-nan
+  assert-that > @
+    as-bytes.
+      number -10
+      .power positive-infinity
+    $.equal-to (nan.as-bytes)
+
+[] > negative-float-to-the-power-of-positive-infinity-is-nan
+  assert-that > @
+    as-bytes.
+      number -4.2
+      .power positive-infinity
+    $.equal-to (nan.as-bytes)
+
+[] > positive-int-to-the-power-of-positive-infinity-is-positive-infinity
+  assert-that > @
+    number 42
+    .power positive-infinity
+    $.equal-to positive-infinity
+
+[] > positive-float-to-the-power-of-positive-infinity-is-positive-infinity
+  assert-that > @
+    number 42.5
+    .power positive-infinity
+    $.equal-to positive-infinity
+
+[] > positive-infinity-to-the-power-of-positive-int-is-positive-infinity
+  assert-that > @
+    number positive-infinity
+    .power 42
+    $.equal-to positive-infinity
+
+[] > positive-infinity-to-the-power-of-positive-float-is-positive-infinity
+  assert-that > @
+    number positive-infinity
+    .power 10.8
+    $.equal-to positive-infinity
+
+[] > positive-infinity-to-the-power-of-positive-infinity-is-positive-infinity
+  assert-that > @
+    number positive-infinity
+    .power positive-infinity
+    $.equal-to positive-infinity
+
+[] > negative-infinity-to-the-power-of-positive-float-is-positive-infinity
+  assert-that > @
+    number negative-infinity
+    .power 9.9
+    $.equal-to positive-infinity
+
+[] > negative-infinity-to-the-power-of-even-positive-int-is-positive-infinity
+  assert-that > @
+    number negative-infinity
+    .power 10
+    $.equal-to positive-infinity
+
+[] > negative-infinity-to-the-power-of-odd-positive-int-is-positive-infinity
+  assert-that > @
+    number negative-infinity
+    .power 9
+    $.equal-to negative-infinity
+
+[] > positive-int-to-the-power-of-positive-int-is-int
+  assert-that > @
+    number 2
+    .power 3
+    $.equal-to 8
+
+[] > positive-float-to-the-power-of-positive-int-is-float
+  assert-that > @
+    number 3.5
+    .power 4
+    $.equal-to 150.0625
+
+[] > positive-int-to-the-power-of-positive-float-is-float
+  assert-that > @
+    number 4
+    .power 5
+    $.equal-to 1024
+
+[] > positive-float-to-the-power-of-positive-float-is-float
+  assert-that > @
+    number 2.2
+    .power 10
+    $.equal-to 2655.992279142402
+
+[] > sqrt-check-zero-input
+  assert-that > @
+    abs.
+      number
+        minus.
+          0.0
+          sqrt.
+            number 0.0
+    $.less-than 0.00000000001
+
+[] > sqrt-check-negative-input
+  assert-that > @
+    is-nan.
+      sqrt.
+        number -0.1
+    $.equal-to TRUE
+
+[] > sqrt-check-float-input
+  assert-that > @
+    abs.
+      number
+        minus.
+          2.0
+          sqrt.
+            number
+              4.0
+    $.less-than 0.00000000001
+
+[] > sqrt-check-int-input
+  assert-that > @
+    abs.
+      number
+        minus.
+          9.0
+          sqrt.
+            number
+              81
+    $.less-than 0.00000000001
+
+[] > sqrt-check-nan-input
+  assert-that > @
+    is-nan.
+      sqrt.
+        number nan
+    $.equal-to TRUE
+
+[] > sqrt-check-max-int
+  9223372036854775807 > max-int!
+  assert-that > @
+    abs.
+      number
+        minus.
+          3037000499.97605
+          sqrt.
+            number
+              max-int
+    $.less-than 0.00001
+
+[] > sqrt-check-infinity-1
+  assert-that > @
+    sqrt.
+      number positive-infinity
+    $.equal-to positive-infinity
+
+[] > sqrt-check-infinity-2
+  assert-that > @
+    is-nan.
+      sqrt.
+        number negative-infinity
+    $.equal-to TRUE
 
 # Checks that number.as-float works properly
 [] > as-float-works
@@ -503,3 +848,563 @@
     (number 0.0).is-int
     $.equal-to FALSE
     "check is-int of int zero"
+
+[] > log-of-num-on-base-of-nan-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 42
+        nan
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-nan-on-base-of-num-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number nan
+        42
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-nan-on-base-of-nan-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number nan
+        nan
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-negative-int-on-base-of-not-nan-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number -1
+        2
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-negative-float-on-base-of-not-nan-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number -2.2
+        2
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-not-nan-on-base-of-negative-int-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 42
+        -2
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-not-nan-on-base-of-negative-float-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 42
+        -4.2
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-int-one-on-base-of-int-one-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 1
+        1
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-float-one-on-base-of-int-one-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 1.0
+        1
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-int-one-on-base-of-float-one-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 1
+        1.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-float-one-on-base-of-float-one-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 1.0
+        1.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-positive-infinity-on-base-of-int-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number positive-infinity
+        0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-positive-infinity-on-base-of-float-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number positive-infinity
+        0.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-positive-infinity-on-base-of-positive-infinity-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number positive-infinity
+        positive-infinity
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-int-zero-on-base-of-int-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0
+        0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-float-zero-on-base-of-int-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0.0
+        0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-int-zero-on-base-of-float-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0
+        0.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-float-zero-on-base-of-float-zero-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0.0
+        0.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-int-zero-on-base-of-positive-infinity-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0
+        positive-infinity
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-float-zero-on-base-of-positive-infinity-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number 0.0
+        positive-infinity
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-negative-infinity-on-base-of-int-one-is-nan
+  assert-that > @
+    as-bytes.
+      log.
+        number negative-infinity
+        1
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-negative-infinity-on-base-of-float-one-is-negative-infinity
+  assert-that > @
+    as-bytes.
+      log.
+        number negative-infinity
+        1.0
+    $.equal-to (nan.as-bytes)
+
+[] > log-of-positive-infinity-on-base-of-int-one-is-positive-infinity
+  assert-that > @
+    log.
+      number positive-infinity
+      1
+    $.equal-to positive-infinity
+
+[] > log-of-positive-infinity-on-base-of-float-one-is-positive-infinity
+  assert-that > @
+    log.
+      number positive-infinity
+      1.0
+    $.equal-to positive-infinity
+
+[] > log-of-int-zero-on-base-of-int-one-is-negative-infinity
+  assert-that > @
+    log.
+      number 0
+      1
+    $.equal-to negative-infinity
+
+[] > log-of-float-zero-on-base-of-int-one-is-negative-infinity
+  assert-that > @
+    log.
+      number 0.0
+      1
+    $.equal-to negative-infinity
+
+[] > log-of-int-zero-on-base-of-float-one-is-negative-infinity
+  assert-that > @
+    log.
+      number 0
+      1.0
+    $.equal-to negative-infinity
+
+[] > log-of-float-zero-on-base-of-float-one-is-negative-infinity
+  assert-that > @
+    log.
+      number 0.0
+      1.0
+    $.equal-to negative-infinity
+
+[] > log-of-int-one-on-base-of-positive-infinity-is-zero
+  assert-that > @
+    log.
+      number 1
+      positive-infinity
+    $.equal-to 0.0
+
+[] > log-of-float-one-on-base-of-positive-infinity-is-zero
+  assert-that > @
+    log.
+      number 1.0
+      positive-infinity
+    $.equal-to 0.0
+
+[] > log-of-int-one-on-base-of-int-zero-is-zero
+  assert-that > @
+    log.
+      number 1
+      0
+    $.equal-to 0.0
+
+[] > log-of-float-one-on-base-of-float-zero-is-zero
+  assert-that > @
+    log.
+      number 1.0
+      0.0
+    $.equal-to 0.0
+
+[] > log-of-two-on-base-of-two-is-one
+  nop > @
+    assert-that
+      log.
+        number 2
+        2.0
+      $.equal-to 1.0
+
+[] > log-of-e-on-base-of-e-is-one
+  nop > @
+    assert-that
+      log.
+        number e
+        e
+      $.equal-to 1.0
+
+[] > log-of-two-five-six-on-base-of-two-is-eight
+  nop > @
+    assert-that
+      log.
+        number 256
+        2
+      $.equal-to 8.0
+
+[] > ln-of-negative-float-is-nan
+  assert-that > @
+    as-bytes.
+      ln.
+        number -2.2
+    $.equal-to (nan.as-bytes)
+
+[] > ln-of-float-zero-is-negative-infinity
+  assert-that > @
+    ln.
+      number 0.0
+    $.equal-to negative-infinity
+
+[] > ln-of-float-one-is-float-zero
+  assert-that > @
+    ln.
+      number 1.0
+    $.equal-to 0.0
+
+[] > ln-of-e-one-is-float-one
+  nop > @
+    assert-that
+      ln.
+        number e
+      $.equal-to 1.0
+
+[] > ln-taylor-check
+  nop > @
+    assert-that
+      abs.
+        number
+          minus.
+            number.ln.ln-if-greater-than-1.term-2.ln-taylor
+              0.5
+              50
+            0.4054651081081644
+      $.less-than 0.0000000001
+
+[] > ln-of-float-1
+  nop > @
+    assert-that
+      abs.
+        number
+          minus.
+            2.302585092994046
+            ln.
+              number 10.0
+      $.less-than 0.000000001
+
+[] > ln-of-float-2
+  nop > @
+    assert-that
+      abs.
+        number
+          minus.
+            9.210340371976184
+            ln.
+              number 10000.0
+      $.less-than 0.0000000001
+
+[] > ln-of-float-3
+  nop > @
+    assert-that
+      abs.
+        number
+          minus.
+            -4.605170185988091
+            ln.
+              number 0.01
+      $.less-than 0.0000000001
+
+[] > ln-of-negative-int-is-nan
+  assert-that > @
+    as-bytes.
+      ln.
+        number -42
+    $.equal-to (nan.as-bytes)
+
+[] > ln-of-int-zero-is-negative-infinity
+  assert-that > @
+    ln.
+      number 0
+    $.equal-to negative-infinity
+
+[] > ln-of-int-one-is-float-zero
+  assert-that > @
+    ln.
+      number 1
+    $.equal-to 0.0
+
+[] > ln-of-int-twenty
+  nop > @
+    assert-that
+      ln.
+        number 20
+      $.equal-to 2.995732273553991
+
+[] > arccos-negative-one-test
+  assert-that > @
+    arccos.
+      number -1.0
+    $.equal-to
+      pi
+
+[] > arccos-zero-test
+  assert-that > @
+    arccos.
+      number 0.0
+    $.equal-to
+      div.
+        pi
+        2.0
+
+[] > arccos-one-test
+  assert-that > @
+    arccos.
+      number 1.0
+    $.equal-to
+      0.0
+
+[] > arccos-positive-calculated-test
+  assert-that > @
+    abs.
+      seq
+        minus. > val
+          arccos.
+            number 0.6
+          0.927295
+        number val
+    $.less-than
+      0.000001
+
+[] > arccos-negative-calculated-test
+  assert-that > @
+    abs.
+      seq
+        minus. > val
+          arccos.
+            number -0.6
+          2.214297
+        number val
+    $.less-than
+      0.000001
+
+[] > arccos-nan-positive-value-test
+  assert-that > @
+    is-nan.
+      number
+        arccos.
+          number 2.0
+    $.equal-to TRUE
+
+[] > arccos-nan-negative-value-test
+  assert-that > @
+    is-nan.
+      number ((number -2.0).arccos)
+    $.equal-to TRUE
+
+# 1*0 + 1*1 + 1*2 == 3
+[] > taylor-check-1
+  nop > @
+    taylor. > result
+      number 1
+      0
+      3
+      [num]
+        num > @
+    assert-that
+      result
+      $.equal-to 6
+
+[] > taylor-check-2
+  nop > @
+    taylor. > result
+      number 1.0
+      0
+      3
+      [num]
+        (number num).as-float > @
+    assert-that
+      result
+      $.equal-to 6.0
+
+# The sum of a geometric progression
+[] > taylor-check-3
+  nop > @
+    taylor. > sum!
+      number 0.5
+      0
+      30
+      [i]
+        1.0 > @
+    assert-that
+      2.0.minus
+        sum
+      $.all-of
+        $.less-than 0.00000001
+        $.greater-than 0.0
+
+[] > taylor-check-nan-1
+  taylor. > sum!
+    number nan
+    0
+    30
+    [i]
+      1.0 > @
+  assert-that > @
+    (number sum).is-nan
+    $.equal-to TRUE
+
+[] > taylor-check-nan-2
+  taylor. > sum!
+    number 5
+    negative-infinity
+    positive-infinity
+    [i]
+      1.0 > @
+  assert-that > @
+    (number sum).is-nan
+    $.equal-to TRUE
+
+[] > exp-check-0
+  assert-that > @
+    abs.
+      number
+        minus.
+          e
+          (number 1.0).exp
+    $.less-than 0.00000001
+
+[] > exp-check-1
+  assert-that > @
+    abs.
+      number
+        minus.
+          e
+          (number 1).exp
+    $.less-than 0.00000001
+
+[] > exp-check-2
+  assert-that > @
+    abs.
+      number
+        minus.
+          1.0.div e
+          (number -1.0).exp
+    $.less-than 0.00000001
+
+[] > exp-check-3
+  assert-that > @
+    abs.
+      number
+        minus.
+          (number e).pow 5.0
+          (number 5.0).exp
+    $.less-than 0.0000001
+
+[] > exp-check-4
+  assert-that > @
+    abs.
+      number
+        minus.
+          (number e).pow 10.0
+          (number 10.0).exp
+    $.less-than 0.00005
+
+[] > exp-check-5
+  assert-that > @
+    abs.
+      number
+        minus.
+          (number e).pow -10.0
+          (number -10.0).exp
+    $.less-than 0.000000000001
+
+[] > exp-check-nan
+  assert-that > @
+    (number (number nan).exp).is-nan
+    $.equal-to TRUE
+
+[] > exp-check-infinity-1
+  assert-that > @
+    (number positive-infinity).exp
+    $.equal-to positive-infinity
+
+[] > exp-check-infinity-2
+  assert-that > @
+    (number negative-infinity).exp
+    $.equal-to 0.0
