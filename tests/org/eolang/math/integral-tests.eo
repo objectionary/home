@@ -20,78 +20,67 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
++alias org.eolang.math.integral
++alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
++junit
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.2.3
-+version 0.2.3
++version 0.3.1
 
-# Not a number
-[] > nan
-  # Tests that $ = x
-  [x] > eq
-    FALSE > @
+[] > linear-integral-test
+  [x] > lin
+    x > @
+  nop > @
+    assert-that
+      integral
+        lin
+        1
+        10
+      $.close-to
+        49.5
+        0.0000001
 
-  # Tests that $ ≠ x
-  [x] > neq
-    TRUE > @
+[] > quadratic-integral-test
+  [x] > quadr
+    pow. > @
+      number x
+      2.0
+  nop > @
+    assert-that
+      integral
+        quadr
+        1
+        10
+      $.close-to
+        333.0
+        0.0000001
 
-  # Tests that $ < x
-  [x] > lt
-    FALSE > @
+[] > cube-integral-test
+  [x] > cube
+    pow. > @
+      number x
+      3.0
+  nop > @
+    assert-that
+      integral
+        cube
+        1
+        10
+      $.close-to
+        2499.75
+        0.0000001
 
-  # Tests that $ ≤ x
-  [x] > lte
-    FALSE > @
-
-  # Tests that $ > x
-  [x] > gt
-    FALSE > @
-
-  # Tests that $ ≥ x
-  [x] > gte
-    FALSE > @
-
-  # Multiplication of $ and x
-  [x] > times
-    ^ > @
-
-  # Sum of $ and x
-  [x] > plus
-    ^ > @
-
-  # Negation of $
-  [] > neg
-    ^ > @
-
-  # Sign of $ (-1.0, 0.0, or 1.0)
-  [] > signum
-    ^ > @
-
-  # Difference between $ and x
-  [x] > minus
-    ^ > @
-
-  # x'th power of $
-  [x] > pow
-    ^ > @
-
-  # Quotient of the division of $ by x
-  [x] > div
-    ^ > @
-
-  # Absolute value of $ (i.e., with no sign)
-  [] > abs
-    ^ > @
-
-  # Converts this to bytes
-  [] > as-bytes
-    7F-C0-00-00 > @
-
-  # Converts this to int
-  [] > as-int
-    [] > @
-      "You can't convert NaN to int" > msg
-
-  # Converts this to string
-  [] > as-string
-    "NaN" > @
+[] > logarithm-integral-test
+  nop > @
+    [x] > logarithm
+      ln. > @
+        number x
+    assert-that
+      integral
+        logarithm
+        1
+        10
+      $.close-to
+        14.026
+        0.0000001

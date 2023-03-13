@@ -23,12 +23,12 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.0.4
-+version 0.0.4
++rt jvm org.eolang:eo-strings:0.2.0
++version 0.2.0
 
 # Reads formatted input from a string.
 # This object with two free attributes:
 # 1. format - is a formatter string (e.g. "Hello, %s!")
 # 2. read - is a string where data exists (e.g. "Hello, John!")
-# returns an array of formatted values (e.g. * "John").
-[format read] > sscanf /array
+# returns an tuple of formatted values (e.g. * "John").
+[format read] > sscanf /tuple

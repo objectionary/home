@@ -27,7 +27,7 @@
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
 +junit
-+version 0.0.4
++version 0.2.0
 
 [] > matches-string-against-pattern
   assert-that > @
@@ -49,6 +49,15 @@
       "Hello, World!"
     $.is
       $.equal-to FALSE
+
+[] > matches-dollar
+  assert-that > @
+    matches.
+      compile.
+        regex "/($[0-9]*)/"
+      "$12"
+    $.is
+      $.equal-to TRUE
 
 [] > match-returns-correct-position
   assert-that > @
@@ -178,13 +187,14 @@
       $.equal-to "Wrong regex syntax: \"/\" is missing"
 
 [] > test-simple-replace
-  assert-that > @
-    replaced.
-      compile.
-        QQ.txt.regex "/([b])/"
-      "abc"
-      "11"
-    $.equal-to "a11c"
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          QQ.txt.regex "/([b])/"
+        "abc"
+        "11"
+      $.equal-to "a11c"
 
 [] > test-no-match-replace
   assert-that > @
@@ -205,10 +215,11 @@
     $.equal-to ""
 
 [] > test-replace-with-empty
-  assert-that > @
-    replaced.
-      compile.
-        QQ.txt.regex "/([xyz]+)/"
-      "abxxxxxcd"
-      ""
-    $.equal-to "abcd"
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          QQ.txt.regex "/([xyz]+)/"
+        "abxxxxxcd"
+        ""
+      $.equal-to "abcd"

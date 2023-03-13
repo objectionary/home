@@ -20,11 +20,44 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.list
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
 +rt jvm org.eolang:eo-math:0.3.1
 +version 0.3.1
 
-# The Euler's number
-[] > e
-  2.7182818284590452354 > @
+# Series
+[arr] > series
+  arr > @
+
+  # Find max element in the array
+  [] > max
+    list ^ > self-as-list!
+
+    if. > @
+      self-as-list.is-empty
+      error "Can't get max of empty array"
+      reduced.
+        self-as-list
+        self-as-list.at 0
+        [max item]
+          if. > @
+            item.gt max
+            item
+            max
+
+  # Find min element in the array
+  [] > min
+    list ^ > self-as-list!
+
+    if. > @
+      self-as-list.is-empty
+      error "Can't get min of empty array"
+      reduced.
+        self-as-list
+        self-as-list.at 0
+        [min item]
+          if. > @
+            min.gt item
+            item
+            min

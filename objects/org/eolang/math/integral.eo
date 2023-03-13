@@ -20,11 +20,64 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
 +rt jvm org.eolang:eo-math:0.3.1
 +version 0.3.1
 
-# The Euler's number
-[] > e
-  2.7182818284590452354 > @
+# Counts integral from a to b
+[fun a b] > integral
+  [fun a b] > subsection
+    times. > @
+      div.
+        minus.
+          b
+          a
+        6.0
+      plus.
+        fun a
+        times.
+          4.0
+          fun
+            div.
+              plus.
+                a
+                b
+              2.0
+        fun b
+
+  memory > sum
+    0.0
+  memory > x
+    (number a).as-float
+  (number b).as-float > y!
+  100.0 > n!
+  div. > h!
+    minus.
+      y
+      x
+    n
+  seq > @
+    while.
+      lt.
+        plus.
+          x
+          h
+        y
+      [i]
+        seq > @
+          sum.write
+            plus.
+              sum
+              subsection
+                fun
+                x
+                plus.
+                  x
+                  h
+          x.write
+            plus.
+              x
+              h
+    sum

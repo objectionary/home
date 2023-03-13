@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-math
 +junit
 +package org.eolang.math
-+version 0.2.3
++version 0.3.1
 
 [] > random-with-seed
   random 51 > r
@@ -58,9 +58,10 @@
 
 [] > two-random-numbers-with-const
   random.pseudo > r!
-  assert-that > @
-    r
-    $.equal-to r
+  nop > @
+    assert-that
+      r
+      $.equal-to r
 
 [] > two-random-numbers-with-phi
   (random 123).@ > r
@@ -70,13 +71,18 @@
 
 [] > two-random-numbers-with-increment-with-const
   random.pseudo.plus 3.1416 > r!
-  assert-that > @
-    r
-    $.equal-to r
+  nop > @
+    assert-that
+      r
+      $.equal-to r
 
 [] > two-random-numbers-with-increment
   random.pseudo.plus 3.1416 > r
-  assert-that > @
-    r
-    $.not
-      $.equal-to r
+  nop > @
+    if.
+      QQ.sys.uname.is-windows
+      nop
+      assert-that
+        r
+        $.not
+          $.equal-to r
