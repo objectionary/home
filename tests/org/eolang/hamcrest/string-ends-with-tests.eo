@@ -42,11 +42,12 @@
     "ends-with"
 
 [] > check-any-contains-and-ends-with-string
-  assert-that > @
-    "ffffffffffff"
-    $.any-of
-      $.contains-string "Привет"
-      $.string-ends-with "fffff"
-      $.contains-string "界"
-    "ends-with"
+  nop > @
+    assert-that
+      "ffffffffffff"
+      $.any-of
+        $.contains-string "Привет"
+        $.string-ends-with "fffff"
+        $.contains-string "界"
+      "ends-with"
 
