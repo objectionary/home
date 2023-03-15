@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-sys
 +junit
 +package org.eolang.sys
-+version 0.0.6
++version 0.0.8
 
 # Making a syscall 'getpid' and compares the result
 # with zero: the PID should definitely be larger.
@@ -41,18 +41,17 @@
 # to the console.
 [] > prints-to-console
   "Hello, друг!" > msg
-  nop > @
-    if.
-      QQ.sys.uname.is-windows
-      nop
-      assert-that
-        QQ.sys.call
-          "write"
-          1
-          msg
-          msg.length
-        $.equal-to
-          msg.length
+  if. > @
+    QQ.sys.uname.is-windows
+    nop
+    assert-that
+      QQ.sys.call
+        "write"
+        1
+        msg
+        msg.length
+      $.equal-to
+        msg.length
 
 [] > get-time-of-day-test
   if. > @
