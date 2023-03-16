@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-sys
 +junit
 +package org.eolang.sys
-+version 0.0.8
++version 0.0.9
 
 # Making a syscall 'getpid' and compares the result
 # with zero: the PID should definitely be larger.
