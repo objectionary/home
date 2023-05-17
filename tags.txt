@@ -1,9 +1,9 @@
-b875d42c656c9275b10afce196672c7e74b05dec	gh-pages
-b9819fbc2c96e8ee01aea3bdfb681dd06d5f2158	master
+cf65ed464bd4a1be2ff90c9fc42812ce1db7b52e	gh-pages
+5667a89d352495545954d049a739548718b1f8f9	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-24be0c26512cdb253ac240767a6b5f6df8a88aad	renovate/eo.version
-ab32b526f38bc3bf96f79d723fd8b7b6f73033e8	renovate/junit5-monorepo
-cfd9bcd379f8db119346717136b23dd8b2b59773	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+cf96a45b1e63699309e38beb8d3179aa19027853	renovate/eo.version
+c7c7d87d0c278ed630fd5091aafa4511b4d9d9f7	renovate/junit5-monorepo
+444eff158fabaa1c6da5cca3b9848f036280770d	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
 15c85d7f8cffe15b0deba96e90bdac98a76293bb	0.23.17
 4b19944d86058e3c81e558340a3a13bc335a2b48	0.23.19

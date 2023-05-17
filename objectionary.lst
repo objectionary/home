@@ -53,6 +53,7 @@ objects/org/eolang/sys/uname.eo
 objects/org/eolang/bool.eo
 objects/org/eolang/positive-infinity.eo
 objects/org/eolang/float.eo
+objects/org/eolang/cti.eo
 objects/org/eolang/switch.eo
 objects/org/eolang/tuple.eo
 objects/org/eolang/try.eo
@@ -115,7 +116,7 @@ tests/org/eolang/txt/text-tests.eo
 tests/org/eolang/txt/sprintf-tests.eo
 tests/org/eolang/txt/sscanf-tests.eo
 tests/org/eolang/txt/regex-tests.eo
-tests/org/eolang/array-tests.eo
+tests/org/eolang/cti-test.eo
 tests/org/eolang/bytes-tests.eo
 tests/org/eolang/negative-infinity-tests.eo
 tests/org/eolang/try-tests.eo
@@ -123,6 +124,7 @@ tests/org/eolang/junit-tests.eo
 tests/org/eolang/io/bytes-as-input-test.eo
 tests/org/eolang/io/stdout-tests.eo
 tests/org/eolang/io/copied-test.eo
+tests/org/eolang/tuple-tests.eo
 tests/org/eolang/nan-tests.eo
 tests/org/eolang/int-tests.eo
 tests/org/eolang/math/angle-tests.eo
@@ -159,3 +161,4 @@ tests/org/eolang/fs/ext-name-test.eo
 tests/org/eolang/fs/file-test.eo
 tests/org/eolang/switch-tests.eo
 tests/org/eolang/memory-tests.eo
+tests/org/eolang/unit-tests.eo
