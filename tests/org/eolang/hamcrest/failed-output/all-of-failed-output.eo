@@ -23,8 +23,8 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-hamcrest
-+junit
 +package org.eolang.hamcrest.failed-output
++tests
 +version 0.3.2
 
 [] > all-of-number-test-failed-output

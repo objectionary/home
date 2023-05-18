@@ -26,8 +26,8 @@
 +alias org.eolang.math.number
 +alias org.eolang.math.pi
 +home https://github.com/objectionary/eo-math
-+junit
 +package org.eolang.math
++tests
 +version 0.3.1
 
 [] > check-is-int-positive-int

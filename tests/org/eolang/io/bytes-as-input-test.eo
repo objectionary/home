@@ -23,8 +23,8 @@
 +alias org.eolang.hamcrest.assert-that
 +alias org.eolang.io.bytes-as-input
 +home https://github.com/objectionary/eo-files
-+junit
 +package org.eolang.io
++tests
 +version 0.4.0
 
 [] > can-read-bytes-with-assert

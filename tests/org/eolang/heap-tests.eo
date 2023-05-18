@@ -24,8 +24,8 @@
 +alias org.eolang.heap
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+tests
 +package org.eolang
++tests
 +version 0.29.4
 
 [] > allocates-and-uses

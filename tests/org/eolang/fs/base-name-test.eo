@@ -23,8 +23,8 @@
 +alias org.eolang.fs.base-name
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-files
-+junit
 +package org.eolang.fs
++tests
 +version 0.4.0
 
 [] > takes-base-name-file

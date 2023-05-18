@@ -25,8 +25,8 @@
 +alias org.eolang.io.copied
 +alias org.eolang.io.memory-as-output
 +home https://github.com/objectionary/eo-files
-+junit
 +package org.eolang.io
++tests
 +version 0.4.0
 
 [] > copies-bytes-from-object-to-memory

@@ -24,8 +24,8 @@
 +alias org.eolang.collections.set
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-collections
-+junit
 +package org.eolang.collections
++tests
 +version 0.0.8
 
 [] > set-works

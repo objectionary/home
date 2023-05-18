@@ -22,8 +22,8 @@
 
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-hamcrest
-+junit
 +package org.eolang.hamcrest.failed-output
++tests
 +version 0.3.2
 
 [] > two-sum-described-as-equal-to-test-failed-output
