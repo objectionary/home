@@ -20,25 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
 +alias org.eolang.io.bytes-as-input
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.io
-+version 0.3.5
++version 0.4.0
 
-[] > can-read-bytes
+[] > can-read-bytes-with-assert
   bytes-as-input > i
     01-02-03-04-05-06-07-08-F5-F6
   i.read 4 > i1
   i1.read 4 > i2
   i2.read 4 > i3
-  and. > @
-    eq.
-      i1
-      01-02-03-04
-    eq.
-      i2
-      05-06-07-08
-    eq.
-      i3
-      F5-F6
+  assert-that > @
+    and.
+      eq.
+        i1
+        01-02-03-04
+      eq.
+        i2
+        05-06-07-08
+      eq.
+        i3
+        F5-F6
+    $.equal-to
+      TRUE

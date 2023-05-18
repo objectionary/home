@@ -20,17 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.hamcrest.assert-that
 +alias org.eolang.io.bytes-as-input
 +alias org.eolang.io.copied
 +alias org.eolang.io.memory-as-output
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.io
-+version 0.3.5
++version 0.4.0
 
 [] > copies-bytes-from-object-to-memory
   memory -- > m
-  eq. > @
+  assert-that > @
     copied
       bytes-as-input
         as-bytes.
@@ -38,4 +39,6 @@
       memory-as-output
         m
       4
-    17
+    $.equal-to
+      17
+

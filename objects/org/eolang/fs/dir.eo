@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.fs
-+rt jvm org.eolang:eo-files:0.3.5
-+version 0.3.5
++rt jvm org.eolang:eo-files:0.4.0
++version 0.4.0
 
 [file] > dir
   file > @
@@ -37,7 +37,7 @@
 
   # Go though all files in the directory, recursively
   # finding them with the "glob" provided.
-  [glob] > walk /array
+  [glob] > walk /tuple
 
   # Delete directory and all files in it, recursively.
   # Always returns TRUE.

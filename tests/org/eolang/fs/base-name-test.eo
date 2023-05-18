@@ -21,13 +21,15 @@
 # SOFTWARE.
 
 +alias org.eolang.fs.base-name
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.fs
-+version 0.3.5
++version 0.4.0
 
 [] > takes-base-name-file
-  eq. > @
+  assert-that > @
     base-name
       "/tmp/foo/hello.gz"
-    "hello.gz"
+    $.equal-to
+      "hello.gz"

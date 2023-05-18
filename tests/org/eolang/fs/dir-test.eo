@@ -22,60 +22,71 @@
 
 +alias org.eolang.fs.dir
 +alias org.eolang.fs.tmpdir
++alias org.eolang.hamcrest.assert-that
 +alias org.eolang.io.bytes-as-input
 +alias org.eolang.io.copied
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.fs
-+version 0.3.5
++version 0.4.0
 
 [] > makes-the-same-temp-file
   tmpdir.tmpfile > f!
-  eq. > @
+  assert-that > @
     f
-    f
+    $.equal-to
+      f
 
 [] > makes-new-directory
   tmpdir.tmpfile > f!
   dir > d
     f.resolve "new-dir"
-  and. > @
-    f.rm
-    d.mkdir
-    d.exists
-    d.is-dir
+  assert-that > @
+    and.
+      f.rm
+      d.mkdir
+      d.exists
+      d.is-dir
+    $.equal-to
+      TRUE
 
 [] > makes-new-directory-on-top-of-file
   tmpdir.tmpfile > f!
   dir f > d
-  and. > @
-    d.rm
-    d.mkdir
-    d.exists
-    d.is-dir
+  assert-that > @
+    and.
+      d.rm
+      d.mkdir
+      d.exists
+      d.is-dir
+    $.equal-to
+      TRUE
 
 [] > deletes-recursively
   tmpdir.tmpfile > f!
   dir f > d
-  and. > @
-    d.rm
-    d.mkdir
-    eq.
-      copied
-        bytes-as-input
-          "Hello, world".as-bytes
-        as-output.
-          d.resolve "test.txt"
-          "w"
-        1024
-      12
-    d.rm-rf
-    d.exists.not
+  assert-that > @
+    and.
+      d.rm
+      d.mkdir
+      eq.
+        copied
+          bytes-as-input
+            "Hello, world".as-bytes
+          as-output.
+            d.resolve "test.txt"
+            "w"
+          1024
+        12
+      d.rm-rf
+      d.exists.not
+    $.equal-to
+      TRUE
 
 [] > walks-recursively
   tmpdir.tmpfile > f!
   dir f > d
-  and. > @
+  seq > directory
     d.rm
     d.mkdir
     mkdir.
@@ -86,8 +97,10 @@
       dir
         d.resolve "x/y/z"
     (d.resolve "x/y/z/a.txt").touch
-    eq.
-      length.
-        d.walk
-          "**/*.txt"
+    d
+  assert-that > @
+    length.
+      directory.walk
+        "**/*.txt"
+    $.equal-to
       2

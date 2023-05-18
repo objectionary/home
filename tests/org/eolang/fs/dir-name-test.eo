@@ -21,13 +21,21 @@
 # SOFTWARE.
 
 +alias org.eolang.fs.dir-name
++alias org.eolang.hamcrest.assert-that
++alias org.eolang.sys.uname
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.fs
-+version 0.3.5
++version 0.4.0
 
 [] > takes-name-of-directory
-  eq. > @
+  assert-that > @
     dir-name
       "/tmp/foo/hello.gz"
-    "/tmp/foo"
+    $.equal-to
+      if.
+        or.
+          uname.is-unix
+          uname.is-macos
+        "/tmp/foo"
+        "\\tmp\\foo"

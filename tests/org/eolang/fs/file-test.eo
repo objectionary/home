@@ -25,40 +25,52 @@
 +alias org.eolang.io.bytes-as-input
 +alias org.eolang.io.copied
 +alias org.eolang.txt.sprintf
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-files
 +junit
 +package org.eolang.fs
-+version 0.3.5
++version 0.4.0
 
 [] > compares-to-same-file
-  eq. > @
+  assert-that > @
     file "/tmp/foo.txt"
-    file "/tmp/foo.txt"
+    $.equal-to
+      file "/tmp/foo.txt"
 
 [] > compares-to-another-file
-  not. > @
-    eq.
-      file "/tmp/foo.txt"
-      file "/tmp/bar.txt"
+  assert-that > @
+    file "/tmp/foo.txt"
+    $.not
+      $.equal-to
+        file "/tmp/bar.txt"
 
 [] > check-if-it-is-directory
-  is-dir. > @
-    file
-      "."
+  assert-that > @
+    is-dir.
+      file
+        "."
+    $.equal-to
+      TRUE
 
 [] > check-if-file-exists
-  not. > @
-    exists.
-      file
-        "some-absent-file.txt"
+  assert-that > @
+    not.
+      exists.
+        file
+          "some-absent-file.txt"
+    $.equal-to
+      TRUE
 
 [] > touches-a-file
   tmpdir.tmpfile > f!
-  and. > @
-    f.rm
-    f.exists.not
-    f.touch
-    f.exists
+  assert-that > @
+    and.
+      f.rm
+      f.exists.not
+      f.touch
+      f.exists
+    $.equal-to
+      TRUE
 
 [] > moves-a-file
   tmpdir.tmpfile.@ > src!
@@ -66,47 +78,62 @@
     sprintf
       "%s.dest"
       src
-  seq > @
-    src.touch
-    src.mv dest
-    dest.exists
-    src.exists.not
+  assert-that > @
+    seq
+      src.touch
+      src.mv dest
+      dest.exists
+      src.exists.not
+    $.equal-to
+      TRUE
 
 [] > deletes-single-file-in-temp
-  rm. > @
-    tmpfile.
-      tmpdir
+  assert-that > @
+    rm.
+      tmpfile.
+        tmpdir
+    $.equal-to
+      TRUE
 
 [] > makes-the-same-temp-file
   tmpdir.tmpfile > f!
-  eq. > @
+  assert-that > @
     f
-    f
+    $.equal-to
+      f
 
 [] > writes-string-to-file
   tmpdir.tmpfile > f!
-  eq. > @
+  assert-that > @
     copied
       bytes-as-input
         as-bytes.
           "你好, друг!"
       f.as-output "w+"
       4
-    17
+    $.equal-to
+      17
 
 [] > measures-empty-file-size
   tmpdir.tmpfile > f!
-  and. > @
-    f.touch
-    f.size.eq 0
+  assert-that > @
+    and.
+      f.touch
+      f.size.eq 0
+    $.equal-to
+      TRUE
+
 
 [] > measures-file-size
   tmpdir.tmpfile > f!
-  eq. > @
-    copied
-      bytes-as-input
-        as-bytes.
-          "hey!"
-      f.as-output "w+"
-      100
-    f.size
+  "hey!" > line
+  nop > @
+    assert-that
+      copied
+        bytes-as-input
+          as-bytes.
+            line
+        f.as-output "w+"
+        100
+      $.equal-to
+        f.size

@@ -22,14 +22,13 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.3.5
-+version 0.3.5
++rt jvm org.eolang:eo-files:0.4.0
++version 0.4.0
 
 # Makes an input from bytes. In most cases you don't
 # need to specify the last two arguments, only the first
 # one: the bytes to read.
 [b next buf] > bytes-as-input
-
   buf > @
 
   # Read the next chunk of bytes and

@@ -22,12 +22,11 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.3.5
-+version 0.3.5
++rt jvm org.eolang:eo-files:0.4.0
++version 0.4.0
 
 # Turns memory into an output.
 [m] > memory-as-output
-
   m > @
 
   # Write the next chunk of bytes and
