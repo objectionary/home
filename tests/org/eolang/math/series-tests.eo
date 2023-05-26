@@ -20,12 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.hamcrest.assert-that
 +alias org.eolang.math.series
++alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
 +tests
-+version 0.3.1
++version 0.4.0
 
 [] > max-of-empty-array
   assert-that > @
