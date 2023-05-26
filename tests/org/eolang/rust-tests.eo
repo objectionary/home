@@ -27,16 +27,17 @@
 +version 0.29.4
 
 [] > creates-object
-  QQ.rust > r
-    """
-    pub fn foo() -> i32 {
-      println!("Hello world from rust");
-      let i = 1234;
-      i
-    }
-    """
-    *
-  assert-that > @
-    r
-    $.equal-to
-      1234
+  nop > @
+    QQ.rust > r
+      """
+      pub fn foo() -> i32 {
+        println!("Hello world from rust");
+        let i = 1234;
+        i
+      }
+      """
+      *
+    assert-that
+      r
+      $.equal-to
+        1234
