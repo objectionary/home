@@ -58,6 +58,7 @@ objects/org/eolang/switch.eo
 objects/org/eolang/tuple.eo
 objects/org/eolang/try.eo
 objects/org/eolang/collections/set.eo
+objects/org/eolang/collections/hash-code-of.eo
 objects/org/eolang/collections/multimap.eo
 objects/org/eolang/collections/map.eo
 objects/org/eolang/collections/range.eo
@@ -148,6 +149,7 @@ tests/org/eolang/as-phi-tests.eo
 tests/org/eolang/heap-tests.eo
 tests/org/eolang/goto-tests.eo
 tests/org/eolang/collections/bytes-as-array-tests.eo
+tests/org/eolang/collections/hash-code-of-tests.eo
 tests/org/eolang/collections/list-tests.eo
 tests/org/eolang/collections/map-tests.eo
 tests/org/eolang/collections/range-tests.eo
