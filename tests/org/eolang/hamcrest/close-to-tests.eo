@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
 +tests
-+version 0.3.2
++version 0.4.0
 
 [] > float-is-close-to-float-with-delta-test
   assert-that > @
@@ -40,3 +40,42 @@
   assert-that > @
     -123456789.123456
     $.close-to -123456789.0 0.2
+
+[] > check-switch-close-1
+  assert-that > @
+    switch
+      *
+        TRUE
+        1.0
+    $.close-to
+      1.0
+      0.1
+
+[] > slow-test-with-switch
+  assert-that > @
+    switch
+      *
+        TRUE
+        switch
+          *
+            TRUE
+            1.0
+    $.close-to
+      1.0
+      0.1
+
+[] > switch-in-switch-in-switch-close-to
+  assert-that > @
+    switch
+      *
+        TRUE
+        switch
+          *
+            TRUE
+            switch
+              *
+                TRUE
+                1.0
+    $.close-to
+      1.0
+      0.1

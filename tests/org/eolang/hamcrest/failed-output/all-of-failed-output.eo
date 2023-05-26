@@ -25,8 +25,12 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.failed-output
 +tests
-+version 0.3.2
++version 0.4.0
 
+# @todo #167:45min To add more tests with a new
+#  assert-twice-that object to make sure failed output messages
+#  work well. This task is only about failed tests,
+#  for successfully passed tests there will be another one.
 [] > all-of-number-test-failed-output
   [] > suggestion
     assert-that > @
@@ -64,4 +68,4 @@
       "all of conditions"
   assert-that > @
     suggestion
-    $.equal-to "all of conditions\nExpected: <1.0> equal to value and <100.0> less than value and a numeric value within <20.0> of <2.2>\n     but: a value was <42.0>"
+    $.equal-to "all of conditions\nExpected: <1.0> equal to value and <100.0> less than value and a float value within <20.0> of <2.2>\n     but: a value was <42.0>"
