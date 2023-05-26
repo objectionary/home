@@ -46,10 +46,6 @@
 +rt jvm org.eolang:eo-hamcrest:0.4.0
 +version 0.4.0
 
-# @todo #167:45min Make this object decorates
-#  another one (let's call it assert). Which will
-#  be an interface for assert-that and assert-twice-that
-#  objects to avoid matchers duplication.
 # Main object for assertions with multiply dataization of actual object.
 # It should dataize twice only when we get FALSE mathcing result from the first dataization.
 [actual matcher reasons...] > assert-twice-that
