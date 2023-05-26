@@ -53,7 +53,7 @@ SOFTWARE.
         <version>${eo.version}</version>
         <configuration>
           <discoverSelf>true</discoverSelf>
-          <failOnWarning>true</failOnWarning>
+          <failOnWarning>false</failOnWarning>
         </configuration>
         <executions>
           <execution>

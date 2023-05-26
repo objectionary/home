@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.8
-+version 0.0.8
++rt jvm org.eolang:eo-collections:0.0.9
++version 0.0.9
 
 # Range — create an array containing a range of elements
 # Here "start" must be a abstract object that must have an object "next" to get

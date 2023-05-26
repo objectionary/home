@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.0.8
++version 0.0.9
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -80,6 +80,50 @@
   assert-that > @
     (list xs).is-empty.not
     $.equal-to TRUE
+
+[] > simple-insert
+  assert-that > @
+    withi.
+      list
+        * 1 2 3 4 5
+      3
+      "hello"
+    $.equal-to
+      list
+        * 1 2 3 "hello" 4 5
+
+[] > insert-with-zero-index
+  assert-that > @
+    withi.
+      list
+        * 1 2 3 4 5
+      0
+      "hello"
+    $.equal-to
+      list
+        * "hello" 1 2 3 4 5
+
+[] > insert-with-negative-index
+  assert-that > @
+    withi.
+      list
+        * 1 2 3 4 5
+      -10
+      "hello"
+    $.equal-to
+      list
+        * "hello" 1 2 3 4 5
+
+[] > insert-with-length-index
+  assert-that > @
+    withi.
+      list
+        * 1 2 3 4 5
+      5
+      "hello"
+    $.equal-to
+      list
+        * 1 2 3 4 5 "hello"
 
 # reduce with index test
 [] > reduce-with-index-test
