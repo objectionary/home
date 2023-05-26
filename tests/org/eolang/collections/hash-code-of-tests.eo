@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2022 Yegor Bugayenko
+# Copyright (c) 2021-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,49 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.hash-code-of
++alias org.eolang.hamcrest.assert-that
++alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
++junit
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.9
 +version 0.0.9
 
-[b] > bytes-as-array
-  slice-byte > @
-    *
-    0
-  [a i] > slice-byte
-    if. > @
-      i.lt
-        b.size
-      ^.slice-byte
-        a.with (b.slice i 1)
-        i.plus 1
-      a
+[] > hash-code-bools-is-integer
+  assert-that > @
+    and.
+      is-int.
+        number
+          hash-code-of TRUE
+      is-int.
+        number
+          hash-code-of FALSE
+    $.equal-to TRUE
+
+[] > hash-of-int-is-int
+  assert-that > @
+    is-int.
+      number
+        hash-code-of 42
+    $.equal-to TRUE
+
+[] > hash-codes-of-the-same-numbers-are-equal
+  42 > forty-two!
+  assert-that > @
+    hash-code-of forty-two
+    $.equal-to
+      hash-code-of forty-two
+
+[] > hash-code-of-the-same-strings-are-equal
+  "hello" > str!
+  assert-that > @
+    hash-code-of str
+    $.equal-to
+      hash-code-of str
+
+[] > hash-code-of-different-numbers-are-different
+  assert-that > @
+    hash-code-of 42
+    $.not
+      $.equal-to
+        hash-code-of 24

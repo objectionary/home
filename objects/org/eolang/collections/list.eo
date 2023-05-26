@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.8
-+version 0.0.8
++rt jvm org.eolang:eo-collections:0.0.9
++version 0.0.9
 
 [arr] > list
   arr > @
@@ -41,6 +41,23 @@
       with.
         arr
         x
+
+  # Create a new list with an element inserted by
+  # the provided index.
+  [i x] > withi
+    concat. > @
+      with.
+        head.
+          list
+            arr
+          i
+        x
+      tail.
+        list
+          arr
+        minus.
+          arr.length
+          i
 
   # Reduce with index from start "a" using the function "f".
   # Here "f" must be an abstract

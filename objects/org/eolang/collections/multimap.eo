@@ -24,8 +24,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.8
-+version 0.0.8
++rt jvm org.eolang:eo-collections:0.0.9
++version 0.0.9
 
 [m] > multimap
   memory 0 > elements-amount

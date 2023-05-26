@@ -20,20 +20,57 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.bytes-as-array
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +rt jvm org.eolang:eo-collections:0.0.9
 +version 0.0.9
 
-[b] > bytes-as-array
-  slice-byte > @
+# Hash code - the pseudo-unique integer representation of an object.
+# Here "h" must be an object that can be converted to bytes via "as-bytes"
+# object.
+[h] > hash-code-of
+  switch > @
     *
-    0
-  [a i] > slice-byte
-    if. > @
-      i.lt
-        b.size
-      ^.slice-byte
-        a.with (b.slice i 1)
-        i.plus 1
-      a
+      eq.
+        h.as-bytes > h-as-bytes!
+        01-
+      1232
+    *
+      h-as-bytes.eq 00-
+      1237
+    *
+      h-as-bytes.size.eq 8
+      as-int.
+        xor.
+          h-as-bytes
+          h-as-bytes.right 32
+    *
+      TRUE
+      []
+        [acc index bytes zero-as-bytes] > rec-hash-code
+          if. > @
+            index.eq bytes.length
+            acc
+            rec-hash-code
+              plus.
+                times.
+                  31
+                  acc
+                as-int.
+                  right.
+                    zero-as-bytes.and
+                      bytes.at index
+                    54
+              index.plus 1
+              bytes
+              zero-as-bytes
+
+        0.as-bytes > zero-as-bytes!
+
+        rec-hash-code > @
+          1
+          0
+          bytes-as-array
+            h-as-bytes
+          zero-as-bytes

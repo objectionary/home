@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.0.8
++version 0.0.9
 
 [] > rebuild-do-not-crush
   * 1 2 > harr
