@@ -1,5 +1,5 @@
-f99ffb3ce60b48a8122831cafb400b5705a69a80	gh-pages
-6bc5246ade8b26ff1a49771d80e645ea1754418b	master
+289f73141f187b9af1557b54bd720b41a98f242b	gh-pages
+b2563c29cd7722aefb493a508a9e9a4168f7a366	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
 7a2d667dfc6a9c1aef43e88b71b4a420a7e359f6	renovate/eo.version
 f50c544b86e73903c638d4e6830e2ff1f9091021	renovate/junit5-monorepo
