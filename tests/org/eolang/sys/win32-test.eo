@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-sys
 +package org.eolang.sys
 +tests
-+version 0.0.9
++version 0.0.10
 
 # Making a Win32 'GetCurrentProcessId' function call and compares the result
 # with zero: the PID should definitely be larger.

@@ -23,8 +23,8 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-sys
 +package org.eolang.sys
-+rt jvm org.eolang:eo-sys:jar-with-dependencies:0.0.9
-+version 0.0.9
++rt jvm org.eolang:eo-sys:jar-with-dependencies:0.0.10
++version 0.0.10
 
 # Represents information about operating system.
 # See https://man7.org/linux/man-pages/man2/uname.2.html

@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-sys
 +package org.eolang.sys
 +tests
-+version 0.0.9
++version 0.0.10
 
 # Checks what is the family of the OS
 [] > checks-os-family
