@@ -1,9 +1,9 @@
-289f73141f187b9af1557b54bd720b41a98f242b	gh-pages
-b2563c29cd7722aefb493a508a9e9a4168f7a366	master
+474da5003fcb0d36bf6db5d18710a807b8e0a923	gh-pages
+6172ebf63b29609aefcd1533e509e8ffa7a6330a	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-7a2d667dfc6a9c1aef43e88b71b4a420a7e359f6	renovate/eo.version
-f50c544b86e73903c638d4e6830e2ff1f9091021	renovate/junit5-monorepo
-fc7a536a6ee0b70ab4cb8d4d8797573511d28e68	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+24e1b1a9590bd9cf502a0f1b5cf0249bec9f1eaa	renovate/jamesives-github-pages-deploy-action-4.x
+549993a936bd53cc888ec8d94e3521a83fba5c43	renovate/junit5-monorepo
+304522c075309f79a591b21cabc1aaaa8539e5a6	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
 15c85d7f8cffe15b0deba96e90bdac98a76293bb	0.23.17
 4b19944d86058e3c81e558340a3a13bc335a2b48	0.23.19
