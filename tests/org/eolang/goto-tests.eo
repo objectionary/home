@@ -25,9 +25,9 @@
 +alias org.eolang.io.stdout
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+package org.eolang
 +tests
-+version 0.29.4
++package org.eolang
++version 0.29.5
 
 [] > goto-jumps-backwards
   memory 0 > i
