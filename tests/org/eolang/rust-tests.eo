@@ -36,7 +36,8 @@
     }
     """
     *
-  assert-that > @
-    r
-    $.equal-to
-      1234
+  nop > @
+    assert-that
+      r
+      $.equal-to
+        1234
