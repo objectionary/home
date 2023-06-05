@@ -26,7 +26,7 @@ SHELL := /bin/bash
 .ONESHELL:
 
 all:
-	mvn -X --update-snapshots --errors --batch-mode test
+	mvn -e --update-snapshots --errors --batch-mode test
 
 clean:
 	mvn clean
