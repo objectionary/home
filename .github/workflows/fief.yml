@@ -21,7 +21,9 @@ jobs:
             --include polystat/* \
             --exclude objectionary/.github \
             --exclude polystat/.github \
-            --to gh-pages
+            --to html
+      - run: mkdir gh-pages
+      - run: cp html/index.html gh-pages/fief.html
       - uses: JamesIves/github-pages-deploy-action@v4.4.2
         with:
           branch: gh-pages
