@@ -1,0 +1,2 @@
+eo-strings:0.2.0
+eo-collections:0.0.9
