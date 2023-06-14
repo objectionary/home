@@ -1,0 +1,29 @@
+---
+name: fief
+on:
+  schedule:
+    - cron: "13 4 * * *"
+concurrency:
+  group: fief
+  cancel-in-progress: true
+jobs:
+  fief:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - run: gem install fief
+      - run: |
+          bin/fief --token ${{ secrets.TOKEN }} --delay 1000 \
+            --include objectionary/* \
+            --include polystat/* \
+            --exclude objectionary/.github \
+            --exclude polystat/.github \
+            --to gh-pages
+      - uses: JamesIves/github-pages-deploy-action@v4.4.2
+        with:
+          branch: gh-pages
+          folder: gh-pages
+          clean: false
