@@ -1,0 +1,30 @@
+name: Check releases
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  check-releases:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install requests
+      - name: Check releases
+        run: |
+          python3 auto-pull.py
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Automated update of available list of releases
+          title: Automated update of available list of releases
+          body: Automated update of available list of releases
+          base: master
+          branch: automated-release-update
+          delete-branch: true
+
