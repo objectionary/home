@@ -1,7 +1,0 @@
-eo:0.29.5
-eo-strings:0.2.0
-eo-collections:0.0.9
-eo-files:0.4.0
-eo-sys:0.0.10
-eo-hamcrest:0.4.0
-eo-math:0.4.0
