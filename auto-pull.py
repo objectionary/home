@@ -2,8 +2,6 @@ import os
 import re
 import requests
 
-os.system(f'git checkout -b automated-release-update')
-
 directory = "objects/org/eolang"
 unique_deps = set()
 
@@ -33,5 +31,3 @@ for dep in unique_deps:
     if latest_version > version:
         print(f'New release for {name}: {latest_version}')
         os.system(f'./pull.sh objectionary/{name}')
-        os.system(f'git add .')
-        os.system(f'git commit -m "Update {name} to {latest_version}"')
