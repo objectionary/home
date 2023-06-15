@@ -16,7 +16,7 @@ jobs:
           ruby-version: 2.7
       - run: gem install fief
       - run: |
-          bin/fief --token ${{ secrets.TOKEN }} --delay 1000 \
+          fief --token ${{ secrets.TOKEN }} --delay 1000 \
             --include objectionary/* \
             --include polystat/* \
             --exclude objectionary/.github \
