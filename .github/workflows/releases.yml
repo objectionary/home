@@ -18,17 +18,10 @@ jobs:
       - name: Check releases
         run: |
           python3 auto-pull.py
-#      - name: Create new branch
-#        run: |
-#          git checkout -b automated-release-update
-#      - name: Commit changes
-#        uses: EndBug/add-and-commit@v7
-#        with:
-#          default_author: github_actions
-#          new_branch: automated-release-update
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.TOKEN }}
           commit-message: Automated update of available list of releases
           title: Automated update of available list of releases
           body: Automated update of available list of releases
