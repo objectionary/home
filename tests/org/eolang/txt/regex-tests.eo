@@ -27,8 +27,13 @@
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
 +tests
-+version 0.2.0
++version 0.4.0
 
+# @todo #148:30min To enable tests with regex.replaced object.
+#  For some unknown reason, the tests with regex.replaced object
+#  are not working. The tests are commented out for now, but
+#  should be fixed. The reason is that somwhere in the code
+#  tuple.as-bytes object was called, but it doesn't exist.
 [] > matches-string-against-pattern
   assert-that > @
     is-empty.
@@ -223,3 +228,58 @@
         "abxxxxxcd"
         ""
       $.equal-to "abcd"
+
+[] > replace-groups-1
+  nop > @
+    assert-that
+      regex.replaced.replacei.replace-by-groups
+        QQ.txt.text "q$0wer$1ty"
+        list
+          *
+            "GR0"
+            "GR1"
+      $.equal-to
+        "qGR0werGR1ty"
+
+[] > group-ref-0
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          regex "/(([A-Za-z])[0-9])/"
+        "A2B"
+        "G$1G"
+      $.equal-to
+        "GA2GB"
+
+[] > group-ref-1
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          QQ.txt.regex "/(([A-Za-z])[0-9])/"
+        "a1a"
+        "G$1G"
+      $.equal-to
+        "Ga1Ga"
+
+[] > group-ref-2
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          QQ.txt.regex "/([xyz]+)/"
+        "abxxxcd"
+        "$0"
+      $.equal-to "abxxxcd"
+
+[] > group-ref-3
+  nop > @
+    assert-that
+      replaced.
+        compile.
+          QQ.txt.regex "/(([A-Za-z])[0-9])/"
+        "a1a\n"
+        "$1世"
+      $.equal-to
+        "a1世a\n"

@@ -26,8 +26,8 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
-+rt jvm org.eolang:eo-strings:0.2.0
-+version 0.2.0
++rt jvm org.eolang:eo-strings:0.4.0
++version 0.4.0
 
 [s] > text
   s > @
@@ -36,7 +36,39 @@
     text > @
       ^.s.slice start len
 
+  # Returns string trimmed from left side
+  [] > left-trim
+    left-rec-trim > @
+      s
+
+    [str] > left-rec-trim
+      if. > @
+        eq.
+          length.
+            str
+          0
+        ""
+        if.
+          eq.
+            slice.
+              str
+              0
+              1
+            " "
+          left-rec-trim
+            slice.
+              str
+              1
+              plus.
+                length.
+                  str
+                -1
+          str
+
   # Trim it from both sides
+  # @todo #107:30min Current implementation of trimmed method catches stackoverflow
+  #  for tests where both sides of strings are changing or just more than one space
+  #  should be removed. After fixing it unwrap nop from all trimmed tests
   [] > trimmed
     rec-trim > @
       s
@@ -99,6 +131,27 @@
           acc.concat x.as-bytes
           (acc.concat x.as-bytes).concat s.as-bytes
     res.as-string > @
+
+  # Returns string repeated n times
+  [n] > repeated
+    rec-repeated > @
+      s
+      n
+
+    [str n] > rec-repeated
+      if. > @
+        eq.
+          n
+          0
+        ""
+        chained.
+          text
+            str
+          rec-repeated
+            str
+            minus.
+              n
+              1
 
   # Checks that string contains substr
   [substr] > contains
@@ -174,6 +227,9 @@
 
     # Method accepts a string and a substring as an array of bytes
     # and checks if the string contains a substring in the passed position
+    # @todo #65:30min Current implementation works only with short strings.
+    #  We should have posibility to find substrings in bigger that 2-letter strings.
+    #  Also we should unwrap tests 'text-index-of-2' and 'text-index-of-3' from nop object
     [str substr index] > check-if-starts-from-index
       str.length > lstr!
       substr.length > lsub!
@@ -370,9 +426,12 @@
           other
 
   # Returns an tuple of strings, separated by a given string
+  # @todo #22:30min Current implementation using Java.
+  #  We should implement splitting string to tuple of strings
+  #  only via EOLANG code. We can do it by using reduce method.
   [delimiter] > split /tuple
 
-  # Check that all signs in string are letters.
+  # Check that all signs in string are numbers or letters.
   # Works only for english letters
   [] > is-alphabetic
     reduced. > @
@@ -386,6 +445,49 @@
       [a x]
         as-int. > value!
           bytes-1-to-8
+            as-bytes.
+              x
+        and. > @
+          a
+          int-is-alphabetic
+            value
+
+    [b] > int-is-alphabetic
+      or. > @
+        and.
+          gte.
+            b
+            48
+          lte.
+            b
+            57
+        and.
+          gte.
+            b
+            97
+          lte.
+            b
+            122
+
+    [b] > bytes-1-to-8
+      concat. > @
+        00-00-00-00-00-00-00
+        b
+
+  # Check that all signs in string are letters.
+  # Works only for english letters
+  [] > is-alpha
+    reduced. > @
+      list
+        bytes-as-array
+          as-bytes.
+            low-cased.
+              text
+                s
+      TRUE
+      [a x]
+        as-int. > value!
+          is-alphabetic.bytes-1-to-8
             as-bytes.
               x
         and. > @
@@ -407,7 +509,35 @@
         00-00-00-00-00-00-00
         b
 
-  # Returns concatenaion of all strings
+  # Check that all signs in string are ASCII characters.
+  [] > is-ascii
+    reduced. > @
+      list
+        bytes-as-array
+          as-bytes.
+            text
+              s
+      TRUE
+      [a x]
+        as-int. > value!
+          is-alphabetic.bytes-1-to-8
+            as-bytes.
+              x
+        and. > @
+          a
+          int-is-ascii
+            value
+
+    [b] > int-is-ascii
+      and. > @
+        gte.
+          b
+          0
+        lte.
+          b
+          127
+
+  # Returns concatenation of all strings
   [others...] > chained
     text > @
       as-string.
