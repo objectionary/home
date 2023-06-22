@@ -1,7 +1,8 @@
-917fc1b6bdc31bfdfa3fb334f920675e6aee76b8	gh-pages
-36fe5498b625472df793e092f600f5070b758512	master
+3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
+58eb4c210d113717f6a47093be67019ea959eb86	gh-pages
+990834bd759509d5fbfbd349520524124bac1d93	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-72d9eb975602ca88fd1892471dd06fc6b8f32ffd	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+9d026d37944895c82ffa9aef1322c3b4d6b8de3f	renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
 15c85d7f8cffe15b0deba96e90bdac98a76293bb	0.23.17
 4b19944d86058e3c81e558340a3a13bc335a2b48	0.23.19
