@@ -8,17 +8,22 @@ jobs:
   check-releases:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
+      - name: checkout code
         uses: actions/checkout@v3
-      - name: Install dependencies
+      - name: install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip
           pip3 install requests
-      - name: Check releases
+      - name: install pdd
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+        run: gem install pdd
+      - name: pull releases
         run: |
           python3 auto-pull.py
-      - name: Create Pull Request
+      - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
