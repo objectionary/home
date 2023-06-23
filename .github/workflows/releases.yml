@@ -30,9 +30,9 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
-          commit-message: {{ steps.daily_script.outputs.result_param }}
-          title: {{ steps.daily_script.outputs.result_param }}
-          body: {{ steps.daily_script.outputs.result_param }}
+          commit-message: New release for {{ steps.daily_script.outputs.result_param }}
+          title: New release for {{ steps.daily_script.outputs.result_param }}
+          body: New release for {{ steps.daily_script.outputs.result_param }}
           base: master
-          branch: automated-release-update
+          branch: update-{{ steps.daily_script.outputs.result_param }}
           delete-branch: true

@@ -30,6 +30,6 @@ for dep in unique_deps:
     latest_version = response.json()['tag_name']
     if latest_version > version:
         os.system(f'./pull.sh objectionary/{name}')
-        COMMIT_MESSAGE = f'New release for {name}: {latest_version}'
+        COMMIT_MESSAGE = f'{name}:{latest_version}'
         print(COMMIT_MESSAGE)
         break
