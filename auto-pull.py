@@ -29,5 +29,7 @@ for dep in unique_deps:
     response.raise_for_status()
     latest_version = response.json()['tag_name']
     if latest_version > version:
-        print(f'New release for {name}: {latest_version}')
         os.system(f'./pull.sh objectionary/{name}')
+        COMMIT_MESSAGE = f'{name}:{latest_version}'
+        print(COMMIT_MESSAGE)
+        break

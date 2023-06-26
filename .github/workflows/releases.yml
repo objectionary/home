@@ -1,8 +1,8 @@
-name: Check releases
+name: releases
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 * * * *"
 
 jobs:
   check-releases:
@@ -15,21 +15,24 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip
           pip3 install requests
-      - name: install pdd
+      - name: install ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0'
+      - name: install pdd
         run: gem install pdd
       - name: pull releases
+        id: daily_script
         run: |
           python3 auto-pull.py
+          echo "::set-output name=result_param::COMMIT_MESSAGE"
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
-          commit-message: Automated update of available list of releases
-          title: Automated update of available list of releases
-          body: Automated update of available list of releases
+          commit-message: New release for {{ steps.daily_script.outputs.result_param }}
+          title: New release for {{ steps.daily_script.outputs.result_param }}
+          body: New release for {{ steps.daily_script.outputs.result_param }}
           base: master
-          branch: automated-release-update
+          branch: update-{{ steps.daily_script.outputs.result_param }}
           delete-branch: true
