@@ -30,6 +30,9 @@ for dep in unique_deps:
     latest_version = response.json()['tag_name']
     if latest_version > version:
         os.system(f'./pull.sh objectionary/{name}')
-        COMMIT_MESSAGE = f'{name}:{latest_version}'
-        print(COMMIT_MESSAGE)
+        env_file = os.getenv('GITHUB_ENV')
+        eo_lib_version = f'{name}:{latest_version}'
+        with open(env_file, "a") as myfile:
+            myfile.write(f'eo_lib_version={eo_lib_version}')
+        print(f'Added to env: {eo_lib_version}')
         break

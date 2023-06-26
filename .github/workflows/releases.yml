@@ -25,14 +25,13 @@ jobs:
         id: daily_script
         run: |
           python3 auto-pull.py
-          echo "::set-output name=result_param::COMMIT_MESSAGE"
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
-          commit-message: New release for {{ steps.daily_script.outputs.result_param }}
-          title: New release for {{ steps.daily_script.outputs.result_param }}
-          body: New release for {{ steps.daily_script.outputs.result_param }}
+          commit-message: New release for ${{ env.eo_lib_version }}
+          title: New release for ${{ env.eo_lib_version }}
+          body: New release for ${{ env.eo_lib_version }}
           base: master
-          branch: update-{{ steps.daily_script.outputs.result_param }}
+          branch: update-${{ env.eo_lib_version }}
           delete-branch: true
