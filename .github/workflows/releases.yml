@@ -22,13 +22,20 @@ jobs:
       - name: install pdd
         run: gem install pdd
       - name: pull releases
-        id: daily_script
         run: |
           python3 auto-pull.py
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+#          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
+          committer: yegor256 <yegor256@gmail.com>
           commit-message: New release for ${{ env.eo_lib_version }}
           title: New release for ${{ env.eo_lib_version }}
           body: New release for ${{ env.eo_lib_version }}
