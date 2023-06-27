@@ -31,7 +31,7 @@ for dep in unique_deps:
     if latest_version > version:
         os.system(f'./pull.sh objectionary/{name}')
         env_file = os.getenv('GITHUB_ENV')
-        eo_lib_version = f'{name}:{latest_version}'
+        eo_lib_version = f'{name}_{latest_version}'
         with open(env_file, "a") as myfile:
             myfile.write(f'eo_lib_version={eo_lib_version}')
         print(f'Added to env: {eo_lib_version}')
