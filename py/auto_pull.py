@@ -1,0 +1,31 @@
+import os
+import requests
+from deps import dependencies
+
+
+def pull_release(unique_deps):
+    for dep in unique_deps:
+        name, version = dep.split(":")
+        print(f"{name} - {version}")
+        url = f'https://api.github.com/repos/objectionary/{name}/releases/latest'
+        response = requests.get(url)
+        response.raise_for_status()
+        latest_version = response.json()['tag_name']
+        if compare(latest_version, version) > version:
+            os.system(f'./pull.sh objectionary/{name}')
+            env_file = os.getenv('GITHUB_ENV')
+            eo_lib_version = f'{name}_{latest_version}'
+            with open(env_file, "a") as myfile:
+                myfile.write(f'eo_lib_version={eo_lib_version}')
+            print(f'Added to env: {eo_lib_version}')
+            break
+
+def compare(latest_version, old_version):
+    latest = latest_version.split(".")
+    old = old_version.split(".")
+    for i in range(len(latest)):
+        if int(latest[i]) > int(old[i]):
+            return True
+    return False
+
+pull_release(dependencies())

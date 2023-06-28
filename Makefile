@@ -23,6 +23,7 @@
 all:
 	make -C make
 	pdd --format xml . | grep -v 'puzzle '
+	python3 tests/py/deps_tests.py
 
 clean:
 	make -C make clean
