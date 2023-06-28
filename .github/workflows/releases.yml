@@ -11,10 +11,9 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
       - name: install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip
-          pip3 install requests
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       - name: install ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -23,7 +22,7 @@ jobs:
         run: gem install pdd
       - name: pull releases
         run: |
-          python3 auto-pull.py
+          python3 /py/auto_pull.py
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v5
         with:
@@ -31,6 +30,7 @@ jobs:
 #          passphrase: ${{ secrets.PASSPHRASE }}
           git_user_signingkey: true
           git_commit_gpgsign: true
+          git_push_gpgsign: ""
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
