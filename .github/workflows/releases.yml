@@ -31,6 +31,7 @@ jobs:
 #          passphrase: ${{ secrets.PASSPHRASE }}
           git_user_signingkey: true
           git_commit_gpgsign: true
+          git_push_gpgsign: ""
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
