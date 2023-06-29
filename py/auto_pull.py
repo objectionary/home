@@ -11,7 +11,7 @@ def pull_release(unique_deps):
         response = requests.get(url)
         response.raise_for_status()
         latest_version = response.json()['tag_name']
-        if compare(latest_version, version) > version:
+        if compare(latest_version, version):
             os.system(f'./pull.sh objectionary/{name}')
             env_file = os.getenv('GITHUB_ENV')
             eo_lib_version = f'{name}_{latest_version}'

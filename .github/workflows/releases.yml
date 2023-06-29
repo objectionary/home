@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-      - name: install dependencies
-      - uses: actions/setup-python@v4
+      - name: install Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
       - name: install ruby

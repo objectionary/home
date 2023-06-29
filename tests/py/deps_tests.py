@@ -7,6 +7,8 @@ from deps import dependencies
 class AutoPullTest(unittest.TestCase):
     mock_file_content = """
     +rt jvm org.eolang:eo-runtime:0.29.5
+    +rt jvm org.eolang:eo-files:0.4.0
+    +rt jvm org.eolang:eo-hamcrest:0.4.0
     """
 
     @unittest.mock.patch(
@@ -17,9 +19,8 @@ class AutoPullTest(unittest.TestCase):
     def test(self):
         self.assertEqual(
             dependencies(),
-            {'eo:0.29.5'}
+            {'eo:0.29.5', 'eo-hamcrest:0.4.0', 'eo-files:0.4.0'}
         )
-        print(dependencies())
 
 
 if __name__ == '__main__':
