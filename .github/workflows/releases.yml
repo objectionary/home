@@ -22,7 +22,7 @@ jobs:
         run: gem install pdd
       - name: pull releases
         run: |
-          python3 /py/auto_pull.py
+          python3 py/auto_pull.py
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v5
         with:
