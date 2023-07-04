@@ -27,7 +27,49 @@
 +home https://github.com/objectionary/eo-strings
 +package org.eolang.txt
 +tests
-+version 0.2.0
++version 0.4.0
+
+[] > text-left-trim-1
+  assert-that > @
+    left-trim.
+      text
+        "a b"
+    $.equal-to "a b"
+
+[] > text-left-trim-2
+  assert-that > @
+    left-trim.
+      text
+        "a b "
+    $.equal-to "a b "
+
+[] > text-left-trim-3
+  assert-that > @
+    left-trim.
+      text
+        " a b "
+    $.equal-to "a b "
+
+[] > text-left-trim-4
+  assert-that > @
+    left-trim.
+      text
+        " a b"
+    $.equal-to "a b"
+
+[] > text-left-trim-space
+  assert-that > @
+    left-trim.
+      text
+        " "
+    $.equal-to ""
+
+[] > text-left-trim-double-space
+  assert-that > @
+    left-trim.
+      text
+        "  "
+    $.equal-to ""
 
 [] > text-trimmed-1
   assert-that > @
@@ -489,26 +531,68 @@
         "漢"
     $.equal-to TRUE
 
-[] > check-is-alpha
+[] > check-is-alphabetic
   assert-that > @
     is-alphabetic.
       text
         "eEo"
     $.equal-to TRUE
 
-[] > check-is-alpha-2
+[] > check-is-alphabetic-2
   assert-that > @
     is-alphabetic.
+      text
+        "ab3d"
+    $.equal-to TRUE
+
+[] > check-is-alphabetic-3
+  assert-that > @
+    is-alphabetic.
+      text
+        "-w-"
+    $.equal-to FALSE
+
+[] > check-is-alpha
+  assert-that > @
+    is-alpha.
+      text
+        "eEo"
+    $.equal-to TRUE
+
+[] > check-is-alpha-2
+  assert-that > @
+    is-alpha.
       text
         "ab3d"
     $.equal-to FALSE
 
 [] > check-is-alpha-3
   assert-that > @
-    is-alphabetic.
+    is-alpha.
+      text
+        "-w-"
+    $.equal-to FALSE
+
+[] > check-is-ascii
+  assert-that > @
+    is-ascii.
+      text
+        "H311oW"
+    $.equal-to TRUE
+
+[] > check-is-ascii2
+  assert-that > @
+    is-ascii.
+      text
+        "🌵"
+    $.equal-to FALSE
+
+[] > check-is-ascii3
+  assert-that > @
+    is-ascii.
       text
         "123"
-    $.equal-to FALSE
+    $.equal-to TRUE
 
 [] > split-text
   assert-that > @
@@ -651,3 +735,63 @@
         text "漢 "
       0
     $.equal-to "漢"
+
+[] > simple-contains-string
+  assert-that > @
+    contains.
+      text "Привет, 世界"
+      "世"
+    $.equal-to TRUE
+    "constains-string"
+
+[] > check-all-contains-string
+  assert-that > @
+    and.
+      contains.
+        text "世界世界世界世界世界世界世界世界"
+        "界"
+      contains.
+        text "世界世界世界世界世界世界й世界世界"
+        "й"
+    $.equal-to TRUE
+    "constains-all-of-string"
+
+[] > repeated-empty
+  assert-that > @
+    repeated.
+      text
+        ""
+      3
+    $.equal-to ""
+
+[] > repeated-zero
+  assert-that > @
+    repeated.
+      text
+        "abc"
+      0
+    $.equal-to ""
+
+[] > repeated-one
+  assert-that > @
+    repeated.
+      text
+        "abc"
+      1
+    $.equal-to "abc"
+
+[] > repeated-many-times
+  assert-that > @
+    repeated.
+      text
+        "abc"
+      3
+    $.equal-to "abcabcabc"
+
+[] > repeated-unicode
+  assert-that > @
+    repeated.
+      text
+        "漢"
+      3
+    $.equal-to "漢漢漢"
