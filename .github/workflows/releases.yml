@@ -32,6 +32,10 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
           git_push_gpgsign: ""
+      - name: Check if branch exists
+        run: |
+          branch_exists=$(git ls-remote --exit-code --heads origin ${{ env.eo_lib_version }} || echo "branch_not_found")
+          echo "is_exist=$branch_exists" >> "$GITHUB_ENV"
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -43,3 +47,4 @@ jobs:
           base: master
           branch: update-${{ env.eo_lib_version }}
           delete-branch: true
+        if: ${{ env.is_exist }} == 'branch_not_found'
