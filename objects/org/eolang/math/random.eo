@@ -63,9 +63,6 @@
           1
 
   # New random with pseudo-random seed
-  # @todo #35:30min. Add a case if there is windows. Improve
-  #  imlementation for windows if there is ability to get
-  #  time for windows and enable tests for these cases.
   [] > pseudo
     35 > const-1!
     53 > const-2!

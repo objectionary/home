@@ -28,9 +28,6 @@
 
 # Represents information about operating system.
 # See https://man7.org/linux/man-pages/man2/uname.2.html
-# @todo #10:30min Current implementation of uname method uses java.
-#  This object can be implementet by EO. But for now it is impossible
-#  due to failed build on Windows.
 [] > uname
   [] > @ /string
 
