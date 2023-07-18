@@ -23,14 +23,16 @@
 +alias org.eolang.collections.list
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.4.1
++version 0.4.1
 
 # Series
 [arr] > series
   arr > @
 
   # Find max element in the array
+  # @todo #36:30min. The array may consist of objects of any type. `max`
+  #  and `min` objects should work only with an array of numbers.
   [] > max
     list ^ > self-as-list!
 

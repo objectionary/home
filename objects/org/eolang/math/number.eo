@@ -28,8 +28,8 @@
 +alias org.eolang.switch
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.4.1
++version 0.4.1
 
 [n] > number
   n > @
@@ -192,9 +192,11 @@
           self-as-int.plus 1
 
   # Make ^.n power x
-  [x] > pow /?
+  [x] > pow /number
 
   # Make ^.n power x
+  # @todo #21:30 min. Add an ability to raise a number to float power.
+  #  `exp` and `ln` objects are needed.  sqr(n,x) = exp(n * ln(x))
   [x] > power
     if. > @
       or.
@@ -334,6 +336,14 @@
                     bin-powi value x
                     bin-powf self-as-float x-as-float
 
+  # @todo #89:90 min. Implement sqrt without using number.pow.
+  #  We need it because pow is atom and supposed to be removed.
+  #  You can use Heron's iterative formula with a quite good
+  #  convergence rate.
+  #
+  # @todo #105:30min. Fix sqrt and its tests. Since new declarative "while" was
+  #  introduced current implementation of sqrt is not relevant anymore. Need
+  #  to remake it and unwrap tests
   [] > sqrt
     as-float > value!
     number > @
@@ -416,6 +426,17 @@
           0.0
           1.0
 
+  # @todo #56:90 min. Implement sin using this taylor object.
+  #  You need to code function for coefficient of nth term.
+  #  Accuracy can be decreased because of stack limitation.
+  #
+  # @todo #56:90 min. Implement cos using this taylor object.
+  #  You need to code function for coefficient of nth term.
+  #  Accuracy can be decreased because of stack limitation.
+  #
+  # @todo #56:90 min. Implement tg using this taylor object.
+  #  You need to code function for coefficient of nth term.
+  #  Accuracy can be decreased because of stack limitation.
   [] > exp
     switch > @
       *
@@ -464,6 +485,9 @@
   # Computes series buy the numbers for start and finish and function of
   # coefficient of nth term. It is NaN if infinity passed because the
   # implementation would get infinity time to calculate sum of infinity terms
+  # @todo #105:30min. Fix taylor and its tests. Since new declarative "while"
+  #  was introduced current implementation of taylor is not relevant anymore.
+  #  Need to remake it and unwrap tests
   [start finish f] > taylor
     ^.n > value!
     memory start > iterator
@@ -500,6 +524,9 @@
             product
 
   # Take logarithm of ^.n
+  # @todo #53:30min. Remove unnecessary checks and move some of them to ln
+  #  when ln is implemented in EO and Double.NaN, Double.POSITIVE_INFINITY,
+  #  Double.NEGATIVE_INFINITY are converted to eolang objects.
   [base] > log
     number base > base-as-number!
 
@@ -560,6 +587,9 @@
               (number base-as-float).ln
 
   # Natural logarithm of ^.n
+  # @todo #105:30min. Fix "ln" and its tests. Since new declarative "while"
+  #  was introduced current implementation of "ln" is not relevant anymore.
+  #  Need to remake it and unwrap tests
   [] > ln
     as-float > value!
     number > @

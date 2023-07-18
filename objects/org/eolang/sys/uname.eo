@@ -23,11 +23,14 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo-sys
 +package org.eolang.sys
-+rt jvm org.eolang:eo-sys:jar-with-dependencies:0.0.10
-+version 0.0.10
++rt jvm org.eolang:eo-sys:jar-with-dependencies:0.0.11
++version 0.0.11
 
 # Represents information about operating system.
 # See https://man7.org/linux/man-pages/man2/uname.2.html
+# @todo #10:30min Current implementation of uname method uses java.
+#  This object can be implementet by EO. But for now it is impossible
+#  due to failed build on Windows.
 [] > uname
   [] > @ /string
 

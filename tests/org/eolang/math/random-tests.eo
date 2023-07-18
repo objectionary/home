@@ -25,8 +25,11 @@
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
 +tests
-+version 0.4.0
++version 0.4.1
 
+# @todo #105:30min. Remove nop objects. All of these three tests
+#  are failed and stuck in Github Actions. We must find out the reason,
+#  fix it, remove nop objects and make a new release.
 [] > random-with-seed
   random 51 > r
   assert-that > @

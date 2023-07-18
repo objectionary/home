@@ -23,10 +23,13 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.4.1
++version 0.4.1
 
 # Counts integral from a to b
+# @todo #105:30min. Fix integral tests. Since new declarative "while" was
+#  introduced current implementation of integral is not relevant anymore. Need
+#  to remake it and unwrap tests
 [fun a b] > integral
   [fun a b] > subsection
     times. > @
