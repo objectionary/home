@@ -4,9 +4,8 @@ import sys
 
 eo_lib_version = sys.argv[1]
 print('cmd entry:', eo_lib_version)
-branch_name = "update-" + eo_lib_version
 
-command = f'git rev-parse --verify {branch_name}'
+command = f'git ls-remote --exit-code --heads origin update-{eo_lib_version}'
 result = subprocess.run(command, shell=True, capture_output=True)
 is_exist = result.returncode == 0
 env_file = os.getenv('GITHUB_ENV')
