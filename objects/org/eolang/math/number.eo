@@ -28,8 +28,8 @@
 +alias org.eolang.switch
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.4.1
++version 0.4.1
 
 [n] > number
   n > @
@@ -192,7 +192,7 @@
           self-as-int.plus 1
 
   # Make ^.n power x
-  [x] > pow /?
+  [x] > pow /number
 
   # Make ^.n power x
   [x] > power
@@ -334,6 +334,7 @@
                     bin-powi value x
                     bin-powf self-as-float x-as-float
 
+  #
   [] > sqrt
     as-float > value!
     number > @
@@ -416,6 +417,8 @@
           0.0
           1.0
 
+  #
+  #
   [] > exp
     switch > @
       *
