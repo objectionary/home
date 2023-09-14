@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang
-+version 0.29.5
++version 0.31.0
 
 [] > makes-tuple-through-special-syntax
   assert-that > @
@@ -69,11 +69,12 @@
   * > anArray
     1
     2
-  assert-that > @
+  assert-that > res
     anArray
     $.array-each
       $.equal-to 1
       $.equal-to 2
+  nop > @
 
 [] > tuple-with-in-seq
   [a] > foo

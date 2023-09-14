@@ -22,22 +22,235 @@
 
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo
-+package org.eolang
 +tests
-+version 0.29.5
++package org.eolang
++version 0.31.0
 
-[] > creates-object
-  nop > @
-    QQ.rust > r
-      """
-      pub fn foo() -> i32 {
-        println!("Hello world from rust");
-        let i = 1234;
-        i
-      }
-      """
-      *
-    assert-that
-      r
-      $.equal-to
-        1234
+[] > rust-returns-positive-int
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+
+    pub fn foo(_env: &mut EOEnv) -> EO {
+      println!("Hello world from rust");
+      EOInt(2)
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.equal-to
+      2
+
+[] > rust-returns-negative-int
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+
+    pub fn foo(_env: &mut EOEnv) -> EO {
+      println!("Hello world from rust");
+      EOInt(-10)
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.equal-to
+      -10
+
+[] > rust-returns-positive-doable
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOFloat};
+
+    pub fn foo(_env: &mut EOEnv) -> EO {
+      EOFloat(1.23456789)
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.equal-to
+      1.23456789
+
+[] > rust-returns-negative-doable
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOFloat};
+
+    pub fn foo(_env: &mut EOEnv) -> EO {
+      EOFloat(-1.23456789)
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.equal-to
+      -1.23456789
+
+[] > rust-find-returns-int
+  123 > a
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+
+    pub fn foo(env: &mut EOEnv) -> EO {
+      EOInt(env.find("$.^.a").into())
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.not
+      $.less-than
+        0
+
+[] > rust-returns-vertex
+  "content" > book
+  QQ.rust > read
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOVertex};
+
+    pub fn foo(env: &mut EOEnv) -> EO {
+      let v = env.find("$.^.book") as u32;
+      EOVertex(v)
+    }
+    """
+    *
+      []
+  assert-that > @
+    read
+    $.equal-to
+      "content"
+
+[] > rust-put-not-fails
+  QQ.rust > r
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+    pub fn foo(env: &mut EOEnv) -> EO {
+      env.put(3, &[0x00, 0x1a, 0xEE, 0xf, 0xf3]).unwrap();
+      EOInt(0 as i64)
+    }
+    """
+    *
+      []
+  assert-that > @
+    r
+    $.not
+      $.less-than
+        0
+
+[] > rust-bind-not-fails
+  1 > a
+  2 > b
+  QQ.rust > insert
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+    pub fn foo(env: &mut EOEnv) -> EO {
+        let v1 = env.find("$.^.a") as u32;
+        let v2 = env.find("$.^.b") as u32;
+        env.bind(v1 , v2, "EO-att");
+        return EOInt(v1 as i64);
+    }
+    """
+    *
+      []
+  assert-that > @
+    insert
+    $.not
+      $.less-than
+        0
+
+[] > rust-copy-not-fails
+  1 > a
+  QQ.rust > copy
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+    pub fn foo(env: &mut EOEnv) -> EO {
+        let v = env.find("$.^.a") as u32;
+        let copy = env.copy(v).unwrap();
+        EOInt(copy as i64)
+    }
+    """
+    *
+      []
+  assert-that > @
+    copy
+    $.not
+      $.less-than
+        0
+
+[] > rust-dataize-not-fails
+  1 > a
+  QQ.rust > dataized
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+    pub fn foo(env: &mut EOEnv) -> EO {
+      let v = env.find("$.^.a") as u32;
+      let _bytes = env.dataize(v).unwrap();
+      EOInt(v as i64)
+    }
+    """
+    *
+      []
+      3
+  assert-that > @
+    dataized
+    $.not
+      $.less-than
+        0
+
+[] > rust-plus
+  5 > a
+  10 > b
+  QQ.rust > plus
+    """
+    use eo_env::EOEnv;
+    use eo_env::eo_enum::EO;
+    use eo_env::eo_enum::EO::{EOInt};
+    use byteorder::{BigEndian, ReadBytesExt};
+
+    pub fn foo(env: &mut EOEnv) -> EO {
+      let a = env.find("$.^.a") as u32;
+      let bytes_a = env.dataize(a).unwrap();
+      let a = bytes_a.as_slice().read_i64::<BigEndian>().unwrap();
+
+      let b = env.find("$.^.b") as u32;
+      let bytes_b = env.dataize(b).unwrap();
+      let b = bytes_b.as_slice().read_i64::<BigEndian>().unwrap();
+      println!("sum 5 + 10 = {}", a + b);
+
+      EOInt(a + b)
+    }
+    """
+    *
+      []
+      "byteorder:1.4.3"
+  assert-that > @
+    plus
+    $.equal-to 15

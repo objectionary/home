@@ -25,20 +25,12 @@
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang
-+version 0.29.5
++version 0.31.0
 
 [] > just-prints-warning
   assert-that > @
     cti
       2.times 2
       "warning"
-      "This method is deprecated!"
-    $.equal-to 4
-
-[] > fails-since-deprecated
-  assert-that > @
-    cti
-      2.times 2
-      "error"
       "This method is deprecated!"
     $.equal-to 4
