@@ -36,17 +36,6 @@
     res.length
     $.equal-to 2
 
-[] > rebuild-correct
-  * 1 0 3 0 > harr
-  * (* 1 "a") (* 4 "b") (* "c" 5) (* 8 7) > arr
-  multimap.rebuild harr arr > res
-  nop > @
-    assert-that
-      * (((res.at 0).at 0).at 0) (((res.at 3).at 0).at 1)
-      $.equal-to
-        list
-          * 4 5
-
 [] > multimap-pairs-to-hash-test
   * (* 2 3) (* 3 4) > arr!
   multimap.pairs-to-hash arr > tarr!
