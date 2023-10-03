@@ -170,9 +170,6 @@
     negative-infinity.gte 42.5
     FALSE
 
-# @todo #2497:30min Uncomment infinites tests. For some reason times, plus, minus and div object of
-#  positive-infinity and negative-infinity causes flaky tests that mostly fail on CI/CD pipeline.
-#  Need to find a reason, fix it and uncomment all tests here and in positive-infinity-tests.eo file
 # Times
 #[] > negative-infinity-times-float-zero
 #  eq. > @

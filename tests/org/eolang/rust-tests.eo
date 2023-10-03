@@ -200,9 +200,6 @@
       18
     "Rust insert failed"
 
-# @todo #2498:30min Enable the tests. After removing assert-that from eo-runtime
-#  $.string-starts-with it not allowed anymore. Need to refactor the next tests and enable them:
-#  - rust-bind-not-fails, - rust-error
 [] > rust-bind-not-fails
   1 > a
   2 > b
