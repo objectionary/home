@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.9
-+version 0.0.9
++rt jvm org.eolang:eo-collections:0.10.0
++version 0.10.0
 
 [arr] > list
   arr > @
@@ -48,13 +48,11 @@
     concat. > @
       with.
         head.
-          list
-            arr
+          ^
           i
         x
       tail.
-        list
-          arr
+        ^
         minus.
           arr.length
           i
@@ -63,8 +61,7 @@
   # Here "f" must be an abstract
   # object with three free attributes. The first
   # one for the accumulator, the second one
-  # for the index and the third one for the element
-  # of the array.
+  # for the element of the array and the third one for the index.
   [a f] > reducedi
     if. > @
       arr.length.eq 0
@@ -82,8 +79,8 @@
           carr.length
         func > new-acc
           acc-index.at 0
-          index
           carr.at index
+          index
         rec-reduced
           *
             new-acc
@@ -95,7 +92,7 @@
   [a f] > reduced
     ^.reducedi > @
       a
-      [a idx item]
+      [a item idx]
         &.f > @
           a
           item
@@ -108,7 +105,7 @@
     list > @
       ^.reducedi
         *
-        [a idx item]
+        [a item idx]
           with. > @
             a
             &.f item idx
@@ -123,21 +120,33 @@
 
   # For each array element dataize the object
   # Here "f" must be an abstract object with
+  # two free attributes: the element of the
+  # array and its index.
+  [f] > eachi
+    seq > @
+      ^.reducedi
+        TRUE
+        [a x i]
+          &.f > @
+            x
+            i
+      TRUE
+
+  # For each array element dataize the object
+  # Here "f" must be an abstract object with
   # one free attribute, the element of the
   # array.
   [f] > each
-    seq > @
-      ^.reduced
-        TRUE
-        [a x]
-          f x > @
-      TRUE
+    ^.eachi > @
+      [x i]
+        &.f > @
+          x
 
   # Create a new list without the i-th element
   [i] > withouti
     ^.reducedi > @
       *
-      [a idx item]
+      [a item idx]
         if. > @
           idx.eq i
           a
@@ -161,7 +170,7 @@
         x.length
       ^.reducedi
         TRUE
-        [a idx item]
+        [a item idx]
           and. > @
             a
             eq.
@@ -182,7 +191,7 @@
   [wanted] > index-of
     ^.reducedi > @
       -1
-      [acc i item]
+      [acc item i]
         if. > @
           and.
             eq.
@@ -199,7 +208,7 @@
   [wanted] > last-index-of
     ^.reducedi > @
       -1
-      [acc i item]
+      [acc item i]
         if. > @
           eq.
             item
@@ -220,7 +229,7 @@
     reducedi. > res!
       ^
       *
-      [a i x]
+      [a x i]
         a.with (memory i) > @
     memory 0 > i
     memory 0 > j
@@ -275,26 +284,23 @@
         list *
 
     [index-carr func new-list] > rec-filtered
-      index-carr.at 0 > index
-      index-carr.at 1 > carr
-      carr.at index > item
-      seq > @
-        func > acc!
-          item
-          index
-        if. > filt-list
-          eq.
-            acc
-            TRUE
-          new-list.with item
-          new-list
-        if.
-          (index.plus 1).eq (carr.length)
-          filt-list
-          rec-filtered
-            * (index.plus 1) carr
+      if. > @
+        eq.
+          index-carr.at 0 > index
+          length.
+            index-carr.at 1 > carr
+        new-list
+        rec-filtered
+          *
+            index.plus 1
+            carr
+          func
+          if.
             func
-            filt-list
+              carr.at index > item
+              index
+            new-list.with item
+            new-list
 
   # Filter list without index with the function "f".
   # Here "f" must be an abstract object
@@ -334,24 +340,32 @@
             1
           func
 
-  # Get the first i-th elements from
-  # the start of the list
+  # Get the first i-th elements from the start of the list
   [i] > head
     i > index!
-
-    if. > @
-      index.lte 0
-      list *
-      if.
-        index.gte (^.length)
+    0 > zero!
+    switch > @
+      *
+        index.eq zero
+        list *
+      *
+        index.lt zero
+        ^.tail
+          index.neg
+      *
+        index.gte
+          ^.length
         ^
-        ^.reducedi
-          list *
-          [acc idx item]
-            if. > @
-              idx.gte index
-              acc
-              acc.with item
+      *
+        TRUE
+        list
+          ^.reducedi
+            *
+            [acc item idx]
+              if. > @
+                idx.gte index
+                acc
+                acc.with item
 
   # Get the last i-th elements from
   # the end of the list
@@ -364,7 +378,7 @@
       ^
       ^.reducedi
         list *
-        [acc idx item]
+        [acc item idx]
           if. > @
             gte.
               idx
@@ -372,6 +386,7 @@
             acc.with item
             acc
 
+  #
   # TRUE if the current list is lexicographically
   # greater than the passed list. Otherwise, FALSE.
   [other] > gt

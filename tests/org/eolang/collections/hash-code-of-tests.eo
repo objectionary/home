@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +junit
 +package org.eolang.collections
-+version 0.0.9
++version 0.10.0
 
 [] > hash-code-bools-is-integer
   assert-that > @

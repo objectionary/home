@@ -20,89 +20,65 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.collections.range
 +alias org.eolang.collections.list
++alias org.eolang.collections.range-of-ints
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
 +version 0.10.0
 
-[] > simple-range
-  range > rng!
-    []
-      [i] > build
-        i > @!
-        build (@.plus 1) > next
-      build 1 > @
-    10
+[] > simple-range-of-ints
   assert-that > @
-    list rng
+    list
+      range-of-ints 1 10
     $.equal-to
       list
         * 1 2 3 4 5 6 7 8 9
 
-[] > range-with-floats
-  range > rng!
-    []
-      [i] > x
-        i > @!
-        x (@.plus 0.5) > next
-      x 1.0 > @
-    5.0
+[] > empty-range-of-ints
   assert-that > @
-    list rng
+    length.
+      range-of-ints 10 10
+    $.equal-to 0
+
+[] > range-of-descending-ints
+  assert-that > @
+    length.
+      range-of-ints 10 1
+    $.equal-to 0
+
+[] > range-of-negative-ints
+  assert-that > @
+    list
+      range-of-ints -5 0
     $.equal-to
       list
-        * 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5
+        * -5 -4 -3 -2 -1
 
-[] > range-with-out-of-bounds
-  range > rng!
-    []
-      [num] > b
-        num > @!
-        b (@.plus 5) > next
-      b 1 > @
-    10
-  assert-that > @
-    list rng
-    $.equal-to
-      list
-        * 1 6
+[] > range-of-ints-with-not-int-start
+  try > @
+    range-of-ints 1.2 3
+    [ex]
+      assert-that > @
+        ex
+        $.equal-to "some of the arguments are not integers"
+    nop
 
-[] > range-with-complex-items
-  [pair] > comparable-pair
-    pair > @!
-    [x] > lt
-      lt. > @
-        ^.at 0
-        x.at 0
-    comparable-pair > next
-      *
-        (@.at 0).plus 1
-        (@.at 1).plus 1
-  range > rng!
-    comparable-pair
-      * 1 2
-    * 5
-  assert-that > @
-    list rng
-    $.equal-to
-      list
-        *
-          list (* 1 2)
-          list (* 2 3)
-          list (* 3 4)
-          list (* 4 5)
+[] > range-of-ints-with-not-int-end
+  try > @
+    range-of-ints 1 2.5
+    [ex]
+      assert-that > @
+        ex
+        $.equal-to "some of the arguments are not integers"
+    nop
 
-[] > range-with-wrong-items-is-an-empty-array
-  range > rng!
-    []
-      [num] > y
-        num > @
-        [] > next
-      y 10 > @
-    1
-  assert-that > @
-    (list rng).is-empty
-    $.equal-to TRUE
+[] > range-of-not-ints
+  try > @
+    range-of-ints 1.5 5.2
+    [ex]
+      assert-that > @
+        ex
+        $.equal-to "some of the arguments are not integers"
+    nop

@@ -20,15 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.hash-code-of
 +alias org.eolang.collections.list
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.0.9
-+version 0.0.9
++rt jvm org.eolang:eo-collections:0.10.0
++version 0.10.0
 
 [m] > multimap
   memory 0 > elements-amount
+  elements-amount > size
 
   # Returns list of all keys in multimap
   [] > keys
@@ -38,10 +40,6 @@
         caa
       [curr]
         curr.at 0 > @
-
-  # Returns amount of elements in multimap
-  [] > size
-    elements-amount > @
 
   [arr] > concat-all-arrays
     reduced. > @
@@ -59,7 +57,9 @@
         arr
       *
       [a x]
-        a.with (x.at 0).as-hash > @
+        a.with > @
+          hash-code-of
+            x.at 0
 
   # Returns the new map with added object
   [key value] > with
@@ -89,7 +89,8 @@
   # Returns an array with the found value
   # If no element was found, it returns an empty array
   [key] > found
-    number (key.as-hash) > num!
+    number > num!
+      hash-code-of key
     if. > @
       eq.
         m.length
@@ -130,7 +131,7 @@
       list
         sorted-pairs
       *
-      [a i x]
+      [a x i]
         if. > @
           gte.
             x.at 0
@@ -168,7 +169,7 @@
         list
           arr
         *
-        [a i x]
+        [a x i]
           if. > @
             and.
               gte.
