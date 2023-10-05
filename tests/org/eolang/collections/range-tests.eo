@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.collections.list
 +alias org.eolang.collections.range
++alias org.eolang.collections.list
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.0.9
++version 0.10.0
 
 [] > simple-range
   range > rng!
@@ -81,12 +81,10 @@
       *
         (@.at 0).plus 1
         (@.at 1).plus 1
-
   range > rng!
     comparable-pair
       * 1 2
     * 5
-
   assert-that > @
     list rng
     $.equal-to

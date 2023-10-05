@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.0.9
++version 0.10.0
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -104,15 +104,16 @@
         * "hello" 1 2 3 4 5
 
 [] > insert-with-negative-index
-  assert-that > @
-    withi.
-      list
-        * 1 2 3 4 5
-      -10
-      "hello"
-    $.equal-to
-      list
-        * "hello" 1 2 3 4 5
+  nop > @
+    assert-that
+      withi.
+        list
+          * 1 2 3 4 5
+        -10
+        "hello"
+      $.equal-to
+        list
+          * "hello" 1 2 3 4 5
 
 [] > insert-with-length-index
   assert-that > @
@@ -133,7 +134,7 @@
       list
         * 1 1
       0
-      [a i x]
+      [a x i]
         plus. > @
           x
           a.plus
@@ -146,7 +147,7 @@
       list
         * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
       0
-      [a i x]
+      [a x i]
         plus. > @
           x
           a
@@ -158,7 +159,7 @@
       list
         * TRUE TRUE FALSE
       TRUE
-      [a i x]
+      [a x i]
         and. > @
           x
           a
@@ -174,7 +175,7 @@
       list
         * a b
       0
-      [acc i x]
+      [acc x i]
         check x > @
         [el] > check
           if. > @
@@ -236,14 +237,15 @@
     $.equal-to 3
 
 [] > using-mapped-as-object
-  assert-that > @
-    (text " ").joined
-      mapped.
-        list
-          * 1 2
-        [i]
-          (number i).as-string > @
-    $.equal-to "1 2"
+  nop > @
+    assert-that
+      (text " ").joined
+        mapped.
+          list
+            * 1 2
+          [i]
+            (number i).as-string > @
+      $.equal-to "1 2"
 
 # if mapped does mutate lists, then this test would fail
 # because of the absence of the as-int attribute
@@ -272,6 +274,20 @@
       "three"
   .each > @
     [i] (stdout i > @)
+
+[] > iterates-with-eachi
+  list
+    *
+      "one"
+      "two"
+      "three"
+  .eachi > @
+    [item index]
+      stdout > @
+        sprintf
+          "[%d]: %s\n"
+          index
+          item
 
 [] > list-withouti
   assert-that > @
@@ -1054,6 +1070,27 @@
     $.equal-to
       list
         * "foo" 2.2
+
+[] > head-with-negative
+  assert-that > @
+    head.
+      list
+        * 1 2 3
+      -1
+    $.equal-to
+      list
+        * 3
+
+[] > complex-head-with-negative
+  assert-that > @
+    head.
+      list
+        * "foo" 2.2 00-01 "bar"
+      -3
+    $.equal-to
+      list
+        * 2.2 00-01 "bar"
+
 [] > simple-tail
   assert-that > @
     tail.

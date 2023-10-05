@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.failed-output
 +tests
-+version 0.4.0
++version 0.5.0
 
 [] > anything-failed-output
   [] > suggestion

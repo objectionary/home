@@ -1,6 +1,6 @@
-# MIT License
+# The MIT License (MIT)
 #
-# Copyright (c) 2022 Graur Andrew
+# Copyright (c) 2016-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -9,36 +9,37 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias sprintf org.eolang.txt.sprintf
-+home https://github.com/objectionary/eo-hamcrest
-+package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.5.0
-+version 0.5.0
++alias org.eolang.collections.range
++alias org.eolang.math.number
++home https://github.com/objectionary/eo-collections
++package org.eolang.collections
++rt jvm org.eolang:eo-collections:0.10.0
++version 0.10.0
 
-# Calculates the logical negation of a matcher
-[matcher] > not-matcher
-  [a] > match
-    not. > @
-      matcher.match a
-
-  [act] > describe-mismatch
-    sprintf > @
-      "%s"
-      matcher.describe-mismatch act
-
-  [] > description-of
-    sprintf > @
-      "not %s"
-      description-of.
-        matcher
+# Range of integers from "start" to "end" (soft border) with step = 1
+[start end] > range-of-ints
+  if. > @
+    and.
+      is-int.
+        number start
+      is-int.
+        number end
+    range
+      []
+        [num] > build
+          num > @
+          build (@.plus 1) > next
+        build start > @
+      end
+    error "some of the arguments are not integers"

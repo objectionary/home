@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
 +tests
-+version 0.4.0
++version 0.5.0
 
 [] > has-item-int-test
   assert-that > @
@@ -34,42 +34,48 @@
       $.equal-to 2
 
 [] > has-item-string-test
-  assert-that > @
+  assert-that > res
     * "1" "2" "3"
     $.has-item
       $.equal-to "3"
+  nop > @
 
 [] > has-item-float-test
-  assert-that > @
+  assert-that > res
     * 1.0 44.0
     $.has-item
       $.is
         $.greater-than 10.0
+  nop > @
 
 [] > has-items-int-test
-  assert-that > @
+  assert-that > res
     * 99 101
     $.has-items
       $.greater-than 100
+  nop > @
 
 [] > nested-has-items
-  assert-that > @
+  assert-that > res
     * "a" "b" "c" "d"
     $.has-items
       $.equal-to "c"
+  nop > @
 
 [] > arrays-each-items
-  assert-that > @
+  assert-that > res
     * 1 2
     $.array-each
       $.equal-to 1
       $.equal-to 2
+  nop > @
 
 [] > arrays-each-items-complex-case
-  assert-that > @
+  assert-that > res
     * "vice" "c" -5 ((number 13).as-float)
     $.array-each
       $.equal-to "vice"
       $.equal-to "c"
       $.less-than 0
       $.greater-than 10.0
+  nop > @

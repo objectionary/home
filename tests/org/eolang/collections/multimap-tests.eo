@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias org.eolang.collections.hash-code-of
 +alias org.eolang.collections.list
 +alias org.eolang.collections.multimap
 +alias org.eolang.hamcrest.assert-that
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.0.9
++version 0.10.0
 
 [] > rebuild-do-not-crush
   * 1 2 > harr
@@ -173,8 +174,9 @@
   TRUE > a!
   1231 > b!
   assert-that > @
-    a.as-hash
-    $.equal-to (b.as-hash)
+    hash-code-of a
+    $.equal-to
+      hash-code-of b
 
 [] > multimap-keys-test
   nop > @

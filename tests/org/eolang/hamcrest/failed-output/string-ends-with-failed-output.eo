@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.failed-output
 +tests
-+version 0.4.0
++version 0.5.0
 
 [] > simple-ends-with-string-failed
   [] > suggestion
@@ -45,9 +45,10 @@
         $.contains-string "世"
         $.string-ends-with "ет"
       "ends-with"
-  assert-that > @
+  assert-that > res
     suggestion
     $.equal-to "ends-with\nExpected: string contains: <Привет> and string contains: <世> and string ends with: <ет>\n     but: a value was <Привет, 世界>"
+  nop > @
 
 [] > ends-with-all-of-string-failed
   [] > suggestion
@@ -58,10 +59,7 @@
         $.string-ends-with "dddd"
         $.contains-string "界"
       "ends-with"
-  assert-that > @
+  assert-that > res
     suggestion
     $.equal-to "ends-with\nExpected: string contains: <Привет> or string ends with: <dddd> or string contains: <界>\n     but: a value was <ffffffffffff>"
-
-
-
-
+  nop > @
