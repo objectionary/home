@@ -25,7 +25,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.failed-output
 +tests
-+version 0.4.0
++version 0.5.0
 
 [] > any-of-number-test-failed-output
   [] > suggestion
@@ -33,9 +33,10 @@
       150.minus 50
       $.any-of
         $.equal-to 1
-  assert-that > @
+  assert-that > res
     suggestion
     $.equal-to "\nExpected: <1> equal to value\n     but: a value was <100>"
+  nop > @
 
 [] > any-of-several-failed-output
   [] > suggestion
@@ -45,9 +46,10 @@
         $.equal-to 1
         $.greater-than 100
         $.less-than -6
-  assert-that > @
+  assert-that > res
     suggestion
     $.equal-to "\nExpected: <1> equal to value or <100> less than value or <-6> greater than value\n     but: a value was <3>"
+  nop > @
 
 [] > any-of-close-to-failed-output
   nop > @

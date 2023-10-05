@@ -24,8 +24,8 @@
 +alias sprintf org.eolang.txt.sprintf
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest.matchers
-+rt jvm org.eolang:eo-hamcrest:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-hamcrest:0.5.0
++version 0.5.0
 
 # Compare object that matches when an examined float
 # is equal to the specified operand, within a range of +/- error.

@@ -24,7 +24,7 @@
 +home https://github.com/objectionary/eo-hamcrest
 +package org.eolang.hamcrest
 +tests
-+version 0.4.0
++version 0.5.0
 
 [] > matches-regex-alphabetical-test
   assert-that > @
