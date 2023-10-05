@@ -46,8 +46,6 @@
 +rt jvm org.eolang:eo-hamcrest:0.4.0
 +version 0.4.0
 
-# Main object for assertions with multiply dataization of actual object.
-# It should dataize twice only when we get FALSE mathcing result from the first dataization.
 [actual matcher reasons...] > assert-twice-that
   actual > act!
 
