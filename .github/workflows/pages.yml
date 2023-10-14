@@ -17,8 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: mkdir -p data && touch data/tags.txt
       - run: git ls-remote --tags --heads origin > data/tags.txt
-      - run: sed -i '' 's+refs/tags/++g' data/tags.txt
-      - run: sed -i '' 's+refs/heads/++g' data/tags.txt
+      - run: sed -i 's+refs/tags/++g' data/tags.txt
+      - run: sed -i 's+refs/heads/++g' data/tags.txt
       - run: touch data/objectionary.lst
       - run: find objects -name '*.eo' > data/objectionary.lst
       - run: find tests -name '*.eo' >> data/objectionary.lst
