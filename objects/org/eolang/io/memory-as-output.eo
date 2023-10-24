@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-files:0.4.1
++version 0.4.1
 
 # Turns memory into an output.
 [m] > memory-as-output
@@ -33,6 +33,4 @@
   # return a new "output" object
   [data] > write /memory-as-output
 
-  # Close it
-  [] > close
-    TRUE > @
+  TRUE > close

@@ -25,20 +25,21 @@
 +alias org.eolang.io.copied
 +alias org.eolang.io.memory-as-output
 +home https://github.com/objectionary/eo-files
++junit
 +package org.eolang.io
-+tests
-+version 0.4.0
++version 0.4.1
 
 [] > copies-bytes-from-object-to-memory
   memory -- > m
-  assert-that > @
-    copied
-      bytes-as-input
-        as-bytes.
-          "你好, друг!"
-      memory-as-output
-        m
-      4
-    $.equal-to
-      17
+  nop > @
+    assert-that
+      copied
+        bytes-as-input
+          as-bytes.
+            "你好, друг!"
+        memory-as-output
+          m.as-bytes
+        4
+      $.equal-to
+        17
 

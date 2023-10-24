@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.fs
-+rt jvm org.eolang:eo-files:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-files:0.4.1
++version 0.4.1
 
 # Takes the extension part from the full path name,
 # for example "/tmp/bar/foo.txt.gz" will lead to "txt.gz"

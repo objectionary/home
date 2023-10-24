@@ -26,9 +26,9 @@
 +alias org.eolang.io.bytes-as-input
 +alias org.eolang.io.copied
 +home https://github.com/objectionary/eo-files
++junit
 +package org.eolang.fs
-+tests
-+version 0.4.0
++version 0.4.1
 
 [] > makes-the-same-temp-file
   tmpdir.tmpfile > f!

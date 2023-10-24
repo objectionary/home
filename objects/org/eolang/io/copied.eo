@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-files
 +package org.eolang.io
-+rt jvm org.eolang:eo-files:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-files:0.4.1
++version 0.4.1
 
 # A copy of input into output, which is a total
 # number of bytes copied.
