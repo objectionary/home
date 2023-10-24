@@ -22,9 +22,8 @@
 
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.5.0
++version 0.5.0
 
 # The PI number
-[] > pi
-  3.14159265358979323846 > @
+3.14159265358979323846 > pi

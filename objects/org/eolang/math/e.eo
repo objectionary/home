@@ -22,9 +22,8 @@
 
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.5.0
++version 0.5.0
 
 # The Euler's number
-[] > e
-  2.7182818284590452354 > @
+2.7182818284590452354 > e

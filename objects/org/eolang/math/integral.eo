@@ -23,8 +23,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-math
 +package org.eolang.math
-+rt jvm org.eolang:eo-math:0.4.0
-+version 0.4.0
++rt jvm org.eolang:eo-math:0.5.0
++version 0.5.0
 
 # Counts integral from a to b
 [fun a b] > integral
@@ -46,7 +46,6 @@
                 b
               2.0
         fun b
-
   memory > sum
     0.0
   memory > x
