@@ -30,7 +30,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.10.0
++version 0.10.2
 
 # check that list.is-empty works properly
 [] > should-not-be-empty
@@ -166,10 +166,8 @@
     $.equal-to FALSE
 
 [] > reducedi-nested-functions
-  [] > a
-    10 > @
-  [] > b
-    500 > @
+  10 > a
+  500 > b
   assert-that > @
     reducedi.
       list
@@ -417,7 +415,7 @@
 
 [] > reduce-with-memory-test
   eq. > @
-    foo
+    foo.as-int
     7
 
   [] > foo
@@ -433,7 +431,7 @@
 
 [] > reduce-with-memory-test-2
   eq. > @
-    foo
+    foo.as-int
     7
 
   [] > foo

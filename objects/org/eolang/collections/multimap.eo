@@ -25,12 +25,12 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.10.0
-+version 0.10.0
++rt jvm org.eolang:eo-collections:0.10.2
++version 0.10.2
 
 [m] > multimap
   memory 0 > elements-amount
-  elements-amount > size
+  elements-amount.as-int > size
 
   # Returns list of all keys in multimap
   [] > keys
@@ -70,7 +70,7 @@
     ^.rebuilded harr arr > table!
     multimap table > mmp
     seq > @
-      (mmp.elements-amount).write (arr.length)
+      mmp.elements-amount.write (arr.length)
       mmp
 
   [key arr] > find-in-list
@@ -135,12 +135,12 @@
         if. > @
           gte.
             x.at 0
-            curr-hash
+            curr-hash.as-int
           seq
             curr-hash.write (x.at 0)
-            fill-to-size a curr-hash > filled-to-size!
-            create-array-by-hash sorted-pairs curr-hash i > curr-hash-added!
-            curr-hash.write (curr-hash.plus 1)
+            fill-to-size a curr-hash.as-int > filled-to-size!
+            create-array-by-hash sorted-pairs curr-hash.as-int i > curr-hash-added!
+            curr-hash.write (curr-hash.as-int.plus 1)
             filled-to-size.with curr-hash-added
           a
     fill-to-size > @
@@ -194,5 +194,5 @@
     ^.rebuilded harr arr > table!
     multimap table > mmp
     seq > @
-      (mmp.elements-amount).write (arr.length)
+      mmp.elements-amount.write (arr.length)
       mmp

@@ -24,8 +24,8 @@
 +alias org.eolang.math.number
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.10.0
-+version 0.10.0
++rt jvm org.eolang:eo-collections:0.10.2
++version 0.10.2
 
 # Range of integers from "start" to "end" (soft border) with step = 1
 [start end] > range-of-ints

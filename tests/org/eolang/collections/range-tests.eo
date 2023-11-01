@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.10.0
++version 0.10.2
 
 [] > simple-range
   range > rng!

@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.10.0
-+version 0.10.0
++rt jvm org.eolang:eo-collections:0.10.2
++version 0.10.2
 
 # Range — create an array containing a range of elements
 # Here "start" must be a abstract object that must have an object "next" to get
@@ -43,19 +43,18 @@
 # "1.plus 1" and also has object next. Since these objects are ints - they have
 # object "lt" by default
 [start end] > range
-  [] > @
-    [acc current last] > append
-      if. > @
-        current.lt last
-        append
-          acc.with current
-          current.next
-          last
-        acc
+  [acc current last] > append
     if. > @
-      start.lt end
+      current.lt last
       append
-        * start
-        start.next
-        end
-      *
+        acc.with current
+        current.next
+        last
+      acc
+  if. > @
+    start.lt end
+    append
+      * start
+      start.next
+      end
+    *

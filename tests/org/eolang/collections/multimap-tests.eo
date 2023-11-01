@@ -27,7 +27,7 @@
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
 +tests
-+version 0.10.0
++version 0.10.2
 
 [] > rebuild-do-not-crush
   * 1 2 > harr
@@ -270,7 +270,7 @@
         QQ.math.number
           harr.at i
         arr.length
-      (multimap.rebuilded.comparable-pair) (* new-index x) > @
+      multimap.rebuilded.comparable-pair (* new-index x) > @
   sorted. > sorted-pairs!
     list
       wrapped-pairs

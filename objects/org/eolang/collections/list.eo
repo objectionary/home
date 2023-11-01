@@ -22,8 +22,8 @@
 
 +home https://github.com/objectionary/eo-collections
 +package org.eolang.collections
-+rt jvm org.eolang:eo-collections:0.10.0
-+version 0.10.0
++rt jvm org.eolang:eo-collections:0.10.2
++version 0.10.2
 
 [arr] > list
   arr > @
@@ -234,22 +234,22 @@
     memory 0 > i
     memory 0 > j
     while. > sorting-process!
-      (i.plus 1).lt (res.length)
+      (i.as-int.plus 1).lt (res.length)
       [iter-i]
         seq > @
           j.write 0
-          i.write (i.plus 1)
+          i.write (i.as-int.plus 1)
           while.
-            (j.plus 2).lt (res.length)
+            (j.as-int.plus 2).lt res.length
             [iter-j]
               seq > @
                 if.
                   lt.
-                    arr.at (res.at (j.plus 1))
-                    arr.at (res.at j)
-                  swap (res.at j) (res.at (j.plus 1))
+                    arr.at (res.at (j.as-int.plus 1)).as-int
+                    arr.at (res.at j.as-int).as-int
+                  swap (res.at j.as-int) (res.at (j.as-int.plus 1))
                   TRUE
-                j.write (j.plus 1)
+                j.write (j.as-int.plus 1)
     seq > @
       sorting-process
       reduced.
@@ -257,12 +257,12 @@
           res
         *
         [a x]
-          a.with (arr.at x) > @
+          a.with (arr.at x.as-int) > @
 
     [a b] > swap
       seq > @
-        a > temp!
-        a.write b
+        a.as-int > temp!
+        a.write b.as-int
         b.write temp
 
   # Filter list with index with the function "f".
@@ -386,6 +386,7 @@
             acc.with item
             acc
 
+  #
   # TRUE if the current list is lexicographically
   # greater than the passed list. Otherwise, FALSE.
   [other] > gt

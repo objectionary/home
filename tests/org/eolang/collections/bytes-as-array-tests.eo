@@ -26,7 +26,7 @@
 +home https://github.com/objectionary/eo
 +package org.eolang.collections
 +tests
-+version 0.10.0
++version 0.10.2
 
 [] > bytes-to-array
   assert-that > @
