@@ -20,66 +20,70 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.goto
-+alias org.eolang.hamcrest.assert-that
 +alias org.eolang.io.stdout
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang
-+version 0.29.5
++version 0.34.0
 
 [] > goto-jumps-backwards
   memory 0 > i
-  assert-that > @
+  eq. > @
     seq
-      i.write 1
-      goto
-        [g]
-          seq > @
-            i.write (i.plus 1)
-            if.
-              i.lt 10
-              g.backward
-              TRUE
-      stdout "Finished!"
-      i
-    $.equal-to 11
+      *
+        i.write 1
+        goto
+          [g]
+            seq > @
+              *
+                i.write (i.as-int.plus 1)
+                if.
+                  i.as-int.lt 10
+                  g.backward
+                  TRUE
+        stdout "Finished!"
+        i
+    11
 
 [] > goto-jumps-backwards-without-last-datization
   memory 0 > i
-  assert-that > @
+  eq. > @
     seq
-      i.write 1
-      goto
-        [g]
-          seq > @
-            i.write (i.plus 1)
-            if.
-              i.lt 10
-              g.backward
-              TRUE
-      .@
-      .<
-      stdout "Finished!"
-      i
-    $.equal-to 10
+      *
+        i.write 1
+        goto
+          [g]
+            seq > @
+              *
+                i.write (i.as-int.plus 1)
+                if.
+                  i.as-int.lt 10
+                  g.backward
+                  TRUE
+        .@
+        .<
+        stdout "Finished!"
+        i
+    10
 
 [] > goto-jumps-forward
   [x] > div
     memory 0 > r
     seq > @
-      r.write 0
-      goto
-        [g]
-          seq > @
-            if.
-              x.eq 0
-              g.forward TRUE
-              TRUE
-            r.write (42.div x)
-      r
-  assert-that > @
+      *
+        r.write 0
+        goto
+          [g]
+            seq > @
+              *
+                if.
+                  x.eq 0
+                  g.forward TRUE
+                  TRUE
+                r.write (42.div x)
+        r
+  eq. > @
     and.
       eq.
         div 7
@@ -87,29 +91,31 @@
       eq.
         div 0
         0
-    $.equal-to TRUE
+    TRUE
 
 [] > returns-from-method-body
   [a b] > max
     goto > @
       [g]
         seq > @
-          if.
-            a.gt b
-            g.forward a
-            TRUE
-          b
-  assert-that > @
+          *
+            if.
+              a.gt b
+              g.forward a
+              TRUE
+            b
+  eq. > @
     max 7 42
-    $.equal-to 42
+    42
 
 [] > nested-goto
-  assert-that > @
+  eq. > @
     goto
       [g1]
         seq > @
-          goto
-            [g2]
-              g1.forward 42 > @
-          7
-    $.equal-to 42
+          *
+            goto
+              [g2]
+                g1.forward 42 > @
+            7
+    42
