@@ -21,7 +21,8 @@ def pull_release(unique_deps):
                 myfile.write(f'eo_lib_version={eo_lib_version}')
             print(f'Added to env: {eo_lib_version}')
             break
-
+        else:
+            print(f"Couldn't compare {latest_version} and {version}")
 
 def compare(latest_version, old_version):
     latest = latest_version.split(".")
