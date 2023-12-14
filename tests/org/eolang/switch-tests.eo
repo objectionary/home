@@ -20,71 +20,74 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.hamcrest.assert-that
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang
-+version 0.29.5
++version 0.34.0
 
 [] > switch-simple-case
-  assert-that > @
+  eq. > @
     switch
       *
-        FALSE
-        "1"
-      *
-        TRUE
-        "2"
-    $.equal-to "2"
+        *
+          FALSE
+          "1"
+        *
+          TRUE
+          "2"
+    "2"
 
 [] > switch-strings-case
   memory "swordfish" > password
-  assert-that > @
+  eq. > @
     switch
       *
-        password.eq "swordfish"
-        "password is correct!"
-      *
-        password.eq ""
-        "empty password is not allowed"
-      *
-        FALSE
-        "password is wrong"
-    $.equal-to "password is correct!"
+        *
+          password.eq "swordfish"
+          "password is correct!"
+        *
+          password.eq ""
+          "empty password is not allowed"
+        *
+          FALSE
+          "password is wrong"
+    "password is correct!"
 
 [] > switch-with-several-true-cases
-  assert-that > @
+  eq. > @
     switch
       *
-        TRUE
-        "TRUE1"
-      *
-        FALSE
-        "FALSE"
-      *
-        TRUE
-        "TRUE2"
-    $.equal-to "TRUE1"
+        *
+          TRUE
+          "TRUE1"
+        *
+          FALSE
+          "FALSE"
+        *
+          TRUE
+          "TRUE2"
+    "TRUE1"
 
 [] > switch-with-all-false-cases
-  assert-that > @
+  eq. > @
     switch
       *
-        FALSE
-        "FALSE1"
-      *
-        FALSE
-        "FALSE2"
-    $.equal-to TRUE
+        *
+          FALSE
+          "FALSE1"
+        *
+          FALSE
+          "FALSE2"
+    TRUE
 
 [] > switch-case-with-error
   try > @
-    switch
+    switch *
     [ex]
-      assert-that > @
+      eq. > @
         ex
-        $.equal-to "switch cases are empty"
+        "switch cases are empty"
     nop
 
 [] > switch-complex-case
@@ -94,19 +97,20 @@
     "1".eq "2" > @
   [] > c3
     TRUE > @
-  assert-that > @
+  eq. > @
     switch
       *
-        []
-          c1 > @
-        22.0
-      *
-        []
-          c2 > @
-        0.0
-      *
-        []
-          c3 > @
-        []
-          "true case" > @
-    $.equal-to "true case"
+        *
+          []
+            c1 > @
+          22.0
+        *
+          []
+            c2 > @
+          0.0
+        *
+          []
+            c3 > @
+          []
+            "true case" > @
+    "true case"
