@@ -1,10 +1,11 @@
 3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
-272df9cf388cee5fb64bc6a597423114fc1d8d05	gh-pages
-93f18c2b8efe4c684e23aac1d8ffbd3feff744dd	master
+478fa88217443cb1fad1af18b4dc4c6e1b701cb7	gh-pages
+7894af7b4c6fbfdaadd9a8e833bdc30001950e7b	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-97242ec0c4ab12594a464c140a27af9de0b9d8fa	renovate/crazy-max-ghaction-import-gpg-6.x
-e09816affcaa3454329bb8ba5c7588907a655348	renovate/junit5-monorepo
-0ee9f46aaf5868aba6df3920544c9bc7960a7a07	renovate/ubuntu-22.x
+9cd9c7505c9ee31e64cb8aaeabffddfc9a648ed0	renovate/crazy-max-ghaction-import-gpg-6.x
+1aba76a1861606ea8b978dc53c30fd91ae9957dc	renovate/eo.version
+ee68c7fc33c261318aaa4993e9c1b0fe8a0490a2	renovate/junit5-monorepo
+ea4a2c19771e9cb073531d9457000607df58f1b9	renovate/ubuntu-22.x
 4cf27ff7f3ec17891645d287cc2c2e56b3dd05e6	update-eo-0.29.6
 8ccc7b923db19f1dc6938597264eaccddf35371d	update-eo-0.30.0
 cb31e34e0cd69f95433c3a6569bfd51f255659d5	update-eo-0.31.0
