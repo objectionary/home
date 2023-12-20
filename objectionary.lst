@@ -37,6 +37,7 @@ tests/org/eolang/nop-tests.eo
 tests/org/eolang/rust-tests.eo
 tests/org/eolang/bool-tests.eo
 tests/org/eolang/memory-tests.eo
+tests/org/eolang/ram-tests.eo
 tests/org/eolang/heap-tests.eo
 tests/org/eolang/negative-infinity-tests.eo
 tests/org/eolang/float-tests.eo
