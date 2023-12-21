@@ -12,8 +12,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-      - run: gem install pdd
-      - run: pdd --format xml . | ( ! grep '<puzzle>' )
+      - uses: maxonfjvipon/pdd-action@master
