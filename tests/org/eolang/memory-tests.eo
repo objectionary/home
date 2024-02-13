@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2023 Objectionary.com
+# Copyright (c) 2016-2024 Objectionary.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,9 @@
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang
-+version 0.35.0
++version 0.35.2
 
+# Test.
 [] > writes-into-memory
   memory 0 > x
   eq. > @
@@ -35,6 +36,7 @@
         x
     10
 
+# Test.
 [] > double-writes
   memory "1234567890123" > m
   eq. > @
@@ -45,6 +47,7 @@
         m
     42
 
+# Test.
 [] > rewrites-and-increments-itself
   memory 0 > m
   eq. > @
@@ -55,7 +58,9 @@
         m
     6
 
+# Test.
 [] > memory-in-outer-scope
+  # Outer scope object.
   [] > outer
     memory 0 > x
   outer > a
@@ -66,6 +71,7 @@
         a.x.as-int
         1
 
+# Test.
 [] > writes-into-two-memory-objects
   memory 0 > a
   memory 0 > b
@@ -80,6 +86,7 @@
       a.eq 10
     TRUE
 
+# Test.
 [] > writes-into-two-memory-objects-and-check-first
   memory 0 > a
   memory 0 > b
@@ -91,6 +98,7 @@
         a
     10
 
+# Test.
 [] > memory-is-strictly-typed-bool-error-overflow
   memory FALSE > m
   nop > @
@@ -103,6 +111,7 @@
         nop
       "Not enough memory to write: expected <1> byte, got <2^61>"
 
+# Test.
 [] > memory-is-strictly-typed-string-error-overflow
   memory "Hello" > m
   nop > @
@@ -115,6 +124,7 @@
         nop
       "Not enough memory to write: expected <5>, got <20>"
 
+# Test.
 [] > memory-is-strictly-typed-int
   memory 12248 > m
   nop > @
@@ -127,6 +137,7 @@
         nop
       2556
 
+# Test.
 [] > memory-is-strictly-typed-float
   memory 245.88 > m
   nop > @
@@ -139,6 +150,7 @@
         nop
       82.22
 
+# Test.
 [] > memory-is-strictly-typed-string
   memory "Hello" > m
   nop > @
@@ -151,6 +163,7 @@
         nop
       "Hell"
 
+# Test.
 [] > memory-is-strictly-typed-bool
   memory FALSE > m
   nop > @
