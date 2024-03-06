@@ -81,6 +81,7 @@
     01-.as-bytes.eq TRUE
     00-.as-bytes.eq FALSE
 
+# Test.
 [] > complex-bool-expression-in-while
   memory 0 > m
   seq > res
