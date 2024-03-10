@@ -3,6 +3,8 @@ name: releases
 on:
   schedule:
     - cron: "0 * * * *"
+env:
+  make_pr: 'false'
 
 jobs:
   check-releases:
@@ -35,8 +37,9 @@ jobs:
       - name: Check if branch exists
         run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
-          echo "is_exist: ${{ env.is_exist }}"
-      - name: create pull request
+          echo "make_pr: ${{ env.make_pr }}"
+      - name: Create pull request
+        if: ${{ env.make_pr == 'true' }}
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
@@ -47,4 +50,3 @@ jobs:
           base: master
           branch: update-${{ env.eo_lib_version }}
           delete-branch: true
-        if: ${{ env.is_exist == 'false' }}
