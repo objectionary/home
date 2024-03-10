@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0,5,10,15,20,25,30,35,40,45,50,55 * * * *"
 env:
-  is_exist: 'false'
+  make_pr: 'false'
 
 jobs:
   check-releases:
@@ -37,9 +37,9 @@ jobs:
       - name: Check if branch exists
         run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
-          echo "is_exist: ${{ env.is_exist }}"
+          echo "make_pr: ${{ env.make_pr }}"
       - name: Create pull request
-        if: ${{ env.is_exist == 'false' }}
+        if: ${{ env.make_pr == 'true' }}
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
