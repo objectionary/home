@@ -38,9 +38,12 @@ jobs:
         run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
           echo "is_exist: ${{ env.is_exist }}"
-      - name: create pull request
-        if: env.is_exist == 'false'
-        uses: peter-evans/create-pull-request@v6
+  create-pull-request:
+    if: env.is_exist == 'false'
+    needs: check-releases
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
           committer: yegor256 <yegor256@gmail.com>
