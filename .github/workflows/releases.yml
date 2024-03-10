@@ -2,7 +2,7 @@ name: releases
 
 on:
   schedule:
-    - cron: "0,5,10,15,20,25,30,35,40,45,50,55 * * * *"
+    - cron: "0 * * * *"
 env:
   make_pr: 'false'
 
@@ -26,14 +26,14 @@ jobs:
       - name: pull releases
         run: |
           python3 py/auto_pull.py
-      #      - name: Import GPG key
-      #        uses: crazy-max/ghaction-import-gpg@v6
-      #        with:
-      #          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      ##          passphrase: ${{ secrets.PASSPHRASE }}
-      #          git_user_signingkey: true
-      #          git_commit_gpgsign: true
-      #          git_push_gpgsign: ""
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+#          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_push_gpgsign: ""
       - name: Check if branch exists
         run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
@@ -43,7 +43,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
-          committer: maxonfjvipon <mtrunnikov@gmail.com>
+          committer: yegor256 <yegor256@gmail.com>
           commit-message: New release for ${{ env.eo_lib_version }}
           title: New release for ${{ env.eo_lib_version }}
           body: New release for ${{ env.eo_lib_version }}
