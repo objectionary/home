@@ -24,6 +24,7 @@ def pull_release(unique_deps):
         else:
             print(f"{latest_version} is less than or equal to {version}")
 
+
 def compare(latest_version, old_version):
     latest = latest_version.split(".")
     old = old_version.split(".")
@@ -31,5 +32,6 @@ def compare(latest_version, old_version):
         if int(latest[i]) > int(old[i]):
             return True
     return False
+
 
 pull_release(dependencies())

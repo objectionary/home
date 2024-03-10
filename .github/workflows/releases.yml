@@ -2,7 +2,9 @@ name: releases
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "* * * * *"
+env:
+  is_exist: 'false'
 
 jobs:
   check-releases:
@@ -24,19 +26,20 @@ jobs:
       - name: pull releases
         run: |
           python3 py/auto_pull.py
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-#          passphrase: ${{ secrets.PASSPHRASE }}
-          git_user_signingkey: true
-          git_commit_gpgsign: true
-          git_push_gpgsign: ""
+#      - name: Import GPG key
+#        uses: crazy-max/ghaction-import-gpg@v6
+#        with:
+#          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+##          passphrase: ${{ secrets.PASSPHRASE }}
+#          git_user_signingkey: true
+#          git_commit_gpgsign: true
+#          git_push_gpgsign: ""
       - name: Check if branch exists
         run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
           echo "is_exist: ${{ env.is_exist }}"
       - name: create pull request
+        if: env.is_exist == 'false'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
@@ -47,4 +50,3 @@ jobs:
           base: master
           branch: update-${{ env.eo_lib_version }}
           delete-branch: true
-        if: ${{ env.is_exist == 'false' }}

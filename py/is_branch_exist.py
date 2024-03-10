@@ -10,8 +10,12 @@ if len(sys.argv) > 1:
     result = subprocess.run(command, shell=True, capture_output=True)
     is_exist = result.returncode == 0
 else:
-    print(f"eo_lib_version was not set to sys.argv")
+    print("eo_lib_version was not set to sys.argv")
 env_file = os.getenv('GITHUB_ENV')
 with open(env_file, "a") as myfile:
-    myfile.write(f'is_exist={"true" if is_exist else "false"}')
+    env = f'is_exist={"true" if is_exist else "false"}'
+    myfile.write(env)
+    print(f'written to GITHUB_ENV "{env}"')
+with open(env_file, "r") as file:
+    print(f'Read from GITHUB_ENV {file.read()}')
 print(f'Added to env: {is_exist}')
