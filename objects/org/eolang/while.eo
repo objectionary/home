@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2024 Objectionary.com
+#  2016-2022 Objectionary.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,31 @@
 
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+tests
 +package org.eolang
-+version 0.35.8
++rt jvm org.eolang:eo-runtime:0.36.0
++version 0.36.0
 
-# Test.
-[] > x
-  TRUE > @
+# While.
+[condition body] > while
+  if > @
+    condition
+    start 0
+    FALSE
 
-# Test.
-[] > z
-  # Y.
-  [x] > y
-    x > @
-  TRUE > @
+  # First loop iteration that does not check condition.
+  [index] > start
+    seq > @
+      *
+        ^.body index
+        ^.loop (index.plus 1)
+
+  # Recursive
+  [index] > loop
+    ^.body index > current
+    if > @
+      ^.condition
+      seq
+        *
+          current
+          ^.loop (index.plus 1)
+      current

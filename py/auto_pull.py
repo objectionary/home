@@ -15,6 +15,7 @@ def pull_release(unique_deps):
         latest_version = latest_release["tag_name"]
         if compare(latest_version, version):
             os.system(f'./pull.sh objectionary/{name}')
+            os.system(f'./pom.sh {latest_version}')
             env_file = os.getenv('GITHUB_ENV')
             eo_lib_version = f'{name}-{latest_version}'
             with open(env_file, "a") as myfile:
