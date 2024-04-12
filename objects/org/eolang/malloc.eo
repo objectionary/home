@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2024 Objectionary.com
+#  2016-2022 Objectionary.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,58 +26,34 @@
 +rt jvm org.eolang:eo-runtime:0.36.0
 +version 0.36.0
 
-# Bytes.
-[] > bytes
-  # Equals to another object.
-  [x] > eq /bool
+# Allocates a block in memory of `size` bytes.
+# You can use it like:
+# ```
+# (malloc 8).pointer > p
+# seq
+#   *
+#     p.write 0 42 # write 8 bytes integer with offset 0
+#     p.read       # read from memory, 42 will be returned
+#     p.free       # free allocated block
+# ```
+# Clearing the block is optional and is up to programmer.
+[size] > malloc
+  @.pointer > pointer
 
-  # Total number of bytes.
-  [] > size /int
+  # Allocates a memory block in RAM and returns pointer to it.
+  [] > @ /memory-block-pointer
 
-  # Represents a sub-sequence inside the current one.
-  [start len] > slice /bytes
+  # Pointer to allocated block in memory.
+  # Here `id` is identifier of pointer, `size` is length of the block.
+  [id] > memory-block-pointer
+    $ > pointer
+    ^.size > size
 
-  # Turn this chain of bytes into a string in UTF-8.
-  [] > as-string /string
+    # Read `length` bytes from `offset` from the block in memory by the pointer.
+    [offset length] > read /bytes
 
-  # Turn this chain of eight bytes into an integer.
-  # If there are less or more than eight bytes, there will
-  # be an error returned.
-  [] > as-int /int
+    # Write `data` from `offset` to the block in memory by the pointer.
+    [offset data] > write /true
 
-  # Turn this chain of eight bytes into a float.
-  # If there are less or more than eight bytes, there will
-  # be an error returned.
-  [] > as-float /float
-
-  # Calculate bitwise and.
-  [b] > and /bytes
-
-  # Calculate bitwise or.
-  [b] > or /bytes
-
-  # Calculate bitwise xor.
-  [b] > xor /bytes
-
-  # Calculate bitwise not.
-  [] > not /bytes
-
-  # Calculate bitwise left shift.
-  [x] > left
-    ^.right x.neg > @
-
-  # Calculate bitwise right shift.
-  [x] > right /bytes
-
-  # Converts to bool.
-  [] > as-bool
-    ^.eq 01- > @
-
-  # Return itself.
-  [] > as-bytes
-    ^ > @
-
-  # Concatenation of two byte sequences:
-  # the current and the provided one,
-  # as a new sequence.
-  [b] > concat /bytes
+    # Free the block in memory by the pointer.
+    [] > free /true

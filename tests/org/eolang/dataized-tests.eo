@@ -22,62 +22,41 @@
 
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
++tests
 +package org.eolang
-+rt jvm org.eolang:eo-runtime:0.36.0
 +version 0.36.0
 
-# Bytes.
-[] > bytes
-  # Equals to another object.
-  [x] > eq /bool
+# Test.
+[] > dataized-does-not-do-recalculation
+  (memory 0).alloc > m
+  # Func.
+  [] > func
+    ^.m.write (^.m.as-int.plus 1) > @
+  (dataized func).as-bytes > cached
+  seq > @
+    *
+      cached.as-int
+      cached.as-bytes
+      cached.as-bool
+      1.eq m
 
-  # Total number of bytes.
-  [] > size /int
-
-  # Represents a sub-sequence inside the current one.
-  [start len] > slice /bytes
-
-  # Turn this chain of bytes into a string in UTF-8.
-  [] > as-string /string
-
-  # Turn this chain of eight bytes into an integer.
-  # If there are less or more than eight bytes, there will
-  # be an error returned.
-  [] > as-int /int
-
-  # Turn this chain of eight bytes into a float.
-  # If there are less or more than eight bytes, there will
-  # be an error returned.
-  [] > as-float /float
-
-  # Calculate bitwise and.
-  [b] > and /bytes
-
-  # Calculate bitwise or.
-  [b] > or /bytes
-
-  # Calculate bitwise xor.
-  [b] > xor /bytes
-
-  # Calculate bitwise not.
-  [] > not /bytes
-
-  # Calculate bitwise left shift.
-  [x] > left
-    ^.right x.neg > @
-
-  # Calculate bitwise right shift.
-  [x] > right /bytes
-
-  # Converts to bool.
-  [] > as-bool
-    ^.eq 01- > @
-
-  # Return itself.
-  [] > as-bytes
-    ^ > @
-
-  # Concatenation of two byte sequences:
-  # the current and the provided one,
-  # as a new sequence.
-  [b] > concat /bytes
+# Test.
+[] > dataizes-as-bytes-behaves-as-exclamationed
+  # Func.
+  [] > func
+    (memory 0).alloc > m
+    seq > @
+      *
+        TRUE
+        m.write (m.as-int.plus 1)
+  (dataized func).as-bytes > cached1
+  func > cached2!
+  seq > @
+    *
+      cached1
+      cached2
+      cached1
+      cached2
+      and.
+        cached1.eq cached2
+        1.eq cached1
