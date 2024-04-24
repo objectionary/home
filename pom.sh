@@ -38,6 +38,6 @@ new_version=$1
 pom_file="make/jvm/pom.xml"
 
 # Replace the <eo.version> property with the new version
-sed -i '' "s|<eo.version>.*</eo.version>|<eo.version>${new_version}</eo.version>|g" $pom_file
+sed -i "s|<eo.version>.*</eo.version>|<eo.version>${new_version}</eo.version>|g" $pom_file
 
 echo "Updated pom.xml with new version: ${new_version}"
