@@ -1,9 +1,9 @@
 3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
-8b3ef3c19efab81f6c49c1580828b84a1f3e1314	gh-pages
-4fab83ddc50b6aa86091f553cfb578df7d63a6be	master
+14e5dcd632f7ffb655476bbc5fa508efffa6b2e4	gh-pages
+4bbcd0b8820c17405c668c08bdbeeb2dfbe5988a	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-133218620ccf43677a6d920129347a0e5a35985e	renovate/eo.version
-794318a16547bd1ff12f279989d1ec901f8839bd	renovate/jamesives-github-pages-deploy-action-4.x
+91e190a2f36b6f771b83be569e1b43329aeb9fe6	renovate/eo.version
+89370e42dc7d78c607b20f86b6cebcc3a291f33b	renovate/jamesives-github-pages-deploy-action-4.x
 4cf27ff7f3ec17891645d287cc2c2e56b3dd05e6	update-eo-0.29.6
 8ccc7b923db19f1dc6938597264eaccddf35371d	update-eo-0.30.0
 cb31e34e0cd69f95433c3a6569bfd51f255659d5	update-eo-0.31.0
@@ -23,6 +23,8 @@ beb834576fa019eeade3a461cc03913911ae7df5	update-eo-0.37.0
 3b5f3a5726a5d93ba6acb021a2be8a40e408a93f	update-eo-0.38.0
 70bf1984cbe313fc762786788b6c553c77e0d649	update-eo-0.38.1
 4fab83ddc50b6aa86091f553cfb578df7d63a6be	update-eo-0.38.2
+f5de44a743b6a1be6cb3db77d9da204a4e733002	update-eo-0.38.3
+4bbcd0b8820c17405c668c08bdbeeb2dfbe5988a	update-eo-0.38.4
 fba5c2263fb34262867be851818e392bcab84935	update-eo-collections-0.10.0
 2d8aadcad62f6b9bfad0d59262a916be5e7358c4	update-eo-collections-0.10.2
 ef2adc55dd28fc19eb1d112bc22079e8fa4f0221	update-eo-files-0.4.1
