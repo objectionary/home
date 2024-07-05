@@ -1,6 +1,6 @@
 3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
-383a16ce44d3881edec5dcd6e452ae20f6a43cf0	gh-pages
-2be46b05b5cf3f1e03af70b00bccea7c0c7eb84f	master
+1295211f60c8f4d0538671aaa9cc5d9b39214b91	gh-pages
+f4295f0d02344482ce6c3a2b122a5401e65016cc	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
 42015572ad53cb012a788e729280312b003dd425	renovate/jamesives-github-pages-deploy-action-4.x
 901d7826c10bda2845ac9556b897a3576b1e7243	renovate/junit5-monorepo
