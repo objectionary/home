@@ -20,32 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: pages
-on:
+name: copyrights
+'on':
   push:
-    branches:
-      - master
-    tags:
-      - '*'
-  release:
-    branches:
-      - master
-    tags:
-      - '*'
+  pull_request:
 jobs:
-  pages:
+  copyrights:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir -p data && touch data/tags.txt
-      - run: git ls-remote --tags --heads origin > data/tags.txt
-      - run: sed -i 's+refs/tags/++g' data/tags.txt
-      - run: sed -i 's+refs/heads/++g' data/tags.txt
-      - run: touch data/objectionary.lst
-      - run: find objects -name '*.eo' > data/objectionary.lst
-      - run: find tests -name '*.eo' >> data/objectionary.lst
-      - uses: JamesIves/github-pages-deploy-action@v4.5.0
-        with:
-          branch: gh-pages
-          folder: data
-          clean: false
+      - uses: yegor256/copyrights-action@0.0.4
