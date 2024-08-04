@@ -107,17 +107,17 @@ SOFTWARE.
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
+      <version>5.10.3</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
+      <version>5.10.3</version>
     </dependency>
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <scope>test</scope>
+      <version>2.2.0</version>
     </dependency>
   </dependencies>
 </project>
