@@ -44,7 +44,7 @@ jobs:
       - run: touch data/objectionary.lst
       - run: find objects -name '*.eo' > data/objectionary.lst
       - run: find tests -name '*.eo' >> data/objectionary.lst
-      - uses: JamesIves/github-pages-deploy-action@v4.5.0
+      - uses: JamesIves/github-pages-deploy-action@v4.6.3
         with:
           branch: gh-pages
           folder: data
