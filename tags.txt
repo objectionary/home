@@ -1,11 +1,10 @@
 3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
-11e31e64fb317d1a9803b12d89563eef64da779d	gh-pages
-f2de6c466752770ed7395961c9a5f86c8b539814	master
+440fca1c45f0ba2542adece9fd3d1b863163e851	gh-pages
+114c03fd4fb3bbc005e7784a5bc8936eb70509eb	master
 db0579b48dd717ac015b7af8515f8a56ee6fd521	renovate/actions-checkout-3.x
-148fe2f597a91a90dd1d4b45eefb8ae40a201424	renovate/eo.version
-20447bb73d3d7c0df5c320630d719225a3110309	renovate/jamesives-github-pages-deploy-action-4.x
-e57030169b23e344ef6e947b91f075585d3e21dd	renovate/junit5-monorepo
-0cd90431b0a16d5cf2951efeccfd35fa959220f7	renovate/yegor256-copyrights-action-0.x
+2f02a3c0c9f051c6b3268c2d99e058edbbffcd76	renovate/jamesives-github-pages-deploy-action-4.x
+dcf782533093808a9ecffff36156074107033ce1	renovate/junit5-monorepo
+2ddf716d0ff0d4fced8b3ef080bc692c7e622f7a	renovate/yegor256-copyrights-action-0.x
 4cf27ff7f3ec17891645d287cc2c2e56b3dd05e6	update-eo-0.29.6
 8ccc7b923db19f1dc6938597264eaccddf35371d	update-eo-0.30.0
 cb31e34e0cd69f95433c3a6569bfd51f255659d5	update-eo-0.31.0
