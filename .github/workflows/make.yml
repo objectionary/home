@@ -46,9 +46,6 @@ jobs:
           key: ubuntu-latest-jdk-11-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ubuntu-latest-jdk-11-maven-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.9'

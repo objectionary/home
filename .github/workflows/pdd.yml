@@ -34,5 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volodya-lombrozo/pdd-action@master
+      - run: sudo apt-get install libmagic
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
       - run: |
           pdd --format xml . | grep -v 'puzzle '
