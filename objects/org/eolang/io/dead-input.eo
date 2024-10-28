@@ -20,17 +20,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.sys.uname
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+tests
-+package org.eolang.sys
-+version 0.39.0
++package org.eolang.io
++rt jvm org.eolang:eo-runtime:0.40.0
++rt node eo2js-runtime:0.0.0
++version 0.40.0
 
-# Test.
-[] > checks-os-family
-  or. > @
-    or.
-      uname.is-windows
-      uname.is-macos
-    uname.is-linux
+# Dead input is an input that reads from nowhere and always
+# returns empty sequence of bytes `--`.
+[] > dead-input
+  # Read `size` amount of bytes from nowhere.
+  # Returns new instance of `input-block`.
+  [size] > read
+    input-block > @
+
+    # Dead input block.
+    #
+    # Attention! The object is for internal usage only, please don't use the object
+    # programmatically outside of `dead-input` object.
+    [] > input-block
+      -- > @
+
+      # Read `size` amount of bytes from nowhere.
+      # Returns new instance of `input-block`.
+      ^.^.input-block > [size] > read

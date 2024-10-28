@@ -20,21 +20,46 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.io.console
++alias org.eolang.math.pi
++alias org.eolang.math.angle
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +tests
-+package org.eolang.io
-+version 0.39.0
++package org.eolang.math
++version 0.40.0
 
 # Test.
-[] > writes-to-console-once
-  console.write "Hello!" > @
+[] > sin-zero
+  eq. > @
+    (angle 0).sin
+    0
 
 # Test.
-[] > writes-to-console-sequentially
-  seq > @
-    *
-      console.write "Hello" > o1
-      o1.write ", "
-      console.write "world!"
+[] > sin-pi-div-2
+  eq. > @
+    (angle (pi.div 2)).sin
+    1
+
+# Test.
+[] > sin-pi-floored
+  eq. > @
+    (angle pi).sin.floor
+    0
+
+# Test.
+[] > cos-zero
+  eq. > @
+    (angle 0).cos
+    1
+
+# Test.
+[] > cos-pi-div-2-floored
+  eq. > @
+    (angle (pi.div 2)).cos.floor
+    0
+
+# Test.
+[] > cos-pi
+  eq. > @
+    (angle pi).cos
+    -1

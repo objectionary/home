@@ -20,14 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.io.stdout
++alias org.eolang.fs.tmpdir
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +tests
-+package org.eolang.io
-+version 0.39.0
++package org.eolang.fs
++version 0.40.0
 
 # Test.
-[] > prints-string-to-console
-  stdout > @
-    "Hello world\n"
+tmpdir.exists > [] > global-temp-dir-exists
+
+# Test.
+tmpdir.is-directory > [] > global-temp-dir-is-directory
+
+# Test.
+tmpdir.path.eq tmpdir.path > [] > returns-the-same-tmpdir
+
+# Test.
+tmpdir.tmpfile.exists > [] > creates-tmpfile

@@ -20,18 +20,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.txt.regex
++alias org.eolang.math.random
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+package org.eolang.sys
-+rt jvm org.eolang:eo-runtime:0.39.0
-+rt node eo2js-runtime:0.0.0
-+version 0.39.0
++tests
++package org.eolang.math
++version 0.40.0
 
-# Represents the name of the operation system.
-# See https://man7.org/linux/man-pages/man2/uname.2.html.
-[] > uname
-  [] > @ /string
-  ((regex "/^Windows.+$/").matches @).as-bool > is-windows
-  ((regex "/linux/i").matches @).as-bool > is-linux
-  ((regex "/mac/i").matches @).as-bool > is-macos
+# Test.
+[] > random-with-seed
+  random 51 > r
+  not. > @
+    eq.
+      r.next
+      r.next.next
+
+# Test.
+[] > seeded-randoms-are-equal
+  eq. > @
+    (random 1654).next.next.next
+    (random 1654).next.next.next
+
+# Test.
+[] > random-is-in-range
+  (random 123).fixed > r
+  and. > @
+    and.
+      and.
+        r.lt 1
+        (r.lt 0).not
+      and.
+        r.next.lt 1
+        (r.next.lt 0).not
+    and.
+      r.next.next.lt 1
+      (r.next.next.lt 0).not
+
+# Test.
+[] > two-random-numbers-not-equal
+  not. > @
+    random.pseudo.eq random.pseudo
