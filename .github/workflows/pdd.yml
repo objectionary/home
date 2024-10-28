@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volodya-lombrozo/pdd-action@master
-      - run: sudo apt-get install libmagic
+      - run: sudo apt-get update && sudo apt-get install -y libmagic
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
