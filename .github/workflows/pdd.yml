@@ -34,3 +34,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volodya-lombrozo/pdd-action@master
+      - run: |
+          pdd --format xml . | grep -v 'puzzle '
