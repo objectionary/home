@@ -80,6 +80,7 @@ SOFTWARE.
               <goal>assemble</goal>
               <goal>verify</goal>
               <goal>transpile</goal>
+              <goal>binarize</goal>
             </goals>
             <configuration>
               <scope>test</scope>
