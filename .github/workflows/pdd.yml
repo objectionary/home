@@ -39,4 +39,5 @@ jobs:
         with:
           ruby-version: '3.3'
       - run: |
+          gem install pdd
           pdd --format xml . | grep -v 'puzzle '

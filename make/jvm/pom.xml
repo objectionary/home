@@ -28,7 +28,7 @@ SOFTWARE.
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.39.0</eo.version>
+    <eo.version>0.40.1</eo.version>
     <stack-size>32M</stack-size>
   </properties>
   <build>
@@ -43,6 +43,7 @@ SOFTWARE.
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.1</version>
         <configuration>
           <argLine>-Xss${stack-size}</argLine>
         </configuration>
@@ -75,9 +76,11 @@ SOFTWARE.
             <phase>generate-test-sources</phase>
             <goals>
               <goal>register</goal>
+              <goal>deps</goal>
               <goal>assemble</goal>
               <goal>verify</goal>
               <goal>transpile</goal>
+              <goal>binarize</goal>
             </goals>
             <configuration>
               <scope>test</scope>
