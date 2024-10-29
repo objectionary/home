@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 docker:
-  image: yegor256/rultor-java
+  image: yegor256/rultor-image:1.23.0
 architect:
   - yegor256
 install: |
