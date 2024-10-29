@@ -1,8 +1,7 @@
 3ce394725c9f0de960266a997e6bdb687947d757	automated-release-update
-6f075c08b0d46a8f1659d6d7116b751bf41b38fa	gh-pages
-5b7369529899f121684ba71dfe2d6b880172960f	master
-7a54652ab56a5e54406e378c2b5dc73efc3a9307	renovate/junit5-monorepo
-66ff4fe1dcf38fb6717092c52ed82521c53b80af	renovate/org.junit-pioneer-junit-pioneer-2.x
+a5ae8cffce34b6f2fa0e46075bfcd0fedc27bb33	gh-pages
+24f814be61dac29b14ca809e1193bfeb770d0677	master
+50b8c10e7532d6335c8b26fac175023b062e4eb8	renovate/junit5-monorepo
 4cf27ff7f3ec17891645d287cc2c2e56b3dd05e6	update-eo-0.29.6
 8ccc7b923db19f1dc6938597264eaccddf35371d	update-eo-0.30.0
 cb31e34e0cd69f95433c3a6569bfd51f255659d5	update-eo-0.31.0
