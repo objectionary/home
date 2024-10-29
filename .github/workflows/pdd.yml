@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volodya-lombrozo/pdd-action@master
-      - run: sudo apt-get update && sudo apt-get install -y ruby-dev libmagic-dev zlib1g-dev
+      - run: sudo apt-get update && sudo apt-get install -y ruby-dev libmagic-dev zlib1g-dev && gem install pdd -v 0.23.1
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
