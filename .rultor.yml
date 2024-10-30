@@ -29,3 +29,7 @@ install: |
 merge:
   script: |
     make
+release:
+  script: |
+    [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
+    make
