@@ -21,13 +21,11 @@
 # SOFTWARE.
 ---
 name: releases
-
 on:
   schedule:
     - cron: "0 * * * *"
 env:
   make_pr: 'false'
-
 jobs:
   check-releases:
     runs-on: ubuntu-24.04
@@ -52,7 +50,6 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-#          passphrase: ${{ secrets.PASSPHRASE }}
           git_user_signingkey: true
           git_commit_gpgsign: true
           git_push_gpgsign: ""
