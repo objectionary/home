@@ -1,6 +1,7 @@
-32ca3fc6ea6c3cfbf818e7293ce3ec4c20bff9bf	gh-pages
-aece8f1f4fbf371262bb7c53a00f1015896dab4d	master
-fdbb59feea440d6204be7de882b60452007bc670	renovate/eo.version
+9f8c72703c59b99e04903e4f1c8235359e920cc4	gh-pages
+ee14a1e30a9e0f8f64404e7a52f40c2a07f88359	master
+3f6c195984d20d71408d028596a8316e31884f93	renovate/org.apache.maven.plugins-maven-surefire-plugin-3.x
+bce2dafe2192a088b615ce138d3aceffebdeb3d3	renovate/yegor256-copyrights-action-0.x
 5fe5ad8d21dbe418038fa4c86e096fb037f290a9	0.23.15
 15c85d7f8cffe15b0deba96e90bdac98a76293bb	0.23.17
 4b19944d86058e3c81e558340a3a13bc335a2b48	0.23.19
