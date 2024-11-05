@@ -1,4 +1,4 @@
-7122fffac8844831ca97d6e7b9dd27254941d896	gh-pages
+0f2d4404b3a29425c4e5b3f738e84a1bb4dd4011	gh-pages
 ee14a1e30a9e0f8f64404e7a52f40c2a07f88359	master
 3f6c195984d20d71408d028596a8316e31884f93	renovate/org.apache.maven.plugins-maven-surefire-plugin-3.x
 bce2dafe2192a088b615ce138d3aceffebdeb3d3	renovate/yegor256-copyrights-action-0.x
