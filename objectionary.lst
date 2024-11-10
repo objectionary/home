@@ -92,6 +92,7 @@ tests/org/eolang/math/angle-tests.eo
 tests/org/eolang/math/real-tests.eo
 tests/org/eolang/math/random-tests.eo
 tests/org/eolang/string-tests.eo
+tests/org/eolang/go-tests.eo
 tests/org/eolang/while-tests.eo
 tests/org/eolang/goto-tests.eo
 tests/org/eolang/nan-tests.eo
