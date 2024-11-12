@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: pages
+name: tags
 on:
   push:
     branches:
@@ -39,8 +39,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir -p data
-          find objects -name '*.eo' > data/objectionary.lst
-          find tests -name '*.eo' >> data/objectionary.lst
+          git fetch --tags --all
+          git tag --list --format='%(*objectname) %(refname:short)' | grep '^[a-f0-9]' > data/tags.txt
       - uses: JamesIves/github-pages-deploy-action@v4.6.9
         with:
           branch: gh-pages
