@@ -33,7 +33,7 @@ on:
     tags:
       - '*'
 jobs:
-  pages:
+  tags:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -41,6 +41,7 @@ jobs:
           mkdir -p data
           git fetch --tags --all
           git tag --list --format='%(*objectname) %(refname:short)' | grep '^[a-f0-9]' > data/tags.txt
+          echo "$(git rev-parse HEAD) master" >> data/tags.txt
       - uses: JamesIves/github-pages-deploy-action@v4.6.9
         with:
           branch: gh-pages
