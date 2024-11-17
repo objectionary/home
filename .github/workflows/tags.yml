@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir -p data
-          git fetch --tags --all
+          git fetch --tags --all --force
           git tag --list --format='%(*objectname) %(refname:short)' | grep '^[a-f0-9]' > data/tags.txt
           echo "$(git rev-parse HEAD) master" >> data/tags.txt
       - uses: JamesIves/github-pages-deploy-action@v4.6.9
