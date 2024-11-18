@@ -59,7 +59,7 @@ jobs:
           committer: yegor256 <yegor256@gmail.com>
           commit-message: New release for ${{ env.eo_lib_version }}
           title: New release for ${{ env.eo_lib_version }}
-          body: New release for ${{ env.eo_lib_version }}
+          body: A new release `${{ env.eo_lib_version }}` of the EO-to-Java compiler has been published on Maven Central. Don't forget to make a release here, asking `@rultor` about it.
           base: master
           branch: update-${{ env.eo_lib_version }}
           delete-branch: true
