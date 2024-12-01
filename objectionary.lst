@@ -58,9 +58,7 @@ objects/org/eolang/sys/getenv.eo
 objects/org/eolang/sys/posix.eo
 objects/org/eolang/true.eo
 objects/org/eolang/try.eo
-objects/org/eolang/cage.eo
 tests/org/eolang/go-tests.eo
-tests/org/eolang/cage-tests.eo
 tests/org/eolang/positive-infinity-tests.eo
 tests/org/eolang/negative-infinity-tests.eo
 tests/org/eolang/math/integral-tests.eo
