@@ -28,7 +28,7 @@ SOFTWARE.
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.44.0</eo.version>
+    <eo.version>0.45.0</eo.version>
     <stack-size>32M</stack-size>
     <heap-size>2G</heap-size>
   </properties>
@@ -63,7 +63,7 @@ SOFTWARE.
             <goals>
               <goal>register</goal>
               <goal>assemble</goal>
-              <goal>verify</goal>
+              <goal>lint</goal>
               <goal>transpile</goal>
             </goals>
             <configuration>
@@ -79,7 +79,7 @@ SOFTWARE.
               <goal>register</goal>
               <goal>deps</goal>
               <goal>assemble</goal>
-              <goal>verify</goal>
+              <goal>lint</goal>
               <goal>transpile</goal>
               <goal>binarize</goal>
             </goals>
