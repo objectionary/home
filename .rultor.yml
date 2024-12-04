@@ -32,5 +32,6 @@ merge:
   script: |
     make
 release:
+  pre: false
   script: |
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
