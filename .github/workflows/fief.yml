@@ -45,7 +45,7 @@ jobs:
             --to html
       - run: mkdir gh-pages
       - run: cp html/index.html gh-pages/fief.html
-      - uses: JamesIves/github-pages-deploy-action@v4.7.1
+      - uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           branch: gh-pages
           folder: gh-pages
