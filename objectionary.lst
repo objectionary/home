@@ -95,9 +95,11 @@ tests/org/eolang/fs/tmpdir-tests.eo
 tests/org/eolang/fs/file-tests.eo
 tests/org/eolang/fs/dir-tests.eo
 tests/org/eolang/fs/path-tests.eo
+tests/org/eolang/io/stdout-test.eo
 tests/org/eolang/io/dead-input-tests.eo
 tests/org/eolang/io/input-length-tests.eo
 tests/org/eolang/io/bytes-as-input-test.eo
+tests/org/eolang/io/console-test.eo
 tests/org/eolang/io/dead-output-tests.eo
 tests/org/eolang/io/malloc-as-output-test.eo
 tests/org/eolang/io/tee-input-tests.eo
