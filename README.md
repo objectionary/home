@@ -66,7 +66,7 @@ Once the library is ready for publishing
 (i.e. all required changes are released)
 it can be published. Publishing includes several steps.
 
-Create new Git branch from this repo to get the latest changes. 
+Create new Git branch from this repo to get the latest changes.
 
 There is a Bash script `pull.sh`, which may help you publish the entire
 library. In order to use it, you should first configure your library
@@ -86,7 +86,7 @@ from the repo and put them into the right places.
 If several libraries need to be published as well then repeat this step for
 them as well.
 
-Library objects within Objectionary must not contain any puzzles so it needs 
+Library objects within Objectionary must not contain any puzzles so it needs
 to be removed from pulled objects.
 
 Next, the build needs to be verified. To do this, run the following:

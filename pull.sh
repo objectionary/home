@@ -33,7 +33,7 @@ repo=$1
 if [ "${repo}" == "" ]; then
 	echo "One argument is required as a name of GitHub repository"
 	echo "Read more here: https://github.com/objectionary/home"
-	exit -1
+	exit 1
 fi
 
 set -x
@@ -43,6 +43,6 @@ trap 'rm -rf -- "${tmp}"' EXIT
 
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
 ls -al "${tmp}"
-cp -r ${tmp}/objectionary/* .
+cp -r "${tmp}/objectionary/"/* .
 
 pdd --remove -f /dev/null
