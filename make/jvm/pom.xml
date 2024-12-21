@@ -81,7 +81,6 @@ SOFTWARE.
               <goal>assemble</goal>
               <goal>lint</goal>
               <goal>transpile</goal>
-              <goal>binarize</goal>
             </goals>
             <configuration>
               <scope>test</scope>
