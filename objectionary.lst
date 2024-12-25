@@ -19,7 +19,6 @@ objects/org/eolang/txt/sprintf.eo
 objects/org/eolang/txt/text.eo
 objects/org/eolang/txt/sscanf.eo
 objects/org/eolang/txt/regex.eo
-objects/org/eolang/as-phi.eo
 objects/org/eolang/i32.eo
 objects/org/eolang/net/socket.eo
 objects/org/eolang/malloc.eo
@@ -47,7 +46,6 @@ objects/org/eolang/io/tee-input.eo
 objects/org/eolang/false.eo
 objects/org/eolang/go.eo
 objects/org/eolang/tuple.eo
-objects/org/eolang/rust.eo
 objects/org/eolang/i16.eo
 objects/org/eolang/dataized.eo
 objects/org/eolang/cti.eo
@@ -75,7 +73,6 @@ tests/org/eolang/txt/sscanf-tests.eo
 tests/org/eolang/txt/regex-tests.eo
 tests/org/eolang/txt/text-tests.eo
 tests/org/eolang/i64-tests.eo
-tests/org/eolang/rust-tests.eo
 tests/org/eolang/i32-tests.eo
 tests/org/eolang/dataized-tests.eo
 tests/org/eolang/switch-tests.eo
@@ -106,7 +103,6 @@ tests/org/eolang/io/tee-input-tests.eo
 tests/org/eolang/bytes-tests.eo
 tests/org/eolang/try-tests.eo
 tests/org/eolang/cti-test.eo
-tests/org/eolang/as-phi-tests.eo
 tests/org/eolang/seq-tests.eo
 tests/org/eolang/sys/posix-tests.eo
 tests/org/eolang/sys/os-tests.eo
