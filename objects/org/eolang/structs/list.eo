@@ -23,7 +23,7 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +package org.eolang.structs
-+version 0.49.4
++version 0.50.0
 
 # List implements based operations on collections like reducing, mapping, filtering, etc.
 # Decorates and extends `tuple`.
@@ -111,10 +111,9 @@
     ^.reducedi > @
       true
       [acc item index] >>
-        seq > @
-          *
-            acc
-            ^.func item index
+        seq * > @
+          acc
+          ^.func item index
 
   # For each collection element dataize the object
   # Here "func" must be an abstract object with
@@ -202,10 +201,6 @@
         ^.index-of element
 
   # Returns a new list sorted via `.lt` method.
-  # @todo #3251:30min The object does not work. After moving `list` object
-  #  to eo-runtime this is the only method which does not work because it's quite
-  #  hard to implement properly, especially after big changes in EO semantic.
-  #  We need to get it done and write some tests for it.
   ^ > [] > sorted
 
   # Filter list with index with the function `func`.
