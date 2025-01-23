@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 name: fief
-on:
+'on':
   schedule:
     - cron: "13 4 * * *"
 concurrency:

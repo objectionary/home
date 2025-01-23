@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 name: releases
-on:
+'on':
   schedule:
     - cron: "0 * * * *"
 env:
