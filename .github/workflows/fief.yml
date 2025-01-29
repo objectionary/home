@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: 3.3
       - run: gem install fief
       - run: |
           fief --token ${{ secrets.TOKEN }} --delay 1000 \
