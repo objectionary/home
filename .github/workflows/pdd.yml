@@ -37,6 +37,6 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y ruby-dev libmagic-dev zlib1g-dev
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: 3.3
       - run: gem install pdd
       - run: pdd --format xml . | grep -v 'puzzle '
