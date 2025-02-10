@@ -27,8 +27,7 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +package org.eolang.fs
-+version 0.50.2
-+unlint broken-ref
++version 0.51.3
 
 # Temporary directory.
 # For Unix/MacOS uses the path supplied by the first environment variable

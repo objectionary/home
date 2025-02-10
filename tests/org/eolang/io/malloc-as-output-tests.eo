@@ -25,10 +25,11 @@
 +home https://github.com/objectionary/eo
 +tests
 +package org.eolang.io
-+version 0.50.2
++version 0.51.3
++unlint sparse-decoration
 
 # This unit test is supposed to check the functionality of the corresponding object.
-[] > makes-an-output-from-malloc-and-writes
+[] > tests-makes-an-output-from-malloc-and-writes
   eq. > @
     malloc.of
       10
