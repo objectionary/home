@@ -28,10 +28,6 @@ name: tags
     tags:
       - '*'
   release:
-    branches:
-      - master
-    tags:
-      - '*'
 jobs:
   tags:
     timeout-minutes: 15
