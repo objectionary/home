@@ -20,26 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: pages
-'on':
-  push:
-    branches:
-      - master
-    tags:
-      - '*'
-  release:
-jobs:
-  pages:
-    timeout-minutes: 15
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          mkdir -p data
-          find objects -name '*.eo' > data/objectionary.lst
-          find tests -name '*.eo' >> data/objectionary.lst
-      - uses: JamesIves/github-pages-deploy-action@v4.7.2
-        with:
-          branch: gh-pages
-          folder: data
-          clean: false
+extends: default
+rules:
+  line-length:
+    max: 120

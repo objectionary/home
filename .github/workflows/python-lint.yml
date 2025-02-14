@@ -20,26 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: pages
+name: python-lint
 'on':
   push:
     branches:
       - master
-    tags:
-      - '*'
-  release:
+  pull_request:
+    branches:
+      - master
 jobs:
-  pages:
-    timeout-minutes: 15
+  python-lint:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          mkdir -p data
-          find objects -name '*.eo' > data/objectionary.lst
-          find tests -name '*.eo' >> data/objectionary.lst
-      - uses: JamesIves/github-pages-deploy-action@v4.7.2
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
-          branch: gh-pages
-          folder: data
-          clean: false
+          python-version: "3.12.5"
+      - name: Install wemake-python-styleguide
+        run: pip install ruff==0.9.4
+      - name: Run ruff
+        run: ruff check py

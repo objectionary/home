@@ -21,8 +21,8 @@
 # SOFTWARE.
 
 import unittest
-from unittest.mock import patch
 import sys
+from unittest.mock import patch  # noqa: F401
 sys.path.insert(0, './py/')
 from deps import dependencies
 
