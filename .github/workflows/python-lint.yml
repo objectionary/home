@@ -19,30 +19,25 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-import unittest
-import sys
-sys.path.insert(0, './py/')
-from deps import dependencies
-
-class AutoPullTest(unittest.TestCase):
-    mock_file_content = """
-    +rt jvm org.eolang:eo-runtime:0.29.5
-    +rt jvm org.eolang:eo-files:0.4.0
-    +rt jvm org.eolang:eo-hamcrest:0.4.0
-    """
-
-    @unittest.mock.patch(
-        'builtins.open',
-        new=unittest.mock.mock_open(read_data=mock_file_content),
-        create=True
-    )
-    def test(self):
-        self.assertEqual(
-            dependencies(),
-            {'eo:0.29.5', 'eo-hamcrest:0.4.0', 'eo-files:0.4.0'}
-        )
-
-
-if __name__ == '__main__':
-    unittest.main()
+---
+name: python-lint
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  python-lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.5"
+      - name: Install wemake-python-styleguide
+        run: pip install ruff==0.9.4
+      - name: Run ruff
+        run: ruff check py
