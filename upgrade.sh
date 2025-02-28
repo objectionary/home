@@ -8,12 +8,12 @@ set -e
 
 version=$1
 if [ "${version}" == "" ]; then
-	echo "One argument expected: the version of EO to upgrade to"
-	exit 1
+    echo "One argument expected: the version of EO to upgrade to"
+    exit 1
 fi
 if [[ ! "${version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-	echo "Wrong version: ${version}"
-	exit 1
+    echo "Wrong version: ${version}"
+    exit 1
 fi
 
 git reset --hard
@@ -22,6 +22,7 @@ rm -rf objects tests
 make clean
 rm -rf ~/.eo
 
-sed -i "s|eo.version>[0-9]\+.[0-9]\+.[0-9]\+|eo.version>${version}|" make/jvm/pom.xml
+sed -i "s|eo.version>[0-9]\+.[0-9]\+.[0-9]\+|eo.version>${version}|" \
+    make/jvm/pom.xml
 
 ./pull.sh objectionary/eo
