@@ -12,9 +12,9 @@ set -e
 
 repo=$1
 if [ "${repo}" == "" ]; then
-	echo "One argument is required as a name of GitHub repository"
-	echo "Read more here: https://github.com/objectionary/home"
-	exit 1
+    echo "One argument is required as a name of GitHub repository"
+    echo "Read more here: https://github.com/objectionary/home"
+    exit 1
 fi
 
 set -x
