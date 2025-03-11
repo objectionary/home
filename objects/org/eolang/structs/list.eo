@@ -13,10 +13,6 @@
   # A check to determine if an object contains no elements or data.
   0.eq origin.length > is-empty
   # Returns a new list sorted via `.lt` method.
-  # @todo #3251:30min The object does not work. After moving `list` object
-  #  to eo-runtime this is the only method which does not work because it's quite
-  #  hard to implement properly, especially after big changes in EO semantic.
-  #  We need to get it done and write some tests for it.
   $ > sorted
 
   # Create a new list with this element added to the end of it.

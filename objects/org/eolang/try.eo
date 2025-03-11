@@ -18,10 +18,4 @@
 # to dataize its `catch` attribute. After one the attributes is dataized - it just dataizes
 # its `finally` attribute and returns the result of dataization of `main` or `catch`
 # attribute as `org.eolang.bytes`.
-#
-# @todo #3648:30min Remove all `+unlint rt-without-atoms`, `+unlint empty-object`
-#  and `+unlit decorated-formation` metas from `eo-runtime`.
-#  These metas were added after we removed `@atom` attribute from XMIR.
-#  Now atoms have empty object with greek lambda as `@name` attribute. When these changes are fixed
-#  in `lints` repository we should update its version and remove all the possible `+unlint` metas.
 [main catch finally] > try ?
