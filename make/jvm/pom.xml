@@ -43,8 +43,7 @@
             <id>objects</id>
             <goals>
               <goal>register</goal>
-              <goal>assemble</goal>
-              <goal>lint</goal>
+              <goal>compile</goal>
               <goal>transpile</goal>
             </goals>
             <configuration>
@@ -58,9 +57,7 @@
             <phase>generate-test-sources</phase>
             <goals>
               <goal>register</goal>
-              <goal>deps</goal>
-              <goal>assemble</goal>
-              <goal>lint</goal>
+              <goal>compile</goal>
               <goal>transpile</goal>
             </goals>
             <configuration>
