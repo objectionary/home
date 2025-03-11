@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+      - run: gem install pdd -v 0.24.0
       - name: install Python
         run: |
           sudo apt-get update --yes --fix-missing
