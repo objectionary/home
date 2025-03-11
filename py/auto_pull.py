@@ -17,8 +17,12 @@ def pull_release(unique_deps):
         latest_release = data[0]
         latest_version = latest_release["tag_name"]
         if compare(latest_version, version):
-            os.system(f'./pull.sh objectionary/{name}')
-            os.system(f'./pom.sh {latest_version}')
+            pull_exit_code = os.system(f'./pull.sh objectionary/{name}')
+            if pull_exit_code != 0:
+                raise RuntimeError(f"Failed to pull objectionary/{name}, exit code: {pull_exit_code}")
+            pom_exit_code = os.system(f'./pom.sh {latest_version}')
+            if pom_exit_code != 0:
+                raise RuntimeError(f"Failed to update pom with version {latest_version}, exit code: {pom_exit_code}")
             env_file = os.getenv('GITHUB_ENV')
             eo_lib_version = f'{name}-{latest_version}'
             with open(env_file, "a") as myfile:
