@@ -13,35 +13,29 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
           bundler-cache: true
-      - run: gem install pdd -v 0.24.0
-      - name: install Python
-        run: |
+      - run: sudo gem install pdd -v 0.24.0
+      - run: |
           sudo apt-get update --yes --fix-missing
           sudo apt-get install --yes python3 python3-pip
           pip3 install requests
-      - name: pull releases
-        run: |
+      - run: |
           python3 py/auto_pull.py
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
+      - uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           git_user_signingkey: true
           git_commit_gpgsign: true
           git_push_gpgsign: ""
-      - name: Check if branch exists
-        run: |
+      - run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
           echo "make_pr: ${{ env.make_pr }}"
-      - name: Create pull request
+      - uses: peter-evans/create-pull-request@v7
         if: ${{ env.make_pr == 'true' }}
-        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.TOKEN }}
           committer: yegor256 <yegor256@gmail.com>
