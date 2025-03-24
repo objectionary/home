@@ -3,8 +3,8 @@
 
 SHELL := /bin/bash
 
-# .SHELLFLAGS = -e -o pipefail -c
-# .ONESHELL:
+.SHELLFLAGS = -e -o pipefail -c
+.ONESHELL:
 
 DIRS := $(wildcard */.)
 
