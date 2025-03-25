@@ -9,7 +9,7 @@
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.54.1</eo.version>
+    <eo.version>0.55.0</eo.version>
     <stack-size>32M</stack-size>
     <heap-size>2G</heap-size>
   </properties>
@@ -21,6 +21,9 @@
         <configuration>
           <source>11</source>
           <target>11</target>
+          <compilerArgs>
+            <arg>-Xpkginfo:always</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
