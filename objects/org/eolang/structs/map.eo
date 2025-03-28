@@ -4,7 +4,7 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +package org.eolang.structs
-+version 0.55.0
++version 0.55.1
 +spdx SPDX-FileCopyrightText Copyright (c) 2016-2025 Objectionary.com
 +spdx SPDX-License-Identifier: MIT
 +unlint wrong-sprintf-arguments
@@ -77,6 +77,9 @@
     # or `false` if was not.
     # The `get` attribute returns either found object, or `error` if
     # the object wasn't found.
+    # `tuple` just by applying some simple operation on H1, similar to it's
+    #  implemented in other programming languages. Then we'll get O(1) on
+    #  `found` operation.
     [key] > found
       hash-code-of key > hash!
       if. > @
