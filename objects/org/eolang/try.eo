@@ -1,12 +1,11 @@
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
 +package org.eolang
-+rt jvm org.eolang:eo-runtime:0.55.2
++rt jvm org.eolang:eo-runtime:0.56.0
 +rt node eo2js-runtime:0.0.0
-+version 0.55.2
++version 0.56.0
 +spdx SPDX-FileCopyrightText Copyright (c) 2016-2025 Objectionary.com
 +spdx SPDX-License-Identifier: MIT
-+unlint rt-without-atoms
 +unlint empty-object
 
 # Try, catch and finally. This object helps catch errors created by the
@@ -19,4 +18,9 @@
 # its `finally` attribute and returns the result of dataization of `main` or `catch`
 # attribute as `org.eolang.bytes`.
 #
+# @todo #3648:30min Remove all `+unlint rt-without-atoms`, `+unlint empty-object`
+#  and `+unlit decorated-formation` metas from `eo-runtime`.
+#  These metas were added after we removed `@atom` attribute from XMIR.
+#  Now atoms have empty object with greek lambda as `@name` attribute. When these changes are fixed
+#  in `lints` repository we should update its version and remove all the possible `+unlint` metas.
 [main catch finally] > try ?
