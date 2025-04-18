@@ -68,7 +68,7 @@ tests/org/eolang/i16-tests.eo
 tests/org/eolang/math/random-tests.eo
 tests/org/eolang/math/angle-tests.eo
 tests/org/eolang/math/real-tests.eo
-tests/org/eolang/math/numbers-tests.eo
+tests/org/eolang/math/number-tests.eo
 tests/org/eolang/math/integral-tests.eo
 tests/org/eolang/io/tee-input-tests.eo
 tests/org/eolang/io/stdout-tests.eo
