@@ -37,6 +37,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v7
         if: ${{ env.make_pr == 'true' }}
         with:
+          sign-commits: true
           token: ${{ secrets.TOKEN }}
           committer: yegor256 <yegor256@gmail.com>
           commit-message: New release for ${{ env.eo_lib_version }}
