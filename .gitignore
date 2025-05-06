@@ -1,6 +1,6 @@
-*.iml
-.DS_Store
+__pycache__/
 .classpath
+.DS_Store
 .factorypath
 .idea/
 .mvn/wrapper/maven-wrapper.jar
@@ -8,6 +8,6 @@
 .recommenders
 .settings
 .vscode/
-__pycache__/
+*.iml
 node_modules/
 target/
