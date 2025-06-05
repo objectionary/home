@@ -12,9 +12,13 @@ objects/org/eolang/switch.eo
 objects/org/eolang/string.eo
 objects/org/eolang/go.eo
 objects/org/eolang/i16.eo
+objects/org/eolang/runtime-tests.eo
+objects/org/eolang/try-tests.eo
 objects/org/eolang/seq.eo
 objects/org/eolang/txt/regex.eo
+objects/org/eolang/txt/sscanf-tests.eo
 objects/org/eolang/txt/sprintf.eo
+objects/org/eolang/txt/sprintf-tests.eo
 objects/org/eolang/txt/sscanf.eo
 objects/org/eolang/txt/text.eo
 objects/org/eolang/fs/tmpdir.eo
@@ -30,6 +34,7 @@ objects/org/eolang/io/dead-input.eo
 objects/org/eolang/io/bytes-as-input.eo
 objects/org/eolang/io/tee-input.eo
 objects/org/eolang/io/console.eo
+objects/org/eolang/bool-tests.eo
 objects/org/eolang/negative-infinity.eo
 objects/org/eolang/false.eo
 objects/org/eolang/cti.eo
@@ -51,6 +56,7 @@ objects/org/eolang/sys/posix.eo
 objects/org/eolang/sys/win32.eo
 objects/org/eolang/sys/line-separator.eo
 objects/org/eolang/true.eo
+objects/org/eolang/cti-tests.eo
 objects/org/eolang/try.eo
 objects/org/eolang/i64.eo
 objects/org/eolang/net/socket.eo
