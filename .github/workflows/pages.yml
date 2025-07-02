@@ -19,7 +19,6 @@ jobs:
       - run: |
           mkdir -p data
           find objects -name '*.eo' > data/objectionary.lst
-          find tests -name '*.eo' >> data/objectionary.lst
       - uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages
