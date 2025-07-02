@@ -7,7 +7,7 @@
 The term **Objectionary** was coined by
 [David West](https://www.youtube.com/watch?v=s-hdZZzMCac)
 in his great book
-[Object Thinking](http://amzn.to/266oJr4). The original idea was to
+[Object Thinking](http://amzn.to/266oJr4), page 306. The original idea was to
 have a place where objects are hosted. Not libraries or software packages,
 but individual objects. This is exactly what this repository is about:
 it hosts [EO](https://www.eolang.org) objects. More details
