@@ -45,6 +45,7 @@ objects/org/eolang/error.eo
 objects/org/eolang/io/stdin.eo
 objects/org/eolang/io/malloc-as-output.eo
 objects/org/eolang/io/bytes-as-input.eo
+objects/org/eolang/io/copied.eo
 objects/org/eolang/io/dead-input.eo
 objects/org/eolang/io/stdout.eo
 objects/org/eolang/io/console.eo
