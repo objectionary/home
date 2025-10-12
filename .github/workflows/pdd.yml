@@ -20,7 +20,7 @@ jobs:
       - run: sudo apt-get update --yes --fix-missing && sudo apt-get install --yes ruby-dev libmagic-dev zlib1g-dev
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.4.7
           bundler-cache: true
       - run: gem install pdd
       - run: pdd --format xml . | grep -v 'puzzle '
