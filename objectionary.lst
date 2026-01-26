@@ -6,6 +6,9 @@ objects/org/eolang/number.eo
 objects/org/eolang/nk/socket.eo
 objects/org/eolang/seq.eo
 objects/org/eolang/i64.eo
+objects/org/eolang/ms/abs.eo
+objects/org/eolang/ms/mod.eo
+objects/org/eolang/ms/exp.eo
 objects/org/eolang/ms/real.eo
 objects/org/eolang/ms/integral.eo
 objects/org/eolang/ms/random.eo
@@ -35,6 +38,7 @@ objects/org/eolang/ss/range.eo
 objects/org/eolang/ss/hash-code-of.eo
 objects/org/eolang/ss/bytes-as-array.eo
 objects/org/eolang/ss/range-of-numbers.eo
+objects/org/eolang/ss/eachi.eo
 objects/org/eolang/ss/map.eo
 objects/org/eolang/ss/set.eo
 objects/org/eolang/ss/list.eo
@@ -72,6 +76,7 @@ objects/org/eolang/tt/chained.eo
 objects/org/eolang/tt/text.eo
 objects/org/eolang/tt/slice.eo
 objects/org/eolang/tt/sprintf.eo
+objects/org/eolang/tt/string-buffer.eo
 objects/org/eolang/tt/is-alpha.eo
 objects/org/eolang/tt/trimmed-left.eo
 objects/org/eolang/tt/nsplit.eo
