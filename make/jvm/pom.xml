@@ -9,7 +9,7 @@
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.59.3</eo.version>
+    <eo.version>0.59.4</eo.version>
     <stack-size>32M</stack-size>
     <heap-size>2G</heap-size>
   </properties>
