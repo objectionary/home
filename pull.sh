@@ -28,4 +28,4 @@ mv .tmp/clone "${tmp}"
 tree "${tmp}"
 cp -r "${tmp}"/* .
 
-pdd objects --remove -f /dev/null
+pdd --source objects --remove -f /dev/null
