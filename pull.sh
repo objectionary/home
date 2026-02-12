@@ -22,7 +22,7 @@ tmp=.tmp/${repo}
 rm -rf "${tmp}"
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
 mv "${tmp}/objectionary" .tmp/clone
-rm "${tmp}"
+rm -rf "${tmp}"
 mv .tmp/clone "${tmp}"
 tree "${tmp}"
 cp -r "${tmp}"/* .
