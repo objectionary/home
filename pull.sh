@@ -26,6 +26,6 @@ cp -r "${tmp}/objectionary" .tmp/clone
 rm -rf "${tmp}"
 mv .tmp/clone "${tmp}"
 tree "${tmp}"
-cp -r "${tmp}"/* .
+rsync -a "${tmp}"/ .
 
 pdd --source objects --remove -f /dev/null
