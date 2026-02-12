@@ -11,7 +11,7 @@ set -e -o pipefail
 # organized in "objectionary/eo-files" repository.
 
 repo=$1
-if [ "${repo}" == "" ]; then
+if [ -z "${repo}" ]; then
     echo "One argument is required as a name of GitHub repository"
     echo "Read more here: https://github.com/objectionary/home"
     exit 1
