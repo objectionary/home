@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2016-2026 Objectionary.com
 # SPDX-License-Identifier: MIT
 
-set -e
+set -e -o pipefail
 
 # This script helps you create a pull request for Objectionary.
 # When you have a directory with sources, which you are ready
@@ -17,13 +17,9 @@ if [ "${repo}" == "" ]; then
     exit 1
 fi
 
-set -x
-
-tmp=$(mktemp -d)
-trap 'rm -rf -- "${tmp}"' EXIT
-
-git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
-ls -al "${tmp}"
-cp -r "${tmp}/objectionary/"/* .
+rm -rf .tmp
+git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch .tmp
+tree .tmp
+cp -r .tmp/objectionary/* .
 
 pdd --remove -f /dev/null
