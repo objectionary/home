@@ -21,6 +21,7 @@ tmp=.tmp/${repo}
 
 rm -rf "${tmp}"
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
+rm -rf .tmp/clone
 mv "${tmp}/objectionary" .tmp/clone
 rm -rf "${tmp}"
 mv .tmp/clone "${tmp}"
