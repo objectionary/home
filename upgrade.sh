@@ -18,7 +18,7 @@ fi
 
 git reset --hard
 git clean -fd
-rm -rf objects tests
+rm -rf objects
 make clean
 rm -rf ~/.eo
 
