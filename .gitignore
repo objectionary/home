@@ -3,6 +3,7 @@
 
 *.iml
 .classpath
+.claude/
 .DS_Store
 .factorypath
 .idea/
