@@ -21,11 +21,7 @@ tmp=.tmp/${repo}
 
 rm -rf "${tmp}"
 git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
-rm -rf .tmp/clone
-cp -r "${tmp}/objectionary" .tmp/clone
-rm -rf "${tmp}"
-mv .tmp/clone "${tmp}"
-tree "${tmp}"
-rsync -a "${tmp}"/ .
+tree "${tmp}/objectionary"
+rsync -a "${tmp}/objectionary"/ .
 
 pdd --source objects --remove -f /dev/null
