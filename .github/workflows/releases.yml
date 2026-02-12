@@ -34,7 +34,7 @@ jobs:
       - run: |
           python3 py/is_branch_exist.py ${{ env.eo_lib_version }}
           echo "make_pr: ${{ env.make_pr }}"
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         if: ${{ env.make_pr == 'true' }}
         with:
           sign-commits: true
