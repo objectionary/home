@@ -17,9 +17,14 @@ if [ "${repo}" == "" ]; then
     exit 1
 fi
 
-rm -rf .tmp
-git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch .tmp
-tree .tmp
-cp -r .tmp/objectionary/* .
+tmp=.tmp/${repo}
+
+rm -rf "${tmp}"
+git clone "https://github.com/${1}" --branch gh-pages --depth 1 --single-branch "${tmp}"
+mv "${tmp}/objectionary" .tmp/clone
+rm "${tmp}"
+mv .tmp/clone "${tmp}"
+tree "${tmp}"
+cp -r "${tmp}"/* .
 
 pdd --remove -f /dev/null
