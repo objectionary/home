@@ -21,7 +21,7 @@ jobs:
           git fetch --tags --all --force
           git tag --list --format='%(*objectname) %(refname:short)' | grep '^[a-f0-9]' > data/tags.txt
           echo "$(git rev-parse HEAD) master" >> data/tags.txt
-      - uses: JamesIves/github-pages-deploy-action@v4.7.3
+      - uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           branch: gh-pages
           folder: data
