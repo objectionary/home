@@ -15,11 +15,15 @@ class AutoPullTest(unittest.TestCase):
     """
 
     @unittest.mock.patch(
+        'deps.os.walk',
+        return_value=[('objects/org/eolang', [], ['test.eo'])]
+    )
+    @unittest.mock.patch(
         'builtins.open',
         new=unittest.mock.mock_open(read_data=mock_file_content),
         create=True
     )
-    def test(self):
+    def test(self, mock_walk):
         self.assertEqual(
             dependencies(),
             {'eo:0.29.5', 'eo-hamcrest:0.4.0', 'eo-files:0.4.0'}
