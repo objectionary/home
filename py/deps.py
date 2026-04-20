@@ -6,7 +6,7 @@ import re
 
 
 def dependencies():
-    directory = "objects/org/eolang"
+    directory = "objects"
     unique_deps = set()
     for subdir, dirs, files in os.walk(directory):
         for file in files:
