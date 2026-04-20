@@ -4,6 +4,9 @@ authors:
 - family-names: "Bugayenko"
   given-names: "Yegor"
   orcid: "https://orcid.org/0000-0001-6370-0678"
+- family-names: "Trunnikov"
+  given-names: "Maxim"
+  orcid: "https://orcid.org/0000-0001-8545-4797"
 title: "EOLANG and 𝜑-calculus"
 version: 0.23.0
 doi: 10.48550/arXiv.2111.13384
