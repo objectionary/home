@@ -4,7 +4,7 @@
 .PHONY: all clean test
 
 all:
-	make -C make
+	$(MAKE) -C make
 
 clean:
-	make -C make clean
+	$(MAKE) -C make clean

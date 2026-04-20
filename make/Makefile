@@ -14,6 +14,7 @@ all:
 	done
 
 clean:
+	git clean -fdX
 	for d in $(DIRS); do
 		cd $${d} && make clean && cd ..
 	done

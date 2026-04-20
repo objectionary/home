@@ -10,4 +10,4 @@ all:
 	mvn --update-snapshots --errors --batch-mode test
 
 clean:
-	mvn clean
+	git clean -fdX
