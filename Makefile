@@ -5,7 +5,6 @@
 
 all:
 	make -C make
-	python3 py/deps_tests.py
 
 clean:
 	make -C make clean

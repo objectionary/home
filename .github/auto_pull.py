@@ -2,8 +2,28 @@
 # SPDX-License-Identifier: MIT
 
 import os
+import re
 import requests
-from deps import dependencies
+
+
+def dependencies():
+    directory = "objects"
+    unique_deps = set()
+    for subdir, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".eo"):
+                with open(os.path.join(subdir, file), "r") as f:
+                    content = f.read()
+                    matches = re.findall(r"\+rt jvm org.eolang:(.*?)\n", content)
+                    for match in matches:
+                        lst = match.split(":")
+                        if len(lst) > 2:
+                            match = f'{lst[0]}:{lst[2]}'
+                        if "eo-runtime" in match:
+                            match = f'eo:{lst[1]}'
+                        unique_deps.add(match)
+    print(f'List of current dependencies: {unique_deps}')
+    return unique_deps
 
 
 def pull_release(unique_deps):
@@ -20,7 +40,7 @@ def pull_release(unique_deps):
             pull_exit_code = os.system(f'./pull.sh objectionary/{name}')
             if pull_exit_code != 0:
                 raise RuntimeError(f"Failed to pull objectionary/{name}, exit code: {pull_exit_code}")
-            pom_exit_code = os.system(f'./pom.sh {latest_version}')
+            pom_exit_code = os.system(f'./.github/pom.sh {latest_version}')
             if pom_exit_code != 0:
                 raise RuntimeError(f"Failed to update pom with version {latest_version}, exit code: {pom_exit_code}")
             env_file = os.getenv('GITHUB_ENV')
