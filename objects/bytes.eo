@@ -1,14 +1,12 @@
 +alias tt.sprintf
 +architect yegor256@gmail.com
 +home https://github.com/objectionary/eo
-+rt jvm org.eolang:eo-runtime:0.59.7
++rt jvm org.eolang:eo-runtime:0.61.1
 +rt node eo2js-runtime:0.0.0
-+version 0.59.7
++version 0.61.1
 +spdx SPDX-FileCopyrightText: Copyright (c) 2016-2026 Objectionary.com
 +spdx SPDX-License-Identifier: MIT
 +unlint redundant-object
-+unlint idempotent-attribute-is-not-first
-+unlint compound-name
 
 # The object encapsulates a chain of bytes, providing bitwise operations,
 # numeric conversions, and byte manipulation methods. Objects like `number`, `string`,
@@ -73,34 +71,34 @@
 
   # Returns `org.eolang.true` if current sequence of bytes equals another object.
   # Before the actual comparison the object `b` is dataized.
-  [b] > eq ?
+  [b] > eq /true
 
   # Returns total amount of current bytes as `org.eolang.number`.
-  [] > size ?
+  [] > size /number
 
   # Represents a sub-sequence of `org.eolang.bytes` inside the current one.
-  [start len] > slice ?
+  [start len] > slice /bytes
 
   # Calculates the bitwise AND operation and returns result as `org.eolang.bytes`.
-  [b] > and ?
+  [b] > and /bytes
 
   # Calculates the bitwise OR operation and returns result as `org.eolang.bytes`.
-  [b] > or ?
+  [b] > or /bytes
 
   # Calculates the bitwise XOR operation and returns result as `org.eolang.bytes`.
-  [b] > xor ?
+  [b] > xor /bytes
 
   # Calculates the bitwise NOT operation and returns result as `org.eolang.bytes`.
-  [] > not ?
+  [] > not /bytes
 
   # Calculates the bitwise left shift.
   right x.neg > [x] > left
 
   # Calculates the bitwise right shift and returns result as `org.eolang.bytes`.
-  [x] > right ?
+  [x] > right /bytes
 
   # Concatenation of two byte sequences and returns result as `org.eolang.bytes`.
-  [b] > concat ?
+  [b] > concat /bytes
 
   # Tests that a slice of bytes can be extracted from a larger byte sequence.
   [] +> tests-takes-part-of-bytes
@@ -503,6 +501,10 @@
   # Tests that conversion to i64 throws error for wrong-sized bytes.
   [] +> throws-on-bytes-of-wrong-size-as-i64
     01-01-01-01.as-i64 > @
+
+  # Tests that slicing out of bounds throws an error.
+  [] +> throws-on-out-of-bounds-slice
+    20-1F-EE-B5-90.slice 3 10 > @
 
   # Tests that bytes can be correctly converted to i64 integer.
   [] +> tests-bytes-converts-to-i64
