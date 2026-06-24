@@ -32,6 +32,7 @@ objects/tt/is-alphanumeric.eo
 objects/tt/at.eo
 objects/tt/trimmed-right.eo
 objects/tt/contains-any.eo
+objects/tt/as-ascii.eo
 objects/tt/is-alpha.eo
 objects/tt/trimmed-left.eo
 objects/tt/as-number.eo
@@ -40,6 +41,7 @@ objects/tt/regex.eo
 objects/tt/repeated.eo
 objects/tt/contains-all.eo
 objects/tt/contains.eo
+objects/tt/is-digit.eo
 objects/tt/joined.eo
 objects/tt/split.eo
 objects/tt/replaced.eo
@@ -53,6 +55,7 @@ objects/tt/up-cased.eo
 objects/tt/sprintf.eo
 objects/error.eo
 objects/i64.eo
+objects/bool.eo
 objects/number.eo
 objects/i16.eo
 objects/while.eo
@@ -62,6 +65,7 @@ objects/sm/os.eo
 objects/sm/posix.eo
 objects/sm/win32.eo
 objects/sm/line-separator.eo
+objects/sm/eol.eo
 objects/negative-infinity.eo
 objects/io/malloc-as-output.eo
 objects/io/tee-input.eo
@@ -93,6 +97,7 @@ objects/ms/ln.eo
 objects/ms/pow.eo
 objects/ms/pi.eo
 objects/ms/abs.eo
+objects/pinf.eo
 objects/string.eo
 objects/nan.eo
 objects/try.eo
@@ -101,5 +106,6 @@ objects/switch.eo
 objects/i32.eo
 objects/nop.eo
 objects/true.eo
+objects/ninf.eo
 objects/dataized.eo
 objects/false.eo
