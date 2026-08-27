@@ -40,6 +40,10 @@ objects/pi.eo
 objects/buffer.eo
 objects/eol.eo
 objects/u64.eo
+objects/file/touched.eo
+objects/file/deleted.eo
+objects/file/size.eo
+objects/file/moved.eo
 objects/directory.eo
 objects/os.eo
 objects/file.eo
