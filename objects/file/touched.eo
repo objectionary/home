@@ -1,0 +1,95 @@
+# Touches a file, creating it if it does not exist yet, and returning the same
+# file, unchanged, if it already does. It is a method of `file`, and `f` is the
+# file it is taken off. `f.exists` counts any symbolic link, dangling or not,
+# as existing, so this checks reachability directly instead: an ordinary
+# absent path or a dangling symlink both get created. On POSIX, opening a
+# symlink is done without the exclusive flag, since POSIX defines
+# `O_CREAT | O_EXCL` on a path naming a symlink as always failing `EEXIST`,
+# whether or not its target exists; the exclusivity that guards the
+# plain-file race stays for every other path, and win32 keeps its exclusive
+# open unconditionally, since its reparse points do not share that rule.
+#
+
++architect yegor256@gmail.com
++home https://github.com/objectionary/eo
++package file
++version 0.63.0
++spdx SPDX-FileCopyrightText: Copyright (c) 2016-2026 Objectionary.com
++spdx SPDX-License-Identifier: MIT
+
+[^] > touched
+  reachable.if > @
+    f
+    if.
+      or.
+        descriptor.gte 0
+        linked.not.and
+          errno.eq eexist
+      seq *
+        if.
+          descriptor.gte 0
+          code.
+            os.is-windows.if
+              win32 *1
+                "_close"
+                descriptor
+              posix *1
+                "close"
+                descriptor
+          0
+        f
+      T
+        "Cant touch the file '%s': %s".printf
+          * f.path opened.output
+  code. > accessible
+    os.is-windows.if
+      win32 *1
+        "_access"
+        f.path
+        0
+      posix *1
+        "access"
+        f.path
+        0
+  opened.code > descriptor
+  os.is-windows.if > eexist
+    win32.eexist
+    posix.eexist
+  code. > errno
+    os.is-windows.if
+      win32
+        "_errno"
+        *
+      posix
+        "errno"
+        *
+  linked.not.if > exclusive
+    posix.exclusive
+    0
+  ^ > f
+  f.is-symlink false > linked
+  called. > opened
+    os.is-windows.if
+      win32 *1
+        "_open"
+        f.path
+        plus.
+          win32.creat.plus win32.exclusive
+          win32.wronly
+        win32.mode
+      posix *1
+        "open"
+        f.path
+        plus.
+          posix.creat.plus exclusive
+          posix.wronly
+        posix.mode
+  accessible.eq 0 > reachable
+
+  ++> can-return-itself-after-touching
+    temp.deleted.touched.path.eq temp.path > @
+    mktemp.tmpfile > temp
+
+  mktemp.tmpfile.deleted.touched.exists ++> can-touch-a-file
+
+  mktemp.tmpfile.deleted.touched.touched.exists ++> can-touch-a-file-twice

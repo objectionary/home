@@ -1,0 +1,40 @@
+# Moves a file to `target` on the filesystem, returning the file at its new
+# location. It is a method of `file`, and `f` is the file it is taken off.
+
++architect yegor256@gmail.com
++home https://github.com/objectionary/eo
++package file
++version 0.63.0
++spdx SPDX-FileCopyrightText: Copyright (c) 2016-2026 Objectionary.com
++spdx SPDX-License-Identifier: MIT
+
+[^ target] > moved
+  if. > @
+    renamed.code.eq 0
+    file target
+    T
+      "Cant move the file '%s' to '%s': %s".printf
+        *
+          f.path
+          target
+          renamed.output
+  ^ > f
+  called. > renamed
+    os.is-windows.if
+      win32 *1
+        "rename"
+        f.path
+        target
+      posix *1
+        "rename"
+        f.path
+        target
+
+  ++> can-move-a-file
+    and. > @
+      exists.
+        temp.moved
+          "%s.dest".printf
+            * temp.path
+      temp.exists.not
+    mktemp.tmpfile > temp
