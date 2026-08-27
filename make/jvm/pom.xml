@@ -9,7 +9,7 @@
   <artifactId>jvm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <eo.version>0.62.1</eo.version>
+    <eo.version>0.63.0</eo.version>
     <stack-size>32M</stack-size>
     <heap-size>2G</heap-size>
   </properties>
@@ -39,6 +39,7 @@
         <version>${eo.version}</version>
         <configuration>
           <skipLinting>true</skipLinting>
+          <offline>true</offline>
           <discoverSelf>true</discoverSelf>
           <failOnWarning>false</failOnWarning>
         </configuration>
@@ -48,6 +49,7 @@
             <goals>
               <goal>register</goal>
               <goal>compile</goal>
+              <goal>merge</goal>
               <goal>transpile</goal>
             </goals>
             <configuration>
@@ -63,6 +65,7 @@
             <goals>
               <goal>register</goal>
               <goal>compile</goal>
+              <goal>merge</goal>
               <goal>transpile</goal>
             </goals>
             <configuration>
