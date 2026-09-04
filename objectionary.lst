@@ -159,6 +159,7 @@ objects/tuple/index-of.eo
 objects/tuple/filtered.eo
 objects/tuple/slice.eo
 objects/tuple/maximum.eo
+objects/tuple/reversed.eo
 objects/tuple/filteredi.eo
 objects/ninf.eo
 objects/tuple.eo
