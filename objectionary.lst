@@ -10,6 +10,7 @@ objects/u64.eo
 objects/chunk.eo
 objects/range.eo
 objects/uri.eo
+objects/directory/listed.eo
 objects/directory/deleted.eo
 objects/directory/made.eo
 objects/directory/open.eo
