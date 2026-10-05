@@ -9,12 +9,14 @@ name: bashate
       - master
     paths:
       - '**.sh'
+      - '**.bash'
       - '.github/workflows/bashate.yml'
   pull_request:
     branches:
       - master
     paths:
       - '**.sh'
+      - '**.bash'
       - '.github/workflows/bashate.yml'
 concurrency:
   group: bashate-${{ github.ref }}
