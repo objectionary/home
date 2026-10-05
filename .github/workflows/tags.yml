@@ -10,6 +10,9 @@ name: tags
     tags:
       - '*'
   release:
+concurrency:
+  group: tags-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   tags:
     timeout-minutes: 15

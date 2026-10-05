@@ -10,6 +10,9 @@ name: checkmake
   pull_request:
     branches:
       - master
+concurrency:
+  group: checkmake-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   checkmake:
     timeout-minutes: 15

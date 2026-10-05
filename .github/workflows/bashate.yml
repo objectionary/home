@@ -16,6 +16,9 @@ name: bashate
     paths:
       - '**.sh'
       - '.github/workflows/bashate.yml'
+concurrency:
+  group: bashate-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   bashate:
     timeout-minutes: 15

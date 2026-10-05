@@ -10,6 +10,9 @@ name: python-lint
   pull_request:
     branches:
       - master
+concurrency:
+  group: python-lint-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   python-lint:
     timeout-minutes: 15
