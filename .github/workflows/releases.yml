@@ -14,7 +14,7 @@ concurrency:
 jobs:
   check-releases:
     timeout-minutes: 15
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@v1
@@ -57,7 +57,7 @@ jobs:
           delete-branch: true
   telegram:
     needs: check-releases
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     if: ${{ always() }}
     permissions:
       actions: read
