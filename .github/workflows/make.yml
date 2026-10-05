@@ -11,7 +11,7 @@ name: make
     branches:
       - master
 concurrency:
-  group: ${{ github.ref }}
+  group: make-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   make:
