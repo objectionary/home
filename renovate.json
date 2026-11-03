@@ -13,5 +13,7 @@
         "maven-compiler-plugin"
       ]
     }
-  ]
+  ],
+  "automerge": true,
+  "platformAutomerge": true
 }
