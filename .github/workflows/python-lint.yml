@@ -24,6 +24,6 @@ jobs:
         with:
           python-version: "3.15.2"
       - name: Install wemake-python-styleguide
-        run: pip install ruff==0.9.4
+        run: pip install ruff==0.17.4
       - name: Run ruff
         run: ruff check .github/auto_pull.py
