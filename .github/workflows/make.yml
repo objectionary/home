@@ -40,7 +40,7 @@ jobs:
     permissions:
       actions: read
     steps:
-      - uses: yegor256/terald-action@e8999230eb76eca26489153021bb0e8ddb3760df  # master
+      - uses: yegor256/terald-action@b27800990dc00ff9517716fa3a852dc5ec1b9f9b  # master
         with:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           chat: -1004371404002
