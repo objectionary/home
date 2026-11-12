@@ -27,3 +27,7 @@ jobs:
         run: pip install ruff==0.9.4
       - name: Run ruff
         run: ruff check .github/auto_pull.py
+      - name: Test release version selection
+        run: |
+          pip install requests
+          python -m unittest discover -s .github -p 'test_*.py'
