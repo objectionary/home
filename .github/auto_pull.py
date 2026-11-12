@@ -3,6 +3,7 @@
 
 import os
 import re
+from itertools import zip_longest
 import requests
 
 
@@ -17,11 +18,13 @@ def dependencies():
                     matches = re.findall(r"\+rt jvm org.eolang:(.*?)\n", content)
                     for match in matches:
                         lst = match.split(":")
-                        if len(lst) > 2:
-                            match = f'{lst[0]}:{lst[2]}'
-                        if "eo-runtime" in match:
-                            match = f'eo:{lst[1]}'
-                        unique_deps.add(match)
+                        if len(lst) not in (2, 3) or not all(lst):
+                            continue
+                        name = lst[0]
+                        version = lst[2] if len(lst) > 2 else lst[1]
+                        if name == "eo-runtime":
+                            name = "eo"
+                        unique_deps.add(f'{name}:{version}')
     print(f'List of current dependencies: {unique_deps}')
     return unique_deps
 
@@ -54,12 +57,13 @@ def pull_release(unique_deps):
 
 
 def compare(latest_version, old_version):
-    latest = latest_version.split(".")
-    old = old_version.split(".")
-    for i in range(len(latest)):
-        if int(latest[i]) > int(old[i]):
-            return True
+    latest = map(int, latest_version.split("."))
+    old = map(int, old_version.split("."))
+    for newest, current in zip_longest(latest, old, fillvalue=0):
+        if newest != current:
+            return newest > current
     return False
 
 
-pull_release(dependencies())
+if __name__ == "__main__":
+    pull_release(dependencies())
