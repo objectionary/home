@@ -25,7 +25,7 @@ jobs:
           sudo apt-get update --yes --fix-missing
           sudo apt-get install --yes libmagic-dev python3 python3-pip
           pip3 install requests
-      - run: sudo gem install pdd -v 0.24.0
+      - run: sudo gem install pdd -v 0.24.2
       - run: |
           python3 .github/auto_pull.py
       - uses: crazy-max/ghaction-import-gpg@v7
