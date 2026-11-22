@@ -25,7 +25,7 @@ tree "${tmp}/objectionary"
 
 # Objects that this library published before, but doesn't publish anymore,
 # must disappear; objects of other libraries must stay untouched.
-grep -rlZx --include='*.eo' -F "+home https://github.com/${repo}" objects \
+{ grep -rlZx --include='*.eo' -F "+home https://github.com/${repo}" objects || true; } \
     | xargs -0 rm -f
 rsync -a "${tmp}/objectionary"/ objects/
 find objects -type d -empty -delete
